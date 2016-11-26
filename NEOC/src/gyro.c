@@ -6,7 +6,7 @@
 
 FILE *gyroData;
 
-int calibration[] = {0, 0, 0};
+int gyro_calibration[] = {0, 0, 0};
 
 int neo_gyro_set_poll(int rate) {
 	FILE *polling;
@@ -54,9 +54,9 @@ int neo_gyro_read(int *x, int *y, int *z) {
 int neo_gyro_read_calibrated(int *x, int *y, int *z) {
 	int okRet = neo_gyro_read(x, y, z);
 
-	(*x) += (calibration[0] > 0) ? -(calibration[0]) : calibration[0];
-	(*y) -= (calibration[1] > 0) ? -(calibration[1]) : calibration[1];
-	(*z) -= (calibration[2] > 0) ? -(calibration[2]) : calibration[2];
+	(*x) += (gyro_calibration[0] > 0) ? -(gyro_calibration[0]) : gyro_calibration[0];
+	(*y) -= (gyro_calibration[1] > 0) ? -(gyro_calibration[1]) : gyro_calibration[1];
+	(*z) -= (gyro_calibration[2] > 0) ? -(gyro_calibration[2]) : gyro_calibration[2];
 
 	return okRet;
 }
@@ -81,9 +81,9 @@ int neo_gyro_calibrate(int samples, int delayEach) {
 		usleep(1000 * delayEach);
 	}
 
-	calibration[0] = (int)(xCal / ((float)samples));
-	calibration[1] = (int)(yCal / ((float)samples));
-	calibration[2] = (int)(zCal / ((float)samples));
+	gyro_calibration[0] = (int)(xCal / ((float)samples));
+	gyro_calibration[1] = (int)(yCal / ((float)samples));
+	gyro_calibration[2] = (int)(zCal / ((float)samples));
 
 	return NEO_OK;
 }

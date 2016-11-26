@@ -6,7 +6,7 @@
 
 FILE *magnoData;
 
-int calibration[] = {0, 0, 0};
+int magno_calibration[] = {0, 0, 0};
 
 int neo_magno_set_poll(int rate) {
 	FILE *polling;
@@ -53,9 +53,9 @@ int neo_magno_read(int *x, int *y, int *z) {
 int neo_magno_read_calibrated(int *x, int *y, int *z) {
 	int okRet = neo_magno_read(x, y, z);
 
-	(*x) += (calibration[0] > 0) ? -(calibration[0]) : calibration[0];
-	(*y) -= (calibration[1] > 0) ? -(calibration[1]) : calibration[1];
-	(*z) -= (calibration[2] > 0) ? -(calibration[2]) : calibration[2];
+	(*x) += (magno_calibration[0] > 0) ? -(magno_calibration[0]) : magno_calibration[0];
+	(*y) -= (magno_calibration[1] > 0) ? -(magno_calibration[1]) : magno_calibration[1];
+	(*z) -= (magno_calibration[2] > 0) ? -(magno_calibration[2]) : magno_calibration[2];
 
 	return okRet;
 }
@@ -80,9 +80,9 @@ int neo_magno_calibrate(int samples, int delayEach) {
 		usleep(1000 * delayEach);
 	}
 
-	calibration[0] = (int)(xCal / ((float)samples));
-	calibration[1] = (int)(yCal / ((float)samples));
-	calibration[2] = (int)(zCal / ((float)samples));
+	magno_calibration[0] = (int)(xCal / ((float)samples));
+	magno_calibration[1] = (int)(yCal / ((float)samples));
+	magno_calibration[2] = (int)(zCal / ((float)samples));
 
 	return NEO_OK;
 }

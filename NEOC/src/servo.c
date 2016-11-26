@@ -70,7 +70,7 @@ int neo_servo_refresh() {
 }
 
 
-int main() {
+/*int main() {
 	neo_servo_init();
 	neo_servo_attach(13);
 	neo_servo_write(13, 0);
@@ -78,4 +78,4 @@ int main() {
 		neo_servo_refresh();
 		usleep(1000 * 15);
 	}
-}
+}*/

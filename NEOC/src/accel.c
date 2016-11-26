@@ -6,7 +6,7 @@
 
 FILE *accelData;
 
-int calibration[] = {0, 0, 0};
+int accel_calibration[] = {0, 0, 0};
 
 int neo_accel_set_poll(int rate) {
 	FILE *polling;
@@ -54,9 +54,9 @@ int neo_accel_read(int *x, int *y, int *z) {
 int neo_accel_read_calibrated(int *x, int *y, int *z) {
 	int okRet = neo_accel_read(x, y, z);
 
-	(*x) += (calibration[0] > 0) ? -(calibration[0]) : calibration[0];
-	(*y) -= (calibration[1] > 0) ? -(calibration[1]) : calibration[1];
-	(*z) -= (calibration[2] > 0) ? -(calibration[2]) : calibration[2];
+	(*x) += (accel_calibration[0] > 0) ? -(accel_calibration[0]) : accel_calibration[0];
+	(*y) -= (accel_calibration[1] > 0) ? -(accel_calibration[1]) : accel_calibration[1];
+	(*z) -= (accel_calibration[2] > 0) ? -(accel_calibration[2]) : accel_calibration[2];
 
 	return okRet;
 }
@@ -81,9 +81,9 @@ int neo_accel_calibrate(int samples, int delayEach) {
 		usleep(1000 * delayEach);
 	}
 
-	calibration[0] = (int)(xCal / ((float)samples));
-	calibration[1] = (int)(yCal / ((float)samples));
-	calibration[2] = (int)(zCal / ((float)samples));
+	accel_calibration[0] = (int)(xCal / ((float)samples));
+	accel_calibration[1] = (int)(yCal / ((float)samples));
+	accel_calibration[2] = (int)(zCal / ((float)samples));
 
 	return NEO_OK;
 }
@@ -102,7 +102,7 @@ int neo_accel_free() {
 }
 
 
-int main() {
+/*int main() {
 	int x, y, z;
 	neo_accel_init();
 	neo_accel_calibrate(20, 100);
@@ -112,4 +112,4 @@ int main() {
 		usleep(1000*20);
 	}
 	neo_accel_free();
-}
+}*/
