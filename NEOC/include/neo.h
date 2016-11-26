@@ -17,7 +17,7 @@
 #define PWMDUTY "/duty_cycle"
 #define PWMENABLE "/enable"
 
-#define MAXFAKEPWM 5
+#define MAXFAKEPWM 47
 #define PWMMUTEXRATE 0.00010f
 
 #define ANALOGPATHP "/sys/bus/iio/devices/iio\:device"
@@ -27,6 +27,9 @@
 #define ANALOGHIGH 4095
 #define ANALOGLOW 0
 #define ANALOGBIT 12
+
+
+#define LEDPATH "/sys/class/leds/led0/brightness"
 
 //To scale the analog based on board specs set to true
 //Auto find scale will be done
@@ -42,6 +45,30 @@
 #define NEO_DIR_ERROR -8
 #define NEO_READ_ERROR -9
 #define NEO_SCALE_ERROR -10
+#define NEO_LED_STATE_ERROR -11
+
+#define ACCELBASE "/sys/class/misc/FreescaleAccelerometer/"
+#define ACCELENABLE ACCELBASE"enable"
+#define ACCELDATA ACCELBASE"data"
+#define ACCELPOLLP ACCELBASE"poll_delay"
+#define ACCELPOLL 20
+
+#define GYROBASE "/sys/class/misc/FreescaleGyroscope/"
+#define GYROENABLE GYROBASE"enable"
+#define GYRODATA GYROBASE"data"
+#define GYROPOLLP GYROBASE"poll_delay"
+#define GYROPOLL 20
+
+#define MAGNOBASE "/sys/class/misc/FreescaleMagnetometer/"
+#define MAGNOENABLE MAGNOBASE"enable"
+#define MAGNODATA MAGNOBASE"data"
+#define MAGNOPOLLP MAGNOBASE"poll_delay"
+#define MAGNOPOLL 20
+
+#define TEMPINIT "lm75 0x48"
+#define TEMPPATH "/sys/class/i2c-dev/i2c-1/device/new_device"
+#define TEMPREAD "/sys/class/i2c-dev/i2c-1/device/1-0048/temp1_input"
+
 
 #define OUTPUT 1
 #define INPUT 0
@@ -49,7 +76,6 @@
 #define LOW 0
 
 #include <string.h>
-#include <cstring>
 #include <stdio.h>
 
 extern const char * const GPIOPORTS[];
@@ -61,19 +87,19 @@ extern unsigned char USABLEANALOG[];
 extern float ANALOGSCALE[];
 
 
-const size_t exportL = strlen(EXPORTPATH);
-const size_t gpioL = strlen(GPIOPATH);
-const size_t valueL = strlen(VALUEPATH);
-const size_t directionL = strlen(DIRECTIONPATH);
-const size_t pwmexportL = strlen(PWMEXPORTPATH);
-const size_t pwmL = strlen(PWMPATH);
-const size_t pwmPeriod = strlen(PWMPERIOD);
-const size_t pwmDuty = strlen(PWMDUTY);
-const size_t pwmEnable = strlen(PWMENABLE);
-const size_t analogL = strlen(ANALOGPATHP);
-const size_t analogBL = strlen(ANALOGBASEP);
-const size_t analogRL = strlen(ANALOGRAWP);
-const size_t analogSL = strlen(ANALOGSCALEP);
+#define exportL strlen(EXPORTPATH)
+#define gpioL  strlen(GPIOPATH)
+#define valueL strlen(VALUEPATH)
+#define directionL strlen(DIRECTIONPATH)
+#define pwmexportL strlen(PWMEXPORTPATH)
+#define pwmL strlen(PWMPATH)
+#define pwmPeriod strlen(PWMPERIOD)
+#define pwmDuty strlen(PWMDUTY)
+#define pwmEnable strlen(PWMENABLE)
+#define analogL strlen(ANALOGPATHP)
+#define analogBL strlen(ANALOGBASEP)
+#define analogRL strlen(ANALOGRAWP)
+#define analogSL strlen(ANALOGSCALEP)
 
 float neo_re_map(float, float, float, float, float);
 void neo_check_root(char const *);
@@ -99,5 +125,10 @@ int neo_pwm_free();
 int neo_analog_init();
 float neo_analog_read(int);
 int neo_analog_free();
+
+int neo_led_init();
+int neo_led_set(int);
+int neo_led_on();
+int neo_led_off();
 
 #endif
