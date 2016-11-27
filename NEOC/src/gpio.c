@@ -17,13 +17,17 @@ unsigned char USABLEGPIO[GPIOPORTSL];
 FILE* gpioP[GPIOPORTSL];
 FILE* gpioD[GPIOPORTSL];
 
+char gpio_freed = 2;
+
 int neo_gpio_init() 
 {
 	int i, gi, fail;
+	fail = NEO_OK;
+
+	if(freed == 2) {
+
 	for(gi = 0; gi < GPIOPORTSL; gi++) {USABLEGPIO[gi] = 1;}
 
-	fail = NEO_OK;
-	
 	FILE *eFile;
 	eFile = fopen(EXPORTPATH, "w");
 	
@@ -55,6 +59,9 @@ int neo_gpio_init()
 		}
 
 	}
+	gpio_freed = 0;
+	}
+
 	return fail;
 }
 
@@ -63,21 +70,17 @@ int neo_gpio_pin_mode(int pin, int direction) {
 	
 	if(pin < 0 || pin > GPIOPORTSL) return NEO_PIN_ERROR;
 
-	char toPut[3];
-
 	FILE *curD = gpioD[pin];
-
 	if(curD == NULL || !USABLEGPIO[pin]) return NEO_UNUSABLE_ERROR;
 	fseek(curD, 0, SEEK_SET);
-	sprintf(toPut, "%s", (direction == 0) ? "in" : "out");
-	fprintf(curD,"%s", toPut);
+	fprintf(curD, "%s", (direction == 0) ? "in" : "out");
 	fflush(curD);
-
+	
 	return NEO_OK;
 }
 
 int neo_gpio_digital_write_no_safety(int *pin, int direction) {
-	char toPut[1];
+	char toPut[2];
 	FILE *curP = gpioP[(*pin)];
 
 	fseek(curP, 0, SEEK_SET);
@@ -121,6 +124,9 @@ int neo_gpio_free()
 	int i;
 
 	fail = NEO_OK;
+
+	if(gpio_freed == 0) {
+
 	for(i = 0; i < GPIOPORTSL; i++) {
 		if(USABLEGPIO[i]) {
 			FILE *curP = gpioP[i];
@@ -131,6 +137,8 @@ int neo_gpio_free()
 			if(curD != NULL) fclose(curD);
 			else fail = NEO_UNUSABLE_ERROR;
 		}
+	}
+	gpio_freed = 2;
 	}
 	return fail;
 }

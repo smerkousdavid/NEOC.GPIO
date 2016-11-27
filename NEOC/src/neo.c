@@ -24,3 +24,13 @@ int neo_enable_m4() {
 	neo_check_root("Can't enable m4 without root!");
 	return system("udoom4ctl enable") == 0;
 }
+
+int neo_screen_set_lvds() {
+	neo_check_root("To set to lvds you must be root!");
+	return system("udooscreenctl set lvds7") == 0;
+}
+
+int neo_screen_set_hdmi() {
+	neo_check_root("To set to hdmi you must be root!");
+	return system("udooscreenctl set hdmi") == 0;
+}

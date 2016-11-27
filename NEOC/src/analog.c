@@ -5,69 +5,72 @@
 #include <unistd.h>
 
 
-const char * const ANALOGPORTS[][2] = {{"0", "0"}, {"0", "1"}, {"0", "2"}, {"0", "3"},
-							{"1", "0"}, {"1", "1"}}; 
+const char * const ANALOGPORTS[][2] = {{"0", "0"}, {"0", "1"}, {"0", "2"}, {"0", "3"}, {"1", "0"}, {"1", "1"}}; 
 
-unsigned char USABLEANALOG[GPIOPORTSL];
-float  ANALOGSCALE[ANALOGSCALEL];
+unsigned char USABLEANALOG[GPIOPORTSL + 2];
+float  ANALOGSCALE[ANALOGSCALEL + 2];
 
-FILE* analogR[GPIOPORTSL];
+FILE* analogR[GPIOPORTSL + 2];
+
+unsigned char freed = 2;
 
 int neo_analog_init() 
 {
 	int i, gi, fail;
-	for(gi = 0; gi < ANALOGPORTSL; gi++) {USABLEANALOG[gi] = 1;}
-
-#ifdef SCALEANALOG
-	for(gi = 0; gi < ANALOGSCALEL; gi++) {ANALOGSCALE[gi] = 0.25;}
-#endif
 
 	fail = NEO_OK;
+	
+	if(freed == 2) {
+		for(gi = 0; gi <= ANALOGPORTSL; gi++) {USABLEANALOG[gi] = 1;}
 
-#ifdef SCALEANALOG	
-	for(i = 0; i < ANALOGSCALEL; i++) { 
-		size_t scaleSize = 10 + analogL + analogBL + analogSL;
+	#ifdef SCALEANALOG
+		for(gi = 0; gi <= ANALOGSCALEL; gi++) {ANALOGSCALE[gi] = 0.25;}
+	#endif
 
-		char buff[scaleSize];
-		sprintf(buff, "%s%d%s%s", ANALOGPATHP, i, ANALOGBASEP, ANALOGSCALEP);
+	#ifdef SCALEANALOG	
+		for(i = 0; i <= ANALOGSCALEL; i++) { 
+			size_t scaleSize = 10 + analogL + analogBL + analogSL;
+			char buff[scaleSize];
+			sprintf(buff, "%s%d%s%s", ANALOGPATHP, i, ANALOGBASEP, ANALOGSCALEP);
 
-		FILE *sFile;
-		sFile = fopen(buff, "r");
+			FILE *sFile;
+			sFile = fopen(buff, "r");
 
-		if(sFile == NULL) {
-			fail = NEO_EXPORT_ERROR;
-			continue;
+			if(sFile == NULL) {
+				fail = NEO_EXPORT_ERROR;
+				continue;
+			}
+
+			float curScale;
+			curScale  = 0.25f;
+			fscanf(sFile, "%f", &curScale);
+			fclose(sFile);
+			ANALOGSCALE[i] = curScale;
 		}
+	#endif
 
-		float curScale;
-		curScale  = 0.25f;
-		fscanf(sFile, "%f", &curScale);
-		fclose(sFile);
-		ANALOGSCALE[i] = curScale;
-	}
-#endif
+		for(i = 0; i <= ANALOGPORTSL; i++) {
+			size_t rawSize = 3 + analogL + analogBL + analogRL;
 
-	for(i = 0; i < ANALOGPORTSL; i++) {
-		size_t rawSize = 3 + analogL + analogBL + analogRL;
-
-		char buffR[rawSize];
-		
-		sprintf(buffR, "%s%s%s%s%s", ANALOGPATHP, ANALOGPORTS[i][0],
-					ANALOGBASEP, ANALOGPORTS[i][1], ANALOGRAWP);
-		
-		analogR[i] = fopen(buffR, "r");
-
-		if(analogR[i] == NULL) {
-			fail = NEO_UNUSABLE_ERROR;
-			USABLEANALOG[i] = 0;
+			char buffR[rawSize];
+				
+			sprintf(buffR, "%s%s%s%s%s", ANALOGPATHP, ANALOGPORTS[i][0],
+						ANALOGBASEP, ANALOGPORTS[i][1], ANALOGRAWP);
+				
+			analogR[i] = fopen(buffR, "r");
+			if(analogR[i] == NULL) {
+				fail = NEO_UNUSABLE_ERROR;
+				USABLEANALOG[i] = 0;
+			}
 		}
 	}
+	freed = 0; 
 	return fail;
 }
 
-float neo_analog_read(int pin) {
+float neo_analog_read(int pin) 
+{
 	if(pin < 0 || pin > ANALOGPORTSL) return NEO_PIN_ERROR;
-
 
 	FILE *curR = analogR[pin];
 
@@ -97,13 +100,17 @@ int neo_analog_free()
 	int i;
 
 	fail = NEO_OK;
-	for(i = 0; i < ANALOGPORTSL; i++) {
-		if(USABLEANALOG[i]) {
-			FILE *curR = analogR[i];
 
-			if(curR != NULL) fclose(curR);
-			else fail = NEO_UNUSABLE_ERROR;
+	if(freed == 0) {
+		for(i = 0; i < ANALOGPORTSL; i++) {
+			if(USABLEANALOG[i]) {
+				FILE *curR = analogR[i];
+
+				if(curR != NULL) fclose(curR);
+				else fail = NEO_UNUSABLE_ERROR;
+			}
 		}
+		freed = 2;
 	}
 	return fail;
 }

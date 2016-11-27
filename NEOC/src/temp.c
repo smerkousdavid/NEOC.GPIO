@@ -6,7 +6,10 @@
 
 FILE *tempSensor;
 
+unsigned char temp_freed = 2;
+
 int neo_temp_init() {
+	if(temp_freed == 2) {
 	neo_check_root("The temperature module requires root!");
 	//REstart the module
 	system("rmmod lm75");
@@ -25,7 +28,8 @@ int neo_temp_init() {
 	tempSensor = fopen(TEMPREAD, "r");
 
 	if(tempSensor == NULL) return NEO_UNUSABLE_ERROR;
-	
+	temp_freed = 0;
+	}
 	return NEO_OK;
 }
 

@@ -1,6 +1,10 @@
 #ifndef NEOC_H
 #define NEOC_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #define GPIOPORTSL 48
 #define PWMPORTSL 7
 #define ANALOGPORTSL 5
@@ -105,6 +109,8 @@ float neo_re_map(float, float, float, float, float);
 void neo_check_root(char const *);
 int neo_enable_m4();
 int neo_disable_m4();
+int neo_screen_set_lvds();
+int neo_screen_set_hdmi();
 
 //extern unsigned int neo_pwm_period = 2040816;
 //extern unsigned int neo_pwm_duty = 50;
@@ -113,9 +119,15 @@ int neo_gpio_init();
 int neo_gpio_pin_mode(int, int);
 int neo_gpio_digital_write_no_safety(int*, int);
 int neo_gpio_digital_write(int, int);
+int neo_gpio_digital_read(int);
 int neo_gpio_free();
 
 int neo_pwm_init();
+void neo_sync_pwm(void*, int*, int*, int*, int*);
+void *pwmManager(void*);
+int neo_fake_pwm_init();
+int neo_fake_pwm_write_period(int, int, int);
+int neo_fake_pwm_write(int, int);
 int neo_pwm_set_period(int, int);
 int neo_pwm_set_period_all(int);
 int neo_pwm_write(int, int);
@@ -126,9 +138,77 @@ int neo_analog_init();
 float neo_analog_read(int);
 int neo_analog_free();
 
+int neo_temp_init();
+int neo_temp_read();
+int neo_temp_free();
+
 int neo_led_init();
 int neo_led_set(int);
 int neo_led_on();
 int neo_led_off();
 
-#endif
+#ifdef __cplusplus
+}
+
+class Analog {
+	public:
+		Analog(int port, bool release = true) {
+			Analog::init(true);
+			_held = port;
+			_in_use += 1;
+
+			Analog::_release = release;
+		}
+
+		~Analog() {
+			_in_use -= 1;
+
+			if(_in_use == 0 && Analog::_release) Analog::free(false);
+		}
+
+		static bool init(bool throws) {
+			int ret = neo_analog_init();
+			return ret == NEO_OK;
+		}
+
+		static bool init() {
+			return Analog::init(false);
+		}
+
+		static bool free(bool throws) {
+			int ret = neo_analog_free();
+			return ret == NEO_OK;
+		}
+
+		static bool free() {
+			return Analog::free(false);
+		}
+
+		static float read(int port) {
+			float ret = neo_analog_read(port);
+			return ret;
+		}
+
+		float read() {
+			Analog::read(_held);
+		}
+
+	private:
+		int _held;
+		static short _in_use;
+		static bool _release;
+};
+
+short Analog::_in_use = 0;
+bool Analog::_release = true;
+
+class Gpio {
+	public:
+		Gpio();
+		void wilma(int);
+	private:
+    	int a_;
+};
+#endif //__cplusplus
+
+#endif //NEO_HEAD

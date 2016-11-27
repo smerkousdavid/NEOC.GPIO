@@ -10,18 +10,18 @@
 const char * const PWMPORTS[] = {"0", "1", "2", "3", "4", "5", "6"};
 unsigned char USABLEPWM[] = {0, 0, 0, 0, 0, 0, 0};
 
-int FAKEPWMLIST[MAXFAKEPWM][2];
+int FAKEPWMLIST[MAXFAKEPWM + 2][2];
 
-FILE* pwmP[PWMPORTSL];
-FILE* pwmD[PWMPORTSL];
-FILE* pwmE[PWMPORTSL];
+FILE* pwmP[PWMPORTSL + 2];
+FILE* pwmD[PWMPORTSL + 2];
+FILE* pwmE[PWMPORTSL + 2];
 
 unsigned int neo_pwm_period = 20408;
 unsigned int neo_pwm_duty = 50;
 
 int pwm_counting = 0;
 
-pthread_t fakePWMT[MAXFAKEPWM];
+pthread_t fakePWMT[MAXFAKEPWM + 2];
 
 struct params {
 	pthread_mutex_t mutex;
@@ -31,7 +31,7 @@ struct params {
 
 typedef struct params params_t;
 
-params_t threadProps[MAXFAKEPWM];
+params_t threadProps[MAXFAKEPWM + 2];
 
 
 int neo_pwm_init()
@@ -50,8 +50,7 @@ int neo_pwm_init()
 			USABLEPWM[i] = 1;
 		} else fail = NEO_EXPORT_ERROR;
 
-		size_t pwmSize = strlen(PWMPORTS[i]) + pwmL;
-
+		size_t pwmSize = strlen(PWMPORTS[i]) + pwmL + 5;
 		size_t newPathS = pwmSize + pwmPeriod;
 		size_t newDPathS = pwmSize + pwmDuty;
 		size_t newEPathS = pwmSize + pwmEnable;
@@ -157,7 +156,7 @@ int neo_fake_pwm_write_period(int gpioPin, int period, int duty) {
 	
 	if(duty < 0 || duty > 255) return NEO_DUTY_ERROR;
 
-	int remap = (int) neo_re_map(duty, 0, 255, 0, period); 
+	int remap = (int) neo_re_map((float)duty, 0.0f, 255.0f, 0.0f,(float)period); 
 	int lower = (period - remap);
 	int upPeriod = (int)(PWMMUTEXRATE * ((float)period)); 
 
@@ -230,7 +229,7 @@ int neo_pwm_write(int pin, int duty) {
 		fprintf(curE, "%d", 0); //Disable pwm
 		fflush(curE);
 	} else {
-		int remap = (int) neo_re_map(duty, 0, 255, 0, neo_pwm_period); 
+		int remap = (int) neo_re_map((float)duty, 0.0f, 255.0f, 0.0f,(float)neo_pwm_period); 
 		fprintf(curE, "%d", 1);
 		fflush(curE);
 		
