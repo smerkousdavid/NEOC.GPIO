@@ -19,7 +19,9 @@ FILE* pwmE[PWMPORTSL + 2];
 unsigned int neo_pwm_period = 20408;
 unsigned int neo_pwm_duty = 50;
 
-int pwm_counting = 0;
+int neo_pwm_counting = 0;
+
+unsigned char neo_pwm_freed = 2;
 
 pthread_t fakePWMT[MAXFAKEPWM + 2];
 
@@ -39,51 +41,55 @@ int neo_pwm_init()
 	int i;
 	int fail;
 
-	FILE *eFile;
-	eFile = fopen(PWMEXPORTPATH, "w");
-
 	fail = NEO_OK;
-	for(i = 0; i < PWMPORTSL; i++) {
-		if(eFile != NULL) {
-			fprintf(eFile, "%s", PWMPORTS[i]);
-			fflush(eFile);
-			USABLEPWM[i] = 1;
-		} else fail = NEO_EXPORT_ERROR;
 
-		size_t pwmSize = strlen(PWMPORTS[i]) + pwmL + 5;
-		size_t newPathS = pwmSize + pwmPeriod;
-		size_t newDPathS = pwmSize + pwmDuty;
-		size_t newEPathS = pwmSize + pwmEnable;
+	if(neo_pwm_freed == 2) {
+		FILE *eFile;
+		eFile = fopen(PWMEXPORTPATH, "w");
 
-		char buffP[newPathS];
-		char buffD[newDPathS];
-		char buffE[newEPathS];
-
-		sprintf(buffP, "%s%s%s", PWMPATH, PWMPORTS[i], PWMPERIOD);
-		sprintf(buffD, "%s%s%s", PWMPATH, PWMPORTS[i], PWMDUTY);
-		sprintf(buffE, "%s%s%s", PWMPATH, PWMPORTS[i], PWMENABLE);
-
-		pwmP[i] = fopen(buffP, "w");
-
-		if(pwmP[i] != NULL) {
-			fprintf(pwmP[i], "%d", neo_pwm_period);
-			fflush(pwmP[i]);
-		} else { 
-			fail = (fail == NEO_EXPORT_ERROR || fail == NEO_UNUSABLE_EXPORT_ERROR) ? 
-					NEO_UNUSABLE_EXPORT_ERROR : NEO_UNUSABLE_ERROR; 
-			USABLEPWM[i] = 0;
+		for(i = 0; i < PWMPORTSL; i++) {
+			if(eFile != NULL) {
+				fprintf(eFile, "%s", PWMPORTS[i]);
+				fflush(eFile);
+				USABLEPWM[i] = 1;
+			} else fail = NEO_EXPORT_ERROR;
+	
+			size_t pwmSize = strlen(PWMPORTS[i]) + pwmL + 5;
+			size_t newPathS = pwmSize + pwmPeriod;
+			size_t newDPathS = pwmSize + pwmDuty;
+			size_t newEPathS = pwmSize + pwmEnable;
+	
+			char buffP[newPathS];
+			char buffD[newDPathS];
+			char buffE[newEPathS];
+	
+			sprintf(buffP, "%s%s%s", PWMPATH, PWMPORTS[i], PWMPERIOD);
+			sprintf(buffD, "%s%s%s", PWMPATH, PWMPORTS[i], PWMDUTY);
+			sprintf(buffE, "%s%s%s", PWMPATH, PWMPORTS[i], PWMENABLE);
+	
+			pwmP[i] = fopen(buffP, "w");
+	
+			if(pwmP[i] != NULL) {
+				fprintf(pwmP[i], "%d", neo_pwm_period);
+				fflush(pwmP[i]);
+			} else { 
+				fail = (fail == NEO_EXPORT_ERROR || fail == NEO_UNUSABLE_EXPORT_ERROR) ? 
+						NEO_UNUSABLE_EXPORT_ERROR : NEO_UNUSABLE_ERROR; 
+				USABLEPWM[i] = 0;
+			}
+	
+			pwmD[i] = fopen(buffD, "w");
+			pwmE[i] = fopen(buffE, "w");
+	
+			if(pwmD[i] == NULL || pwmE[i] == NULL) {
+				fail = (fail == NEO_EXPORT_ERROR || fail == NEO_UNUSABLE_EXPORT_ERROR) ? 
+						NEO_UNUSABLE_EXPORT_ERROR : NEO_UNUSABLE_ERROR; 
+				USABLEPWM[i] = 0;
+	  
+			}
+	
 		}
-
-		pwmD[i] = fopen(buffD, "w");
-		pwmE[i] = fopen(buffE, "w");
-
-		if(pwmD[i] == NULL || pwmE[i] == NULL) {
-			fail = (fail == NEO_EXPORT_ERROR || fail == NEO_UNUSABLE_EXPORT_ERROR) ? 
-					NEO_UNUSABLE_EXPORT_ERROR : NEO_UNUSABLE_ERROR; 
-			USABLEPWM[i] = 0;
-  
-		}
-
+		neo_pwm_freed = 0;	
 	}
 	return fail;
 }
@@ -188,7 +194,7 @@ int neo_fake_pwm_write_period(int gpioPin, int period, int duty) {
 	}
 
 	if(passed) {
-		int curI = pwm_counting;
+		int curI = neo_pwm_counting;
 		if(curI > MAXFAKEPWM) return NEO_EXPORT_ERROR;
 		
 		params_t initP;
@@ -207,7 +213,7 @@ int neo_fake_pwm_write_period(int gpioPin, int period, int duty) {
 		//pthread_cond_wait (&threadProps[curI].done, &threadProps[curI].mutex);
 		FAKEPWMLIST[curI][0] = gpioPin;
 		FAKEPWMLIST[curI][1] = curI;	
-		pwm_counting++;
+		neo_pwm_counting++;
 	}
 	return NEO_OK;
 }
@@ -275,21 +281,25 @@ int neo_pwm_free()
 	int i;
 
 	fail = NEO_OK;
-	for(i = 0; i < PWMPORTSL; i++) {
-		if(USABLEPWM[i]) {
-			FILE *curP = pwmP[i];
-			FILE *curD = pwmD[i];
-			FILE *curE = pwmE[i];
-
-			if(curP != NULL) fclose(curP);
-			else fail = NEO_UNUSABLE_ERROR;
-
-			if(curD != NULL) fclose(curD);
-			else fail = NEO_UNUSABLE_ERROR;
-
-			if(curE != NULL) fclose(curE);
-			else fail = NEO_UNUSABLE_ERROR;
+	
+	if(neo_pwm_freed == 0) {
+		for(i = 0; i < PWMPORTSL; i++) {
+			if(USABLEPWM[i]) {
+				FILE *curP = pwmP[i];
+				FILE *curD = pwmD[i];
+				FILE *curE = pwmE[i];
+	
+				if(curP != NULL) fclose(curP);
+				else fail = NEO_UNUSABLE_ERROR;
+	
+				if(curD != NULL) fclose(curD);
+				else fail = NEO_UNUSABLE_ERROR;
+	
+				if(curE != NULL) fclose(curE);
+				else fail = NEO_UNUSABLE_ERROR;
+			}
 		}
+		neo_pwm_freed = 2;
 	}
 	return fail;
 }

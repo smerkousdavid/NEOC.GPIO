@@ -1,1 +1,1 @@
-pwm.o: src/pwm.c
+pwm.o: src/pwm.c include/neo.h

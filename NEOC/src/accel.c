@@ -4,9 +4,11 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-FILE *accelData;
+FILE *neo_accel_data;
 
-int accel_calibration[] = {0, 0, 0};
+int neo_accel_calibration[] = {0, 0, 0};
+
+unsigned char neo_accel_freed = 2;
 
 int neo_accel_set_poll(int rate) {
 	FILE *polling;
@@ -23,40 +25,43 @@ int neo_accel_set_poll(int rate) {
 }
 
 int neo_accel_init() {
-	neo_check_root("Accelerometer requires root access!");
-
-	FILE *enabler;
-	enabler = fopen(ACCELENABLE, "w");
-
-	if(enabler == NULL) return NEO_UNUSABLE_ERROR;
-
-	fprintf(enabler, "%d", 1); //Enable accel
-	fflush(enabler);
-	fclose(enabler);
-
-	accelData = fopen(ACCELDATA, "r");
+	if(neo_accel_freed == 2) {
+		neo_check_root("Accelerometer requires root access!");
 	
-	if(accelData == NULL) return NEO_UNUSABLE_ERROR;
+		FILE *enabler;
+		enabler = fopen(ACCELENABLE, "w");
+	
+		if(enabler == NULL) return NEO_UNUSABLE_ERROR;
+	
+		fprintf(enabler, "%d", 1); //Enable accel
+		fflush(enabler);
+		fclose(enabler);
+	
+		neo_accel_data = fopen(neo_accel_data, "r");
+		
+		if(neo_accel_data == NULL) return NEO_UNUSABLE_ERROR;
+		neo_accel_freed = 0;
+	}
 
 	return neo_accel_set_poll(ACCELPOLL);
 }
 
 
 int neo_accel_read(int *x, int *y, int *z) {
-	if(accelData == NULL) return NEO_UNUSABLE_ERROR;
+	if(neo_accel_data == NULL) return NEO_UNUSABLE_ERROR;
 
-	fflush(accelData);
-	fseek(accelData, 0, SEEK_SET);
-	if(fscanf(accelData, "%d,%d,%d", x, y, z) == EOF) return NEO_READ_ERROR;
+	fflush(neo_accel_data);
+	fseek(neo_accel_data, 0, SEEK_SET);
+	if(fscanf(neo_accel_data, "%d,%d,%d", x, y, z) == EOF) return NEO_READ_ERROR;
 	return NEO_OK;
 }
 
 int neo_accel_read_calibrated(int *x, int *y, int *z) {
 	int okRet = neo_accel_read(x, y, z);
 
-	(*x) += (accel_calibration[0] > 0) ? -(accel_calibration[0]) : accel_calibration[0];
-	(*y) -= (accel_calibration[1] > 0) ? -(accel_calibration[1]) : accel_calibration[1];
-	(*z) -= (accel_calibration[2] > 0) ? -(accel_calibration[2]) : accel_calibration[2];
+	(*x) += (neo_accel_calibration[0] > 0) ? -(neo_accel_calibration[0]) : neo_accel_calibration[0];
+	(*y) -= (neo_accel_calibration[1] > 0) ? -(neo_accel_calibration[1]) : neo_accel_calibration[1];
+	(*z) -= (neo_accel_calibration[2] > 0) ? -(neo_accel_calibration[2]) : neo_accel_calibration[2];
 
 	return okRet;
 }
@@ -81,22 +86,25 @@ int neo_accel_calibrate(int samples, int delayEach) {
 		usleep(1000 * delayEach);
 	}
 
-	accel_calibration[0] = (int)(xCal / ((float)samples));
-	accel_calibration[1] = (int)(yCal / ((float)samples));
-	accel_calibration[2] = (int)(zCal / ((float)samples));
+	neo_accel_calibration[0] = (int)(xCal / ((float)samples));
+	neo_accel_calibration[1] = (int)(yCal / ((float)samples));
+	neo_accel_calibration[2] = (int)(zCal / ((float)samples));
 
 	return NEO_OK;
 }
 
 int neo_accel_free() {
-	FILE* enabler;
-	enabler = fopen(ACCELENABLE, "w");
-
-	if(enabler == NULL) return NEO_UNUSABLE_ERROR;
-
-	fprintf(enabler, "%d", 1);
-	fflush(enabler);
-	fclose(enabler);
+	if(neo_accel_freed == 0) {
+		FILE* enabler;
+		enabler = fopen(ACCELENABLE, "w");
+	
+		if(enabler == NULL) return NEO_UNUSABLE_ERROR;
+	
+		fprintf(enabler, "%d", 1);
+		fflush(enabler);
+		fclose(enabler);
+		neo_accel_freed = 2;
+	}
 
 	return NEO_OK;
 }

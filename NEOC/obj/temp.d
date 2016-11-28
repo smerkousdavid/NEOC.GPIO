@@ -1,1 +1,1 @@
-temp.o: src/temp.c
+temp.o: src/temp.c include/neo.h

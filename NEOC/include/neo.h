@@ -1,3 +1,42 @@
+/*----------------------------------------------------------------------||
+|                                                                        |
+| Copyright (C) 2016 by David Smerkous                                   |
+| License Date: 11/27/2016                                               |
+| Modifiers: none                                                        |
+|                                                                        |
+| NEOC (libneo) is free software: you can redistribute it and/or modify  |
+|   it under the terms of the GNU General Public License as published by |
+|   the Free Software Foundation, either version 3 of the License, or    |
+|   (at your option) any later version.                                  |
+|                                                                        |
+| NEOC (libneo) is distributed in the hope that it will be useful,       |
+|   but WITHOUT ANY WARRANTY; without even the implied warranty of       |
+|   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the        |
+|   GNU General Public License for more details.                         |
+|                                                                        |
+| You should have received a copy of the GNU General Public License      |
+|   along with this program.  If not, see http://www.gnu.org/licenses/   |
+|                                                                        |
+||----------------------------------------------------------------------*/
+
+/**
+ * 
+ * @file neo.h
+ * @author David Smerkous
+ * @date 11/27/2016
+ * @brief Header file (C/C++) that includes all functions for the libneo.so
+ *
+ * NEOC was designed as an extremely fast way of managing the iio and pinout
+ * On all the Udoo NEO boards. This is supported only for NEO but all subversions
+ * This library was mainly written in C with C++ mix for the reason of fake PWM.
+ * Check out the repo. And other repos for bindings for this main code
+ * 
+ * @see https://github.com/smerkousdavid/NEOC.GPIO
+ * @see https://github.com/smerkousdavid/Neo.GPIO
+ * 
+ */
+
+
 #ifndef NEOC_H
 #define NEOC_H
 

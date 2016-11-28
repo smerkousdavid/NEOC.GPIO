@@ -3,41 +3,39 @@
 #include <unistd.h>
 #include <sys/time.h>
 
-char attached = 0;
+int neo_servo_pins[GPIOPORTSL][2];
+struct timeval neo_last_call, neo_current_call;
 
-int servoPins[GPIOPORTSL][2];
-struct timeval lastCall, curCall;
-
-unsigned short ind = 0;
+unsigned short neo_servo_index = 0;
 
 int neo_servo_init() {
 	neo_gpio_init();
 	
 	int i;
 	for(i = 0; i < GPIOPORTSL; i++) {
-		servoPins[i][0] = -1;
-		servoPins[i][1] = -1;
+		neo_servo_pins[i][0] = -1;
+		neo_servo_pins[i][1] = -1;
 	}
-	gettimeofday(&lastCall, 0);
+	gettimeofday(&neo_last_call, 0);
 }
 
 
 int neo_servo_attach(int gpio) {
-	if(gpio < 0 || gpio > GPIOPORTSL || ind > GPIOPORTSL) return NEO_PIN_ERROR;
-	servoPins[gpio][0] = gpio;
-	ind += 1;
+	if(gpio < 0 || gpio > GPIOPORTSL || neo_servo_index > GPIOPORTSL) return NEO_PIN_ERROR;
+	neo_servo_pins[gpio][0] = gpio;
+	neo_servo_index += 1;
 	return neo_gpio_pin_mode(gpio, OUTPUT);
 }
 
 int neo_servo_detach(int gpio) {
-	if(gpio < 0 || gpio > GPIOPORTSL || ind > GPIOPORTSL) return NEO_PIN_ERROR;
+	if(gpio < 0 || gpio > GPIOPORTSL || neo_servo_index > GPIOPORTSL) return NEO_PIN_ERROR;
 	
 	int i;
 	//Double checking method, even though it's mapped to gpio you have to be safe
 	for(i = 0; i < GPIOPORTSL; i++) {
-		if(servoPins[i][0] == gpio) {
-			servoPins[i][0] = -1;
-			ind -= 1;
+		if(neo_servo_pins[i][0] == gpio) {
+			neo_servo_pins[i][0] = -1;
+			neo_servo_index -= 1;
 		}
 	}
 	return NEO_OK;
@@ -48,24 +46,24 @@ int neo_servo_write(int gpio, int angle) {
 	if(angle < 0) angle = 0;
 	else if(angle > 180) angle = 180;
 
-	servoPins[gpio][1] = neo_re_map(angle, 0, 180, 1000, 2000); 
+	neo_servo_pins[gpio][1] = neo_re_map(angle, 0, 180, 1000, 2000); 
 	return NEO_OK;
 }
 
 int neo_servo_refresh() {
-	gettimeofday(&curCall, 0);
-	long diff = ((curCall.tv_sec*1e6 + curCall.tv_usec) 
-		- (lastCall.tv_sec*1e6 + lastCall.tv_usec)) / 1000L; 
+	gettimeofday(&neo_current_call, 0);
+	long diff = ((neo_current_call.tv_sec*1e6 + neo_current_call.tv_usec) 
+		- (neo_last_call.tv_sec*1e6 + neo_last_call.tv_usec)) / 1000L; 
 	if(diff < 20L) {if(usleep(1000L * (21L - diff)) != 0L) return NEO_DUTY_ERROR;}
-	int i;	
-	for(i = 0; i < GPIOPORTSL; i++) {
-		if(servoPins[i][0] != -1 && servoPins[i][1] != -1) {
-			neo_gpio_digital_write(servoPins[i][0], HIGH);
-			if(usleep(servoPins[i][1]) != 0) break;
-			neo_gpio_digital_write(servoPins[i][0], LOW);
+	int neo_i;	
+	for(neo_i = 0; neo_i < GPIOPORTSL; neo_i++) {
+		if(neo_servo_pins[neo_i][0] != -1 && neo_servo_pins[neo_i][1] != -1) {
+			neo_gpio_digital_write(neo_servo_pins[neo_i][0], HIGH);
+			if(usleep(neo_servo_pins[neo_i][1]) != 0) break;
+			neo_gpio_digital_write(neo_servo_pins[neo_i][0], LOW);
 		}
 	}
-	gettimeofday(&lastCall, 0);
+	gettimeofday(&neo_last_call, 0);
 	return NEO_OK;
 }
 

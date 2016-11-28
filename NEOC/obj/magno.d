@@ -1,1 +1,1 @@
-magno.o: src/magno.c
+magno.o: src/magno.c include/neo.h

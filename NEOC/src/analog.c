@@ -12,7 +12,7 @@ float  ANALOGSCALE[ANALOGSCALEL + 2];
 
 FILE* analogR[GPIOPORTSL + 2];
 
-unsigned char freed = 2;
+unsigned char neo_analog_freed = 2;
 
 int neo_analog_init() 
 {
@@ -20,7 +20,7 @@ int neo_analog_init()
 
 	fail = NEO_OK;
 	
-	if(freed == 2) {
+	if(neo_analog_freed == 2) {
 		for(gi = 0; gi <= ANALOGPORTSL; gi++) {USABLEANALOG[gi] = 1;}
 
 	#ifdef SCALEANALOG
@@ -63,8 +63,8 @@ int neo_analog_init()
 				USABLEANALOG[i] = 0;
 			}
 		}
+		neo_analog_freed = 0; 
 	}
-	freed = 0; 
 	return fail;
 }
 
@@ -101,7 +101,7 @@ int neo_analog_free()
 
 	fail = NEO_OK;
 
-	if(freed == 0) {
+	if(neo_analog_freed == 0) {
 		for(i = 0; i < ANALOGPORTSL; i++) {
 			if(USABLEANALOG[i]) {
 				FILE *curR = analogR[i];
@@ -110,7 +110,7 @@ int neo_analog_free()
 				else fail = NEO_UNUSABLE_ERROR;
 			}
 		}
-		freed = 2;
+		neo_analog_freed = 2;
 	}
 	return fail;
 }

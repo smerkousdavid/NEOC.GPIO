@@ -1,1 +1,1 @@
-analog.o: src/analog.c
+analog.o: src/analog.c include/neo.h

@@ -17,49 +17,48 @@ unsigned char USABLEGPIO[GPIOPORTSL];
 FILE* gpioP[GPIOPORTSL];
 FILE* gpioD[GPIOPORTSL];
 
-char gpio_freed = 2;
+unsigned char neo_gpio_freed = 2;
 
 int neo_gpio_init() 
 {
 	int i, gi, fail;
 	fail = NEO_OK;
 
-	if(freed == 2) {
-
-	for(gi = 0; gi < GPIOPORTSL; gi++) {USABLEGPIO[gi] = 1;}
-
-	FILE *eFile;
-	eFile = fopen(EXPORTPATH, "w");
+	if(neo_gpio_freed == 2) {
+		for(gi = 0; gi < GPIOPORTSL; gi++) {USABLEGPIO[gi] = 1;}
 	
-	if(eFile == NULL) fail = NEO_EXPORT_ERROR;
-
-	for(i = 0; i < GPIOPORTSL; i++) { 
-
-		if(eFile != NULL) {
-			fprintf(eFile, "%s", GPIOPORTS[i]);
-			fflush(eFile);
-		}
-
-		size_t newPathS = strlen(GPIOPORTS[i]) + gpioL + valueL;
-		size_t newDPathS = strlen(GPIOPORTS[i]) + gpioL + directionL;
-
-		char buff[newPathS];
-		char buffD[newDPathS];
-
-		sprintf(buff, "%s%s%s", GPIOPATH, GPIOPORTS[i], VALUEPATH);
-		sprintf(buffD, "%s%s%s", GPIOPATH, GPIOPORTS[i], DIRECTIONPATH);
-
-		gpioP[i] = fopen(buff, "r+");
-		gpioD[i] = fopen(buffD, "r+");
-
+		FILE *eFile;
+		eFile = fopen(EXPORTPATH, "w");
 		
-		if(gpioP[i] == NULL || gpioD[i] == NULL) {
-			fail = NEO_UNUSABLE_ERROR;
-			USABLEGPIO[i] = 0;
+		if(eFile == NULL) fail = NEO_EXPORT_ERROR;
+	
+		for(i = 0; i < GPIOPORTSL; i++) { 
+	
+			if(eFile != NULL) {
+				fprintf(eFile, "%s", GPIOPORTS[i]);
+				fflush(eFile);
+			}
+	
+			size_t newPathS = strlen(GPIOPORTS[i]) + gpioL + valueL;
+			size_t newDPathS = strlen(GPIOPORTS[i]) + gpioL + directionL;
+	
+			char buff[newPathS];
+			char buffD[newDPathS];
+	
+			sprintf(buff, "%s%s%s", GPIOPATH, GPIOPORTS[i], VALUEPATH);
+			sprintf(buffD, "%s%s%s", GPIOPATH, GPIOPORTS[i], DIRECTIONPATH);
+	
+			gpioP[i] = fopen(buff, "r+");
+			gpioD[i] = fopen(buffD, "r+");
+	
+			
+			if(gpioP[i] == NULL || gpioD[i] == NULL) {
+				fail = NEO_UNUSABLE_ERROR;
+				USABLEGPIO[i] = 0;
+			}
+	
 		}
-
-	}
-	gpio_freed = 0;
+		neo_gpio_freed = 0;
 	}
 
 	return fail;
@@ -125,21 +124,22 @@ int neo_gpio_free()
 
 	fail = NEO_OK;
 
-	if(gpio_freed == 0) {
+	if(neo_gpio_freed == 0) {
 
-	for(i = 0; i < GPIOPORTSL; i++) {
-		if(USABLEGPIO[i]) {
-			FILE *curP = gpioP[i];
-			FILE *curD = gpioD[i];
-
-			if(curP != NULL) fclose(curP);
-			else fail = NEO_UNUSABLE_ERROR;
-			if(curD != NULL) fclose(curD);
-			else fail = NEO_UNUSABLE_ERROR;
+		for(i = 0; i < GPIOPORTSL; i++) {
+			if(USABLEGPIO[i]) {
+				FILE *curP = gpioP[i];
+				FILE *curD = gpioD[i];
+	
+				if(curP != NULL) fclose(curP);
+				else fail = NEO_UNUSABLE_ERROR;
+				if(curD != NULL) fclose(curD);
+				else fail = NEO_UNUSABLE_ERROR;
+			}
 		}
+		neo_gpio_freed = 2;
 	}
-	gpio_freed = 2;
-	}
+	
 	return fail;
 }
 

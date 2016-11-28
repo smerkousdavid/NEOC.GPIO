@@ -4,9 +4,11 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-FILE *magnoData;
+FILE *neo_magno_data;
 
-int magno_calibration[] = {0, 0, 0};
+int neo_magno_calibration[] = {0, 0, 0};
+
+unsigned char neo_magno_freed = 2;
 
 int neo_magno_set_poll(int rate) {
 	FILE *polling;
@@ -23,39 +25,41 @@ int neo_magno_set_poll(int rate) {
 }
 
 int neo_magno_init() {
-	neo_check_root("Magno requires root access!");
-
-	FILE *enabler;
-	enabler = fopen(MAGNOENABLE, "w");
-	if(enabler == NULL) return NEO_UNUSABLE_ERROR;
+	if(neo_magno_freed == 2) {
+		neo_check_root("Magno requires root access!");
 	
-	fprintf(enabler, "%d", 1); //Enable accel
-	fflush(enabler);
-	fclose(enabler);
-
-	magnoData = fopen(MAGNODATA, "r");
+		FILE *enabler;
+		enabler = fopen(MAGNOENABLE, "w");
+		if(enabler == NULL) return NEO_UNUSABLE_ERROR;
+		
+		fprintf(enabler, "%d", 1); //Enable accel
+		fflush(enabler);
+		fclose(enabler);
 	
-	if(magnoData == NULL) return NEO_UNUSABLE_ERROR;
-
+		neo_magno_data = fopen(neo_magno_data, "r");
+		
+		if(neo_magno_data == NULL) return NEO_UNUSABLE_ERROR;
+		neo_magno_freed = 0;	
+	}
 	return neo_magno_set_poll(MAGNOPOLL);
 }
 
 
 int neo_magno_read(int *x, int *y, int *z) {
-	if(magnoData == NULL) return NEO_UNUSABLE_ERROR;
+	if(neo_magno_data == NULL) return NEO_UNUSABLE_ERROR;
 
-	fflush(magnoData);
-	fseek(magnoData, 0, SEEK_SET);
-	if(fscanf(magnoData, "%d,%d,%d", x, y, z) == EOF) return NEO_READ_ERROR;
+	fflush(neo_magno_data);
+	fseek(neo_magno_data, 0, SEEK_SET);
+	if(fscanf(neo_magno_data, "%d,%d,%d", x, y, z) == EOF) return NEO_READ_ERROR;
 	return NEO_OK;
 }
 
 int neo_magno_read_calibrated(int *x, int *y, int *z) {
 	int okRet = neo_magno_read(x, y, z);
 
-	(*x) += (magno_calibration[0] > 0) ? -(magno_calibration[0]) : magno_calibration[0];
-	(*y) -= (magno_calibration[1] > 0) ? -(magno_calibration[1]) : magno_calibration[1];
-	(*z) -= (magno_calibration[2] > 0) ? -(magno_calibration[2]) : magno_calibration[2];
+	(*x) += (neo_magno_calibration[0] > 0) ? -(neo_magno_calibration[0]) : neo_magno_calibration[0];
+	(*y) -= (neo_magno_calibration[1] > 0) ? -(neo_magno_calibration[1]) : neo_magno_calibration[1];
+	(*z) -= (neo_magno_calibration[2] > 0) ? -(neo_magno_calibration[2]) : neo_magno_calibration[2];
 
 	return okRet;
 }
@@ -80,22 +84,25 @@ int neo_magno_calibrate(int samples, int delayEach) {
 		usleep(1000 * delayEach);
 	}
 
-	magno_calibration[0] = (int)(xCal / ((float)samples));
-	magno_calibration[1] = (int)(yCal / ((float)samples));
-	magno_calibration[2] = (int)(zCal / ((float)samples));
+	neo_magno_calibration[0] = (int)(xCal / ((float)samples));
+	neo_magno_calibration[1] = (int)(yCal / ((float)samples));
+	neo_magno_calibration[2] = (int)(zCal / ((float)samples));
 
 	return NEO_OK;
 }
 
 int neo_magno_free() {
-	FILE* enabler;
-	enabler = fopen(MAGNOENABLE, "w");
-
-	if(enabler == NULL) return NEO_UNUSABLE_ERROR;
-
-	fprintf(enabler, "%d", 1);
-	fflush(enabler);
-	fclose(enabler);
+	if(neo_magno_freed == 2) {
+		FILE* enabler;
+		enabler = fopen(MAGNOENABLE, "w");
+	
+		if(enabler == NULL) return NEO_UNUSABLE_ERROR;
+	
+		fprintf(enabler, "%d", 1);
+		fflush(enabler);
+		fclose(enabler);
+		neo_magno_freed = 0;
+	}
 
 	return NEO_OK;
 }

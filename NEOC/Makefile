@@ -1,6 +1,6 @@
 SHELL = /bin/sh
 CC = gcc
-CFLAGS = -fPIC -Wall -Wextra -O2 -g
+CFLAGS = -fPIC -Wall -Wextra -O2 -g -Iinclude
 LDFLAGS = -shared
 ENDFLAGS = -Iinclude -I/usr/include -lpthread
 RM = rm -f
@@ -11,6 +11,7 @@ HEADS = $(shell echo include/*.h)
 OBJS = $(SRCS:.c=.o)
 LIBS = lib/
 OBJF = obj/
+SRCF = src/
 
 PREFIX = /usr
 LIBDIR = $(PREFIX)/lib/
@@ -29,7 +30,9 @@ $(TARGET_LIB): $(OBJS)
 $(SRCS:.c=.d):%.d:%.c
 	$(CC) $(CFLAGS) -MM $< >$@
 
+.PHONY: install
 install:
+	# mv $(OBJF)* $(SRCF)
 	@echo copying $(TARGET_LIB) into $(LIBDIR)
 	cp $(LIBS)$(TARGET_LIB) $(LIBDIR)$(TARGET_LIB)
 	@echo copying $(HEADS) into $(INCDIR)
