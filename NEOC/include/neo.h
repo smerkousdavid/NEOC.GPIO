@@ -79,6 +79,7 @@ extern "C" {
 //#define SCALEANALOG
 
 #define NEO_OK 0
+#define NEO_FAIL -1
 #define NEO_PIN_ERROR -2
 #define NEO_PERIOD_ERROR -3
 #define NEO_DUTY_ERROR -4
