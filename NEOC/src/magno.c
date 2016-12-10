@@ -1,15 +1,69 @@
+/*----------------------------------------------------------------------||
+|                                                                        |
+| Copyright (C) 2016 by David Smerkous                                   |
+| License Date: 11/27/2016                                               |
+| Modifiers: none                                                        |
+|                                                                        |
+| NEOC (libneo) is free software: you can redistribute it and/or modify  |
+|   it under the terms of the GNU General Public License as published by |
+|   the Free Software Foundation, either version 3 of the License, or    |
+|   (at your option) any later version.                                  |
+|                                                                        |
+| NEOC (libneo) is distributed in the hope that it will be useful,       |
+|   but WITHOUT ANY WARRANTY; without even the implied warranty of       |
+|   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the        |
+|   GNU General Public License for more details.                         |
+|                                                                        |
+| You should have received a copy of the GNU General Public License      |
+|   along with this program.  If not, see http://www.gnu.org/licenses/   |
+|                                                                        |
+||----------------------------------------------------------------------*/
+
+/**
+ * 
+ * @file magno.c
+ * @author David Smerkous
+ * @date 11/28/2016
+ * @brief Magno file that contains all mapping and control over the magno
+ *
+ * This file allows to read the raw and calibrated data from the magno
+ * It's recommended to set the poll rate of the update to get the most accurate
+ * Reading. If you your main loop is 50 millis then set the poll to something around
+ * 50 as well.
+ * 
+ */
+
 #include <neo.h>
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 #include <unistd.h>
 
+//Magno read data file pointer
 FILE *neo_magno_data;
 
+
+//The add sub vals for the calibrator
 int neo_magno_calibration[] = {0, 0, 0};
 
+//Double free or error fixer also no need to double initialize
 unsigned char neo_magno_freed = 2;
 
+/**
+ * @brief Sets millis pulling rate of magno
+ *
+ * This will pull the new magnometer values every X millis
+ * The faster the poll rate the more CPU will be used to process the values
+ * Also the more distant the values will be. It's recommended to only up this value
+ * If you don't set the poll rate fast enough you might get the same value twice when
+ * using the read method
+ * 
+ * @param rate The value in millis to pull the new magno values at
+ * 
+ * @return NEO_OK or NEO_UNUSABLE_ERROR if magno is not found
+ * 
+ * @note NEO_UNUSABLE_ERROR means that there isn't a magno detected
+ */
 int neo_magno_set_poll(int rate) {
 	FILE *polling;
 	

@@ -98,10 +98,24 @@ int neo_enable_m4() {
 	return (system("udoom4ctl enable") == 0) ? NEO_OK : NEO_FAIL;
 }
 
+/**
+ * @brief core screen change type 
+ * 
+ * When ran this changes the output of your screen to the lvds 7 inch screen
+ * @return either NEO_OK or NEO_FAIL
+ */
+
 int neo_screen_set_lvds() {
 	neo_check_root("To set to lvds you must be root!");
 	return (system("udooscreenctl set lvds7") == 0) ? NEO_OK : NEO_FAIL;
 }
+
+/**
+ * @brief core hdmi screen change type
+ * 
+ * When ran this changes the output of your screen to the hdmi port
+ * @return either NEO_OK or NEO_FAIL
+ */
 
 int neo_screen_set_hdmi() {
 	neo_check_root("To set to hdmi you must be root!");
