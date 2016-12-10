@@ -1,11 +1,48 @@
+/*----------------------------------------------------------------------||
+|                                                                        |
+| Copyright (C) 2016 by David Smerkous                                   |
+| License Date: 11/27/2016                                               |
+| Modifiers: none                                                        |
+|                                                                        |
+| NEOC (libneo) is free software: you can redistribute it and/or modify  |
+|   it under the terms of the GNU General Public License as published by |
+|   the Free Software Foundation, either version 3 of the License, or    |
+|   (at your option) any later version.                                  |
+|                                                                        |
+| NEOC (libneo) is distributed in the hope that it will be useful,       |
+|   but WITHOUT ANY WARRANTY; without even the implied warranty of       |
+|   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the        |
+|   GNU General Public License for more details.                         |
+|                                                                        |
+| You should have received a copy of the GNU General Public License      |
+|   along with this program.  If not, see http://www.gnu.org/licenses/   |
+|                                                                        |
+||----------------------------------------------------------------------*/
+
+/**
+ * 
+ * @file pwm.c
+ * @author David Smerkous
+ * @date 11/28/2016
+ * @brief The file that controls the real and fake pwm controllers
+ *
+ * This source file is the core of the FAKE PWM MANAGER which controls
+ * A threaded pwm manager on ANY gpio pin available on the board as well as
+ * A real PWM access to the available pwm pins.
+ * 
+ * @note Please use device tree editor to view what pwm pins are available
+ */
+
 #include <neo.h>
+
+#ifndef DOXYGEN_SKIP
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include <pthread.h>
 #include <time.h>
-
 
 //All the pin numbers for the pwm pins and the flags for if they're usable
 const char * const PWMPORTS[] = {"0", "1", "2", "3", "4", "5", "6"};
@@ -35,6 +72,9 @@ unsigned char neo_pwm_freed = 2;
 //Thread managers that manage the pwm frequency and GPIO switching
 pthread_t fakePWMT[MAXFAKEPWM + 2];
 
+
+#endif
+
 //The struct that will be muxed between the main thread and FAKEPWMMANAGER
 //To handle the current duty cycle and low high periods
 struct params {
@@ -46,10 +86,13 @@ struct params {
 //Create the new params struct to not confuse locals
 typedef struct params params_t;
 
+#ifndef DOXYGEN_SKIP
+
 //Creeate the same structured list to easily access the managers (The index
 //Doesn't matter)
 params_t threadProps[MAXFAKEPWM + 2];
 
+#endif
 
 /**
  * @brief Initializes the REAL pwm pins on the Udoo
@@ -137,6 +180,9 @@ int neo_pwm_init()
 	return fail;
 }
 
+//Don't add this to the documentation page
+#ifndef DOXYGEN_SKIP
+
 /*
  * Backend function to control the synchronization of the thread muxing for
  * the params_t struct. All args are pointers since it's called within the 
@@ -222,6 +268,8 @@ void *pwmManager(void *arg){
 		if(usleep(low) != 0) break; //Make sure low finished (usleep is slightly off but doesn't eat 100% CPU (not a CPU cycle counter)
 	}
 }
+
+#endif
 
 /**
  * @brief Initializes the FAKE pwm, p.s this is the same as neo_gpio_init
