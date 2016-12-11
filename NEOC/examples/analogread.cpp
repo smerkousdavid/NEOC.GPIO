@@ -1,10 +1,15 @@
 #include <neo.h>
-
 #include <time.h>
+#include <iostream>
+#include <stdio.h>
+#include <cstring>
 #include <unistd.h>
 
 //OPTIONAL SCALED VALUE
 //#define SCALEANALOG
+
+using namespace neo;
+
 
 int main() {
 	neo_disable_m4(); //Make sure you disblae the m4 core (this doesn't need to be ran everytime)
@@ -12,9 +17,9 @@ int main() {
 	//int ret; //Variable to hold the return
 	//ret = neo_analog_init();
 
-	Analog::init();
+	std::cout << "init: " << Analog::init() << std::endl;
 	
-	Analog analog(0);
+	neo::Analog analog(0);
 
 	printf("ZERO: %f", analog.read());
 
@@ -33,7 +38,7 @@ int main() {
 		printf("\n\n");
 		usleep(1000 * 1000);
 	}
-	Analog::free();
+	std::cout << "free: " << Analog::free() << std::endl;
 	printf("Done reading analog!\n");
 	return 0;
 }

@@ -7,6 +7,7 @@
 #include <exception>
 #include <stdexcept>
 #include <cstring>
+#include <string>
 #include <stdio.h>
 
 //neo::error::XXXX...

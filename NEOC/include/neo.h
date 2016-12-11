@@ -368,6 +368,32 @@ int neo_led_off();
 //Cpp included in header so the users wouldn't have to include two separate headers and
 //Not have to use two different compiled libraries
 #include "neoerror.h"
+#include <string>
+#include <cstring>
+#include <iostream>
+
+namespace neo {
+
+/**
+ * @brief Arduino based linear remapping 
+ *
+ * This will remap any types combined (Number types) To return a linearly mapped value
+ * reason for creation, because people on Arduino use it so much. Why not here also.
+ * USAGE:
+ * \code{.cpp}
+ * float scaled = neo::map<float>(50, 0, 100, 0, 1000);
+ * \endcode
+ * 
+ * The results of the code should be 500 because it was scaled 10 times.
+ *
+ */
+template<typename T, typename V, typename M, typename MA, typename MI, typename MX>
+T map(V value, M inMin, MA inMax, MI outMin, MX outMax) {
+	return static_cast<T>(neo_re_map(static_cast<float>(value),
+		static_cast<float>(inMin), static_cast<float>(inMax),
+		static_cast<float>(outMin), static_cast<float>(outMax)));
+}
+
 
 /** @class Analog neo.h
  * @brief The Cpp Analog class to read pins A0 - A5
@@ -437,7 +463,7 @@ class Analog {
 		static bool init(bool throws = false) {
 			int ret = neo_analog_init();
 			if(throws && ret != NEO_OK) {
-				neo::error::Handler(ret, -1, 0, 5, 0, "Analog", "Failed to Init");
+				neo::error::Handler(ret, -1, 0, ANALOGPORTSL, 0, "Analog", "Failed to Init");
 			}
 			return ret == NEO_OK;
 		}
@@ -453,26 +479,39 @@ class Analog {
 		static bool free(bool throws = false) {
 			int ret = neo_analog_free();
 			if(throws && ret != NEO_OK) {
-				neo::error::Handler(ret, -1, 0, 5, 0, "Analog", "Failed to Release");
+				neo::error::Handler(ret, -1, 0, ANALOGPORTSL, 0, "Analog", "Failed to Release");
 			}
 			return ret == NEO_OK;
+		}
+
+		/**
+		 * @brief Static RAW reading from port
+		 *
+		 * This will read from the analog pin returning between 0 and 4095 and throw an exception if it failed to read from
+		 * the pin. This one is scaled to be the actual current recieved voltage
+		 *
+		 * @return A float with the current voltage raw resolution
+		 * @param port The port to statically read from
+		 */
+		static float readRaw(int port, bool throws = false) {
+			float ret = neo_analog_read(port);
+			if(throws && static_cast<int>(ret) != NEO_OK) {
+				neo::error::Handler(ret, port, 0, ANALOGPORTSL, 0, "Analog", "Failed to Read from Pin");
+			}
+			return ret;
 		}
 
 		/**
 		 * @brief Static reading from port
 		 *
 		 * This will read from the analog pin and throw an exception if it failed to read from
-		 * the pin.
+		 * the pin. This one is scaled to be the actual current recieved voltage. Between 0v and 3.3v
 		 *
 		 * @return A float with the current voltage raw resolution
 		 * @param port The port to statically read from
 		 */
 		static float read(int port, bool throws = false) {
-			float ret = neo_analog_read(port);
-			if(throws && static_cast<int>(ret) != NEO_OK) {
-				neo::error::Handler(ret, port, 0, 5, 0, "Analog", "Failed to Read from Pin");
-			}
-			return ret;
+			return neo::map<float>(Analog::readRaw(port, throws), ANALOGLOW, ANALOGHIGH, 0.0f, 3.3f);
 		}
 
 		/**
@@ -506,6 +545,8 @@ class Gpio {
 	private:
     	int a_;
 };
+
+}
 #endif //__cplusplus
 
 #endif //NEO_HEAD
