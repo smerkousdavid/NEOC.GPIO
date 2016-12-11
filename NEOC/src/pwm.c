@@ -497,7 +497,7 @@ int neo_pwm_set_period(int pin, int period) {
  * This is the exact opposite of neo_pwm_init where you deinitialize the pins
  * Freeing up the pins for another process to use
  * 
- * @return NEO_OK or NEO_UNUSABLE_ERROR if the params are wrong
+ * @return NEO_OK or NEO_UNUSABLE_ERROR if some pins failed to release (most likely will happen)
  */
 int neo_pwm_free()
 {

@@ -40,10 +40,21 @@
                    </ul>
               </li>
               <li><a href="globals.html">Functions</a></li>
-            </ul>
-                <div class="navbar-right">
+                <div style="float: right;">
                   <p class="navbar-text">By David Smerkous</p>
 		</div>
+              <li class="dropdown">
+                 <a href="examples.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Examples<span class="caret"></span></a>
+                   <ul class="dropdown-menu">
+                      <li><a href="examples.html">All Examples</a></li>
+                      <li class="menu-item dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Gpio</a>
+                          <ul class="dropdown-menu">
+                             <li class="menu-item"><a href="gpioblink.html">Blink</a></li>
+                             <li class="menu-item"><a href="gpioread.html">Read</a></li>
+                      </li>
+                   </ul>
+              </li>
+            </ul>
             </div>        
 	</nav>
         <div id="top"><!-- Other side of div is closed by doxygen! -->
@@ -97,6 +108,9 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="files"></a>
 Files</h2></td></tr>
+<tr class="memitem:gpio_8c"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gpio_8c.html">gpio.c</a></td></tr>
+<tr class="memdesc:gpio_8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">GPIO controls and pinouts, extremely fast and is used for fake pwm. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:magno_8c"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="magno_8c.html">magno.c</a></td></tr>
 <tr class="memdesc:magno_8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Magno file that contains all mapping and control over the magno. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>

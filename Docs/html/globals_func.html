@@ -40,10 +40,21 @@
                    </ul>
               </li>
               <li><a href="globals.html">Functions</a></li>
-            </ul>
-                <div class="navbar-right">
+                <div style="float: right;">
                   <p class="navbar-text">By David Smerkous</p>
 		</div>
+              <li class="dropdown">
+                 <a href="examples.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Examples<span class="caret"></span></a>
+                   <ul class="dropdown-menu">
+                      <li><a href="examples.html">All Examples</a></li>
+                      <li class="menu-item dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Gpio</a>
+                          <ul class="dropdown-menu">
+                             <li class="menu-item"><a href="gpioblink.html">Blink</a></li>
+                             <li class="menu-item"><a href="gpioread.html">Read</a></li>
+                      </li>
+                   </ul>
+              </li>
+            </ul>
             </div>        
 	</nav>
         <div id="top"><!-- Other side of div is closed by doxygen! -->
@@ -86,7 +97,9 @@ $(function() {
 </div>
 
 <div class="contents">
-&#160;<ul>
+&#160;
+
+<h3><a id="index_n"></a>- n -</h3><ul>
 <li>neo_check_root()
 : <a class="el" href="neo_8c.html#a78003e225a6bb0f35b29709ece69a829">neo.c</a>
 , <a class="el" href="neo_8h.html#a4d57a408bea17fc04cf5418b95506175">neo.h</a>
@@ -111,6 +124,26 @@ $(function() {
 : <a class="el" href="pwm_8c.html#a8af233ae9556ba1b3c26589d526e9fa6">pwm.c</a>
 , <a class="el" href="neo_8h.html#aaf613ca6dc0c480ebbf1727c26dd3fcf">neo.h</a>
 </li>
+<li>neo_gpio_digital_read()
+: <a class="el" href="gpio_8c.html#aca55e98897dacce4f2692b43c0e93a30">gpio.c</a>
+, <a class="el" href="neo_8h.html#a81d677bb2a9ef8ea96965763fe33f17d">neo.h</a>
+</li>
+<li>neo_gpio_digital_write()
+: <a class="el" href="neo_8h.html#a7ce7b5df05a1c3d1c480a2f4e6182597">neo.h</a>
+, <a class="el" href="gpio_8c.html#a942a136e1bc3caae6893965d6fbe266a">gpio.c</a>
+</li>
+<li>neo_gpio_free()
+: <a class="el" href="gpio_8c.html#aa0b5e2f0333911b69e3b01558803e12e">gpio.c</a>
+, <a class="el" href="neo_8h.html#aa0b5e2f0333911b69e3b01558803e12e">neo.h</a>
+</li>
+<li>neo_gpio_init()
+: <a class="el" href="gpio_8c.html#a93094ca0bfe1f9dd31261f73cf23f0fb">gpio.c</a>
+, <a class="el" href="neo_8h.html#a93094ca0bfe1f9dd31261f73cf23f0fb">neo.h</a>
+</li>
+<li>neo_gpio_pin_mode()
+: <a class="el" href="gpio_8c.html#aca1027cfa391f2cbb63a9d140caf2109">gpio.c</a>
+, <a class="el" href="neo_8h.html#a55a33c8366f4bd07b96ad0d22993d21f">neo.h</a>
+</li>
 <li>neo_magno_set_poll()
 : <a class="el" href="magno_8c.html#ad946f987090d188a17961c70946d1c37">magno.c</a>
 </li>
@@ -123,20 +156,20 @@ $(function() {
 , <a class="el" href="neo_8h.html#ac3ad9f77af407aee3e35a2fc2413d19d">neo.h</a>
 </li>
 <li>neo_pwm_set_period()
-: <a class="el" href="pwm_8c.html#a9ba92fd09e504256ce44d63db9413694">pwm.c</a>
-, <a class="el" href="neo_8h.html#a906463d42516ef0c587028ba69e65fdc">neo.h</a>
+: <a class="el" href="neo_8h.html#a906463d42516ef0c587028ba69e65fdc">neo.h</a>
+, <a class="el" href="pwm_8c.html#a9ba92fd09e504256ce44d63db9413694">pwm.c</a>
 </li>
 <li>neo_pwm_set_period_all()
-: <a class="el" href="neo_8h.html#aa00cf45d21ef9eb7b361eace67c7ee56">neo.h</a>
-, <a class="el" href="pwm_8c.html#a190f359fa2bac2199ffdc9e81ad674fc">pwm.c</a>
+: <a class="el" href="pwm_8c.html#a190f359fa2bac2199ffdc9e81ad674fc">pwm.c</a>
+, <a class="el" href="neo_8h.html#aa00cf45d21ef9eb7b361eace67c7ee56">neo.h</a>
 </li>
 <li>neo_pwm_write()
 : <a class="el" href="pwm_8c.html#adc47be04e8829bade2f04edd1b4e2cff">pwm.c</a>
 , <a class="el" href="neo_8h.html#a26ba449b084fa6599f0fb85e80a21391">neo.h</a>
 </li>
 <li>neo_re_map()
-: <a class="el" href="neo_8h.html#af5975ebeabc655f5138d67af8f636834">neo.h</a>
-, <a class="el" href="neo_8c.html#a8ee8c48a91b23df4ab46c65da4db1a1b">neo.c</a>
+: <a class="el" href="neo_8c.html#a8ee8c48a91b23df4ab46c65da4db1a1b">neo.c</a>
+, <a class="el" href="neo_8h.html#af5975ebeabc655f5138d67af8f636834">neo.h</a>
 </li>
 <li>neo_screen_set_hdmi()
 : <a class="el" href="neo_8c.html#aad83832018054b3fea36e8259c31d05f">neo.c</a>

@@ -8,7 +8,7 @@
         <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
         <meta name="generator" content="Doxygen 1.8.12"/>
         <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-        <title>NEOC: Analog Class Reference</title>
+        <title>NEOC: Blink</title>
         <link href="tabs.css" rel="stylesheet" type="text/css"/>
         <script type="text/javascript" src="dynsections.js"></script>
         <link href="search/search.css" rel="stylesheet" type="text/css"/>
@@ -97,53 +97,32 @@ $(function() {
 
 </div><!-- top -->
 <div class="header">
-  <div class="summary">
-<a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pub-static-methods">Static Public Member Functions</a>  </div>
   <div class="headertitle">
-<div class="title">Analog Class Reference</div>  </div>
+<div class="title">Blink </div>  </div>
 </div><!--header-->
 <div class="contents">
-
-<p>cool class  
- <a href="classAnalog.html#details">More...</a></p>
-
-<p><code>#include &lt;<a class="el" href="neo_8h_source.html">neo.h</a>&gt;</code></p>
-<table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
-Public Member Functions</h2></td></tr>
-<tr class="memitem:a26af19f3d34a5542d8939ccd90fb10b7"><td class="memItemLeft" align="right" valign="top"><a id="a26af19f3d34a5542d8939ccd90fb10b7"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Analog</b> (int port, bool release=true)</td></tr>
-<tr class="separator:a26af19f3d34a5542d8939ccd90fb10b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab14afe835877c796e5b9f8dc6869e876"><td class="memItemLeft" align="right" valign="top"><a id="ab14afe835877c796e5b9f8dc6869e876"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>read</b> ()</td></tr>
-<tr class="separator:ab14afe835877c796e5b9f8dc6869e876"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
-Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a7fbdcc88b5d3a37c12944b93bf89b3d2"><td class="memItemLeft" align="right" valign="top"><a id="a7fbdcc88b5d3a37c12944b93bf89b3d2"></a>
-static bool&#160;</td><td class="memItemRight" valign="bottom"><b>init</b> (bool throws)</td></tr>
-<tr class="separator:a7fbdcc88b5d3a37c12944b93bf89b3d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acf0b0aa3d0b8e1d11bbd01268ddf21fd"><td class="memItemLeft" align="right" valign="top"><a id="acf0b0aa3d0b8e1d11bbd01268ddf21fd"></a>
-static bool&#160;</td><td class="memItemRight" valign="bottom"><b>init</b> ()</td></tr>
-<tr class="separator:acf0b0aa3d0b8e1d11bbd01268ddf21fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a899078b99a647ee18953a1f036d9352f"><td class="memItemLeft" align="right" valign="top"><a id="a899078b99a647ee18953a1f036d9352f"></a>
-static bool&#160;</td><td class="memItemRight" valign="bottom"><b>free</b> (bool throws)</td></tr>
-<tr class="separator:a899078b99a647ee18953a1f036d9352f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1e13e496e54795f035f2448cc1fe3b76"><td class="memItemLeft" align="right" valign="top"><a id="a1e13e496e54795f035f2448cc1fe3b76"></a>
-static bool&#160;</td><td class="memItemRight" valign="bottom"><b>free</b> ()</td></tr>
-<tr class="separator:a1e13e496e54795f035f2448cc1fe3b76"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa010cbb8164b8ad7202c4885eb85e2ee"><td class="memItemLeft" align="right" valign="top"><a id="aa010cbb8164b8ad7202c4885eb85e2ee"></a>
-static float&#160;</td><td class="memItemRight" valign="bottom"><b>read</b> (int port)</td></tr>
-<tr class="separator:aa010cbb8164b8ad7202c4885eb85e2ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table>
-<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>cool class </p>
-<p>cool detials </p>
-</div><hr/>The documentation for this class was generated from the following file:<ul>
-<li>include/<a class="el" href="neo_8h_source.html">neo.h</a></li>
-</ul>
-</div><!-- contents -->
+<div class="textblock"><p>How to use the <a class="el" href="classGpio.html">Gpio</a> to Blink an led on pin 13</p>
+<p>This is how to blink using pin 13 (inner bank same as arduino) in C and C++</p>
+<p>If this is your first time I would recommend vim or nano when trying to edit files on the Udoo Vim is obviously better and just straight up amazing, but nano usually suites beginners.</p>
+<p>Lets create a new file called blink.c (For C++ do blink.cpp) </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;nano blink.c </div></div><!-- fragment --><p>In the file try typing this out or copying and pasting it from your browser (Typing it out helps you remember things)<br />
+</p>
+<h1><a class="anchor" id="examplec"></a>
+C Example</h1>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="neo_8h.html">neo.h</a>&gt;</span></div><div class="line"><span class="preprocessor">#include &lt;unistd.h&gt;</span></div><div class="line"></div><div class="line"><span class="comment">//Main funciton</span></div><div class="line"><span class="keywordtype">int</span> main() {</div><div class="line">  <a class="code" href="gpio_8c.html#a93094ca0bfe1f9dd31261f73cf23f0fb">neo_gpio_init</a>(); <span class="comment">//Must be called before using any other gpio pin function </span></div><div class="line"></div><div class="line">  <a class="code" href="gpio_8c.html#aca1027cfa391f2cbb63a9d140caf2109">neo_gpio_pin_mode</a>(13, OUTPUT); <span class="comment">//Set pin 13 to output</span></div><div class="line"></div><div class="line">  <span class="keywordtype">int</span> i;</div><div class="line"></div><div class="line">  <span class="comment">//Loop ten times (Blink)</span></div><div class="line">  <span class="keywordflow">for</span>(i = 0; i &lt; 10; i++) {</div><div class="line">    <a class="code" href="gpio_8c.html#a942a136e1bc3caae6893965d6fbe266a">neo_gpio_digital_write</a>(13, HIGH); <span class="comment">//Write HIGH to pin</span></div><div class="line">    sleep(1); <span class="comment">//Wait one second</span></div><div class="line">    <a class="code" href="gpio_8c.html#a942a136e1bc3caae6893965d6fbe266a">neo_gpio_digital_write</a>(13, LOW); <span class="comment">//Write LOW to pin</span></div><div class="line">    sleep(1); <span class="comment">//Wait one second</span></div><div class="line">  }</div><div class="line"></div><div class="line">  <a class="code" href="gpio_8c.html#aa0b5e2f0333911b69e3b01558803e12e">neo_gpio_free</a>(); <span class="comment">//Should be called to release the pins from the program (Called at end of program)</span></div><div class="line">}</div></div><!-- fragment --><p> <br />
+ </p>
+<h1><a class="anchor" id="examplecpp"></a>
+C++ Example</h1>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="neo_8h.html">neo.h</a>&gt;</span></div><div class="line"><span class="preprocessor">#include &lt;chrono&gt;</span></div><div class="line"><span class="preprocessor">#include &lt;thread&gt;</span></div><div class="line"></div><div class="line"><span class="keyword">using namespace </span>neo; </div><div class="line"><span class="keyword">using namespace </span>std;</div><div class="line"></div><div class="line"><span class="comment">//Main function</span></div><div class="line"><span class="keywordtype">int</span> main() {</div><div class="line">    <a class="code" href="classGpio.html">Gpio</a> led(13); <span class="comment">//Start pin 13 as a gpio pin</span></div><div class="line">    </div><div class="line">    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> ind = 0; ind &lt; 10; ind++)  {</div><div class="line">       led.on();</div><div class="line">       this_thread::sleep_for(chrono::milliseconds(1000));</div><div class="line">       led.off();</div><div class="line">       this_thread::sleep_for(chrono::milliseconds(1000));</div><div class="line">    }</div><div class="line">   <span class="comment">//Auto release since the class releases the pin</span></div><div class="line">}</div></div><!-- fragment --><p> <br />
+ </p>
+<h2><a class="anchor" id="compiling"></a>
+Compiling and Running</h2>
+<p>This is the example to compile and run the C version of neo </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;gcc blink.c -I/usr/include -lneo -o blink</div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;chmod 755 blink</div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;./blink</div></div><!-- fragment --><p> <br />
+ The C++ version to compiling is nearly the same just replace gcc with g++ </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;g++ blink.cpp -I/usr/include -lneo -o blink</div></div><!-- fragment --><p> <br />
+ </p>
+<h1><a class="anchor" id="results"></a>
+Results</h1>
+<p>From the example code to compiling then running the code. You should see pin 13 the <b>ORANGE</b> led on your Udoo NEO blink on and off every one second. This is litteraly the "Hello World!" of embedded devices. Look at that your Udoo is saying hi to you! Wave back... </p>
+</div></div><!-- contents -->
 
 <!-- HTML footer for doxygen 1.8.8-->
 <!-- start footer part -->

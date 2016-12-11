@@ -40,10 +40,21 @@
                    </ul>
               </li>
               <li><a href="globals.html">Functions</a></li>
-            </ul>
-                <div class="navbar-right">
+                <div style="float: right;">
                   <p class="navbar-text">By David Smerkous</p>
 		</div>
+              <li class="dropdown">
+                 <a href="examples.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Examples<span class="caret"></span></a>
+                   <ul class="dropdown-menu">
+                      <li><a href="examples.html">All Examples</a></li>
+                      <li class="menu-item dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Gpio</a>
+                          <ul class="dropdown-menu">
+                             <li class="menu-item"><a href="gpioblink.html">Blink</a></li>
+                             <li class="menu-item"><a href="gpioread.html">Read</a></li>
+                      </li>
+                   </ul>
+              </li>
+            </ul>
             </div>        
 	</nav>
         <div id="top"><!-- Other side of div is closed by doxygen! -->
@@ -91,6 +102,7 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Data Structures</a> &#124;
 <a href="#define-members">Macros</a> &#124;
 <a href="#func-members">Functions</a> &#124;
 <a href="#var-members">Variables</a>  </div>
@@ -104,6 +116,14 @@ $(function() {
 
 <p><a href="neo_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Data Structures</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnalog.html">Analog</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">cool class  <a href="classAnalog.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGpio.html">Gpio</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
 <tr class="memitem:abc7205d167c5e515159cb0f2b17cebea"><td class="memItemLeft" align="right" valign="top"><a id="abc7205d167c5e515159cb0f2b17cebea"></a>
@@ -175,23 +195,20 @@ Functions</h2></td></tr>
 <tr class="memitem:aad83832018054b3fea36e8259c31d05f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="neo_8h.html#aad83832018054b3fea36e8259c31d05f">neo_screen_set_hdmi</a> ()</td></tr>
 <tr class="memdesc:aad83832018054b3fea36e8259c31d05f"><td class="mdescLeft">&#160;</td><td class="mdescRight">core hdmi screen change type  <a href="#aad83832018054b3fea36e8259c31d05f">More...</a><br /></td></tr>
 <tr class="separator:aad83832018054b3fea36e8259c31d05f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a93094ca0bfe1f9dd31261f73cf23f0fb"><td class="memItemLeft" align="right" valign="top"><a id="a93094ca0bfe1f9dd31261f73cf23f0fb"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>neo_gpio_init</b> ()</td></tr>
+<tr class="memitem:a93094ca0bfe1f9dd31261f73cf23f0fb"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="neo_8h.html#a93094ca0bfe1f9dd31261f73cf23f0fb">neo_gpio_init</a> ()</td></tr>
+<tr class="memdesc:a93094ca0bfe1f9dd31261f73cf23f0fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the GPIO controller.  <a href="#a93094ca0bfe1f9dd31261f73cf23f0fb">More...</a><br /></td></tr>
 <tr class="separator:a93094ca0bfe1f9dd31261f73cf23f0fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a55a33c8366f4bd07b96ad0d22993d21f"><td class="memItemLeft" align="right" valign="top"><a id="a55a33c8366f4bd07b96ad0d22993d21f"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>neo_gpio_pin_mode</b> (int, int)</td></tr>
+<tr class="memitem:a55a33c8366f4bd07b96ad0d22993d21f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="neo_8h.html#a55a33c8366f4bd07b96ad0d22993d21f">neo_gpio_pin_mode</a> (int, int)</td></tr>
+<tr class="memdesc:a55a33c8366f4bd07b96ad0d22993d21f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the direction of the pin.  <a href="#a55a33c8366f4bd07b96ad0d22993d21f">More...</a><br /></td></tr>
 <tr class="separator:a55a33c8366f4bd07b96ad0d22993d21f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac3f8002c68e2b25fef632a622bf12c67"><td class="memItemLeft" align="right" valign="top"><a id="ac3f8002c68e2b25fef632a622bf12c67"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>neo_gpio_digital_write_no_safety</b> (int *, int)</td></tr>
-<tr class="separator:ac3f8002c68e2b25fef632a622bf12c67"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7ce7b5df05a1c3d1c480a2f4e6182597"><td class="memItemLeft" align="right" valign="top"><a id="a7ce7b5df05a1c3d1c480a2f4e6182597"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>neo_gpio_digital_write</b> (int, int)</td></tr>
+<tr class="memitem:a7ce7b5df05a1c3d1c480a2f4e6182597"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="neo_8h.html#a7ce7b5df05a1c3d1c480a2f4e6182597">neo_gpio_digital_write</a> (int, int)</td></tr>
+<tr class="memdesc:a7ce7b5df05a1c3d1c480a2f4e6182597"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes either LOW or HIGH to gpio pin.  <a href="#a7ce7b5df05a1c3d1c480a2f4e6182597">More...</a><br /></td></tr>
 <tr class="separator:a7ce7b5df05a1c3d1c480a2f4e6182597"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a81d677bb2a9ef8ea96965763fe33f17d"><td class="memItemLeft" align="right" valign="top"><a id="a81d677bb2a9ef8ea96965763fe33f17d"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>neo_gpio_digital_read</b> (int)</td></tr>
+<tr class="memitem:a81d677bb2a9ef8ea96965763fe33f17d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="neo_8h.html#a81d677bb2a9ef8ea96965763fe33f17d">neo_gpio_digital_read</a> (int)</td></tr>
+<tr class="memdesc:a81d677bb2a9ef8ea96965763fe33f17d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads either LOW or HIGH from gpio pin.  <a href="#a81d677bb2a9ef8ea96965763fe33f17d">More...</a><br /></td></tr>
 <tr class="separator:a81d677bb2a9ef8ea96965763fe33f17d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa0b5e2f0333911b69e3b01558803e12e"><td class="memItemLeft" align="right" valign="top"><a id="aa0b5e2f0333911b69e3b01558803e12e"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>neo_gpio_free</b> ()</td></tr>
+<tr class="memitem:aa0b5e2f0333911b69e3b01558803e12e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="neo_8h.html#aa0b5e2f0333911b69e3b01558803e12e">neo_gpio_free</a> ()</td></tr>
+<tr class="memdesc:aa0b5e2f0333911b69e3b01558803e12e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Releases the gpio pins from program.  <a href="#aa0b5e2f0333911b69e3b01558803e12e">More...</a><br /></td></tr>
 <tr class="separator:aa0b5e2f0333911b69e3b01558803e12e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac3ad9f77af407aee3e35a2fc2413d19d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="neo_8h.html#ac3ad9f77af407aee3e35a2fc2413d19d">neo_pwm_init</a> ()</td></tr>
 <tr class="memdesc:ac3ad9f77af407aee3e35a2fc2413d19d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the REAL pwm pins on the Udoo.  <a href="#ac3ad9f77af407aee3e35a2fc2413d19d">More...</a><br /></td></tr>
@@ -453,6 +470,144 @@ float&#160;</td><td class="memItemRight" valign="bottom"><b>ANALOGSCALE</b> []</
 
 </div>
 </div>
+<a id="a81d677bb2a9ef8ea96965763fe33f17d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a81d677bb2a9ef8ea96965763fe33f17d">&sect;&nbsp;</a></span>neo_gpio_digital_read()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int neo_gpio_digital_read </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>pin</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Reads either LOW or HIGH from gpio pin. </p>
+<p>This will read the boards current state. If the number is a negative number then the result has failed. Either than that the result will either return a LOW or HIGH value. Same as arduino.</p>
+<dl class="section return"><dt>Returns</dt><dd>NEO_OK or NEO_READ_ERROR/NEO_PIN_ERROR/NEO_UNUSABLE_ERROR if some GPIO read failed</dd></dl>
+<dl class="section note"><dt>Note</dt><dd>You must call neo_gpio_pin_mode(&lt;pin&gt;, INPUT); before reading </dd></dl>
+<dl class="section warning"><dt>Warning</dt><dd>Do not use 5v with these boards! It will ruin the board </dd></dl>
+
+</div>
+</div>
+<a id="a7ce7b5df05a1c3d1c480a2f4e6182597"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7ce7b5df05a1c3d1c480a2f4e6182597">&sect;&nbsp;</a></span>neo_gpio_digital_write()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int neo_gpio_digital_write </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>pin</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>direction</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Writes either LOW or HIGH to gpio pin. </p>
+<p>This will set the board pin to either a low or high state. Low will be 0 volts and high will be roughly 3.3v. Since this board works on 3.3v don't use 5v as an input!</p>
+<dl class="section return"><dt>Returns</dt><dd>NEO_OK or NEO_DIR_ERROR/NEO_PIN_ERROR/NEO_UNUSABLE_ERROR if some GPIO write failed</dd></dl>
+<dl class="section note"><dt>Note</dt><dd>You must call neo_gpio_pin_mode(&lt;pin&gt;, OUTPUT); before writing </dd></dl>
+<dl class="section warning"><dt>Warning</dt><dd>Do not use 5v with these boards! It will ruin the board </dd></dl>
+
+</div>
+</div>
+<a id="aa0b5e2f0333911b69e3b01558803e12e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa0b5e2f0333911b69e3b01558803e12e">&sect;&nbsp;</a></span>neo_gpio_free()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int neo_gpio_free </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Releases the gpio pins from program. </p>
+<p>This is the exact opposite of neo_gpio_init where you deinitialize the pins Freeing up the pins for another process to use</p>
+<dl class="section return"><dt>Returns</dt><dd>NEO_OK or NEO_UNUSABLE_ERROR if a pin failed to release (most likely will happen) </dd></dl>
+
+</div>
+</div>
+<a id="a93094ca0bfe1f9dd31261f73cf23f0fb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a93094ca0bfe1f9dd31261f73cf23f0fb">&sect;&nbsp;</a></span>neo_gpio_init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int neo_gpio_init </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initializes the GPIO controller. </p>
+<p>Starts the gpio pins all having the direction of in and are tested against each other to see if the pin is available. For a fast usable gpio list. This can be called multiple times safely.</p>
+<dl class="section return"><dt>Returns</dt><dd>NEO_OK or NEO_EXPORT_ERROR/NEO_UNUSABLE_ERRROR if some GPIO weren't initialized</dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Don't use the same GPIO pin as PWM although they're mapped differently don't do it </dd>
+<dd>
+NEO_UNUSABLE_ERROR might return if it's already in use or PWM is mapped to it </dd></dl>
+
+</div>
+</div>
+<a id="a55a33c8366f4bd07b96ad0d22993d21f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a55a33c8366f4bd07b96ad0d22993d21f">&sect;&nbsp;</a></span>neo_gpio_pin_mode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int neo_gpio_pin_mode </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>pin</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>direction</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the direction of the pin. </p>
+<p>Sets the direction of the pin to either two states INPUT OR OUTPUT if it's not either one Of those a NEO_DIR_ERROR will be returned. If teh pin is not a valid pin then it can return either a NEO_PIN_ERROR (Out of range) or a NEO_UNUSABLE_ERROR (Pin not valid or is in use by another component)</p>
+<dl class="section return"><dt>Returns</dt><dd>NEO_OK/NEO_DIR_ERROR/NEO_PIN_ERROR/NEO_UNUSABLE_ERRROR if some GPIO weren't initialized</dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Don't set to OUTPUT unless you know for sure the m4 (arduino) core isn't using the same pin for OUTPUT </dd>
+<dd>
+NEO_UNUSABLE_ERROR might return if the pin is unusable </dd></dl>
+
+</div>
+</div>
 <a id="a03628a77f1f0324fb0d7aff595be98ba"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a03628a77f1f0324fb0d7aff595be98ba">&sect;&nbsp;</a></span>neo_pwm_free()</h2>
 
@@ -470,7 +625,7 @@ float&#160;</td><td class="memItemRight" valign="bottom"><b>ANALOGSCALE</b> []</
 
 <p>Main function to release the real pwm. </p>
 <p>This is the exact opposite of neo_pwm_init where you deinitialize the pins Freeing up the pins for another process to use</p>
-<dl class="section return"><dt>Returns</dt><dd>NEO_OK or NEO_UNUSABLE_ERROR if the params are wrong </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>NEO_OK or NEO_UNUSABLE_ERROR if some pins failed to release (most likely will happen) </dd></dl>
 
 </div>
 </div>

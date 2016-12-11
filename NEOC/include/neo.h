@@ -40,7 +40,7 @@
 
 /** \mainpage NEOC Official Documentation
  * 
- *  \section intro_sec Introduction
+ *  \section intro Introduction
  *
  * NEOC is a C and C++ library that allows low level and extremely fast control over the Udoo
  * Neo. NEOC allows control over all internal and brick aspects of the Udoo. This library is easy to install
@@ -64,16 +64,98 @@
  * Why I need your help to manage and port this fast base into higher languages. I have too many other projects to
  * Work on and this was initially just made for a personal project. Then realized why not just add some documentation
  * And make it a library. To install just scroll down to the installation section.
+ * <BR><BR><BR>
+ *  \subsection browsing Browsing Documentation
+ *  This is all generated via Doxygen and some custom doxygen-bootstrap. I know it doens't look like the standard doxygen
+ *  that's because the original doesn't look too great. Either than that, the navigation should be roughly the same.
+ *  To view all the C++ classes and data structures (not available in C) click the data structures drop down and click
+ *  Classes and Index for a alphabetical list of the classses and structures. For the C users I would recommed going to Files
+ *  By pressing the Files button at the top and selecting neo.h to view all the available functions for C also usable in C++.
+ *  All the source C code files should be documented and you can see all the warnings and arguments for each in the Files page.
+ *  Almost.., there is Functions page that just lists out an entire list of documented functions and in what files they're located in.<BR>
+ *  Finally there are some examples that could greatly benefit you. Try looking through the example codes and snippets, whenever you are curious
+ *  about a specific method or function just hover over that function (until you see an underline) and click on it. The documented element
+ *  will appear on the page. 
  *
  * <BR>
  *  \section install_sec Installation
- * <BR><H3>Easy Installation</H3><BR>
+ * <BR><H3>Easy Installation</H3>
  * The installation for NEOC is extremely easy. For the quick installation method just copy and paste the below command<BR>
- * <CODE>wget -q -O - https://raw.githubusercontent.com/smerkousdavid/NEOC.GPIO/install.sh | bash</CODE><BR>
- * <H3>Full Installation</H3><BR>
- * 
+ * \code{.sh} wget -q -O - https://raw.githubusercontent.com/smerkousdavid/NEOC.GPIO/master/install.sh | bash \endcode <BR>
+ * <H3>Full Installation</H3>
+ * <OL>
+ * <LI>Clone and cd into the repo<BR>\code{.sh} git clone https://github.com/smerkousdavid/NEOC.GPIO && cd NEOC.GPIO/NEOC \endcode </LI>
+ * <LI>Make the sources \code{.sh} make \endcode </LI>
+ * <LI>Install the sources \code{.sh} sudo make install \endcode </LI>
+ * <LI>Clean up \code{.sh} make clean \endcode </LI>
+ * <LI><I>Optional:</I> Make latest documentation<BR> \code{.sh} sudo ./gendocs.sh \endcode </LI>
+ * <LI>You're done!</LI>
+ * </OL>
  *
- *  \section sec License
+ * <BR>
+ *  \section usage Usage
+ *  This is a simple gpio example to blink the led pin in C (inner bank pin 13)
+ *  \code{.c}
+ *  #include <neo.h>
+ *  #include <unistd.h>
+ * 
+ *  //Main funciton
+ *  int main() {
+ *    neo_gpio_init(); //Must be called before using any other gpio pin function 
+ *
+ *    neo_gpio_pin_mode(13, OUTPUT); //Set pin 13 to output
+ *
+ *    int i;
+ *
+ *    //Loop ten times (Blink)
+ *    for(i = 0; i < 10; i++) {
+ *      neo_gpio_digital_write(13, HIGH); //Write HIGH to pin
+ *      sleep(1); //Wait one second
+ *      neo_gpio_digital_write(13, LOW); //Write LOW to pin
+ *      sleep(1); //Wait one second
+ *    }
+ *
+ *    neo_gpio_free(); //Should be called to release the pins from the program (Called at end of program)
+ *  }
+ *  \endcode
+ * <BR>Here is the same example except using C++ classes
+ * \code{.cpp}
+ *  #include <neo.h>
+ *  #include <chrono>
+ *  #include <thread>
+ * 
+ *  using namespace neo; 
+ *  using namespace std;
+ *
+ *  //Main function
+ *  int main() {
+ *      Gpio led(13); //Start pin 13 as a gpio pin
+ *      led.setOut(); //Set the pin to OUTPUT      
+ *
+ *      for(int ind = 0; ind < 10; ind++)  {
+ *         led.on();
+ *         this_thread::sleep_for(chrono::milliseconds(1000));
+ *         led.off();
+ *         this_thread::sleep_for(chrono::milliseconds(1000));
+ *      }
+ *     //Auto release since the class releases the pin
+ *  }
+ * \endcode
+ * <BR>
+ * \subsection compiling Compiling and Running
+ * This is the example to compile and run the C version of neo
+ * \code{.sh}
+ *   gcc inputfile.c -I/usr/include -lneo -o fileout.o
+ *   chmod 755 fileout.o
+ *   ./fileout.o
+ * \endcode
+ * <BR>
+ * The C++ version to compiling is nearly the same just replace gcc with g++
+ * \code{.sh}
+ *   g++ inputfile.cpp -I/usr/include -lneo -o fileout.o
+ * \endcode
+ * <BR>
+ *  \section license License
  * <BR>This Software may be used commercially if credit is provided to original owner in private source<BR><BR>
  * <TABLE STYLE="width: 50%;"><TR><TD><I>
  * <B>NEOC</B> (libneo) is free software: you can redistribute it and/or modify<BR>
@@ -225,7 +307,6 @@ int neo_screen_set_hdmi();
 
 int neo_gpio_init();
 int neo_gpio_pin_mode(int, int);
-int neo_gpio_digital_write_no_safety(int*, int);
 int neo_gpio_digital_write(int, int);
 int neo_gpio_digital_read(int);
 int neo_gpio_free();
@@ -233,6 +314,8 @@ int neo_gpio_free();
 int neo_pwm_init();
 
 #ifndef DOXYGEN_SKIP
+
+int neo_gpio_digital_write_no_safety(int*, int);
 
 void neo_sync_pwm(void*, int*, int*, int*, int*);
 void *pwmManager(void*);
@@ -260,9 +343,29 @@ int neo_led_set(int);
 int neo_led_on();
 int neo_led_off();
 
+/** \page examples Examples
+ *  \tableofcontents
+ *  All of the example pages below will show you how to run the code samples, installation is on the main page
+ *  \section gpio Gpio Examples 
+ *   <DIV CLASS="container"> 
+ *     <UL>
+ *       <LI><H3><A CLASS="examplelist" HREF="gpioblink.html">Blink</A></H3></LI>
+ *       <LI><H3><A CLASS="examplelist" HREF="gpioread.html">Read</A></H3></LI>
+ *     </UL>
+ *   </DIV>
+ */
+
+
+
 #ifdef __cplusplus
 }
 
+/** @class Analog neo.h
+ * @brief cool class
+ * 
+ * cool detials
+ *
+ */
 class Analog {
 	public:
 		Analog(int port, bool release = true) {

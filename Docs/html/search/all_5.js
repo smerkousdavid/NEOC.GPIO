@@ -1,5 +1,8 @@
 var searchData=
 [
+  ['neoc_20official_20documentation',['NEOC Official Documentation',['../index.html',1,'']]],
+  ['neo_2ec',['neo.c',['../neo_8c.html',1,'']]],
+  ['neo_2eh',['neo.h',['../neo_8h.html',1,'']]],
   ['neo_5fcheck_5froot',['neo_check_root',['../neo_8c.html#a78003e225a6bb0f35b29709ece69a829',1,'neo_check_root(char const *saying):&#160;neo.c'],['../neo_8h.html#a4d57a408bea17fc04cf5418b95506175',1,'neo_check_root(char const *):&#160;neo.c']]],
   ['neo_5fdisable_5fm4',['neo_disable_m4',['../neo_8c.html#a8e7bdef17ff3b69216fec01f8d13b4bb',1,'neo_disable_m4():&#160;neo.c'],['../neo_8h.html#a8e7bdef17ff3b69216fec01f8d13b4bb',1,'neo_disable_m4():&#160;neo.c']]],
   ['neo_5fenable_5fm4',['neo_enable_m4',['../neo_8c.html#a94fb1a820047403b86d4ff0d5dd1a9f4',1,'neo_enable_m4():&#160;neo.c'],['../neo_8h.html#a94fb1a820047403b86d4ff0d5dd1a9f4',1,'neo_enable_m4():&#160;neo.c']]],
