@@ -411,7 +411,7 @@ int neo_gpio_free()
  *
  *  //Main function
  *  int main() {
- *      Gpio readpin(13); //Start pin 5 as gpio pin
+ *      Gpio readpin(5); //Start pin 5 as gpio pin
  *      readpin.setIn(); //Set as INPUT      
  *
  *      cout << "Read from pin 5: " << readpin.read() << endl; //Read from pin and print result
@@ -423,8 +423,8 @@ int neo_gpio_free()
  * This is the example to compile and run the C version of neo
  * \code{.sh}
  *   gcc readgpio.c -I/usr/include -lneo -o readgpio
- *   chmod 755 blink
- *   ./blink
+ *   chmod 755 readgpio
+ *   ./readgpio
  * \endcode
  * <BR>
  * The C++ version to compiling is nearly the same just replace gcc with g++

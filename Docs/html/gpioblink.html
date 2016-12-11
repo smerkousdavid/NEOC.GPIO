@@ -51,6 +51,13 @@
                           <ul class="dropdown-menu">
                              <li class="menu-item"><a href="gpioblink.html">Blink</a></li>
                              <li class="menu-item"><a href="gpioread.html">Read</a></li>
+                          </ul>
+                      </li>
+                      <li class="menu-item dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Pwm</a>
+                          <ul class="dropdown-menu">
+                             <li class="menu-item"><a href="examplepwm.html">Real Write</a></li>
+                             <li class="menu-item"><a href="examplefakepwm.html">Fake Fade</a></li>
+                          </ul>
                       </li>
                    </ul>
               </li>
@@ -112,7 +119,7 @@ C Example</h1>
  </p>
 <h1><a class="anchor" id="examplecpp"></a>
 C++ Example</h1>
-<div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="neo_8h.html">neo.h</a>&gt;</span></div><div class="line"><span class="preprocessor">#include &lt;chrono&gt;</span></div><div class="line"><span class="preprocessor">#include &lt;thread&gt;</span></div><div class="line"></div><div class="line"><span class="keyword">using namespace </span>neo; </div><div class="line"><span class="keyword">using namespace </span>std;</div><div class="line"></div><div class="line"><span class="comment">//Main function</span></div><div class="line"><span class="keywordtype">int</span> main() {</div><div class="line">    <a class="code" href="classGpio.html">Gpio</a> led(13); <span class="comment">//Start pin 13 as a gpio pin</span></div><div class="line">    </div><div class="line">    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> ind = 0; ind &lt; 10; ind++)  {</div><div class="line">       led.on();</div><div class="line">       this_thread::sleep_for(chrono::milliseconds(1000));</div><div class="line">       led.off();</div><div class="line">       this_thread::sleep_for(chrono::milliseconds(1000));</div><div class="line">    }</div><div class="line">   <span class="comment">//Auto release since the class releases the pin</span></div><div class="line">}</div></div><!-- fragment --><p> <br />
+<div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="neo_8h.html">neo.h</a>&gt;</span></div><div class="line"><span class="preprocessor">#include &lt;chrono&gt;</span></div><div class="line"><span class="preprocessor">#include &lt;thread&gt;</span></div><div class="line"></div><div class="line"><span class="keyword">using namespace </span><a class="code" href="namespaceneo.html">neo</a>; </div><div class="line"><span class="keyword">using namespace </span>std;</div><div class="line"></div><div class="line"><span class="comment">//Main function</span></div><div class="line"><span class="keywordtype">int</span> main() {</div><div class="line">    <a class="code" href="classGpio.html">Gpio</a> led(13); <span class="comment">//Start pin 13 as a gpio pin</span></div><div class="line">    </div><div class="line">    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> ind = 0; ind &lt; 10; ind++)  {</div><div class="line">       led.on();</div><div class="line">       this_thread::sleep_for(chrono::milliseconds(1000));</div><div class="line">       led.off();</div><div class="line">       this_thread::sleep_for(chrono::milliseconds(1000));</div><div class="line">    }</div><div class="line">   <span class="comment">//Auto release since the class releases the pin</span></div><div class="line">}</div></div><!-- fragment --><p> <br />
  </p>
 <h2><a class="anchor" id="compiling"></a>
 Compiling and Running</h2>

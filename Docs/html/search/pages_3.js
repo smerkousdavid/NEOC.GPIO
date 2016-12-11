@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['reading',['Reading',['../gpioread.html',1,'']]]
+  ['neoc_20official_20documentation',['NEOC Official Documentation',['../index.html',1,'']]]
 ];

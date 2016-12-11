@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['params',['params',['../structparams.html',1,'']]]
+  ['gpio',['Gpio',['../classGpio.html',1,'']]]
 ];

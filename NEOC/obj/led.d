@@ -1,1 +1,1 @@
-led.o: src/led.c include/neo.h
+led.o: src/led.c include/neo.h include/neoerror.h

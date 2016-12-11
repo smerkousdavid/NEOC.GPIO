@@ -51,6 +51,13 @@
                           <ul class="dropdown-menu">
                              <li class="menu-item"><a href="gpioblink.html">Blink</a></li>
                              <li class="menu-item"><a href="gpioread.html">Read</a></li>
+                          </ul>
+                      </li>
+                      <li class="menu-item dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Pwm</a>
+                          <ul class="dropdown-menu">
+                             <li class="menu-item"><a href="examplepwm.html">Real Write</a></li>
+                             <li class="menu-item"><a href="examplefakepwm.html">Fake Fade</a></li>
+                          </ul>
                       </li>
                    </ul>
               </li>
@@ -112,11 +119,11 @@ C Example</h1>
  </p>
 <h1><a class="anchor" id="examplecpp"></a>
 C++ Example</h1>
-<div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="neo_8h.html">neo.h</a>&gt;</span></div><div class="line"><span class="preprocessor">#include &lt;iostream&gt;</span></div><div class="line"></div><div class="line"><span class="keyword">using namespace </span>neo; </div><div class="line"><span class="keyword">using namespace </span>std;</div><div class="line"></div><div class="line"><span class="comment">//Main function</span></div><div class="line"><span class="keywordtype">int</span> main() {</div><div class="line">    <a class="code" href="classGpio.html">Gpio</a> readpin(13); <span class="comment">//Start pin 5 as gpio pin</span></div><div class="line">    readpin.setIn(); <span class="comment">//Set as INPUT      </span></div><div class="line"></div><div class="line">    cout &lt;&lt; <span class="stringliteral">&quot;Read from pin 5: &quot;</span> &lt;&lt; readpin.read() &lt;&lt; endl; <span class="comment">//Read from pin and print result</span></div><div class="line">   <span class="keywordflow">return</span> 0;</div><div class="line">}</div></div><!-- fragment --><p> <br />
+<div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="neo_8h.html">neo.h</a>&gt;</span></div><div class="line"><span class="preprocessor">#include &lt;iostream&gt;</span></div><div class="line"></div><div class="line"><span class="keyword">using namespace </span><a class="code" href="namespaceneo.html">neo</a>; </div><div class="line"><span class="keyword">using namespace </span>std;</div><div class="line"></div><div class="line"><span class="comment">//Main function</span></div><div class="line"><span class="keywordtype">int</span> main() {</div><div class="line">    <a class="code" href="classGpio.html">Gpio</a> readpin(5); <span class="comment">//Start pin 5 as gpio pin</span></div><div class="line">    readpin.setIn(); <span class="comment">//Set as INPUT      </span></div><div class="line"></div><div class="line">    cout &lt;&lt; <span class="stringliteral">&quot;Read from pin 5: &quot;</span> &lt;&lt; readpin.read() &lt;&lt; endl; <span class="comment">//Read from pin and print result</span></div><div class="line">   <span class="keywordflow">return</span> 0;</div><div class="line">}</div></div><!-- fragment --><p> <br />
  </p>
 <h2><a class="anchor" id="compiling"></a>
 Compiling and Running</h2>
-<p>This is the example to compile and run the C version of neo </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;gcc readgpio.c -I/usr/include -lneo -o readgpio</div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;chmod 755 blink</div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;./blink</div></div><!-- fragment --><p> <br />
+<p>This is the example to compile and run the C version of neo </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;gcc readgpio.c -I/usr/include -lneo -o readgpio</div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;chmod 755 readgpio</div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;./readgpio</div></div><!-- fragment --><p> <br />
  The C++ version to compiling is nearly the same just replace gcc with g++ </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;g++ readgpio.cpp -I/usr/include -lneo -o readgpio</div></div><!-- fragment --><p> <br />
  </p>
 <h1><a class="anchor" id="results"></a>

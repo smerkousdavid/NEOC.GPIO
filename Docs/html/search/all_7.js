@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['reading',['Reading',['../gpioread.html',1,'']]]
+  ['magno_2ec',['magno.c',['../magno_8c.html',1,'']]]
 ];

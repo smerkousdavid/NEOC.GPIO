@@ -177,8 +177,6 @@
 #ifndef NEOC_H
 #define NEOC_H
 
-//Cpp included in header so the users wouldn't have to include two separate headers and
-//Not have to use two different compiled libraries
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -353,6 +351,13 @@ int neo_led_off();
  *       <LI><H3><A CLASS="examplelist" HREF="gpioread.html">Read</A></H3></LI>
  *     </UL>
  *   </DIV>
+ *  \section pwm PWM Examples
+ *   <DIV CLASS="container"> 
+ *     <UL>
+ *       <LI><H3><A CLASS="examplelist" HREF="examplepwm.html">Real Write</A></H3></LI>
+ *       <LI><H3><A CLASS="examplelist" HREF="examplefakepwm.html">Fake Fade</A></H3></LI>
+ *     </UL>
+ *   </DIV>
  */
 
 
@@ -360,63 +365,139 @@ int neo_led_off();
 #ifdef __cplusplus
 }
 
+//Cpp included in header so the users wouldn't have to include two separate headers and
+//Not have to use two different compiled libraries
+#include "neoerror.h"
+
 /** @class Analog neo.h
- * @brief cool class
+ * @brief The Cpp Analog class to read pins A0 - A5
  * 
- * cool detials
- *
+ * This will read the current voltage from the analog pins
+ * on A0 through A5. Here is the example usage of the class:
+ * \code{.cpp}
+ * 
+ * int main() {
+ *   Analog azero(0); 
+ *   std::cout << "Analog (A0) Read: " << azero.read() << std::endl;
+ *   return 0;
+ * }
+ * \endcode
+ * <BR>
+ * 
+ * The m4 core must be disabled before running this method @see neo_disable_m4();
  */
 class Analog {
 	public:
-		Analog(int port, bool release = true) {
-			Analog::init(true);
+		/**
+		 * @brief Analog constructor and initializer
+		 *
+		 * This initializes the Analog class in the backend this calls the C function
+		 * neo_analog_init() that method is static as such Analog::init(); 
+		 *
+		 * @param port The analog port (0 to 5) to load the object in
+		 * @param release When no more instances of the object are detected auto release (default: true)
+		 * 
+		 * @note The m4 core must be disabled before using this Analog class @see neo_disable_m4()
+		 */
+		Analog(int port, bool release = true, bool throwing = true) {
+			Analog::init(_throwing); //Use static instance
 			_held = port;
-			_in_use += 1;
+			_in_use += 1; //Update usage count
+			_throwing = throwing;
 
-			Analog::_release = release;
+			Analog::_release = release; //If any release are false all are
 		}
 
+		/**
+		 * @brief Analog release
+		 * 
+		 * This will attempt to release the objects, if there are no more Analog Objects in use
+		 * then this will attempt to run Analog::free(); aka neo_analog_free(); To stop this construct object with
+		 * \code{.cpp} Analog analog(<pin number>, false); //No release on deconstructor \endcode
+		 * 
+		 * @note Do not try to mix Object oriented and static usage of any Neo Object it screws it up
+		 * @note When attempting to use both static Analog::read(int) and obj.read() make sure you use Analog obj(<pin>, false) to not release on 0 objects
+		 */
 		~Analog() {
 			_in_use -= 1;
 
-			if(_in_use == 0 && Analog::_release) Analog::free(false);
+			if(_in_use == 0 && Analog::_release) Analog::free(_throwing);
 		}
 
-		static bool init(bool throws) {
+		/**
+		 * @brief Static initializer
+		 *
+		 * A functions that wraps the C neo_analog_init function with some exception throwing
+		 * and nice namespace conventioning.
+		 *
+		 * @param throws A boolean to indicate if the object should throw an error when it fails
+		 * 
+		 * @note The m4 core must be disabled before init is called statically @see neo_disable_m4()
+		 */
+		static bool init(bool throws = false) {
 			int ret = neo_analog_init();
+			if(throws && ret != NEO_OK) {
+				neo::error::Handler(ret, -1, 0, 5, 0, "Analog", "Failed to Init");
+			}
 			return ret == NEO_OK;
 		}
 
-		static bool init() {
-			return Analog::init(false);
-		}
-
-		static bool free(bool throws) {
+		/**
+		 * @brief Static de-initializer
+		 *
+		 * A functions that wraps the C neo_analog_free function with some exception throwing
+		 * and nice namespace conventioning.
+		 *
+		 * @param throws A boolean to indicate if the object should throw an error when it fails
+		 */
+		static bool free(bool throws = false) {
 			int ret = neo_analog_free();
+			if(throws && ret != NEO_OK) {
+				neo::error::Handler(ret, -1, 0, 5, 0, "Analog", "Failed to Release");
+			}
 			return ret == NEO_OK;
 		}
 
-		static bool free() {
-			return Analog::free(false);
-		}
-
-		static float read(int port) {
+		/**
+		 * @brief Static reading from port
+		 *
+		 * This will read from the analog pin and throw an exception if it failed to read from
+		 * the pin.
+		 *
+		 * @return A float with the current voltage raw resolution
+		 * @param port The port to statically read from
+		 */
+		static float read(int port, bool throws = false) {
 			float ret = neo_analog_read(port);
+			if(throws && static_cast<int>(ret) != NEO_OK) {
+				neo::error::Handler(ret, port, 0, 5, 0, "Analog", "Failed to Read from Pin");
+			}
 			return ret;
 		}
 
+		/**
+		 * @brief Object read from initialized port
+		 *
+		 * This will read from the preset port of the object. Warning this may throw
+		 * errors when failing unless you specify in the constructor to not throw errors
+		 *
+		 * 
+		 *
+		 * @return A float with the current voltage raw resolution
+		 */
 		float read() {
-			Analog::read(_held);
+			return Analog::read(_held, _throwing);
 		}
 
 	private:
-		int _held;
-		static short _in_use;
-		static bool _release;
+		int _held; //Current pin to use
+		bool _throwing;
+		static short _in_use; //Global object usage count
+		static bool _release; //Global to release on no object count
 };
 
-short Analog::_in_use = 0;
-bool Analog::_release = true;
+short Analog::_in_use = 0; //Set no object counts
+bool Analog::_release = true; //Set to automatically release
 
 class Gpio {
 	public:

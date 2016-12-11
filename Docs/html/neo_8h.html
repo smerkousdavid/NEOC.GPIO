@@ -51,6 +51,13 @@
                           <ul class="dropdown-menu">
                              <li class="menu-item"><a href="gpioblink.html">Blink</a></li>
                              <li class="menu-item"><a href="gpioread.html">Read</a></li>
+                          </ul>
+                      </li>
+                      <li class="menu-item dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Pwm</a>
+                          <ul class="dropdown-menu">
+                             <li class="menu-item"><a href="examplepwm.html">Real Write</a></li>
+                             <li class="menu-item"><a href="examplefakepwm.html">Fake Fade</a></li>
+                          </ul>
                       </li>
                    </ul>
               </li>
@@ -113,13 +120,14 @@ $(function() {
 
 <p>Header file (C/C++) that includes all functions for the libneo.so.  
 <a href="#details">More...</a></p>
-
+<div class="textblock"><code>#include &quot;neoerror.h&quot;</code><br />
+</div>
 <p><a href="neo_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Data Structures</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnalog.html">Analog</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">cool class  <a href="classAnalog.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The Cpp <a class="el" href="classAnalog.html" title="The Cpp Analog class to read pins A0 - A5. ">Analog</a> class to read pins A0 - A5.  <a href="classAnalog.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGpio.html">Gpio</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>

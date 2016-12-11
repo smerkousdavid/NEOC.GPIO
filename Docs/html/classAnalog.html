@@ -51,6 +51,13 @@
                           <ul class="dropdown-menu">
                              <li class="menu-item"><a href="gpioblink.html">Blink</a></li>
                              <li class="menu-item"><a href="gpioread.html">Read</a></li>
+                          </ul>
+                      </li>
+                      <li class="menu-item dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Pwm</a>
+                          <ul class="dropdown-menu">
+                             <li class="menu-item"><a href="examplepwm.html">Real Write</a></li>
+                             <li class="menu-item"><a href="examplefakepwm.html">Fake Fade</a></li>
+                          </ul>
                       </li>
                    </ul>
               </li>
@@ -105,42 +112,245 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>cool class  
+<p>The Cpp <a class="el" href="classAnalog.html" title="The Cpp Analog class to read pins A0 - A5. ">Analog</a> class to read pins A0 - A5.  
  <a href="classAnalog.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="neo_8h_source.html">neo.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a26af19f3d34a5542d8939ccd90fb10b7"><td class="memItemLeft" align="right" valign="top"><a id="a26af19f3d34a5542d8939ccd90fb10b7"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Analog</b> (int port, bool release=true)</td></tr>
-<tr class="separator:a26af19f3d34a5542d8939ccd90fb10b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a92febe7871d46b997a4b4d15e20453cf"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnalog.html#a92febe7871d46b997a4b4d15e20453cf">Analog</a> (int port, bool release=true, bool throwing=true)</td></tr>
+<tr class="memdesc:a92febe7871d46b997a4b4d15e20453cf"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classAnalog.html" title="The Cpp Analog class to read pins A0 - A5. ">Analog</a> constructor and initializer.  <a href="#a92febe7871d46b997a4b4d15e20453cf">More...</a><br /></td></tr>
+<tr class="separator:a92febe7871d46b997a4b4d15e20453cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a331a4911a5297fac5e4f79fbf1045ad3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnalog.html#a331a4911a5297fac5e4f79fbf1045ad3">~Analog</a> ()</td></tr>
+<tr class="memdesc:a331a4911a5297fac5e4f79fbf1045ad3"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classAnalog.html" title="The Cpp Analog class to read pins A0 - A5. ">Analog</a> release.  <a href="#a331a4911a5297fac5e4f79fbf1045ad3">More...</a><br /></td></tr>
+<tr class="separator:a331a4911a5297fac5e4f79fbf1045ad3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab14afe835877c796e5b9f8dc6869e876"><td class="memItemLeft" align="right" valign="top"><a id="ab14afe835877c796e5b9f8dc6869e876"></a>
 float&#160;</td><td class="memItemRight" valign="bottom"><b>read</b> ()</td></tr>
 <tr class="separator:ab14afe835877c796e5b9f8dc6869e876"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a7fbdcc88b5d3a37c12944b93bf89b3d2"><td class="memItemLeft" align="right" valign="top"><a id="a7fbdcc88b5d3a37c12944b93bf89b3d2"></a>
-static bool&#160;</td><td class="memItemRight" valign="bottom"><b>init</b> (bool throws)</td></tr>
-<tr class="separator:a7fbdcc88b5d3a37c12944b93bf89b3d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acf0b0aa3d0b8e1d11bbd01268ddf21fd"><td class="memItemLeft" align="right" valign="top"><a id="acf0b0aa3d0b8e1d11bbd01268ddf21fd"></a>
-static bool&#160;</td><td class="memItemRight" valign="bottom"><b>init</b> ()</td></tr>
-<tr class="separator:acf0b0aa3d0b8e1d11bbd01268ddf21fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a899078b99a647ee18953a1f036d9352f"><td class="memItemLeft" align="right" valign="top"><a id="a899078b99a647ee18953a1f036d9352f"></a>
-static bool&#160;</td><td class="memItemRight" valign="bottom"><b>free</b> (bool throws)</td></tr>
-<tr class="separator:a899078b99a647ee18953a1f036d9352f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1e13e496e54795f035f2448cc1fe3b76"><td class="memItemLeft" align="right" valign="top"><a id="a1e13e496e54795f035f2448cc1fe3b76"></a>
-static bool&#160;</td><td class="memItemRight" valign="bottom"><b>free</b> ()</td></tr>
-<tr class="separator:a1e13e496e54795f035f2448cc1fe3b76"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa010cbb8164b8ad7202c4885eb85e2ee"><td class="memItemLeft" align="right" valign="top"><a id="aa010cbb8164b8ad7202c4885eb85e2ee"></a>
-static float&#160;</td><td class="memItemRight" valign="bottom"><b>read</b> (int port)</td></tr>
-<tr class="separator:aa010cbb8164b8ad7202c4885eb85e2ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3f8ec22bd37dffc9d69013a6acac7793"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnalog.html#a3f8ec22bd37dffc9d69013a6acac7793">init</a> (bool throws=false)</td></tr>
+<tr class="memdesc:a3f8ec22bd37dffc9d69013a6acac7793"><td class="mdescLeft">&#160;</td><td class="mdescRight">Static initializer.  <a href="#a3f8ec22bd37dffc9d69013a6acac7793">More...</a><br /></td></tr>
+<tr class="separator:a3f8ec22bd37dffc9d69013a6acac7793"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aca318a91190076f501cb2ab27bc220db"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnalog.html#aca318a91190076f501cb2ab27bc220db">free</a> (bool throws=false)</td></tr>
+<tr class="memdesc:aca318a91190076f501cb2ab27bc220db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Static de-initializer.  <a href="#aca318a91190076f501cb2ab27bc220db">More...</a><br /></td></tr>
+<tr class="separator:aca318a91190076f501cb2ab27bc220db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa0067c35d9572fb6fc6750a2b22bfd0c"><td class="memItemLeft" align="right" valign="top">static float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnalog.html#aa0067c35d9572fb6fc6750a2b22bfd0c">read</a> (int port, bool throws=false)</td></tr>
+<tr class="memdesc:aa0067c35d9572fb6fc6750a2b22bfd0c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Static reading from port.  <a href="#aa0067c35d9572fb6fc6750a2b22bfd0c">More...</a><br /></td></tr>
+<tr class="separator:aa0067c35d9572fb6fc6750a2b22bfd0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>cool class </p>
-<p>cool detials </p>
-</div><hr/>The documentation for this class was generated from the following file:<ul>
+<div class="textblock"><p>The Cpp <a class="el" href="classAnalog.html" title="The Cpp Analog class to read pins A0 - A5. ">Analog</a> class to read pins A0 - A5. </p>
+<p>This will read the current voltage from the analog pins on A0 through A5. Here is the example usage of the class: </p><div class="fragment"><div class="line"><span class="keywordtype">int</span> main() {</div><div class="line">  <a class="code" href="classAnalog.html">Analog</a> azero(0); </div><div class="line">  std::cout &lt;&lt; <span class="stringliteral">&quot;Analog (A0) Read: &quot;</span> &lt;&lt; azero.read() &lt;&lt; std::endl;</div><div class="line">  <span class="keywordflow">return</span> 0;</div><div class="line">}</div></div><!-- fragment --><p> <br />
+</p>
+<p>The m4 core must be disabled before running this method </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="neo_8c.html#a8e7bdef17ff3b69216fec01f8d13b4bb" title="m4 core disabling ">neo_disable_m4()</a>; </dd></dl>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a92febe7871d46b997a4b4d15e20453cf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a92febe7871d46b997a4b4d15e20453cf">&sect;&nbsp;</a></span>Analog()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Analog::Analog </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>port</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>release</em> = <code>true</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>throwing</em> = <code>true</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><a class="el" href="classAnalog.html" title="The Cpp Analog class to read pins A0 - A5. ">Analog</a> constructor and initializer. </p>
+<p>This initializes the <a class="el" href="classAnalog.html" title="The Cpp Analog class to read pins A0 - A5. ">Analog</a> class in the backend this calls the C function neo_analog_init() that method is static as such <a class="el" href="classAnalog.html#a3f8ec22bd37dffc9d69013a6acac7793" title="Static initializer. ">Analog::init()</a>;</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">port</td><td>The analog port (0 to 5) to load the object in </td></tr>
+    <tr><td class="paramname">release</td><td>When no more instances of the object are detected auto release (default: true)</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>The m4 core must be disabled before using this <a class="el" href="classAnalog.html" title="The Cpp Analog class to read pins A0 - A5. ">Analog</a> class </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="neo_8c.html#a8e7bdef17ff3b69216fec01f8d13b4bb" title="m4 core disabling ">neo_disable_m4()</a> </dd></dl>
+
+</div>
+</div>
+<a id="a331a4911a5297fac5e4f79fbf1045ad3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a331a4911a5297fac5e4f79fbf1045ad3">&sect;&nbsp;</a></span>~Analog()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Analog::~Analog </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><a class="el" href="classAnalog.html" title="The Cpp Analog class to read pins A0 - A5. ">Analog</a> release. </p>
+<p>This will attempt to release the objects, if there are no more <a class="el" href="classAnalog.html" title="The Cpp Analog class to read pins A0 - A5. ">Analog</a> Objects in use then this will attempt to run <a class="el" href="classAnalog.html#aca318a91190076f501cb2ab27bc220db" title="Static de-initializer. ">Analog::free()</a>; aka neo_analog_free(); To stop this construct object with </p><div class="fragment"><div class="line"><a class="code" href="classAnalog.html">Analog</a> analog(&lt;pin number&gt;, <span class="keyword">false</span>); <span class="comment">//No release on deconstructor </span></div></div><!-- fragment --><dl class="section note"><dt>Note</dt><dd>Do not try to mix Object oriented and static usage of any Neo Object it screws it up </dd>
+<dd>
+When attempting to use both static Analog::read(int) and obj.read() make sure you use <a class="el" href="classAnalog.html" title="The Cpp Analog class to read pins A0 - A5. ">Analog</a> obj(&lt;pin&gt;, false) to not release on 0 objects </dd></dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="aca318a91190076f501cb2ab27bc220db"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aca318a91190076f501cb2ab27bc220db">&sect;&nbsp;</a></span>free()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool Analog::free </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>throws</em> = <code>false</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Static de-initializer. </p>
+<p>A functions that wraps the C neo_analog_free function with some exception throwing and nice namespace conventioning.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">throws</td><td>A boolean to indicate if the object should throw an error when it fails </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a3f8ec22bd37dffc9d69013a6acac7793"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3f8ec22bd37dffc9d69013a6acac7793">&sect;&nbsp;</a></span>init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool Analog::init </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>throws</em> = <code>false</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Static initializer. </p>
+<p>A functions that wraps the C neo_analog_init function with some exception throwing and nice namespace conventioning.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">throws</td><td>A boolean to indicate if the object should throw an error when it fails</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>The m4 core must be disabled before init is called statically </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="neo_8c.html#a8e7bdef17ff3b69216fec01f8d13b4bb" title="m4 core disabling ">neo_disable_m4()</a> </dd></dl>
+
+</div>
+</div>
+<a id="aa0067c35d9572fb6fc6750a2b22bfd0c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa0067c35d9572fb6fc6750a2b22bfd0c">&sect;&nbsp;</a></span>read()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static float Analog::read </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>port</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>throws</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Static reading from port. </p>
+<p>This will read from the analog pin and throw an exception if it failed to read from the pin.</p>
+<dl class="section return"><dt>Returns</dt><dd>A float with the current voltage raw resolution </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">port</td><td>The port to statically read from </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
 <li>include/<a class="el" href="neo_8h_source.html">neo.h</a></li>
 </ul>
 </div><!-- contents -->

@@ -170,9 +170,10 @@ int neo_pwm_init()
 				fail = (fail == NEO_EXPORT_ERROR || fail == NEO_UNUSABLE_EXPORT_ERROR) ? 
 						NEO_UNUSABLE_EXPORT_ERROR : NEO_UNUSABLE_ERROR; 
 				USABLEPWM[i] = 0;
-	  
+				continue;
 			}
-	
+			
+			neo_pwm_set_period(i, neo_pwm_period); //Set the default 49KHz for all the pins
 		}
 		//Set the global flag to see if PWM is initialized
 		neo_pwm_freed = 0;	
@@ -531,6 +532,198 @@ int neo_pwm_free()
 	}
 	return fail;
 }
+
+
+/** \page examplepwm Real
+ * \breif How to use the Real PWM controller to set a duty cycle
+ *
+ * Please look at the pinout to find the PWM number on the bank (The pin isn't the same as GPIO)
+ * If you haven't yet make sure you go to the device tree editor and pinmux a pin to support PWM
+ * You must do this or you will recieve a NEO_UNUSABLE_ERROR when trying to write to that pin!
+ * The real PWM mapping to the pinmuxing is really weird and it's why the functions aren't mapped directly
+ * to the actual gpio pin. Sorry but you have to mess around with the pins before getting it to work. For now
+ * just try mapping PWM 5 on the device tree editor to GPIO bank pin 30 and trying the below sample code with PWM 0
+ * If 0 shoots a NEO_UNUSABLE_ERROR. Try 1... and so forth.<BR><BR>
+ * Device Tree Tutorial: https://www.udoo.org/docs-neo/Cookbook_Linux/Device_Tree_Editor.html
+ *
+ * \warning You must pinmux the proper PWM pin before continuing
+ *
+ * Lets create a new file called pwmwrite.c (For C++ do pwmwrite.cpp)
+ *  \code{.sh} nano pwmwrite.c \endcode 
+ *
+ * 
+ * \section examplec C Example
+ *
+ *  \code{.c}
+ *  #include <neo.h>
+ *  #include <stdio.h>
+ * 
+ *  //Main funciton
+ *  int main() {
+ *    neo_pwm_init(); //Must be called before using any other gpio pin function 
+ *
+ *    //neo_pwm_set_period(0, 20408); //OPTIONAL: Set a custom period time 20408 = ~49KHz
+ *    //neo_pwm_set_period_all(20408); //OPTIONAL: Set for all the pins
+ *
+ *    int ret = neo_pwm_write(0, 127); //Set pwm pin 0 (pwm 5) (IF YOU MAP PWM 5 to 
+ *    //GPIO pin 30 on device tree then pwm0 is pwm 5)  50% duty cycle (it's 0 to 255)
+ *
+ *    if(ret != NEO_OK) {
+ *       printf("Failed writing to PWM!\nERROR: %d", ret);
+ *    }
+ *
+ *    //This will still run even when the program is finished... Just remember that
+ *
+ *    neo_pwm_free(); //Should be called to release the pins from the program (Called at end of program)
+ *    return 0;
+ *  }
+ *  \endcode
+ * <BR>
+ * \section examplecpp C++ Example
+ * \code{.cpp}
+ *  #include <neo.h>
+ *  #include <iostream>
+ * 
+ *  using namespace neo; 
+ *  using namespace std;
+ *
+ *  //Main function
+ *  int main() {
+ *      PWM pwm(0); //Start on PWM pin 0 (pwm 5) (NOT THE SAME AS GPIO MAPPING)      
+ *      //pwm.setPeriod(20408); //Example set period
+ *      pwm.write(127);
+ *  }
+ * \endcode
+ * Warning The mapping of Real PWM is not the same as Gpio. Nor is it linear to the PWM mapping! (Read above)
+ * <BR>
+ * \subsection compiling Compiling and Running
+ * This is the example to compile and run the C version of neo
+ * \code{.sh}
+ *   gcc pwmwrite.c -I/usr/include -lneo -o pwmwrite
+ *   chmod 755 pwmwrite
+ *   ./pwmwrite
+ * \endcode
+ * <BR>
+ * The C++ version to compiling is nearly the same just replace gcc with g++
+ * \code{.sh}
+ *   g++ pwmwrite.cpp -I/usr/include -lneo -o pwmwrite
+ * \endcode
+ * <BR>
+ * \section results Results
+ * Try hooking up an LED to that PWM pin and setting the PWM values at different points to see if the lighting changes
+ * If nothing changes make sure that pin supports REAL PWM, isn't failing to initialize it and it's been pinmuxed properly
+ * In the device tree editor
+ */
+
+
+
+
+
+
+
+
+
+/** \page examplefakepwm FakePWM
+ * \breif How to use PWM on any GPIO pin easily
+ *
+ * This is a tutorial and example of how to use Fake PWM on any Gpio pin 
+ * 
+ * Unlike the Real PWM this isn't as precise since it uses the processor clock and not a custom resolution clock
+ * This also is down to the speed of sysfs. I was able to do up to 100KHz (About half the period time of an arduino(p.s. that's good))
+ * On about 30 pins, before the the led seemed to jitter at a visible amount. So I would recommend to leave it at 49KHz if using FakePWM
+ * on a lot of the pins. This is a lot easier to use than the Real PWM because it has the same mapping as the gpio since it uses the same
+ * methods in the backend. Try the example below for pin 13 which is the led.
+ *
+ * Lets create a new file called fakefade.c (For C++ do fakefade.cpp)
+ *  \code{.sh} nano fakefade.c \endcode 
+ * 
+ * \section examplec C Example
+ *
+ *  \code{.c}
+ *  #include <neo.h>
+ *  #include <unistd.h>
+ *  #include <stdio.h>
+ * 
+ *  //Main funciton
+ *  int main() {
+ *    neo_fake_pwm_init(); //Exactly the same as neo_gpio_init()
+ *
+ *    printf("Starting the fade\n");
+ *
+ *    while(1) {
+ *       int i;
+ *       //Fade up to 255
+ *       for(i = 0; i < 255; i++) {
+ *          neo_fake_pwm_write(13, i); //Write up pwm value
+ *          usleep(1000*10); //Wait 10millis
+ *       }
+ *       int d;
+ *       
+ *       //Fade down back to 0
+ *       for(d = 255; d > 0; d--) {
+ *          neo_fake_pwm_write(13, d); //Write down pwm value
+ *          usleep(1000*10); //Wait 10millis
+ *       }
+ *          usleep(1000*400); //Stay low 400 more millis
+ *    }
+ *
+ *    //neo_gpio_free(); <- This should be called on end of program 
+ *    return 0; 
+ * }
+ *  \endcode
+ * <BR>
+ * \section examplecpp C++ Example
+ * \code{.cpp}
+ *  #include <neo.h>
+ *  #include <chrono>
+ *  #include <thread>
+ *  #include <iostream>
+ * 
+ *  using namespace neo; 
+ *  using namespace std;
+ *
+ *  int main() {
+ *    FakePWM fpwm(13); //This will also init a static version of gpio
+ *
+ *    cout << "Starting the fade" << endl;
+ *
+ *    while(1) {
+ *       //Fade up to 255
+ *       for(int i = 0; i < 255; i++) {
+ *          fpwm.write(i); //Write up pwm value
+ *          this_thread::sleep_for(chrono::milliseconds(10));
+ *       }
+ *       
+ *       //Fade down back to 0
+ *       for(int d = 255; d > 0; d--) {
+ *          fpwm.write(d); //Write down pwm value
+ *          this_thread::sleep_for(chrono::milliseconds(10));
+ *       }
+ *          this_thread::sleep_for(chrono::milliseconds(400));
+ *    }
+ *    return 0; 
+ * }
+ *  \endcode
+ * <BR>
+ * \subsection compiling Compiling and Running
+ * This is the example to compile and run the C version of neo
+ * \code{.sh}
+ *   gcc fakefade.c -I/usr/include -lneo -o fakefade
+ *   chmod 755 fakefade
+ *   ./fakefade
+ * \endcode
+ * <BR>
+ * The C++ version to compiling is nearly the same just replace gcc with g++
+ * \code{.sh}
+ *   g++ fakefade.cpp -I/usr/include -lneo -o fakefade
+ * \endcode
+ * <BR>
+ * \section results Results
+ * Did you see pin 13 fading? Well if it worked without printing any errors you got the FakePWM to work
+ * now you can run PWM on any gpio pin available on the Udoo extremely easy. I don't know why I'm telling you this
+ * if you are on C and C++ and probably already know the expected results of the program.
+ */
+
 
 
 //Commented out test main function
