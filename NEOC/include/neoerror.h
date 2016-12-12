@@ -376,9 +376,9 @@ to change pin state", whatType, typeError);
 	class NotRootError : public std::runtime_error {
 	public:
 		/**
-		 * @brief Constructor of NorRootError
+		 * @brief Constructor of NotRootError
 		 *
-		 * Example usage to throw a NorRootError
+		 * Example usage to throw a NotRootError
 		 * \code{.cpp}
 		 * throw NotRootError("You need root for analog reading!"); 
 		 * //Couldn't read Analog (try running program as root)
@@ -387,8 +387,7 @@ to change pin state", whatType, typeError);
 		 * @param w What to say on what() when the program isn't root
 		 * @return A runtime_error
 		 */
-		NorRootError(const char * w) : std::runtime_error("NotRootError"), 
-			whatType(w){}
+		NotRootError(const char * w) : std::runtime_error("NotRootError"), whatType(w){}
 
 		/**
 		 * @brief The compiled response on catch of exception or Abort
@@ -400,7 +399,7 @@ to change pin state", whatType, typeError);
 		 */
 		virtual const char * what() const throw() {
 			char * retArr = new char[350];
-			sprintf(retArr, "NotRootError: You need to be UID(0)! ", whatType);
+			sprintf(retArr, "NotRootError: You need to be UID(0)! %s", whatType);
 			return retArr;
 		}
 	private:
