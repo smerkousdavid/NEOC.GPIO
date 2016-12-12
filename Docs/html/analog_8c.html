@@ -1,0 +1,236 @@
+<!-- HTML header for doxygen 1.8.8-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <!-- For Mobile Devices -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+        <meta name="generator" content="Doxygen 1.8.12"/>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <title>NEOC: src/analog.c File Reference</title>
+        <link href="tabs.css" rel="stylesheet" type="text/css"/>
+        <script type="text/javascript" src="dynsections.js"></script>
+        <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+        <link href="doxygen.css" rel="stylesheet" type="text/css" />
+        <link href="neocdoxygen.css" rel="stylesheet" type="text/css"/>
+        <link href='https://fonts.googleapis.com/css?family=Roboto+Slab' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="doxy-boot.js"></script>
+    </head>
+    <body>
+        <nav class="navbar navbar-default" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                   <a href="index.html"><img src="neoc_small.png" class="logostyle" alt="NEOC Icon" align="left"/></a>
+                   <a class="navbar-brand" href="index.html">
+                   NEOC 0.1</a>
+                </div>
+            <ul class="nav navbar-nav">
+              <li><a href="index.html">Main Page</a></li>
+              <li><a href="files.html">Files</a></li>
+              <li class="dropdown">
+                 <a href="annotated.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Data Structures<span class="caret"></span></a>
+                   <ul class="dropdown-menu">
+                      <li><a href="annotated.html">All Data Structures</a></li>
+                      <li><a href="classes.html">Classes and Index</a></li>
+                   </ul>
+              </li>
+              <li><a href="globals.html">Functions</a></li>
+                <div style="float: right;">
+                  <p class="navbar-text">By David Smerkous</p>
+		</div>
+              <li class="dropdown">
+                 <a href="examples.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Examples<span class="caret"></span></a>
+                   <ul class="dropdown-menu">
+                      <li><a href="examples.html">All Examples</a></li>
+                      <li class="menu-item dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Gpio</a>
+                          <ul class="dropdown-menu">
+                             <li class="menu-item"><a href="gpioblink.html">Blink</a></li>
+                             <li class="menu-item"><a href="gpioread.html">Read</a></li>
+                          </ul>
+                      </li>
+                      <li class="menu-item dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Pwm</a>
+                          <ul class="dropdown-menu">
+                             <li class="menu-item"><a href="examplepwm.html">Real Write</a></li>
+                             <li class="menu-item"><a href="examplefakepwm.html">Fake Fade</a></li>
+                          </ul>
+                      </li>
+                      <li class="menu-item dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Analog</a>
+                          <ul class="dropdown-menu">
+                             <li class="menu-item"><a href="exampleanalog.html">Read</a></li>
+                          </ul>
+                      </li>
+                   </ul>
+              </li>
+            </ul>
+            </div>        
+	</nav>
+        <div id="top"><!-- Other side of div is closed by doxygen! -->
+            <div class="content" id="content">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12 panel " style="padding-bottom: 15px;">
+                            <div style="margin-bottom: 15px;">
+				<div id="MSearchResultsWindow">
+				<iframe src="javascript:void(0)" frameborder="0" name="MSearchResults" id="MSearchResults">
+				</iframe>
+				</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.8.12 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Search');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#func-members">Functions</a>  </div>
+  <div class="headertitle">
+<div class="title">analog.c File Reference</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>The main file to control the Analog A0 through A5 pins.  
+<a href="#details">More...</a></p>
+<div class="textblock"><code>#include &lt;<a class="el" href="neo_8h_source.html">neo.h</a>&gt;</code><br />
+<code>#include &lt;stdio.h&gt;</code><br />
+<code>#include &lt;string.h&gt;</code><br />
+<code>#include &lt;stdlib.h&gt;</code><br />
+<code>#include &lt;unistd.h&gt;</code><br />
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:af8ca2c116caf55d1de17157e3a390726"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="analog_8c.html#af8ca2c116caf55d1de17157e3a390726">neo_analog_init</a> ()</td></tr>
+<tr class="memdesc:af8ca2c116caf55d1de17157e3a390726"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the Analog iio.  <a href="#af8ca2c116caf55d1de17157e3a390726">More...</a><br /></td></tr>
+<tr class="separator:af8ca2c116caf55d1de17157e3a390726"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a62237a2d7468a9aee91c9efdc0934ce3"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="analog_8c.html#a62237a2d7468a9aee91c9efdc0934ce3">neo_analog_read</a> (int pin)</td></tr>
+<tr class="memdesc:a62237a2d7468a9aee91c9efdc0934ce3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Main read raw method for analog.  <a href="#a62237a2d7468a9aee91c9efdc0934ce3">More...</a><br /></td></tr>
+<tr class="separator:a62237a2d7468a9aee91c9efdc0934ce3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1aae9b7924b859181443f6beaff2d632"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="analog_8c.html#a1aae9b7924b859181443f6beaff2d632">neo_analog_free</a> ()</td></tr>
+<tr class="memdesc:a1aae9b7924b859181443f6beaff2d632"><td class="mdescLeft">&#160;</td><td class="mdescRight">Analog freeing method.  <a href="#a1aae9b7924b859181443f6beaff2d632">More...</a><br /></td></tr>
+<tr class="separator:a1aae9b7924b859181443f6beaff2d632"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>The main file to control the Analog A0 through A5 pins. </p>
+<dl class="section author"><dt>Author</dt><dd>David Smerkous </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>11/28/2016 This source file is the core of all Analog control. This doesn't go through the m4 or read via serial. This is directly accessing the pins via iio on the A9 side. So you can expect fast results. Root is usually required. I have had it where it ran fine, iio can be kind of quirky. You can either read via .read() or readRaw() to get the fully mapped 0 to 4095 12 bit value.</dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Please disable the m4 core before continuing to use <a class="el" href="analog_8c.html#af8ca2c116caf55d1de17157e3a390726" title="Initializes the Analog iio. ">neo_analog_init()</a> </dd></dl>
+</div><h2 class="groupheader">Function Documentation</h2>
+<a id="a1aae9b7924b859181443f6beaff2d632"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1aae9b7924b859181443f6beaff2d632">&sect;&nbsp;</a></span>neo_analog_free()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int neo_analog_free </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Analog freeing method. </p>
+<p>This will release the analog pins from the program and free them up to be used with another. The init and free methods should be extremely fast and is fine to call multiple times.</p>
+<dl class="section return"><dt>Returns</dt><dd>NEO_OK or NEO_UNUSABLE_ERROR if it failed to release a pin </dd></dl>
+
+</div>
+</div>
+<a id="af8ca2c116caf55d1de17157e3a390726"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af8ca2c116caf55d1de17157e3a390726">&sect;&nbsp;</a></span>neo_analog_init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int neo_analog_init </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initializes the Analog iio. </p>
+<p>This opens up all of the Analog pins up for reading. The reason why all of them are open is because it's faster for one and for two there is no reason for the m4 to be using them, so let our program use it all.</p>
+<dl class="section return"><dt>Returns</dt><dd>NEO_OK/NEO_UNUSABLE_ERROR/NEO_EXPORT_ERROR if some Analog weren't initialized</dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Do not provide over 3.3v to the Analog pins or you will ruin the board! </dd></dl>
+
+</div>
+</div>
+<a id="a62237a2d7468a9aee91c9efdc0934ce3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a62237a2d7468a9aee91c9efdc0934ce3">&sect;&nbsp;</a></span>neo_analog_read()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float neo_analog_read </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>pin</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Main read raw method for analog. </p>
+<p>This will directly read from the analog pin and give you the raw returned 12 bit value</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pin</td><td>The analog pin (0 to 5) to read from</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a float of (0 -&gt; 4095)/NEO_UNUSABLE_ERROR/NEO_PIN_ERROR/NEO_READ_ERROR if it failed to read the pin</dd></dl>
+<dl class="section note"><dt>Note</dt><dd>If you have recieved the NEO_UNUSABLE_ERROR, that probably means you aren't root </dd></dl>
+
+</div>
+</div>
+</div><!-- contents -->
+
+<!-- HTML footer for doxygen 1.8.8-->
+<!-- start footer part -->
+</div>
+</div>
+</div>
+</div>
+</div>
+<hr class="footer"/><address class="footer"><small>
+Created by David Smerkous &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="neoc_small.png" style="width: auto; height: 45px;" alt="NEOC Docs generated with Doxygen"/>
+</a> Doxygen: 1.8.12
+</small></address>
+</body>
+</html>

@@ -59,6 +59,11 @@
                              <li class="menu-item"><a href="examplefakepwm.html">Fake Fade</a></li>
                           </ul>
                       </li>
+                      <li class="menu-item dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Analog</a>
+                          <ul class="dropdown-menu">
+                             <li class="menu-item"><a href="exampleanalog.html">Read</a></li>
+                          </ul>
+                      </li>
                    </ul>
               </li>
             </ul>
@@ -114,6 +119,11 @@ $(function() {
 <div class="title">neo::error::UnusableError Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Most commonly thrown error when the specified pin is unusable.  
+ <a href="classneo_1_1error_1_1UnusableError.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="neoerror_8h_source.html">neoerror.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for neo::error::UnusableError:</div>
 <div class="dyncontent">
@@ -125,13 +135,115 @@ Inheritance diagram for neo::error::UnusableError:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ae9386beea96599f0f007d5bcba3bab61"><td class="memItemLeft" align="right" valign="top"><a id="ae9386beea96599f0f007d5bcba3bab61"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>UnusableError</b> (const char *w, int p)</td></tr>
+<tr class="memitem:ae9386beea96599f0f007d5bcba3bab61"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classneo_1_1error_1_1UnusableError.html#ae9386beea96599f0f007d5bcba3bab61">UnusableError</a> (const char *w, int p)</td></tr>
+<tr class="memdesc:ae9386beea96599f0f007d5bcba3bab61"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor of <a class="el" href="classneo_1_1error_1_1UnusableError.html" title="Most commonly thrown error when the specified pin is unusable. ">UnusableError</a>.  <a href="#ae9386beea96599f0f007d5bcba3bab61">More...</a><br /></td></tr>
 <tr class="separator:ae9386beea96599f0f007d5bcba3bab61"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acc649ecbb7abe096311b9c1f18d8329a"><td class="memItemLeft" align="right" valign="top"><a id="acc649ecbb7abe096311b9c1f18d8329a"></a>
-virtual const char *&#160;</td><td class="memItemRight" valign="bottom"><b>what</b> () const  throw ()</td></tr>
+<tr class="memitem:acc649ecbb7abe096311b9c1f18d8329a"><td class="memItemLeft" align="right" valign="top">virtual const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classneo_1_1error_1_1UnusableError.html#acc649ecbb7abe096311b9c1f18d8329a">what</a> () const  throw ()</td></tr>
+<tr class="memdesc:acc649ecbb7abe096311b9c1f18d8329a"><td class="mdescLeft">&#160;</td><td class="mdescRight">The compiled response on catch of exception or Abort.  <a href="#acc649ecbb7abe096311b9c1f18d8329a">More...</a><br /></td></tr>
 <tr class="separator:acc649ecbb7abe096311b9c1f18d8329a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Most commonly thrown error when the specified pin is unusable. </p>
+<p>This one can be very problematic because it could be sometimes hard to find what the issue is. Most of the time it's because of these issues<br />
+ </p><ul>
+<li>
+PWM pin wasn't properly pinmuxed using device tree editor </li>
+<li>
+The PWM pin isn't the same mapping as it is in the device tree editor <b>trust me it is usually not</b> </li>
+<li>
+GPIO is already using the same bank pin where PWM is trying to use </li>
+<li>
+Same as above but vise versa with GPIO and PWM </li>
+<li>
+You don't have suffice permissions, try running as root </li>
+<li>
+The OS just plain won't let you allocate that pin, probably meaning you havent disabled the m4 core yet </li>
+</ul>
+<p><br />
+ As soon as you have tried fixing all of those issues or at least checking for them. Try emailing me at <a href="#" onclick="location.href='mai'+'lto:'+'sme'+'rk'+'ous'+'da'+'vid'+'@g'+'mai'+'l.'+'com'; return false;">smerk<span style="display: none;">.nosp@m.</span>ousd<span style="display: none;">.nosp@m.</span>avid@<span style="display: none;">.nosp@m.</span>gmai<span style="display: none;">.nosp@m.</span>l.com</a> to see if I can try to help you out. I understand this error can be extrememly annoying. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="ae9386beea96599f0f007d5bcba3bab61"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae9386beea96599f0f007d5bcba3bab61">&sect;&nbsp;</a></span>UnusableError()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">neo::error::UnusableError::UnusableError </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>w</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>p</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constructor of <a class="el" href="classneo_1_1error_1_1UnusableError.html" title="Most commonly thrown error when the specified pin is unusable. ">UnusableError</a>. </p>
+<p>Example usage to throw a <a class="el" href="classneo_1_1error_1_1UnusableError.html" title="Most commonly thrown error when the specified pin is unusable. ">UnusableError</a> </p><div class="fragment"><div class="line"><span class="keywordflow">throw</span> <a class="code" href="classneo_1_1error_1_1UnusableError.html#ae9386beea96599f0f007d5bcba3bab61">UnusableError</a>(<span class="stringliteral">&quot;PWM&quot;</span>, 3); <span class="comment">//3 wasn&#39;t pinmuxed</span></div></div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">w</td><td>What system core are you using (Usually GPIO or PWM) </td></tr>
+    <tr><td class="paramname">p</td><td>What pin on that core is trying to be allocated</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A runtime_error </dd></dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="acc649ecbb7abe096311b9c1f18d8329a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acc649ecbb7abe096311b9c1f18d8329a">&sect;&nbsp;</a></span>what()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual const char* neo::error::UnusableError::what </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+        <tr>
+          <td align="right">throw </td><td>(</td><td colspan="2"></td>
+        </tr>
+        <tr>
+          <td align="right"></td><td>)</td><td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The compiled response on catch of exception or Abort. </p>
+<p>This is called when the coder catches the exception or is just plainly Thrown, then printed <a class="el" href="classneo_1_1error_1_1UnusableError.html#acc649ecbb7abe096311b9c1f18d8329a" title="The compiled response on catch of exception or Abort. ">what()</a>: "Error: etc.."</p>
+<dl class="section return"><dt>Returns</dt><dd>A const char of the response of <a class="el" href="classneo_1_1error_1_1UnusableError.html" title="Most commonly thrown error when the specified pin is unusable. ">UnusableError</a> </dd></dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>include/<a class="el" href="neoerror_8h_source.html">neoerror.h</a></li>
 </ul>

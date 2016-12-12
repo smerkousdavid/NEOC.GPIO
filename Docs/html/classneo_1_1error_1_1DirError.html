@@ -59,6 +59,11 @@
                              <li class="menu-item"><a href="examplefakepwm.html">Fake Fade</a></li>
                           </ul>
                       </li>
+                      <li class="menu-item dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Analog</a>
+                          <ul class="dropdown-menu">
+                             <li class="menu-item"><a href="exampleanalog.html">Read</a></li>
+                          </ul>
+                      </li>
                    </ul>
               </li>
             </ul>
@@ -114,6 +119,11 @@ $(function() {
 <div class="title">neo::error::DirError Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Thrown usually when the user inputs an invalid Direction.  
+ <a href="classneo_1_1error_1_1DirError.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="neoerror_8h_source.html">neoerror.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for neo::error::DirError:</div>
 <div class="dyncontent">
@@ -125,13 +135,88 @@ Inheritance diagram for neo::error::DirError:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a0b0219d77f27110c1e4c7084726091fd"><td class="memItemLeft" align="right" valign="top"><a id="a0b0219d77f27110c1e4c7084726091fd"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>DirError</b> (int d)</td></tr>
+<tr class="memitem:a0b0219d77f27110c1e4c7084726091fd"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classneo_1_1error_1_1DirError.html#a0b0219d77f27110c1e4c7084726091fd">DirError</a> (int d)</td></tr>
+<tr class="memdesc:a0b0219d77f27110c1e4c7084726091fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor of <a class="el" href="classneo_1_1error_1_1DirError.html" title="Thrown usually when the user inputs an invalid Direction. ">DirError</a>.  <a href="#a0b0219d77f27110c1e4c7084726091fd">More...</a><br /></td></tr>
 <tr class="separator:a0b0219d77f27110c1e4c7084726091fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad22cbdb9ad9de1683d2cd34285546bcb"><td class="memItemLeft" align="right" valign="top"><a id="ad22cbdb9ad9de1683d2cd34285546bcb"></a>
-virtual const char *&#160;</td><td class="memItemRight" valign="bottom"><b>what</b> () const  throw ()</td></tr>
+<tr class="memitem:ad22cbdb9ad9de1683d2cd34285546bcb"><td class="memItemLeft" align="right" valign="top">virtual const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classneo_1_1error_1_1DirError.html#ad22cbdb9ad9de1683d2cd34285546bcb">what</a> () const  throw ()</td></tr>
+<tr class="memdesc:ad22cbdb9ad9de1683d2cd34285546bcb"><td class="mdescLeft">&#160;</td><td class="mdescRight">The compiled response on catch of exception or Abort.  <a href="#ad22cbdb9ad9de1683d2cd34285546bcb">More...</a><br /></td></tr>
 <tr class="separator:ad22cbdb9ad9de1683d2cd34285546bcb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Thrown usually when the user inputs an invalid Direction. </p>
+<p>This exception is usually thrown when someone attempts to set an invalid Direction on the GPIO methods. The only two directions allowed are INPUT(0) and OUTPUT(1). Anything else will throw this error; </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a0b0219d77f27110c1e4c7084726091fd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0b0219d77f27110c1e4c7084726091fd">&sect;&nbsp;</a></span>DirError()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">neo::error::DirError::DirError </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>d</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constructor of <a class="el" href="classneo_1_1error_1_1DirError.html" title="Thrown usually when the user inputs an invalid Direction. ">DirError</a>. </p>
+<p>Example usage to throw a <a class="el" href="classneo_1_1error_1_1DirError.html" title="Thrown usually when the user inputs an invalid Direction. ">DirError</a> </p><div class="fragment"><div class="line"><span class="keywordflow">throw</span> <a class="code" href="classneo_1_1error_1_1DirError.html#a0b0219d77f27110c1e4c7084726091fd">DirError</a>(2);</div></div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">d</td><td>The wrongly selected direction</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A runtime_error </dd></dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="ad22cbdb9ad9de1683d2cd34285546bcb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad22cbdb9ad9de1683d2cd34285546bcb">&sect;&nbsp;</a></span>what()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual const char* neo::error::DirError::what </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+        <tr>
+          <td align="right">throw </td><td>(</td><td colspan="2"></td>
+        </tr>
+        <tr>
+          <td align="right"></td><td>)</td><td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The compiled response on catch of exception or Abort. </p>
+<p>This is called when the coder catches the exception or is just plainly Thrown, then printed <a class="el" href="classneo_1_1error_1_1DirError.html#ad22cbdb9ad9de1683d2cd34285546bcb" title="The compiled response on catch of exception or Abort. ">what()</a>: "Error: etc.."</p>
+<dl class="section return"><dt>Returns</dt><dd>A const char of the response of <a class="el" href="classneo_1_1error_1_1DirError.html" title="Thrown usually when the user inputs an invalid Direction. ">DirError</a> </dd></dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>include/<a class="el" href="neoerror_8h_source.html">neoerror.h</a></li>
 </ul>

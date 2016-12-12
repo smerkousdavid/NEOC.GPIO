@@ -1,0 +1,490 @@
+<!-- HTML header for doxygen 1.8.8-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <!-- For Mobile Devices -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+        <meta name="generator" content="Doxygen 1.8.12"/>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <title>NEOC: neo::Analog Class Reference</title>
+        <link href="tabs.css" rel="stylesheet" type="text/css"/>
+        <script type="text/javascript" src="dynsections.js"></script>
+        <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+        <link href="doxygen.css" rel="stylesheet" type="text/css" />
+        <link href="neocdoxygen.css" rel="stylesheet" type="text/css"/>
+        <link href='https://fonts.googleapis.com/css?family=Roboto+Slab' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="doxy-boot.js"></script>
+    </head>
+    <body>
+        <nav class="navbar navbar-default" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                   <a href="index.html"><img src="neoc_small.png" class="logostyle" alt="NEOC Icon" align="left"/></a>
+                   <a class="navbar-brand" href="index.html">
+                   NEOC 0.1</a>
+                </div>
+            <ul class="nav navbar-nav">
+              <li><a href="index.html">Main Page</a></li>
+              <li><a href="files.html">Files</a></li>
+              <li class="dropdown">
+                 <a href="annotated.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Data Structures<span class="caret"></span></a>
+                   <ul class="dropdown-menu">
+                      <li><a href="annotated.html">All Data Structures</a></li>
+                      <li><a href="classes.html">Classes and Index</a></li>
+                   </ul>
+              </li>
+              <li><a href="globals.html">Functions</a></li>
+                <div style="float: right;">
+                  <p class="navbar-text">By David Smerkous</p>
+		</div>
+              <li class="dropdown">
+                 <a href="examples.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Examples<span class="caret"></span></a>
+                   <ul class="dropdown-menu">
+                      <li><a href="examples.html">All Examples</a></li>
+                      <li class="menu-item dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Gpio</a>
+                          <ul class="dropdown-menu">
+                             <li class="menu-item"><a href="gpioblink.html">Blink</a></li>
+                             <li class="menu-item"><a href="gpioread.html">Read</a></li>
+                          </ul>
+                      </li>
+                      <li class="menu-item dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Pwm</a>
+                          <ul class="dropdown-menu">
+                             <li class="menu-item"><a href="examplepwm.html">Real Write</a></li>
+                             <li class="menu-item"><a href="examplefakepwm.html">Fake Fade</a></li>
+                          </ul>
+                      </li>
+                      <li class="menu-item dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Analog</a>
+                          <ul class="dropdown-menu">
+                             <li class="menu-item"><a href="exampleanalog.html">Read</a></li>
+                          </ul>
+                      </li>
+                   </ul>
+              </li>
+            </ul>
+            </div>        
+	</nav>
+        <div id="top"><!-- Other side of div is closed by doxygen! -->
+            <div class="content" id="content">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12 panel " style="padding-bottom: 15px;">
+                            <div style="margin-bottom: 15px;">
+				<div id="MSearchResultsWindow">
+				<iframe src="javascript:void(0)" frameborder="0" name="MSearchResults" id="MSearchResults">
+				</iframe>
+				</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.8.12 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Search');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>neo</b></li><li class="navelem"><a class="el" href="classneo_1_1Analog.html">Analog</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a>  </div>
+  <div class="headertitle">
+<div class="title">neo::Analog Class Reference</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>The Cpp <a class="el" href="classneo_1_1Analog.html" title="The Cpp Analog class to read pins A0 - A5. ">Analog</a> class to read pins A0 - A5.  
+ <a href="classneo_1_1Analog.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="neo_8h_source.html">neo.h</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a3d5ab3faf071a3e306fcaf53b045cc0a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classneo_1_1Analog.html#a3d5ab3faf071a3e306fcaf53b045cc0a">Analog</a> (int port, bool release=true, bool throwing=true)</td></tr>
+<tr class="memdesc:a3d5ab3faf071a3e306fcaf53b045cc0a"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classneo_1_1Analog.html" title="The Cpp Analog class to read pins A0 - A5. ">Analog</a> constructor and initializer.  <a href="#a3d5ab3faf071a3e306fcaf53b045cc0a">More...</a><br /></td></tr>
+<tr class="separator:a3d5ab3faf071a3e306fcaf53b045cc0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad79ff97608070e50aca2bf4799866efb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classneo_1_1Analog.html#ad79ff97608070e50aca2bf4799866efb">~Analog</a> ()</td></tr>
+<tr class="memdesc:ad79ff97608070e50aca2bf4799866efb"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classneo_1_1Analog.html" title="The Cpp Analog class to read pins A0 - A5. ">Analog</a> release.  <a href="#ad79ff97608070e50aca2bf4799866efb">More...</a><br /></td></tr>
+<tr class="separator:ad79ff97608070e50aca2bf4799866efb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acf2bcc5ee7d0a4009448261d6a4cb03f"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classneo_1_1Analog.html#acf2bcc5ee7d0a4009448261d6a4cb03f">readRaw</a> ()</td></tr>
+<tr class="memdesc:acf2bcc5ee7d0a4009448261d6a4cb03f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Object read Raw (0 - 4095) from initialized port.  <a href="#acf2bcc5ee7d0a4009448261d6a4cb03f">More...</a><br /></td></tr>
+<tr class="separator:acf2bcc5ee7d0a4009448261d6a4cb03f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae417fc1a42bba539672d65c3ec0914f3"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classneo_1_1Analog.html#ae417fc1a42bba539672d65c3ec0914f3">read</a> ()</td></tr>
+<tr class="memdesc:ae417fc1a42bba539672d65c3ec0914f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Object read from initialized port.  <a href="#ae417fc1a42bba539672d65c3ec0914f3">More...</a><br /></td></tr>
+<tr class="separator:ae417fc1a42bba539672d65c3ec0914f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a61afc93664ae1be2a9531d38a7c2a2e5"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classneo_1_1Analog.html#a61afc93664ae1be2a9531d38a7c2a2e5">init</a> (bool throws=false)</td></tr>
+<tr class="memdesc:a61afc93664ae1be2a9531d38a7c2a2e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Static initializer.  <a href="#a61afc93664ae1be2a9531d38a7c2a2e5">More...</a><br /></td></tr>
+<tr class="separator:a61afc93664ae1be2a9531d38a7c2a2e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe114d8a2e4036f0eb184bcceac2d585"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classneo_1_1Analog.html#afe114d8a2e4036f0eb184bcceac2d585">free</a> (bool throws=false)</td></tr>
+<tr class="memdesc:afe114d8a2e4036f0eb184bcceac2d585"><td class="mdescLeft">&#160;</td><td class="mdescRight">Static de-initializer.  <a href="#afe114d8a2e4036f0eb184bcceac2d585">More...</a><br /></td></tr>
+<tr class="separator:afe114d8a2e4036f0eb184bcceac2d585"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3a104de5fe3fa047f6a8882d1c1c5e39"><td class="memItemLeft" align="right" valign="top">static float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classneo_1_1Analog.html#a3a104de5fe3fa047f6a8882d1c1c5e39">readRaw</a> (int port, bool throws=false)</td></tr>
+<tr class="memdesc:a3a104de5fe3fa047f6a8882d1c1c5e39"><td class="mdescLeft">&#160;</td><td class="mdescRight">Static RAW reading from port.  <a href="#a3a104de5fe3fa047f6a8882d1c1c5e39">More...</a><br /></td></tr>
+<tr class="separator:a3a104de5fe3fa047f6a8882d1c1c5e39"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5f20c70332ada598c6735169344f4e03"><td class="memItemLeft" align="right" valign="top">static float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classneo_1_1Analog.html#a5f20c70332ada598c6735169344f4e03">read</a> (int port, bool throws=false)</td></tr>
+<tr class="memdesc:a5f20c70332ada598c6735169344f4e03"><td class="mdescLeft">&#160;</td><td class="mdescRight">Static reading from port.  <a href="#a5f20c70332ada598c6735169344f4e03">More...</a><br /></td></tr>
+<tr class="separator:a5f20c70332ada598c6735169344f4e03"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>The Cpp <a class="el" href="classneo_1_1Analog.html" title="The Cpp Analog class to read pins A0 - A5. ">Analog</a> class to read pins A0 - A5. </p>
+<p>This will read the current voltage from the analog pins on A0 through A5. Here is the example usage of the class: </p><div class="fragment"><div class="line"><span class="keywordtype">int</span> main() {</div><div class="line">  <a class="code" href="classneo_1_1Analog.html#a3d5ab3faf071a3e306fcaf53b045cc0a">Analog</a> azero(0); </div><div class="line">  std::cout &lt;&lt; <span class="stringliteral">&quot;Analog (A0) Read: &quot;</span> &lt;&lt; azero.read() &lt;&lt; std::endl;</div><div class="line">  <span class="keywordflow">return</span> 0;</div><div class="line">}</div></div><!-- fragment --><p> <br />
+</p>
+<p>The m4 core must be disabled before running this method </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="neo_8c.html#a8e7bdef17ff3b69216fec01f8d13b4bb" title="m4 core disabling ">neo_disable_m4()</a>; </dd></dl>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a3d5ab3faf071a3e306fcaf53b045cc0a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3d5ab3faf071a3e306fcaf53b045cc0a">&sect;&nbsp;</a></span>Analog()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">neo::Analog::Analog </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>port</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>release</em> = <code>true</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>throwing</em> = <code>true</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><a class="el" href="classneo_1_1Analog.html" title="The Cpp Analog class to read pins A0 - A5. ">Analog</a> constructor and initializer. </p>
+<p>This initializes the <a class="el" href="classneo_1_1Analog.html" title="The Cpp Analog class to read pins A0 - A5. ">Analog</a> class in the backend this calls the C function <a class="el" href="analog_8c.html#af8ca2c116caf55d1de17157e3a390726" title="Initializes the Analog iio. ">neo_analog_init()</a> that method is static as such <a class="el" href="classneo_1_1Analog.html#a61afc93664ae1be2a9531d38a7c2a2e5" title="Static initializer. ">Analog::init()</a>;</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">port</td><td>The analog port (0 to 5) to load the object in </td></tr>
+    <tr><td class="paramname">release</td><td>When no more instances of the object are detected auto release (default: true)</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>The m4 core must be disabled before using this <a class="el" href="classneo_1_1Analog.html" title="The Cpp Analog class to read pins A0 - A5. ">Analog</a> class </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="neo_8c.html#a8e7bdef17ff3b69216fec01f8d13b4bb" title="m4 core disabling ">neo_disable_m4()</a> </dd></dl>
+
+</div>
+</div>
+<a id="ad79ff97608070e50aca2bf4799866efb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad79ff97608070e50aca2bf4799866efb">&sect;&nbsp;</a></span>~Analog()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">neo::Analog::~Analog </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><a class="el" href="classneo_1_1Analog.html" title="The Cpp Analog class to read pins A0 - A5. ">Analog</a> release. </p>
+<p>This will attempt to release the objects, if there are no more <a class="el" href="classneo_1_1Analog.html" title="The Cpp Analog class to read pins A0 - A5. ">Analog</a> Objects in use then this will attempt to run <a class="el" href="classneo_1_1Analog.html#afe114d8a2e4036f0eb184bcceac2d585" title="Static de-initializer. ">Analog::free()</a>; aka <a class="el" href="analog_8c.html#a1aae9b7924b859181443f6beaff2d632" title="Analog freeing method. ">neo_analog_free()</a>; To stop this construct object with </p><div class="fragment"><div class="line"><a class="code" href="classneo_1_1Analog.html#a3d5ab3faf071a3e306fcaf53b045cc0a">Analog</a> analog(&lt;pin number&gt;, <span class="keyword">false</span>); <span class="comment">//No release on deconstructor </span></div></div><!-- fragment --><dl class="section note"><dt>Note</dt><dd>Do not try to mix Object oriented and static usage of any Neo Object it screws it up </dd>
+<dd>
+When attempting to use both static Analog::read(int) and obj.read() make sure you use <a class="el" href="classneo_1_1Analog.html" title="The Cpp Analog class to read pins A0 - A5. ">Analog</a> obj(&lt;pin&gt;, false) to not release on 0 objects </dd></dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="afe114d8a2e4036f0eb184bcceac2d585"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afe114d8a2e4036f0eb184bcceac2d585">&sect;&nbsp;</a></span>free()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool neo::Analog::free </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>throws</em> = <code>false</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Static de-initializer. </p>
+<p>A functions that wraps the C neo_analog_free function with some exception throwing and nice namespace conventioning.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">throws</td><td>A boolean to indicate if the object should throw an error when it fails </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a61afc93664ae1be2a9531d38a7c2a2e5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a61afc93664ae1be2a9531d38a7c2a2e5">&sect;&nbsp;</a></span>init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool neo::Analog::init </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>throws</em> = <code>false</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Static initializer. </p>
+<p>A functions that wraps the C neo_analog_init function with some exception throwing and nice namespace conventioning.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">throws</td><td>A boolean to indicate if the object should throw an error when it fails</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>The m4 core must be disabled before init is called statically </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="neo_8c.html#a8e7bdef17ff3b69216fec01f8d13b4bb" title="m4 core disabling ">neo_disable_m4()</a> </dd></dl>
+
+</div>
+</div>
+<a id="a5f20c70332ada598c6735169344f4e03"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5f20c70332ada598c6735169344f4e03">&sect;&nbsp;</a></span>read() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static float neo::Analog::read </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>port</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>throws</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Static reading from port. </p>
+<p>This will read from the analog pin and throw an exception if it failed to read from the pin. This one is scaled to be the actual current recieved voltage. Between 0v and 3.3v</p>
+<dl class="section return"><dt>Returns</dt><dd>A float with the current voltage raw resolution </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">port</td><td>The port to statically read from </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ae417fc1a42bba539672d65c3ec0914f3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae417fc1a42bba539672d65c3ec0914f3">&sect;&nbsp;</a></span>read() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float neo::Analog::read </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Object read from initialized port. </p>
+<p>This will read from the preset port of the object. Warning this may throw errors when failing unless you specify in the constructor to not throw errors</p>
+<dl class="section return"><dt>Returns</dt><dd>A float with the current voltage (0v to 3.3v) </dd></dl>
+
+</div>
+</div>
+<a id="a3a104de5fe3fa047f6a8882d1c1c5e39"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3a104de5fe3fa047f6a8882d1c1c5e39">&sect;&nbsp;</a></span>readRaw() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static float neo::Analog::readRaw </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>port</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>throws</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Static RAW reading from port. </p>
+<p>This will read from the analog pin returning between 0 and 4095 and throw an exception if it failed to read from the pin. This one is scaled to be the actual current recieved voltage</p>
+<dl class="section return"><dt>Returns</dt><dd>A float with the current voltage raw resolution </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">port</td><td>The port to statically read from </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="acf2bcc5ee7d0a4009448261d6a4cb03f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acf2bcc5ee7d0a4009448261d6a4cb03f">&sect;&nbsp;</a></span>readRaw() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float neo::Analog::readRaw </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Object read Raw (0 - 4095) from initialized port. </p>
+<p>This will read from the preset port of the object, with Raw data. Warning this may throw errors when failing unless you specify in the constructor to not throw errors</p>
+<dl class="section return"><dt>Returns</dt><dd>A float with the current voltage raw resolution </dd></dl>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
+<li>include/<a class="el" href="neo_8h_source.html">neo.h</a></li>
+</ul>
+</div><!-- contents -->
+
+<!-- HTML footer for doxygen 1.8.8-->
+<!-- start footer part -->
+</div>
+</div>
+</div>
+</div>
+</div>
+<hr class="footer"/><address class="footer"><small>
+Created by David Smerkous &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="neoc_small.png" style="width: auto; height: 45px;" alt="NEOC Docs generated with Doxygen"/>
+</a> Doxygen: 1.8.12
+</small></address>
+</body>
+</html>

@@ -59,6 +59,11 @@
                              <li class="menu-item"><a href="examplefakepwm.html">Fake Fade</a></li>
                           </ul>
                       </li>
+                      <li class="menu-item dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Analog</a>
+                          <ul class="dropdown-menu">
+                             <li class="menu-item"><a href="exampleanalog.html">Read</a></li>
+                          </ul>
+                      </li>
                    </ul>
               </li>
             </ul>
@@ -114,6 +119,11 @@ $(function() {
 <div class="title">neo::error::ReadWriteError Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Thrown when for some dumb reason the program failed to write or read from a pin.  
+ <a href="classneo_1_1error_1_1ReadWriteError.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="neoerror_8h_source.html">neoerror.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for neo::error::ReadWriteError:</div>
 <div class="dyncontent">
@@ -125,13 +135,99 @@ Inheritance diagram for neo::error::ReadWriteError:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a01d51146c1fb925cfaa5666d96516142"><td class="memItemLeft" align="right" valign="top"><a id="a01d51146c1fb925cfaa5666d96516142"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>ReadWriteError</b> (const char *w, const char *t)</td></tr>
+<tr class="memitem:a01d51146c1fb925cfaa5666d96516142"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classneo_1_1error_1_1ReadWriteError.html#a01d51146c1fb925cfaa5666d96516142">ReadWriteError</a> (const char *w, const char *t)</td></tr>
+<tr class="memdesc:a01d51146c1fb925cfaa5666d96516142"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor of <a class="el" href="classneo_1_1error_1_1ReadWriteError.html" title="Thrown when for some dumb reason the program failed to write or read from a pin. ">ReadWriteError</a>.  <a href="#a01d51146c1fb925cfaa5666d96516142">More...</a><br /></td></tr>
 <tr class="separator:a01d51146c1fb925cfaa5666d96516142"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a90fdad18b85c721454c71b2fe420b37b"><td class="memItemLeft" align="right" valign="top"><a id="a90fdad18b85c721454c71b2fe420b37b"></a>
-virtual const char *&#160;</td><td class="memItemRight" valign="bottom"><b>what</b> () const  throw ()</td></tr>
+<tr class="memitem:a90fdad18b85c721454c71b2fe420b37b"><td class="memItemLeft" align="right" valign="top">virtual const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classneo_1_1error_1_1ReadWriteError.html#a90fdad18b85c721454c71b2fe420b37b">what</a> () const  throw ()</td></tr>
+<tr class="memdesc:a90fdad18b85c721454c71b2fe420b37b"><td class="mdescLeft">&#160;</td><td class="mdescRight">The compiled response on catch of exception or Abort.  <a href="#a90fdad18b85c721454c71b2fe420b37b">More...</a><br /></td></tr>
 <tr class="separator:a90fdad18b85c721454c71b2fe420b37b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Thrown when for some dumb reason the program failed to write or read from a pin. </p>
+<p>If you haven't recieved a <a class="el" href="classneo_1_1error_1_1UnusableError.html" title="Most commonly thrown error when the specified pin is unusable. ">UnusableError</a> and still got a <a class="el" href="classneo_1_1error_1_1ReadWriteError.html" title="Thrown when for some dumb reason the program failed to write or read from a pin. ">ReadWriteError</a>. It usually means if you at the EXACT same time try to write to a pin, then flush (in the backend) flush the new settings. It will throw this error, either than that you should rarely ever see this. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a01d51146c1fb925cfaa5666d96516142"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a01d51146c1fb925cfaa5666d96516142">&sect;&nbsp;</a></span>ReadWriteError()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">neo::error::ReadWriteError::ReadWriteError </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>w</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>t</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constructor of <a class="el" href="classneo_1_1error_1_1ReadWriteError.html" title="Thrown when for some dumb reason the program failed to write or read from a pin. ">ReadWriteError</a>. </p>
+<p>Example usage to throw a <a class="el" href="classneo_1_1error_1_1ReadWriteError.html" title="Thrown when for some dumb reason the program failed to write or read from a pin. ">ReadWriteError</a> </p><div class="fragment"><div class="line"><span class="keywordflow">throw</span> <a class="code" href="classneo_1_1error_1_1ReadWriteError.html#a01d51146c1fb925cfaa5666d96516142">ReadWriteError</a>(<span class="stringliteral">&quot;ANALOG&quot;</span>, <span class="stringliteral">&quot;Failed reading analog port&quot;</span>); </div><div class="line"><span class="comment">//Couldn&#39;t read Analog (try rebooting)</span></div></div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">w</td><td>What core system is not usable usually ("ANALOG" or "GPIO") </td></tr>
+    <tr><td class="paramname">t</td><td>What is the type of error, read or write error</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A runtime_error </dd></dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a90fdad18b85c721454c71b2fe420b37b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a90fdad18b85c721454c71b2fe420b37b">&sect;&nbsp;</a></span>what()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual const char* neo::error::ReadWriteError::what </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+        <tr>
+          <td align="right">throw </td><td>(</td><td colspan="2"></td>
+        </tr>
+        <tr>
+          <td align="right"></td><td>)</td><td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The compiled response on catch of exception or Abort. </p>
+<p>This is called when the coder catches the exception or is just plainly Thrown, then printed <a class="el" href="classneo_1_1error_1_1ReadWriteError.html#a90fdad18b85c721454c71b2fe420b37b" title="The compiled response on catch of exception or Abort. ">what()</a>: "Error: etc.."</p>
+<dl class="section return"><dt>Returns</dt><dd>A const char of the response of <a class="el" href="classneo_1_1error_1_1ReadWriteError.html" title="Thrown when for some dumb reason the program failed to write or read from a pin. ">ReadWriteError</a> </dd></dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>include/<a class="el" href="neoerror_8h_source.html">neoerror.h</a></li>
 </ul>

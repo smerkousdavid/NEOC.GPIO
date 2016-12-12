@@ -36,8 +36,6 @@
  * 
  */
 
-//Doxygen mainpage generation
-
 /** \mainpage NEOC Official Documentation
  * 
  *  \section intro Introduction
@@ -295,6 +293,7 @@ extern float ANALOGSCALE[];
 
 float neo_re_map(float, float, float, float, float);
 void neo_check_root(char const *);
+int neo_check_root_return();
 int neo_enable_m4();
 int neo_disable_m4();
 int neo_screen_set_lvds();
@@ -367,7 +366,7 @@ int neo_led_off();
 
 //Cpp included in header so the users wouldn't have to include two separate headers and
 //Not have to use two different compiled libraries
-#include "neoerror.h"
+#include "neoerror.h" 
 #include <string>
 #include <cstring>
 #include <iostream>
@@ -385,7 +384,13 @@ namespace neo {
  * \endcode
  * 
  * The results of the code should be 500 because it was scaled 10 times.
+ * @param value The input value you want to scale
+ * @param inMin The minimum value the input can be
+ * @param inMax The maximum value the input can be
+ * @param outMin The scale value to be the new minimum
+ * @param outMax The scale value to be the new maximum
  *
+ * @return The provided type of the new scaled value
  */
 template<typename T, typename V, typename M, typename MA, typename MI, typename MX>
 T map(V value, M inMin, MA inMax, MI outMin, MX outMax) {
@@ -394,6 +399,46 @@ T map(V value, M inMin, MA inMax, MI outMin, MX outMax) {
 		static_cast<float>(outMin), static_cast<float>(outMax)));
 }
 
+/**
+ * @brief Checks for root permission
+ *
+ * Some functions and aspect of the neo library REQUIRE root permission. This
+ * can be easily done with just checking the uid that the program was started in
+ * This will throw a neo::error::NotRootError when it failed to load root
+ *
+ * @param saying The const char array of what to say when failed to get root
+ *
+ * @note This won't automatically ask for a password, you either have to restart the program or setuid
+ */
+void checkRoot(const char * saying) {
+	int checked = neo_check_root_return();
+ 
+	if(checked != NEO_OK) {
+		throw error::NotRootError(saying);
+	}
+}
+
+
+/**
+ * @brief Enables or Disables the m4
+ *
+ * This function will either enable (enabled = true) or disable (enabled = false)
+ * the arduino m4 core. This will prevent the arduino sketch to be loaded on m4 reset or boot.
+ * Also allow the A9 (Linux side) to use more of the pins, such as Analog
+ *
+ * @param enabled True to enable the core or False to disable the core
+ * @return a bool if it was able to change the m4 core (false means failure)
+ */
+bool setM4(bool enabled) {
+	checkRoot("Changing the state of the M4 requires root permission!"); //Will throw NotRootError
+	return (((enabled) ? neo_enable_m4() : neo_disable_m4()) == NEO_OK);
+}
+
+/**The core enabling flag aka true*/
+const bool ENABLED = true;
+
+/**The core disabling flag aka false*/
+const bool DISABLED = false;
 
 /** @class Analog neo.h
  * @brief The Cpp Analog class to read pins A0 - A5
@@ -513,7 +558,19 @@ class Analog {
 		static float read(int port, bool throws = false) {
 			return neo::map<float>(Analog::readRaw(port, throws), ANALOGLOW, ANALOGHIGH, 0.0f, 3.3f);
 		}
-
+		
+		/**
+		 * @brief Object read Raw (0 - 4095) from initialized port
+		 *
+		 * This will read from the preset port of the object, with Raw data. Warning this may throw
+		 * errors when failing unless you specify in the constructor to not throw errors
+		 *
+		 * @return A float with the current voltage raw resolution
+		 */
+		float readRaw() {
+			return Analog::readRaw(_held, _throwing);
+		}
+		
 		/**
 		 * @brief Object read from initialized port
 		 *
@@ -522,7 +579,7 @@ class Analog {
 		 *
 		 * 
 		 *
-		 * @return A float with the current voltage raw resolution
+		 * @return A float with the current voltage (0v to 3.3v)
 		 */
 		float read() {
 			return Analog::read(_held, _throwing);

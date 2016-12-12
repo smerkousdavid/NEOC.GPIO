@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['params',['params',['../structparams.html',1,'']]],
-  ['perioderror',['PeriodError',['../classneo_1_1error_1_1PeriodError.html',1,'neo::error']]],
-  ['pinerror',['PinError',['../classneo_1_1error_1_1PinError.html',1,'neo::error']]],
-  ['pwm_2ec',['pwm.c',['../pwm_8c.html',1,'']]]
+  ['magno_2ec',['magno.c',['../magno_8c.html',1,'']]],
+  ['map',['map',['../neo_8h.html#a9d029c04adaabf18bc07bb6187fcf80c',1,'neo']]]
 ];

@@ -59,6 +59,11 @@
                              <li class="menu-item"><a href="examplefakepwm.html">Fake Fade</a></li>
                           </ul>
                       </li>
+                      <li class="menu-item dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Analog</a>
+                          <ul class="dropdown-menu">
+                             <li class="menu-item"><a href="exampleanalog.html">Read</a></li>
+                          </ul>
+                      </li>
                    </ul>
               </li>
             </ul>
@@ -107,13 +112,29 @@ $(function() {
 <div class="textblock">Here is a list of all documented functions, variables, defines, enums, and typedefs with links to the documentation:</div>
 
 <h3><a id="index_n"></a>- n -</h3><ul>
+<li>neo_analog_free()
+: <a class="el" href="analog_8c.html#a1aae9b7924b859181443f6beaff2d632">analog.c</a>
+, <a class="el" href="neo_8h.html#a1aae9b7924b859181443f6beaff2d632">neo.h</a>
+</li>
+<li>neo_analog_init()
+: <a class="el" href="neo_8h.html#af8ca2c116caf55d1de17157e3a390726">neo.h</a>
+, <a class="el" href="analog_8c.html#af8ca2c116caf55d1de17157e3a390726">analog.c</a>
+</li>
+<li>neo_analog_read()
+: <a class="el" href="analog_8c.html#a62237a2d7468a9aee91c9efdc0934ce3">analog.c</a>
+, <a class="el" href="neo_8h.html#a7fbc5c9a8d977496ffcb01a195037db0">neo.h</a>
+</li>
 <li>neo_check_root()
-: <a class="el" href="neo_8c.html#a78003e225a6bb0f35b29709ece69a829">neo.c</a>
-, <a class="el" href="neo_8h.html#a4d57a408bea17fc04cf5418b95506175">neo.h</a>
+: <a class="el" href="neo_8h.html#a4d57a408bea17fc04cf5418b95506175">neo.h</a>
+, <a class="el" href="neo_8c.html#a78003e225a6bb0f35b29709ece69a829">neo.c</a>
+</li>
+<li>neo_check_root_return()
+: <a class="el" href="neo_8c.html#a3de6a0c70a91d42e063b0606d712390e">neo.c</a>
+, <a class="el" href="neo_8h.html#a3de6a0c70a91d42e063b0606d712390e">neo.h</a>
 </li>
 <li>neo_disable_m4()
-: <a class="el" href="neo_8h.html#a8e7bdef17ff3b69216fec01f8d13b4bb">neo.h</a>
-, <a class="el" href="neo_8c.html#a8e7bdef17ff3b69216fec01f8d13b4bb">neo.c</a>
+: <a class="el" href="neo_8c.html#a8e7bdef17ff3b69216fec01f8d13b4bb">neo.c</a>
+, <a class="el" href="neo_8h.html#a8e7bdef17ff3b69216fec01f8d13b4bb">neo.h</a>
 </li>
 <li>neo_enable_m4()
 : <a class="el" href="neo_8c.html#a94fb1a820047403b86d4ff0d5dd1a9f4">neo.c</a>
@@ -136,8 +157,8 @@ $(function() {
 , <a class="el" href="neo_8h.html#a81d677bb2a9ef8ea96965763fe33f17d">neo.h</a>
 </li>
 <li>neo_gpio_digital_write()
-: <a class="el" href="neo_8h.html#a7ce7b5df05a1c3d1c480a2f4e6182597">neo.h</a>
-, <a class="el" href="gpio_8c.html#a942a136e1bc3caae6893965d6fbe266a">gpio.c</a>
+: <a class="el" href="gpio_8c.html#a942a136e1bc3caae6893965d6fbe266a">gpio.c</a>
+, <a class="el" href="neo_8h.html#a7ce7b5df05a1c3d1c480a2f4e6182597">neo.h</a>
 </li>
 <li>neo_gpio_free()
 : <a class="el" href="gpio_8c.html#aa0b5e2f0333911b69e3b01558803e12e">gpio.c</a>
@@ -163,20 +184,20 @@ $(function() {
 , <a class="el" href="neo_8h.html#ac3ad9f77af407aee3e35a2fc2413d19d">neo.h</a>
 </li>
 <li>neo_pwm_set_period()
-: <a class="el" href="neo_8h.html#a906463d42516ef0c587028ba69e65fdc">neo.h</a>
-, <a class="el" href="pwm_8c.html#a9ba92fd09e504256ce44d63db9413694">pwm.c</a>
+: <a class="el" href="pwm_8c.html#a9ba92fd09e504256ce44d63db9413694">pwm.c</a>
+, <a class="el" href="neo_8h.html#a906463d42516ef0c587028ba69e65fdc">neo.h</a>
 </li>
 <li>neo_pwm_set_period_all()
-: <a class="el" href="pwm_8c.html#a190f359fa2bac2199ffdc9e81ad674fc">pwm.c</a>
-, <a class="el" href="neo_8h.html#aa00cf45d21ef9eb7b361eace67c7ee56">neo.h</a>
+: <a class="el" href="neo_8h.html#aa00cf45d21ef9eb7b361eace67c7ee56">neo.h</a>
+, <a class="el" href="pwm_8c.html#a190f359fa2bac2199ffdc9e81ad674fc">pwm.c</a>
 </li>
 <li>neo_pwm_write()
-: <a class="el" href="pwm_8c.html#adc47be04e8829bade2f04edd1b4e2cff">pwm.c</a>
-, <a class="el" href="neo_8h.html#a26ba449b084fa6599f0fb85e80a21391">neo.h</a>
+: <a class="el" href="neo_8h.html#a26ba449b084fa6599f0fb85e80a21391">neo.h</a>
+, <a class="el" href="pwm_8c.html#adc47be04e8829bade2f04edd1b4e2cff">pwm.c</a>
 </li>
 <li>neo_re_map()
-: <a class="el" href="neo_8c.html#a8ee8c48a91b23df4ab46c65da4db1a1b">neo.c</a>
-, <a class="el" href="neo_8h.html#af5975ebeabc655f5138d67af8f636834">neo.h</a>
+: <a class="el" href="neo_8h.html#af5975ebeabc655f5138d67af8f636834">neo.h</a>
+, <a class="el" href="neo_8c.html#a8ee8c48a91b23df4ab46c65da4db1a1b">neo.c</a>
 </li>
 <li>neo_screen_set_hdmi()
 : <a class="el" href="neo_8c.html#aad83832018054b3fea36e8259c31d05f">neo.c</a>

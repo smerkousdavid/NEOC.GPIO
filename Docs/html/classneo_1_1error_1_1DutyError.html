@@ -59,6 +59,11 @@
                              <li class="menu-item"><a href="examplefakepwm.html">Fake Fade</a></li>
                           </ul>
                       </li>
+                      <li class="menu-item dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Analog</a>
+                          <ul class="dropdown-menu">
+                             <li class="menu-item"><a href="exampleanalog.html">Read</a></li>
+                          </ul>
+                      </li>
                    </ul>
               </li>
             </ul>
@@ -114,6 +119,11 @@ $(function() {
 <div class="title">neo::error::DutyError Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Thrown usually when the user inputs an invalid Duty Cycle.  
+ <a href="classneo_1_1error_1_1DutyError.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="neoerror_8h_source.html">neoerror.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for neo::error::DutyError:</div>
 <div class="dyncontent">
@@ -125,13 +135,106 @@ Inheritance diagram for neo::error::DutyError:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ae14de0087e7fad959bf08b28730aa698"><td class="memItemLeft" align="right" valign="top"><a id="ae14de0087e7fad959bf08b28730aa698"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>DutyError</b> (int d, int l, int h)</td></tr>
+<tr class="memitem:ae14de0087e7fad959bf08b28730aa698"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classneo_1_1error_1_1DutyError.html#ae14de0087e7fad959bf08b28730aa698">DutyError</a> (int d, int l, int h)</td></tr>
+<tr class="memdesc:ae14de0087e7fad959bf08b28730aa698"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor of <a class="el" href="classneo_1_1error_1_1DutyError.html" title="Thrown usually when the user inputs an invalid Duty Cycle. ">DutyError</a>.  <a href="#ae14de0087e7fad959bf08b28730aa698">More...</a><br /></td></tr>
 <tr class="separator:ae14de0087e7fad959bf08b28730aa698"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afeaa88781161ead7efeb59f4d5e4db4f"><td class="memItemLeft" align="right" valign="top"><a id="afeaa88781161ead7efeb59f4d5e4db4f"></a>
-virtual const char *&#160;</td><td class="memItemRight" valign="bottom"><b>what</b> () const  throw ()</td></tr>
+<tr class="memitem:afeaa88781161ead7efeb59f4d5e4db4f"><td class="memItemLeft" align="right" valign="top">virtual const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classneo_1_1error_1_1DutyError.html#afeaa88781161ead7efeb59f4d5e4db4f">what</a> () const  throw ()</td></tr>
+<tr class="memdesc:afeaa88781161ead7efeb59f4d5e4db4f"><td class="mdescLeft">&#160;</td><td class="mdescRight">The compiled response on catch of exception or Abort.  <a href="#afeaa88781161ead7efeb59f4d5e4db4f">More...</a><br /></td></tr>
 <tr class="separator:afeaa88781161ead7efeb59f4d5e4db4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Thrown usually when the user inputs an invalid Duty Cycle. </p>
+<p>This exception is usually thrown when someone attempts to set an invalid Duty Cycle on the PWM methods. The valid range is from 0 aka LOW to 255 aka 100% duty cycle always on. If outside of those ranges, this error will be thrown. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="ae14de0087e7fad959bf08b28730aa698"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae14de0087e7fad959bf08b28730aa698">&sect;&nbsp;</a></span>DutyError()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">neo::error::DutyError::DutyError </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>d</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>l</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>h</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constructor of <a class="el" href="classneo_1_1error_1_1DutyError.html" title="Thrown usually when the user inputs an invalid Duty Cycle. ">DutyError</a>. </p>
+<p>Example usage to throw a <a class="el" href="classneo_1_1error_1_1DutyError.html" title="Thrown usually when the user inputs an invalid Duty Cycle. ">DutyError</a> </p><div class="fragment"><div class="line"><span class="keywordflow">throw</span> <a class="code" href="classneo_1_1error_1_1DutyError.html#ae14de0087e7fad959bf08b28730aa698">DutyError</a>(300, 0, 255);</div></div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">d</td><td>The wrongly selected Duty Cycle </td></tr>
+    <tr><td class="paramname">l</td><td>The lowest value available </td></tr>
+    <tr><td class="paramname">h</td><td>The highest value available</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A runtime_error </dd></dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="afeaa88781161ead7efeb59f4d5e4db4f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afeaa88781161ead7efeb59f4d5e4db4f">&sect;&nbsp;</a></span>what()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual const char* neo::error::DutyError::what </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+        <tr>
+          <td align="right">throw </td><td>(</td><td colspan="2"></td>
+        </tr>
+        <tr>
+          <td align="right"></td><td>)</td><td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The compiled response on catch of exception or Abort. </p>
+<p>This is called when the coder catches the exception or is just plainly Thrown, then printed <a class="el" href="classneo_1_1error_1_1DutyError.html#afeaa88781161ead7efeb59f4d5e4db4f" title="The compiled response on catch of exception or Abort. ">what()</a>: "Error: etc.."</p>
+<dl class="section return"><dt>Returns</dt><dd>A const char of the response of <a class="el" href="classneo_1_1error_1_1DutyError.html" title="Thrown usually when the user inputs an invalid Duty Cycle. ">DutyError</a> </dd></dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>include/<a class="el" href="neoerror_8h_source.html">neoerror.h</a></li>
 </ul>

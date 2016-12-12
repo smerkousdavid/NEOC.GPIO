@@ -59,6 +59,11 @@
                              <li class="menu-item"><a href="examplefakepwm.html">Fake Fade</a></li>
                           </ul>
                       </li>
+                      <li class="menu-item dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Analog</a>
+                          <ul class="dropdown-menu">
+                             <li class="menu-item"><a href="exampleanalog.html">Read</a></li>
+                          </ul>
+                      </li>
                    </ul>
               </li>
             </ul>
@@ -108,7 +113,7 @@ $(function() {
 <div class="title">Reading </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p>How to use the <a class="el" href="classGpio.html">Gpio</a> to read from pin 5</p>
+<div class="textblock"><p>How to use the Gpio to read from pin 5</p>
 <p>This is how to digitally read using pin 5 (inner bank same as arduino) in C and C++</p>
 <p>Digitally reading a pin is a way of reading the current static voltage of a pin, although imagine it just being in two states. There is HIGH (For the neo is 3.3v) and LOW (0v) of course it's not exactly ever either of them so they are clipped up and down. So anything below 1v will be considered LOW and anything above 2v will be considered HIGH. That's essentially what clipping is (Those aren't the exact real values, just used as an example)</p>
 <p>Lets create a new file called readgpio.c (For C++ do readgpio.cpp) </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;nano readgpio.c </div></div><!-- fragment --><p>In the file try typing this out or copying and pasting it from your browser (Typing it out helps you remember things)<br />
@@ -119,7 +124,7 @@ C Example</h1>
  </p>
 <h1><a class="anchor" id="examplecpp"></a>
 C++ Example</h1>
-<div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="neo_8h.html">neo.h</a>&gt;</span></div><div class="line"><span class="preprocessor">#include &lt;iostream&gt;</span></div><div class="line"></div><div class="line"><span class="keyword">using namespace </span><a class="code" href="namespaceneo.html">neo</a>; </div><div class="line"><span class="keyword">using namespace </span>std;</div><div class="line"></div><div class="line"><span class="comment">//Main function</span></div><div class="line"><span class="keywordtype">int</span> main() {</div><div class="line">    <a class="code" href="classGpio.html">Gpio</a> readpin(5); <span class="comment">//Start pin 5 as gpio pin</span></div><div class="line">    readpin.setIn(); <span class="comment">//Set as INPUT      </span></div><div class="line"></div><div class="line">    cout &lt;&lt; <span class="stringliteral">&quot;Read from pin 5: &quot;</span> &lt;&lt; readpin.read() &lt;&lt; endl; <span class="comment">//Read from pin and print result</span></div><div class="line">   <span class="keywordflow">return</span> 0;</div><div class="line">}</div></div><!-- fragment --><p> <br />
+<div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="neo_8h.html">neo.h</a>&gt;</span></div><div class="line"><span class="preprocessor">#include &lt;iostream&gt;</span></div><div class="line"></div><div class="line"><span class="keyword">using namespace </span><a class="code" href="namespaceneo.html">neo</a>; </div><div class="line"><span class="keyword">using namespace </span>std;</div><div class="line"></div><div class="line"><span class="comment">//Main function</span></div><div class="line"><span class="keywordtype">int</span> main() {</div><div class="line">    <a class="code" href="classneo_1_1Gpio.html">Gpio</a> readpin(5); <span class="comment">//Start pin 5 as gpio pin</span></div><div class="line">    readpin.setIn(); <span class="comment">//Set as INPUT      </span></div><div class="line"></div><div class="line">    cout &lt;&lt; <span class="stringliteral">&quot;Read from pin 5: &quot;</span> &lt;&lt; readpin.read() &lt;&lt; endl; <span class="comment">//Read from pin and print result</span></div><div class="line">   <span class="keywordflow">return</span> 0;</div><div class="line">}</div></div><!-- fragment --><p> <br />
  </p>
 <h2><a class="anchor" id="compiling"></a>
 Compiling and Running</h2>

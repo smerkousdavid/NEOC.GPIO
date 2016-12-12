@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['analog',['Analog',['../classAnalog.html',1,'']]]
+  ['analog',['Analog',['../classneo_1_1Analog.html',1,'neo']]]
 ];

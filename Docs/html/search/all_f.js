@@ -1,0 +1,4 @@
+var searchData=
+[
+  ['what',['what',['../classneo_1_1error_1_1PinError.html#a174e524d0358b7722a87796da2cd210a',1,'neo::error::PinError::what()'],['../classneo_1_1error_1_1PeriodError.html#a27d91ccc5829e5d99404dbcea0ba9bcc',1,'neo::error::PeriodError::what()'],['../classneo_1_1error_1_1DutyError.html#afeaa88781161ead7efeb59f4d5e4db4f',1,'neo::error::DutyError::what()'],['../classneo_1_1error_1_1DirError.html#ad22cbdb9ad9de1683d2cd34285546bcb',1,'neo::error::DirError::what()'],['../classneo_1_1error_1_1UnusableError.html#acc649ecbb7abe096311b9c1f18d8329a',1,'neo::error::UnusableError::what()'],['../classneo_1_1error_1_1InitError.html#af65c4914b108046ee10c3110f734d233',1,'neo::error::InitError::what()'],['../classneo_1_1error_1_1ReadWriteError.html#a90fdad18b85c721454c71b2fe420b37b',1,'neo::error::ReadWriteError::what()'],['../classneo_1_1error_1_1NotRootError.html#a21d9d075a9fce8ee98767c6c11d364d5',1,'neo::error::NotRootError::what()']]]
+];

@@ -77,6 +77,22 @@ void neo_check_root(char const * saying) {
 }
 
 /**
+ * @brief Root checking with only return
+ *
+ * Checks if root with return of checking
+ *
+ * @return either NEO_OK if root or NEO_FAIL when other
+ *
+ * @note Please run the scripts as su not sudo to have full permissions
+ */
+int neo_check_root_return() {
+	if(geteuid() != 0) { //root is always zero (effective user id)
+		return NEO_FAIL;
+	}
+	return NEO_OK;
+}
+
+/**
  * @brief m4 core disabling
  *
  * When ran this disables the arduino side of the NEO

@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['analog',['Analog',['../classAnalog.html',1,'Analog'],['../classAnalog.html#a92febe7871d46b997a4b4d15e20453cf',1,'Analog::Analog()']]]
+  ['analog',['Analog',['../classneo_1_1Analog.html',1,'neo']]],
+  ['analog',['Analog',['../classneo_1_1Analog.html#a3d5ab3faf071a3e306fcaf53b045cc0a',1,'neo::Analog']]],
+  ['analog_2ec',['analog.c',['../analog_8c.html',1,'']]]
 ];

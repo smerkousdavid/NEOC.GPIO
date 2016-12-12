@@ -59,6 +59,11 @@
                              <li class="menu-item"><a href="examplefakepwm.html">Fake Fade</a></li>
                           </ul>
                       </li>
+                      <li class="menu-item dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Analog</a>
+                          <ul class="dropdown-menu">
+                             <li class="menu-item"><a href="exampleanalog.html">Read</a></li>
+                          </ul>
+                      </li>
                    </ul>
               </li>
             </ul>
@@ -109,7 +114,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p>How to use PWM on any GPIO pin easily</p>
-<p>This is a tutorial and example of how to use Fake PWM on any <a class="el" href="classGpio.html">Gpio</a> pin</p>
+<p>This is a tutorial and example of how to use Fake PWM on any Gpio pin</p>
 <p>Unlike the Real PWM this isn't as precise since it uses the processor clock and not a custom resolution clock This also is down to the speed of sysfs. I was able to do up to 100KHz (About half the period time of an arduino(p.s. that's good)) On about 30 pins, before the the led seemed to jitter at a visible amount. So I would recommend to leave it at 49KHz if using FakePWM on a lot of the pins. This is a lot easier to use than the Real PWM because it has the same mapping as the gpio since it uses the same methods in the backend. Try the example below for pin 13 which is the led.</p>
 <p>Lets create a new file called fakefade.c (For C++ do fakefade.cpp) </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;nano fakefade.c </div></div><!-- fragment --><h1><a class="anchor" id="examplec"></a>
 C Example</h1>

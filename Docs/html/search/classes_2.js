@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['gpio',['Gpio',['../classGpio.html',1,'']]]
+  ['gpio',['Gpio',['../classneo_1_1Gpio.html',1,'neo']]]
 ];

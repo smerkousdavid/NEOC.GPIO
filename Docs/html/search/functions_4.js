@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['read',['read',['../classAnalog.html#aa0067c35d9572fb6fc6750a2b22bfd0c',1,'Analog']]]
+  ['handler',['Handler',['../neoerror_8h.html#adf2774e27c722d5b5ef50f5f97319ee3',1,'neo::error']]]
 ];

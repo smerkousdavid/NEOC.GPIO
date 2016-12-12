@@ -59,6 +59,11 @@
                              <li class="menu-item"><a href="examplefakepwm.html">Fake Fade</a></li>
                           </ul>
                       </li>
+                      <li class="menu-item dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Analog</a>
+                          <ul class="dropdown-menu">
+                             <li class="menu-item"><a href="exampleanalog.html">Read</a></li>
+                          </ul>
+                      </li>
                    </ul>
               </li>
             </ul>
@@ -119,7 +124,7 @@ C Example</h1>
  </p>
 <h1><a class="anchor" id="examplecpp"></a>
 C++ Example</h1>
-<div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="neo_8h.html">neo.h</a>&gt;</span></div><div class="line"><span class="preprocessor">#include &lt;iostream&gt;</span></div><div class="line"></div><div class="line"><span class="keyword">using namespace </span><a class="code" href="namespaceneo.html">neo</a>; </div><div class="line"><span class="keyword">using namespace </span>std;</div><div class="line"></div><div class="line"><span class="comment">//Main function</span></div><div class="line"><span class="keywordtype">int</span> main() {</div><div class="line">    PWM pwm(0); <span class="comment">//Start on PWM pin 0 (pwm 5) (NOT THE SAME AS GPIO MAPPING)      </span></div><div class="line">    <span class="comment">//pwm.setPeriod(20408); //Example set period</span></div><div class="line">    pwm.write(127);</div><div class="line">}</div></div><!-- fragment --><p> Warning The mapping of Real PWM is not the same as <a class="el" href="classGpio.html">Gpio</a>. Nor is it linear to the PWM mapping! (Read above) <br />
+<div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="neo_8h.html">neo.h</a>&gt;</span></div><div class="line"><span class="preprocessor">#include &lt;iostream&gt;</span></div><div class="line"></div><div class="line"><span class="keyword">using namespace </span><a class="code" href="namespaceneo.html">neo</a>; </div><div class="line"><span class="keyword">using namespace </span>std;</div><div class="line"></div><div class="line"><span class="comment">//Main function</span></div><div class="line"><span class="keywordtype">int</span> main() {</div><div class="line">    PWM pwm(0); <span class="comment">//Start on PWM pin 0 (pwm 5) (NOT THE SAME AS GPIO MAPPING)      </span></div><div class="line">    <span class="comment">//pwm.setPeriod(20408); //Example set period</span></div><div class="line">    pwm.write(127);</div><div class="line">}</div></div><!-- fragment --><p> Warning The mapping of Real PWM is not the same as Gpio. Nor is it linear to the PWM mapping! (Read above) <br />
  </p>
 <h2><a class="anchor" id="compiling"></a>
 Compiling and Running</h2>

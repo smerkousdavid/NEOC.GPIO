@@ -59,6 +59,11 @@
                              <li class="menu-item"><a href="examplefakepwm.html">Fake Fade</a></li>
                           </ul>
                       </li>
+                      <li class="menu-item dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Analog</a>
+                          <ul class="dropdown-menu">
+                             <li class="menu-item"><a href="exampleanalog.html">Read</a></li>
+                          </ul>
+                      </li>
                    </ul>
               </li>
             </ul>
@@ -114,6 +119,11 @@ $(function() {
 <div class="title">neo::error::InitError Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Thrown when the program failed to allocate pins on the static init methods.  
+ <a href="classneo_1_1error_1_1InitError.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="neoerror_8h_source.html">neoerror.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for neo::error::InitError:</div>
 <div class="dyncontent">
@@ -125,13 +135,88 @@ Inheritance diagram for neo::error::InitError:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:afba37f87f7a34dec7a37bb99e3184d12"><td class="memItemLeft" align="right" valign="top"><a id="afba37f87f7a34dec7a37bb99e3184d12"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>InitError</b> (const char *w)</td></tr>
+<tr class="memitem:afba37f87f7a34dec7a37bb99e3184d12"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classneo_1_1error_1_1InitError.html#afba37f87f7a34dec7a37bb99e3184d12">InitError</a> (const char *w)</td></tr>
+<tr class="memdesc:afba37f87f7a34dec7a37bb99e3184d12"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor of <a class="el" href="classneo_1_1error_1_1UnusableError.html" title="Most commonly thrown error when the specified pin is unusable. ">UnusableError</a>.  <a href="#afba37f87f7a34dec7a37bb99e3184d12">More...</a><br /></td></tr>
 <tr class="separator:afba37f87f7a34dec7a37bb99e3184d12"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af65c4914b108046ee10c3110f734d233"><td class="memItemLeft" align="right" valign="top"><a id="af65c4914b108046ee10c3110f734d233"></a>
-virtual const char *&#160;</td><td class="memItemRight" valign="bottom"><b>what</b> () const  throw ()</td></tr>
+<tr class="memitem:af65c4914b108046ee10c3110f734d233"><td class="memItemLeft" align="right" valign="top">virtual const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classneo_1_1error_1_1InitError.html#af65c4914b108046ee10c3110f734d233">what</a> () const  throw ()</td></tr>
+<tr class="memdesc:af65c4914b108046ee10c3110f734d233"><td class="mdescLeft">&#160;</td><td class="mdescRight">The compiled response on catch of exception or Abort.  <a href="#af65c4914b108046ee10c3110f734d233">More...</a><br /></td></tr>
 <tr class="separator:af65c4914b108046ee10c3110f734d233"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Thrown when the program failed to allocate pins on the static init methods. </p>
+<p>This is also a tricky one, this one will be thrown and if you catch it and still try to write to a pin, you will 95% be guaranteed that a <a class="el" href="classneo_1_1error_1_1UnusableError.html" title="Most commonly thrown error when the specified pin is unusable. ">UnusableError</a> will be thrown since it failed to initialize in the first place. Expect to see this thrown a lot on PWM. That's fine, because of the way the PWM manager handles the allocation, there is no guess as to which pin is mapped to where, so it will try all the mappings. Almost never will you not get an <a class="el" href="classneo_1_1error_1_1InitError.html" title="Thrown when the program failed to allocate pins on the static init methods. ">InitError</a> thrown on PWM, it's best to set the throw flag on PWM to off, if you don't want to put a try catch around it. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="afba37f87f7a34dec7a37bb99e3184d12"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afba37f87f7a34dec7a37bb99e3184d12">&sect;&nbsp;</a></span>InitError()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">neo::error::InitError::InitError </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>w</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constructor of <a class="el" href="classneo_1_1error_1_1UnusableError.html" title="Most commonly thrown error when the specified pin is unusable. ">UnusableError</a>. </p>
+<p>Example usage to throw a <a class="el" href="classneo_1_1error_1_1UnusableError.html" title="Most commonly thrown error when the specified pin is unusable. ">UnusableError</a> </p><div class="fragment"><div class="line"><span class="keywordflow">throw</span> <a class="code" href="classneo_1_1error_1_1InitError.html#afba37f87f7a34dec7a37bb99e3184d12">InitError</a>(<span class="stringliteral">&quot;ANALOG&quot;</span>); <span class="comment">//The m4 core probably wasn&#39;t disabled</span></div></div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">w</td><td>What core system is not usable usually ("ANALOG" or "PWM")</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A runtime_error </dd></dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="af65c4914b108046ee10c3110f734d233"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af65c4914b108046ee10c3110f734d233">&sect;&nbsp;</a></span>what()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual const char* neo::error::InitError::what </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+        <tr>
+          <td align="right">throw </td><td>(</td><td colspan="2"></td>
+        </tr>
+        <tr>
+          <td align="right"></td><td>)</td><td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The compiled response on catch of exception or Abort. </p>
+<p>This is called when the coder catches the exception or is just plainly Thrown, then printed <a class="el" href="classneo_1_1error_1_1InitError.html#af65c4914b108046ee10c3110f734d233" title="The compiled response on catch of exception or Abort. ">what()</a>: "Error: etc.."</p>
+<dl class="section return"><dt>Returns</dt><dd>A const char of the response of <a class="el" href="classneo_1_1error_1_1InitError.html" title="Thrown when the program failed to allocate pins on the static init methods. ">InitError</a> </dd></dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>include/<a class="el" href="neoerror_8h_source.html">neoerror.h</a></li>
 </ul>

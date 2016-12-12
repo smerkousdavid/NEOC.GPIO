@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['fakepwm',['FakePWM',['../examplefakepwm.html',1,'']]],
-  ['free',['free',['../classAnalog.html#aca318a91190076f501cb2ab27bc220db',1,'Analog']]]
+  ['enabled',['ENABLED',['../neo_8h.html#ab8692d25ca7d5f7abfbfcb6701d95822',1,'neo']]],
+  ['examples',['Examples',['../examples.html',1,'']]]
 ];

@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['direrror',['DirError',['../classneo_1_1error_1_1DirError.html',1,'neo::error']]],
-  ['dutyerror',['DutyError',['../classneo_1_1error_1_1DutyError.html',1,'neo::error']]]
+  ['checkroot',['checkRoot',['../neo_8h.html#a9ef13b146a526d8dd9934330faa2974a',1,'neo']]]
 ];
