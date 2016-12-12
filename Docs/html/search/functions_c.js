@@ -1,4 +1,7 @@
 var searchData=
 [
-  ['what',['what',['../classneo_1_1error_1_1PinError.html#a174e524d0358b7722a87796da2cd210a',1,'neo::error::PinError::what()'],['../classneo_1_1error_1_1PeriodError.html#a27d91ccc5829e5d99404dbcea0ba9bcc',1,'neo::error::PeriodError::what()'],['../classneo_1_1error_1_1DutyError.html#afeaa88781161ead7efeb59f4d5e4db4f',1,'neo::error::DutyError::what()'],['../classneo_1_1error_1_1DirError.html#ad22cbdb9ad9de1683d2cd34285546bcb',1,'neo::error::DirError::what()'],['../classneo_1_1error_1_1UnusableError.html#acc649ecbb7abe096311b9c1f18d8329a',1,'neo::error::UnusableError::what()'],['../classneo_1_1error_1_1InitError.html#af65c4914b108046ee10c3110f734d233',1,'neo::error::InitError::what()'],['../classneo_1_1error_1_1ReadWriteError.html#a90fdad18b85c721454c71b2fe420b37b',1,'neo::error::ReadWriteError::what()'],['../classneo_1_1error_1_1NotRootError.html#a21d9d075a9fce8ee98767c6c11d364d5',1,'neo::error::NotRootError::what()']]]
+  ['setdir',['setDir',['../classneo_1_1Gpio.html#a7a68ec1e94150fa932f6822208d8a2fd',1,'neo::Gpio::setDir()'],['../classneo_1_1PWM.html#a9469e7d41d69fc3e4ccb6a959d056b22',1,'neo::PWM::setDir()']]],
+  ['setin',['setIn',['../classneo_1_1Gpio.html#acd6283226fa1779d114f08c0743179df',1,'neo::Gpio::setIn()'],['../classneo_1_1PWM.html#a9ce134e90785defb9ebe08d905e2bdd7',1,'neo::PWM::setIn()']]],
+  ['setm4',['setM4',['../neo_8h.html#a14e09f724b7ff1441e895ddeb8c1b3c9',1,'neo']]],
+  ['setout',['setOut',['../classneo_1_1Gpio.html#ad35df5c236d81f98e37fbfb3bba3a400',1,'neo::Gpio::setOut()'],['../classneo_1_1PWM.html#ac9bf582553a32446bda8e0f761d6aa8b',1,'neo::PWM::setOut()']]]
 ];

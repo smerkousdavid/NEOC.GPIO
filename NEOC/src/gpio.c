@@ -61,6 +61,17 @@ FILE* gpioD[GPIOPORTSL];
 //Double free and initializing error fixed by global flag
 unsigned char neo_gpio_freed = 2;
 
+unsigned char neo_exit_set = 2;
+
+void neo_free_all() {
+	printf("FREEING\n");
+	neo_gpio_free();
+	neo_pwm_free();
+	neo_analog_free();
+	neo_temp_free();
+}
+
+
 #endif
 
 /**
@@ -84,6 +95,12 @@ int neo_gpio_init()
 
 	//Double check to not run twice
 	if(neo_gpio_freed == 2) {
+		//Setup cleanup on exit of application
+		if(neo_exit_set == 2) {
+			atexit(neo_free_all);
+			neo_exit_set = 1;
+		}
+	
 		//Set all the ports to usable
 		for(gi = 0; gi < GPIOPORTSL; gi++) {USABLEGPIO[gi] = 1;}
 	
@@ -269,7 +286,7 @@ int neo_gpio_free()
 }
 
 /** \page gpioblink Blink
- * \breif How to use the Gpio to Blink an led on pin 13
+ * \brief How to use the Gpio to Blink an led on pin 13
  *
  * This is how to blink using pin 13 (inner bank same as arduino) in C and C++
  * 
@@ -320,11 +337,12 @@ int neo_gpio_free()
  *  //Main function
  *  int main() {
  *      Gpio led(13); //Start pin 13 as a gpio pin
- *      
+ *      led.setOut(); //Set pin to output mode
+ *
  *      for(int ind = 0; ind < 10; ind++)  {
- *         led.on();
+ *         led.on(); //Turn pin on
  *         this_thread::sleep_for(chrono::milliseconds(1000));
- *         led.off();
+ *         led.off(); //Turn pin off
  *         this_thread::sleep_for(chrono::milliseconds(1000));
  *      }
  *     //Auto release since the class releases the pin
@@ -359,7 +377,7 @@ int neo_gpio_free()
 
 
 /** \page gpioread Reading
- * \breif How to use the Gpio to read from pin 5
+ * \brief How to use the Gpio to read from pin 5
  *
  * This is how to digitally read using pin 5 (inner bank same as arduino) in C and C++
  * 

@@ -76,6 +76,12 @@ int neo_analog_init() {
 	
 	//Double check to see if it's already initialized
 	if(neo_analog_freed == 2) {
+		//Setup cleanup on exit of application
+		if(neo_exit_set == 2) {
+			atexit(neo_free_all);
+			neo_exit_set = 1;
+		}
+
 		//Set all the pins as usable
 		for(gi = 0; gi <= ANALOGPORTSL; gi++) {USABLEANALOG[gi] = 1;}
 
@@ -131,7 +137,7 @@ int neo_analog_init() {
 }
 
 /**
- * @brief Main read raw method for analog
+ * @brief Read raw method for analog
  * 
  * This will directly read from the analog pin and give you the raw returned
  * 12 bit value
@@ -142,7 +148,7 @@ int neo_analog_init() {
  * 
  * @note If you have recieved the NEO_UNUSABLE_ERROR, that probably means you aren't root
  */
-float neo_analog_read(int pin) {
+float neo_analog_read_raw(int pin) {
 	//Safety check the pin
 	if(pin < 0 || pin > ANALOGPORTSL) return NEO_PIN_ERROR;
 
@@ -168,6 +174,22 @@ float neo_analog_read(int pin) {
 	return curRaw * ANALOGSCALE[curScale];
 #endif
 	return curRaw; //If no scaling specified then return the raw value
+}
+
+/**
+ * @brief Main read, voltage return from analog pin
+ * 
+ * This will directly read from the analog pin and give a scaled voltage return
+ * between 0 and 3.3v
+ * 
+ * @param pin The analog pin (0 to 5) to read from
+ * 
+ * @return a float of (0 -> 3.3)/NEO_UNUSABLE_ERROR/NEO_PIN_ERROR/NEO_READ_ERROR if it failed to read the pin
+ * 
+ * @note If you have recieved the NEO_UNUSABLE_ERROR, that probably means you aren't root
+ */
+float neo_analog_read(int pin) {
+	return neo_re_map(neo_analog_read_raw(pin), ANALOGLOW, ANALOGHIGH, 0.0f, 3.3f);
 }
 
 /**
@@ -235,7 +257,7 @@ int neo_analog_free()
  *     for(i = 0; i < 3; i++) {
  *         printf("Trial %d\n", i);
  *         for(id = 0; id <= 5; id++) {
- *             printf("ANALOG(A%d): %.2f out of 4095\n", id, neo_analog_read(id));
+ *             printf("ANALOG(A%d): %.2f out of 3.3v... RAW: %.2f out of 4095f\n", id, neo_analog_read(id), neo_analog_read_raw(id));
  *         }
  *         printf("\n\n");
  *         sleep(1);

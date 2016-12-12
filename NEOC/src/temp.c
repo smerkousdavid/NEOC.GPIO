@@ -10,6 +10,11 @@ unsigned char neo_temp_freed = 2;
 
 int neo_temp_init() {
 	if(neo_temp_freed == 2) {
+		//Setup cleanup on exit of application
+		if(neo_exit_set == 2) {
+			atexit(neo_free_all);
+			neo_exit_set = 1;
+		}
 		neo_check_root("The temperature module requires root!");
 		//Restart the module
 		system("rmmod lm75");

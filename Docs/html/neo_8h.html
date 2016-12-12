@@ -138,57 +138,77 @@ Data Structures</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The Cpp <a class="el" href="classneo_1_1Analog.html" title="The Cpp Analog class to read pins A0 - A5. ">Analog</a> class to read pins A0 - A5.  <a href="classneo_1_1Analog.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classneo_1_1Gpio.html">neo::Gpio</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The gpio class that handles all General Pin Input and Output.  <a href="classneo_1_1Gpio.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classneo_1_1PWM.html">neo::PWM</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The <a class="el" href="classneo_1_1PWM.html" title="The PWM class that handles all PWM controls. ">PWM</a> class that handles all <a class="el" href="classneo_1_1PWM.html" title="The PWM class that handles all PWM controls. ">PWM</a> controls.  <a href="classneo_1_1PWM.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
 <tr class="memitem:abc7205d167c5e515159cb0f2b17cebea"><td class="memItemLeft" align="right" valign="top"><a id="abc7205d167c5e515159cb0f2b17cebea"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>NEO_OK</b>&#160;&#160;&#160;0</td></tr>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="neo_8h.html#abc7205d167c5e515159cb0f2b17cebea">NEO_OK</a>&#160;&#160;&#160;0</td></tr>
+<tr class="memdesc:abc7205d167c5e515159cb0f2b17cebea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returned on success or completion. <br /></td></tr>
 <tr class="separator:abc7205d167c5e515159cb0f2b17cebea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a601405c9bdb3e8eb3e9dbc59c6d65c89"><td class="memItemLeft" align="right" valign="top"><a id="a601405c9bdb3e8eb3e9dbc59c6d65c89"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>NEO_FAIL</b>&#160;&#160;&#160;-1</td></tr>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="neo_8h.html#a601405c9bdb3e8eb3e9dbc59c6d65c89">NEO_FAIL</a>&#160;&#160;&#160;-1</td></tr>
+<tr class="memdesc:a601405c9bdb3e8eb3e9dbc59c6d65c89"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returned on generic or unknown fail. <br /></td></tr>
 <tr class="separator:a601405c9bdb3e8eb3e9dbc59c6d65c89"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5f3ae8abb72b16448d256455ca89b3c3"><td class="memItemLeft" align="right" valign="top"><a id="a5f3ae8abb72b16448d256455ca89b3c3"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>NEO_PIN_ERROR</b>&#160;&#160;&#160;-2</td></tr>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="neo_8h.html#a5f3ae8abb72b16448d256455ca89b3c3">NEO_PIN_ERROR</a>&#160;&#160;&#160;-2</td></tr>
+<tr class="memdesc:a5f3ae8abb72b16448d256455ca89b3c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">When pin is not within correct range (gpio that's 0 - 47) <br /></td></tr>
 <tr class="separator:a5f3ae8abb72b16448d256455ca89b3c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0b87e6193ffc5e2fecff6468fa507298"><td class="memItemLeft" align="right" valign="top"><a id="a0b87e6193ffc5e2fecff6468fa507298"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>NEO_PERIOD_ERROR</b>&#160;&#160;&#160;-3</td></tr>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="neo_8h.html#a0b87e6193ffc5e2fecff6468fa507298">NEO_PERIOD_ERROR</a>&#160;&#160;&#160;-3</td></tr>
+<tr class="memdesc:a0b87e6193ffc5e2fecff6468fa507298"><td class="mdescLeft">&#160;</td><td class="mdescRight">When the period is not valid (keep it between infinite hertz 0 and 1 Hertz) <br /></td></tr>
 <tr class="separator:a0b87e6193ffc5e2fecff6468fa507298"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1c752eb1d9770552178b9f2906375d94"><td class="memItemLeft" align="right" valign="top"><a id="a1c752eb1d9770552178b9f2906375d94"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>NEO_DUTY_ERROR</b>&#160;&#160;&#160;-4</td></tr>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="neo_8h.html#a1c752eb1d9770552178b9f2906375d94">NEO_DUTY_ERROR</a>&#160;&#160;&#160;-4</td></tr>
+<tr class="memdesc:a1c752eb1d9770552178b9f2906375d94"><td class="mdescLeft">&#160;</td><td class="mdescRight">When the Duty cycle isn't valid, correct is between 0 and 255. <br /></td></tr>
 <tr class="separator:a1c752eb1d9770552178b9f2906375d94"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af15aa56ec0d2640531b54bffc1522608"><td class="memItemLeft" align="right" valign="top"><a id="af15aa56ec0d2640531b54bffc1522608"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>NEO_UNUSABLE_ERROR</b>&#160;&#160;&#160;-5</td></tr>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="neo_8h.html#af15aa56ec0d2640531b54bffc1522608">NEO_UNUSABLE_ERROR</a>&#160;&#160;&#160;-5</td></tr>
+<tr class="memdesc:af15aa56ec0d2640531b54bffc1522608"><td class="mdescLeft">&#160;</td><td class="mdescRight">When the pin is already being used, wasn't initialized or isn't plain working. <br /></td></tr>
 <tr class="separator:af15aa56ec0d2640531b54bffc1522608"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8ac56ddc441e054186883a98a6d332ab"><td class="memItemLeft" align="right" valign="top"><a id="a8ac56ddc441e054186883a98a6d332ab"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>NEO_EXPORT_ERROR</b>&#160;&#160;&#160;-6</td></tr>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="neo_8h.html#a8ac56ddc441e054186883a98a6d332ab">NEO_EXPORT_ERROR</a>&#160;&#160;&#160;-6</td></tr>
+<tr class="memdesc:a8ac56ddc441e054186883a98a6d332ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">When it failed to initialize one or more pins. <br /></td></tr>
 <tr class="separator:a8ac56ddc441e054186883a98a6d332ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a37bbe7706a11a9006503716b681ed2bc"><td class="memItemLeft" align="right" valign="top"><a id="a37bbe7706a11a9006503716b681ed2bc"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>NEO_UNUSABLE_EXPORT_ERROR</b>&#160;&#160;&#160;-7</td></tr>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="neo_8h.html#a37bbe7706a11a9006503716b681ed2bc">NEO_UNUSABLE_EXPORT_ERROR</a>&#160;&#160;&#160;-7</td></tr>
+<tr class="memdesc:a37bbe7706a11a9006503716b681ed2bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">When it failed to initialize one or more pins because they don't exist. <br /></td></tr>
 <tr class="separator:a37bbe7706a11a9006503716b681ed2bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af04fe501a389727f8bd79fb5dddb91e3"><td class="memItemLeft" align="right" valign="top"><a id="af04fe501a389727f8bd79fb5dddb91e3"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>NEO_DIR_ERROR</b>&#160;&#160;&#160;-8</td></tr>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="neo_8h.html#af04fe501a389727f8bd79fb5dddb91e3">NEO_DIR_ERROR</a>&#160;&#160;&#160;-8</td></tr>
+<tr class="memdesc:af04fe501a389727f8bd79fb5dddb91e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">When the direction is different from either (INPUT) 0 or (OUTPUT) 1. <br /></td></tr>
 <tr class="separator:af04fe501a389727f8bd79fb5dddb91e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0f3ee1d1261e466bd800975c018eb47d"><td class="memItemLeft" align="right" valign="top"><a id="a0f3ee1d1261e466bd800975c018eb47d"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>NEO_READ_ERROR</b>&#160;&#160;&#160;-9</td></tr>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="neo_8h.html#a0f3ee1d1261e466bd800975c018eb47d">NEO_READ_ERROR</a>&#160;&#160;&#160;-9</td></tr>
+<tr class="memdesc:a0f3ee1d1261e466bd800975c018eb47d"><td class="mdescLeft">&#160;</td><td class="mdescRight">When the Analog or Gpio pin don't have root permission or the kernel broke. <br /></td></tr>
 <tr class="separator:a0f3ee1d1261e466bd800975c018eb47d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac28c2056bf8d24edc120f9a3bf08db94"><td class="memItemLeft" align="right" valign="top"><a id="ac28c2056bf8d24edc120f9a3bf08db94"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>NEO_SCALE_ERROR</b>&#160;&#160;&#160;-10</td></tr>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="neo_8h.html#ac28c2056bf8d24edc120f9a3bf08db94">NEO_SCALE_ERROR</a>&#160;&#160;&#160;-10</td></tr>
+<tr class="memdesc:ac28c2056bf8d24edc120f9a3bf08db94"><td class="mdescLeft">&#160;</td><td class="mdescRight">When the Analog scaler decided to kaput and not scale analog, don't blame the programmer. <br /></td></tr>
 <tr class="separator:ac28c2056bf8d24edc120f9a3bf08db94"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad7e25c54684b1cb9f6565f501f93c114"><td class="memItemLeft" align="right" valign="top"><a id="ad7e25c54684b1cb9f6565f501f93c114"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>NEO_LED_STATE_ERROR</b>&#160;&#160;&#160;-11</td></tr>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="neo_8h.html#ad7e25c54684b1cb9f6565f501f93c114">NEO_LED_STATE_ERROR</a>&#160;&#160;&#160;-11</td></tr>
+<tr class="memdesc:ad7e25c54684b1cb9f6565f501f93c114"><td class="mdescLeft">&#160;</td><td class="mdescRight">When failed to set the builtin LED state. <br /></td></tr>
 <tr class="separator:ad7e25c54684b1cb9f6565f501f93c114"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a61a3c9a18380aafb6e430e79bf596557"><td class="memItemLeft" align="right" valign="top"><a id="a61a3c9a18380aafb6e430e79bf596557"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>OUTPUT</b>&#160;&#160;&#160;1</td></tr>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="neo_8h.html#a61a3c9a18380aafb6e430e79bf596557">OUTPUT</a>&#160;&#160;&#160;1</td></tr>
+<tr class="memdesc:a61a3c9a18380aafb6e430e79bf596557"><td class="mdescLeft">&#160;</td><td class="mdescRight">To set the GPIO pin to output mode (Readable format) <br /></td></tr>
 <tr class="separator:a61a3c9a18380aafb6e430e79bf596557"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1bb283bd7893b9855e2f23013891fc82"><td class="memItemLeft" align="right" valign="top"><a id="a1bb283bd7893b9855e2f23013891fc82"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>INPUT</b>&#160;&#160;&#160;0</td></tr>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="neo_8h.html#a1bb283bd7893b9855e2f23013891fc82">INPUT</a>&#160;&#160;&#160;0</td></tr>
+<tr class="memdesc:a1bb283bd7893b9855e2f23013891fc82"><td class="mdescLeft">&#160;</td><td class="mdescRight">To set the GPIO pin to input mode (Readable format) <br /></td></tr>
 <tr class="separator:a1bb283bd7893b9855e2f23013891fc82"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5bb885982ff66a2e0a0a45a8ee9c35e2"><td class="memItemLeft" align="right" valign="top"><a id="a5bb885982ff66a2e0a0a45a8ee9c35e2"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>HIGH</b>&#160;&#160;&#160;1</td></tr>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="neo_8h.html#a5bb885982ff66a2e0a0a45a8ee9c35e2">HIGH</a>&#160;&#160;&#160;1</td></tr>
+<tr class="memdesc:a5bb885982ff66a2e0a0a45a8ee9c35e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">To set the GPIO pin state to HIGH aka on. <br /></td></tr>
 <tr class="separator:a5bb885982ff66a2e0a0a45a8ee9c35e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab811d8c6ff3a505312d3276590444289"><td class="memItemLeft" align="right" valign="top"><a id="ab811d8c6ff3a505312d3276590444289"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>LOW</b>&#160;&#160;&#160;0</td></tr>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="neo_8h.html#ab811d8c6ff3a505312d3276590444289">LOW</a>&#160;&#160;&#160;0</td></tr>
+<tr class="memdesc:ab811d8c6ff3a505312d3276590444289"><td class="mdescLeft">&#160;</td><td class="mdescRight">To set the GPIO or anything pin to state LOW aka off. <br /></td></tr>
 <tr class="separator:ab811d8c6ff3a505312d3276590444289"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
@@ -257,7 +277,7 @@ Functions</h2></td></tr>
 <tr class="memdesc:af8ca2c116caf55d1de17157e3a390726"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the Analog iio.  <a href="#af8ca2c116caf55d1de17157e3a390726">More...</a><br /></td></tr>
 <tr class="separator:af8ca2c116caf55d1de17157e3a390726"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7fbc5c9a8d977496ffcb01a195037db0"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="neo_8h.html#a7fbc5c9a8d977496ffcb01a195037db0">neo_analog_read</a> (int)</td></tr>
-<tr class="memdesc:a7fbc5c9a8d977496ffcb01a195037db0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Main read raw method for analog.  <a href="#a7fbc5c9a8d977496ffcb01a195037db0">More...</a><br /></td></tr>
+<tr class="memdesc:a7fbc5c9a8d977496ffcb01a195037db0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Main read, voltage return from analog pin.  <a href="#a7fbc5c9a8d977496ffcb01a195037db0">More...</a><br /></td></tr>
 <tr class="separator:a7fbc5c9a8d977496ffcb01a195037db0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1aae9b7924b859181443f6beaff2d632"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="neo_8h.html#a1aae9b7924b859181443f6beaff2d632">neo_analog_free</a> ()</td></tr>
 <tr class="memdesc:a1aae9b7924b859181443f6beaff2d632"><td class="mdescLeft">&#160;</td><td class="mdescRight">Analog freeing method.  <a href="#a1aae9b7924b859181443f6beaff2d632">More...</a><br /></td></tr>
@@ -283,6 +303,9 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>neo_led_on</b> ()</td>
 <tr class="memitem:a4f3ad9236e5a14aad3c64ab3300a99ad"><td class="memItemLeft" align="right" valign="top"><a id="a4f3ad9236e5a14aad3c64ab3300a99ad"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>neo_led_off</b> ()</td></tr>
 <tr class="separator:a4f3ad9236e5a14aad3c64ab3300a99ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a99e52233aaddde682c0d02947174431a"><td class="memItemLeft" align="right" valign="top"><a id="a99e52233aaddde682c0d02947174431a"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>neo_free_all</b> ()</td></tr>
+<tr class="separator:a99e52233aaddde682c0d02947174431a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9d029c04adaabf18bc07bb6187fcf80c"><td class="memTemplParams" colspan="2">template&lt;typename T , typename V , typename M , typename MA , typename MI , typename MX &gt; </td></tr>
 <tr class="memitem:a9d029c04adaabf18bc07bb6187fcf80c"><td class="memTemplItemLeft" align="right" valign="top">T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="neo_8h.html#a9d029c04adaabf18bc07bb6187fcf80c">neo::map</a> (V value, M inMin, MA inMax, MI outMin, MX outMax)</td></tr>
 <tr class="memdesc:a9d029c04adaabf18bc07bb6187fcf80c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Arduino based linear remapping.  <a href="neo_8h.html#a9d029c04adaabf18bc07bb6187fcf80c">More...</a><br /></td></tr>
@@ -296,27 +319,6 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>neo_led_off</b> ()</td
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:abb74c56167669ca7fe23d4de3e85cd07"><td class="memItemLeft" align="right" valign="top"><a id="abb74c56167669ca7fe23d4de3e85cd07"></a>
-const char *const&#160;</td><td class="memItemRight" valign="bottom"><b>GPIOPORTS</b> []</td></tr>
-<tr class="separator:abb74c56167669ca7fe23d4de3e85cd07"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4b38f9bc4360d69ceaeb38a5fa51892e"><td class="memItemLeft" align="right" valign="top"><a id="a4b38f9bc4360d69ceaeb38a5fa51892e"></a>
-unsigned char&#160;</td><td class="memItemRight" valign="bottom"><b>USABLEGPIO</b> []</td></tr>
-<tr class="separator:a4b38f9bc4360d69ceaeb38a5fa51892e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4008ea1561d840a297ed079ae6fba965"><td class="memItemLeft" align="right" valign="top"><a id="a4008ea1561d840a297ed079ae6fba965"></a>
-const char *const&#160;</td><td class="memItemRight" valign="bottom"><b>PWMPORTS</b> []</td></tr>
-<tr class="separator:a4008ea1561d840a297ed079ae6fba965"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad898c52eeb161add109ef4dfe84df45f"><td class="memItemLeft" align="right" valign="top"><a id="ad898c52eeb161add109ef4dfe84df45f"></a>
-unsigned char&#160;</td><td class="memItemRight" valign="bottom"><b>USABLEPWM</b> []</td></tr>
-<tr class="separator:ad898c52eeb161add109ef4dfe84df45f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3792ccb52b7f65d14101bd98e36596d9"><td class="memItemLeft" align="right" valign="top"><a id="a3792ccb52b7f65d14101bd98e36596d9"></a>
-const char *const&#160;</td><td class="memItemRight" valign="bottom"><b>ANALOGPORTS</b> [][2]</td></tr>
-<tr class="separator:a3792ccb52b7f65d14101bd98e36596d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afe8159984a35233387c31a6194c5ffb9"><td class="memItemLeft" align="right" valign="top"><a id="afe8159984a35233387c31a6194c5ffb9"></a>
-unsigned char&#160;</td><td class="memItemRight" valign="bottom"><b>USABLEANALOG</b> []</td></tr>
-<tr class="separator:afe8159984a35233387c31a6194c5ffb9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a428dd20e5cba38fe4b48526fc093a29f"><td class="memItemLeft" align="right" valign="top"><a id="a428dd20e5cba38fe4b48526fc093a29f"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>ANALOGSCALE</b> []</td></tr>
-<tr class="separator:a428dd20e5cba38fe4b48526fc093a29f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab8692d25ca7d5f7abfbfcb6701d95822"><td class="memItemLeft" align="right" valign="top">const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="neo_8h.html#ab8692d25ca7d5f7abfbfcb6701d95822">neo::ENABLED</a> = true</td></tr>
 <tr class="separator:ab8692d25ca7d5f7abfbfcb6701d95822"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a681e0f3cf9de04095fd53358fac6ea4a"><td class="memItemLeft" align="right" valign="top">const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="neo_8h.html#a681e0f3cf9de04095fd53358fac6ea4a">neo::DISABLED</a> = false</td></tr>
@@ -478,15 +480,15 @@ template&lt;typename T , typename V , typename M , typename MA , typename MI , t
       </table>
 </div><div class="memdoc">
 
-<p>Main read raw method for analog. </p>
-<p>This will directly read from the analog pin and give you the raw returned 12 bit value</p>
+<p>Main read, voltage return from analog pin. </p>
+<p>This will directly read from the analog pin and give a scaled voltage return between 0 and 3.3v</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">pin</td><td>The analog pin (0 to 5) to read from</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>a float of (0 -&gt; 4095)/NEO_UNUSABLE_ERROR/NEO_PIN_ERROR/NEO_READ_ERROR if it failed to read the pin</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>a float of (0 -&gt; 3.3)/NEO_UNUSABLE_ERROR/NEO_PIN_ERROR/NEO_READ_ERROR if it failed to read the pin</dd></dl>
 <dl class="section note"><dt>Note</dt><dd>If you have recieved the NEO_UNUSABLE_ERROR, that probably means you aren't root </dd></dl>
 
 </div>

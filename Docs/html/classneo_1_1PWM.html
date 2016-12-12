@@ -1,0 +1,599 @@
+<!-- HTML header for doxygen 1.8.8-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <!-- For Mobile Devices -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+        <meta name="generator" content="Doxygen 1.8.12"/>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <title>NEOC: neo::PWM Class Reference</title>
+        <link href="tabs.css" rel="stylesheet" type="text/css"/>
+        <script type="text/javascript" src="dynsections.js"></script>
+        <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+        <link href="doxygen.css" rel="stylesheet" type="text/css" />
+        <link href="neocdoxygen.css" rel="stylesheet" type="text/css"/>
+        <link href='https://fonts.googleapis.com/css?family=Roboto+Slab' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="doxy-boot.js"></script>
+    </head>
+    <body>
+        <nav class="navbar navbar-default" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                   <a href="index.html"><img src="neoc_small.png" class="logostyle" alt="NEOC Icon" align="left"/></a>
+                   <a class="navbar-brand" href="index.html">
+                   NEOC 0.1</a>
+                </div>
+            <ul class="nav navbar-nav">
+              <li><a href="index.html">Main Page</a></li>
+              <li><a href="files.html">Files</a></li>
+              <li class="dropdown">
+                 <a href="annotated.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Data Structures<span class="caret"></span></a>
+                   <ul class="dropdown-menu">
+                      <li><a href="annotated.html">All Data Structures</a></li>
+                      <li><a href="classes.html">Classes and Index</a></li>
+                   </ul>
+              </li>
+              <li><a href="globals.html">Functions</a></li>
+                <div style="float: right;">
+                  <p class="navbar-text">By David Smerkous</p>
+		</div>
+              <li class="dropdown">
+                 <a href="examples.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Examples<span class="caret"></span></a>
+                   <ul class="dropdown-menu">
+                      <li><a href="examples.html">All Examples</a></li>
+                      <li class="menu-item dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Gpio</a>
+                          <ul class="dropdown-menu">
+                             <li class="menu-item"><a href="gpioblink.html">Blink</a></li>
+                             <li class="menu-item"><a href="gpioread.html">Read</a></li>
+                          </ul>
+                      </li>
+                      <li class="menu-item dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Pwm</a>
+                          <ul class="dropdown-menu">
+                             <li class="menu-item"><a href="examplepwm.html">Real Write</a></li>
+                             <li class="menu-item"><a href="examplefakepwm.html">Fake Fade</a></li>
+                          </ul>
+                      </li>
+                      <li class="menu-item dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Analog</a>
+                          <ul class="dropdown-menu">
+                             <li class="menu-item"><a href="exampleanalog.html">Read</a></li>
+                          </ul>
+                      </li>
+                   </ul>
+              </li>
+            </ul>
+            </div>        
+	</nav>
+        <div id="top"><!-- Other side of div is closed by doxygen! -->
+            <div class="content" id="content">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12 panel " style="padding-bottom: 15px;">
+                            <div style="margin-bottom: 15px;">
+				<div id="MSearchResultsWindow">
+				<iframe src="javascript:void(0)" frameborder="0" name="MSearchResults" id="MSearchResults">
+				</iframe>
+				</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.8.12 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Search');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>neo</b></li><li class="navelem"><a class="el" href="classneo_1_1PWM.html">PWM</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a>  </div>
+  <div class="headertitle">
+<div class="title">neo::PWM Class Reference</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>The <a class="el" href="classneo_1_1PWM.html" title="The PWM class that handles all PWM controls. ">PWM</a> class that handles all <a class="el" href="classneo_1_1PWM.html" title="The PWM class that handles all PWM controls. ">PWM</a> controls.  
+ <a href="classneo_1_1PWM.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="neo_8h_source.html">neo.h</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a93f8df5c444935c8005334da020f1364"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classneo_1_1PWM.html#a93f8df5c444935c8005334da020f1364">PWM</a> (int port, bool release=false, bool throwing=true)</td></tr>
+<tr class="memdesc:a93f8df5c444935c8005334da020f1364"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classneo_1_1PWM.html" title="The PWM class that handles all PWM controls. ">PWM</a> constructor and initializer.  <a href="#a93f8df5c444935c8005334da020f1364">More...</a><br /></td></tr>
+<tr class="separator:a93f8df5c444935c8005334da020f1364"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a71334e70f38623a7c8df369539d53b1f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classneo_1_1PWM.html#a71334e70f38623a7c8df369539d53b1f">~PWM</a> ()</td></tr>
+<tr class="memdesc:a71334e70f38623a7c8df369539d53b1f"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classneo_1_1PWM.html" title="The PWM class that handles all PWM controls. ">PWM</a> pin object deconstructor and pin release.  <a href="#a71334e70f38623a7c8df369539d53b1f">More...</a><br /></td></tr>
+<tr class="separator:a71334e70f38623a7c8df369539d53b1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2bf3b7967e9bcb1c93701c7ede7d63c0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classneo_1_1PWM.html#a2bf3b7967e9bcb1c93701c7ede7d63c0">write</a> (int duty)</td></tr>
+<tr class="memdesc:a2bf3b7967e9bcb1c93701c7ede7d63c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writing to selected object port.  <a href="#a2bf3b7967e9bcb1c93701c7ede7d63c0">More...</a><br /></td></tr>
+<tr class="separator:a2bf3b7967e9bcb1c93701c7ede7d63c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9469e7d41d69fc3e4ccb6a959d056b22"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classneo_1_1PWM.html#a9469e7d41d69fc3e4ccb6a959d056b22">setDir</a> (int dir)</td></tr>
+<tr class="memdesc:a9469e7d41d69fc3e4ccb6a959d056b22"><td class="mdescLeft">&#160;</td><td class="mdescRight">Setting the direction of the object port.  <a href="#a9469e7d41d69fc3e4ccb6a959d056b22">More...</a><br /></td></tr>
+<tr class="separator:a9469e7d41d69fc3e4ccb6a959d056b22"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac9bf582553a32446bda8e0f761d6aa8b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classneo_1_1PWM.html#ac9bf582553a32446bda8e0f761d6aa8b">setOut</a> ()</td></tr>
+<tr class="memdesc:ac9bf582553a32446bda8e0f761d6aa8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Setting the current pin to OUTPUT.  <a href="#ac9bf582553a32446bda8e0f761d6aa8b">More...</a><br /></td></tr>
+<tr class="separator:ac9bf582553a32446bda8e0f761d6aa8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9ce134e90785defb9ebe08d905e2bdd7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classneo_1_1PWM.html#a9ce134e90785defb9ebe08d905e2bdd7">setIn</a> ()</td></tr>
+<tr class="memdesc:a9ce134e90785defb9ebe08d905e2bdd7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Setting the current pin to INPUT.  <a href="#a9ce134e90785defb9ebe08d905e2bdd7">More...</a><br /></td></tr>
+<tr class="separator:a9ce134e90785defb9ebe08d905e2bdd7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:abf5b9ca599bc6e4d118a10708d40563c"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classneo_1_1PWM.html#abf5b9ca599bc6e4d118a10708d40563c">init</a> (bool throws=false)</td></tr>
+<tr class="memdesc:abf5b9ca599bc6e4d118a10708d40563c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Static initializer.  <a href="#abf5b9ca599bc6e4d118a10708d40563c">More...</a><br /></td></tr>
+<tr class="separator:abf5b9ca599bc6e4d118a10708d40563c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ffd7ab08f63e2a5e0b890fe3d3cb62b"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classneo_1_1PWM.html#a1ffd7ab08f63e2a5e0b890fe3d3cb62b">free</a> (bool throws=false)</td></tr>
+<tr class="memdesc:a1ffd7ab08f63e2a5e0b890fe3d3cb62b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Static de-initializer.  <a href="#a1ffd7ab08f63e2a5e0b890fe3d3cb62b">More...</a><br /></td></tr>
+<tr class="separator:a1ffd7ab08f63e2a5e0b890fe3d3cb62b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2aa1af8a7f96208315f1b878f731bd37"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classneo_1_1PWM.html#a2aa1af8a7f96208315f1b878f731bd37">write</a> (int port, int duty, bool throws=true)</td></tr>
+<tr class="memdesc:a2aa1af8a7f96208315f1b878f731bd37"><td class="mdescLeft">&#160;</td><td class="mdescRight">Static writing to port.  <a href="#a2aa1af8a7f96208315f1b878f731bd37">More...</a><br /></td></tr>
+<tr class="separator:a2aa1af8a7f96208315f1b878f731bd37"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d3a036ea03a401c4efc4bb49ea45cac"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classneo_1_1PWM.html#a8d3a036ea03a401c4efc4bb49ea45cac">pinMode</a> (int port, int dir, bool throws=true)</td></tr>
+<tr class="memdesc:a8d3a036ea03a401c4efc4bb49ea45cac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Static setting pin mode.  <a href="#a8d3a036ea03a401c4efc4bb49ea45cac">More...</a><br /></td></tr>
+<tr class="separator:a8d3a036ea03a401c4efc4bb49ea45cac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>The <a class="el" href="classneo_1_1PWM.html" title="The PWM class that handles all PWM controls. ">PWM</a> class that handles all <a class="el" href="classneo_1_1PWM.html" title="The PWM class that handles all PWM controls. ">PWM</a> controls. </p>
+<p>This class helps out with controlling the Real <a class="el" href="classneo_1_1PWM.html" title="The PWM class that handles all PWM controls. ">PWM</a> controllers these use real timers and clocks to give really nice <a class="el" href="classneo_1_1PWM.html" title="The PWM class that handles all PWM controls. ">PWM</a> modules and outputs. Only problem is that they're a pain to map out. So that part can get a bit tricky check out the example <a class="el" href="classneo_1_1PWM.html" title="The PWM class that handles all PWM controls. ">PWM</a> Real page for for information</p>
+<p><br />
+Here is the example usage of the class: </p><div class="fragment"><div class="line"><span class="keywordtype">int</span> main() {</div><div class="line">  <a class="code" href="classneo_1_1PWM.html#a93f8df5c444935c8005334da020f1364">PWM</a> pwm(0); <span class="comment">//PWM 5 if mapped correctly </span></div><div class="line">  pwm.write(127); <span class="comment">//About half duty cycle</span></div><div class="line">  <span class="keywordflow">return</span> 0;</div><div class="line">}</div></div><!-- fragment --><p> <br />
+</p>
+<dl class="section note"><dt>Note</dt><dd>Be careful to not use the same pins as <a class="el" href="classneo_1_1Gpio.html" title="The gpio class that handles all General Pin Input and Output. ">Gpio</a> </dd></dl>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a93f8df5c444935c8005334da020f1364"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a93f8df5c444935c8005334da020f1364">&sect;&nbsp;</a></span>PWM()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">neo::PWM::PWM </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>port</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>release</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>throwing</em> = <code>true</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><a class="el" href="classneo_1_1PWM.html" title="The PWM class that handles all PWM controls. ">PWM</a> constructor and initializer. </p>
+<p>This initializes the <a class="el" href="classneo_1_1PWM.html" title="The PWM class that handles all PWM controls. ">PWM</a> class in the backend this calls the C function <a class="el" href="pwm_8c.html#ac3ad9f77af407aee3e35a2fc2413d19d" title="Initializes the REAL pwm pins on the Udoo. ">neo_pwm_init()</a> that method is static as such <a class="el" href="classneo_1_1PWM.html#abf5b9ca599bc6e4d118a10708d40563c" title="Static initializer. ">PWM::init()</a>;</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">port</td><td>The <a class="el" href="classneo_1_1PWM.html" title="The PWM class that handles all PWM controls. ">PWM</a> port (0 to 7) to load the object in </td></tr>
+    <tr><td class="paramname">release</td><td>When no more instances of the object are detected auto release (default: true) </td></tr>
+    <tr><td class="paramname">throwing</td><td>Wether to throw erros like PinError or just surpress them (false to surpress) (default: true)</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="pwm_8c.html#ac3ad9f77af407aee3e35a2fc2413d19d" title="Initializes the REAL pwm pins on the Udoo. ">neo_pwm_init()</a> </dd>
+<dd>
+<a class="el" href="pwm_8c.html#a9ba92fd09e504256ce44d63db9413694" title="Sets period for a single pwm pin. ">neo_pwm_set_period()</a> </dd>
+<dd>
+<a class="el" href="pwm_8c.html#a190f359fa2bac2199ffdc9e81ad674fc" title="Sets period for all real pwm pins. ">neo_pwm_set_period_all()</a> </dd>
+<dd>
+<a class="el" href="pwm_8c.html#adc47be04e8829bade2f04edd1b4e2cff" title="Main write method for real pwm. ">neo_pwm_write()</a> </dd>
+<dd>
+<a class="el" href="pwm_8c.html#a03628a77f1f0324fb0d7aff595be98ba" title="Main function to release the real pwm. ">neo_pwm_free()</a></dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Careful to not use the same port as output as the m4 (arduino core) </dd></dl>
+
+</div>
+</div>
+<a id="a71334e70f38623a7c8df369539d53b1f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a71334e70f38623a7c8df369539d53b1f">&sect;&nbsp;</a></span>~PWM()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">neo::PWM::~PWM </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><a class="el" href="classneo_1_1PWM.html" title="The PWM class that handles all PWM controls. ">PWM</a> pin object deconstructor and pin release. </p>
+<p>This will attempt to release the objects, if specified in the constructor that when all objects are out of scope and destroyed to release all of the pins from the program</p>
+<dl class="section note"><dt>Note</dt><dd>Do not try to mix Object oriented and static usage of any Neo Object it screws it up </dd>
+<dd>
+When attempting to use both static <a class="el" href="classneo_1_1PWM.html" title="The PWM class that handles all PWM controls. ">PWM</a>::...() and obj....() make sure you use <a class="el" href="classneo_1_1PWM.html" title="The PWM class that handles all PWM controls. ">PWM</a> obj(&lt;pin&gt;, false) to not release on 0 objects </dd>
+<dd>
+When using static :: and object . at the same time, you use false on release on the object constructor and must call <a class="el" href="classneo_1_1PWM.html#a1ffd7ab08f63e2a5e0b890fe3d3cb62b" title="Static de-initializer. ">PWM::free()</a> at the end of the program </dd></dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a1ffd7ab08f63e2a5e0b890fe3d3cb62b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1ffd7ab08f63e2a5e0b890fe3d3cb62b">&sect;&nbsp;</a></span>free()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool neo::PWM::free </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>throws</em> = <code>false</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Static de-initializer. </p>
+<p>A functions that wraps the C neo_pwm_free function with some exception throwing and nice namespace conventioning.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">throws</td><td>A boolean to indicate if the object should throw an error when it fails </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="abf5b9ca599bc6e4d118a10708d40563c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abf5b9ca599bc6e4d118a10708d40563c">&sect;&nbsp;</a></span>init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool neo::PWM::init </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>throws</em> = <code>false</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Static initializer. </p>
+<p>A functions that wraps the C neo_pwm_init function with some exception throwing and nice namespace conventioning.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">throws</td><td>A boolean to indicate if the object should throw an error when it fails </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a8d3a036ea03a401c4efc4bb49ea45cac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8d3a036ea03a401c4efc4bb49ea45cac">&sect;&nbsp;</a></span>pinMode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool neo::PWM::pinMode </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>port</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>dir</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>throws</em> = <code>true</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Static setting pin mode. </p>
+<p>This will attempt to set the pin direction. Will throw error if pin or direction is wrong</p>
+<dl class="section return"><dt>Returns</dt><dd>A boolean if the operation succeded or not </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">port</td><td>The port to statically write to </td></tr>
+    <tr><td class="paramname">dir</td><td>the value to set the direction either OUTPUT (1) or INPUT (0) </td></tr>
+    <tr><td class="paramname">throws</td><td>Optional value to throw if there is an error (default: true)</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section warning"><dt>Warning</dt><dd>Do not set the same pin on the m4 to OUTPUT! </dd></dl>
+
+</div>
+</div>
+<a id="a9469e7d41d69fc3e4ccb6a959d056b22"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9469e7d41d69fc3e4ccb6a959d056b22">&sect;&nbsp;</a></span>setDir()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool neo::PWM::setDir </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>dir</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Setting the direction of the object port. </p>
+<p>This will attempt to set the direction of the pin and throw an exception if it failed to set it.</p>
+<dl class="section return"><dt>Returns</dt><dd>A boolean if the operation succeded </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dir</td><td>the value to set the direction either OUTPUT (1) or INPUT (0)</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section warning"><dt>Warning</dt><dd>Do not set the same pin on the m4 to OUTPUT! </dd></dl>
+
+</div>
+</div>
+<a id="a9ce134e90785defb9ebe08d905e2bdd7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9ce134e90785defb9ebe08d905e2bdd7">&sect;&nbsp;</a></span>setIn()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool neo::PWM::setIn </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Setting the current pin to INPUT. </p>
+<p>Attempt to set the pin to INPUT mode</p>
+<dl class="section return"><dt>Returns</dt><dd>A boolean if the operation succeded </dd></dl>
+
+</div>
+</div>
+<a id="ac9bf582553a32446bda8e0f761d6aa8b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac9bf582553a32446bda8e0f761d6aa8b">&sect;&nbsp;</a></span>setOut()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool neo::PWM::setOut </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Setting the current pin to OUTPUT. </p>
+<p>Attempt to set the pin to OUTPUT mode</p>
+<dl class="section return"><dt>Returns</dt><dd>A boolean if the operation succeded</dd></dl>
+<dl class="section warning"><dt>Warning</dt><dd>Do not set the same pin on the m4 to OUTPUT! </dd></dl>
+
+</div>
+</div>
+<a id="a2aa1af8a7f96208315f1b878f731bd37"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2aa1af8a7f96208315f1b878f731bd37">&sect;&nbsp;</a></span>write() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool neo::PWM::write </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>port</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>duty</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>throws</em> = <code>true</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Static writing to port. </p>
+<p>This will write a duty cycle to the pwm pin and throw an exception if it failed to write.</p>
+<dl class="section return"><dt>Returns</dt><dd>A boolean if the operation succeded or not </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">port</td><td>The port to statically write to </td></tr>
+    <tr><td class="paramname">duty</td><td>the duty cycle to write between 0 (off) and 255 (full) (An error will be thrown otherwise) </td></tr>
+    <tr><td class="paramname">throws</td><td>Optional value to throw if there is an error (default: true) </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a2bf3b7967e9bcb1c93701c7ede7d63c0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2bf3b7967e9bcb1c93701c7ede7d63c0">&sect;&nbsp;</a></span>write() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool neo::PWM::write </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>duty</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Writing to selected object port. </p>
+<p>This will write a duty cycle to the pwm pin and throw an exception if it failed to write.</p>
+<dl class="section return"><dt>Returns</dt><dd>A boolean if the operation succeded </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">duty</td><td>the value to write between 0 (off) and 255 (full) (An error will be thrown otherwise) </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
+<li>include/<a class="el" href="neo_8h_source.html">neo.h</a></li>
+</ul>
+</div><!-- contents -->
+
+<!-- HTML footer for doxygen 1.8.8-->
+<!-- start footer part -->
+</div>
+</div>
+</div>
+</div>
+</div>
+<hr class="footer"/><address class="footer"><small>
+Created by David Smerkous &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="neoc_small.png" style="width: auto; height: 45px;" alt="NEOC Docs generated with Doxygen"/>
+</a> Doxygen: 1.8.12
+</small></address>
+</body>
+</html>

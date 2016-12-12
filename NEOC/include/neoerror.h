@@ -443,6 +443,9 @@ to change pin state", whatType, typeError);
 				throw DutyError(pdd, 0, 255); //Default duty low is 0 and high is 255
 			case NEO_EXPORT_ERROR:
 				throw InitError(what);
+			case NEO_DIR_ERROR:
+				throw DirError(pdd);
+			case NEO_SCALE_ERROR:
 			case NEO_READ_ERROR:
 				throw ReadWriteError(what, type);
 			default: break;

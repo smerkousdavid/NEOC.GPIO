@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['analog',['Analog',['../classneo_1_1Analog.html#a3d5ab3faf071a3e306fcaf53b045cc0a',1,'neo::Analog']]]
+  ['analog',['Analog',['../classneo_1_1Analog.html#a7604d1b93727a14e7aa1c7002c02981a',1,'neo::Analog']]]
 ];

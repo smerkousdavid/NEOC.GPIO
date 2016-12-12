@@ -135,9 +135,9 @@ Inheritance diagram for neo::error::NotRootError:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a5b77eb63f097813a1fe2bcf00eed46be"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classneo_1_1error_1_1NotRootError.html#a5b77eb63f097813a1fe2bcf00eed46be">NorRootError</a> (const char *w)</td></tr>
-<tr class="memdesc:a5b77eb63f097813a1fe2bcf00eed46be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor of NorRootError.  <a href="#a5b77eb63f097813a1fe2bcf00eed46be">More...</a><br /></td></tr>
-<tr class="separator:a5b77eb63f097813a1fe2bcf00eed46be"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab46d4ef20a9189d04d24d1ac3376f2f9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classneo_1_1error_1_1NotRootError.html#ab46d4ef20a9189d04d24d1ac3376f2f9">NotRootError</a> (const char *w)</td></tr>
+<tr class="memdesc:ab46d4ef20a9189d04d24d1ac3376f2f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor of <a class="el" href="classneo_1_1error_1_1NotRootError.html" title="Thrown when the program isn&#39;t root and is trying to access a root function. ">NotRootError</a>.  <a href="#ab46d4ef20a9189d04d24d1ac3376f2f9">More...</a><br /></td></tr>
+<tr class="separator:ab46d4ef20a9189d04d24d1ac3376f2f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a21d9d075a9fce8ee98767c6c11d364d5"><td class="memItemLeft" align="right" valign="top">virtual const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classneo_1_1error_1_1NotRootError.html#a21d9d075a9fce8ee98767c6c11d364d5">what</a> () const  throw ()</td></tr>
 <tr class="memdesc:a21d9d075a9fce8ee98767c6c11d364d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">The compiled response on catch of exception or Abort.  <a href="#a21d9d075a9fce8ee98767c6c11d364d5">More...</a><br /></td></tr>
 <tr class="separator:a21d9d075a9fce8ee98767c6c11d364d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -145,9 +145,9 @@ Public Member Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Thrown when the program isn't root and is trying to access a root function. </p>
 <p>This is relatively self explanitory. When you are trying to access a root function such as the I2C temperature bricks or the <a class="el" href="classneo_1_1Analog.html" title="The Cpp Analog class to read pins A0 - A5. ">Analog</a> pins. The program will require root to read and write to these highely privileged pins </p>
-</div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="a5b77eb63f097813a1fe2bcf00eed46be"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5b77eb63f097813a1fe2bcf00eed46be">&sect;&nbsp;</a></span>NorRootError()</h2>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="ab46d4ef20a9189d04d24d1ac3376f2f9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab46d4ef20a9189d04d24d1ac3376f2f9">&sect;&nbsp;</a></span>NotRootError()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -156,7 +156,7 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">neo::error::NotRootError::NorRootError </td>
+          <td class="memname">neo::error::NotRootError::NotRootError </td>
           <td>(</td>
           <td class="paramtype">const char *&#160;</td>
           <td class="paramname"><em>w</em></td><td>)</td>
@@ -170,8 +170,8 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Constructor of NorRootError. </p>
-<p>Example usage to throw a NorRootError </p><div class="fragment"><div class="line"><span class="keywordflow">throw</span> NotRootError(<span class="stringliteral">&quot;You need root for analog reading!&quot;</span>); </div><div class="line"><span class="comment">//Couldn&#39;t read Analog (try running program as root)</span></div></div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
+<p>Constructor of <a class="el" href="classneo_1_1error_1_1NotRootError.html" title="Thrown when the program isn&#39;t root and is trying to access a root function. ">NotRootError</a>. </p>
+<p>Example usage to throw a <a class="el" href="classneo_1_1error_1_1NotRootError.html" title="Thrown when the program isn&#39;t root and is trying to access a root function. ">NotRootError</a> </p><div class="fragment"><div class="line"><span class="keywordflow">throw</span> <a class="code" href="classneo_1_1error_1_1NotRootError.html#ab46d4ef20a9189d04d24d1ac3376f2f9">NotRootError</a>(<span class="stringliteral">&quot;You need root for analog reading!&quot;</span>); </div><div class="line"><span class="comment">//Couldn&#39;t read Analog (try running program as root)</span></div></div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">w</td><td>What to say on <a class="el" href="classneo_1_1error_1_1NotRootError.html#a21d9d075a9fce8ee98767c6c11d364d5" title="The compiled response on catch of exception or Abort. ">what()</a> when the program isn't root </td></tr>
   </table>
@@ -181,6 +181,7 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<h2 class="groupheader">Member Function Documentation</h2>
 <a id="a21d9d075a9fce8ee98767c6c11d364d5"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a21d9d075a9fce8ee98767c6c11d364d5">&sect;&nbsp;</a></span>what()</h2>
 

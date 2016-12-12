@@ -114,18 +114,616 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#pub-methods">Public Member Functions</a>  </div>
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a>  </div>
   <div class="headertitle">
 <div class="title">neo::Gpio Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>The gpio class that handles all General Pin Input and Output.  
+ <a href="classneo_1_1Gpio.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="neo_8h_source.html">neo.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a6e20cb4dd01a92986b053037247da3d7"><td class="memItemLeft" align="right" valign="top"><a id="a6e20cb4dd01a92986b053037247da3d7"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>wilma</b> (int)</td></tr>
-<tr class="separator:a6e20cb4dd01a92986b053037247da3d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a41f90f1a4ed6b8ef8662b56d1b7babc2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classneo_1_1Gpio.html#a41f90f1a4ed6b8ef8662b56d1b7babc2">Gpio</a> (int port, bool release=false, bool throwing=true)</td></tr>
+<tr class="memdesc:a41f90f1a4ed6b8ef8662b56d1b7babc2"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classneo_1_1Gpio.html" title="The gpio class that handles all General Pin Input and Output. ">Gpio</a> constructor and initializer.  <a href="#a41f90f1a4ed6b8ef8662b56d1b7babc2">More...</a><br /></td></tr>
+<tr class="separator:a41f90f1a4ed6b8ef8662b56d1b7babc2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abad09bc08fc4431b2bfe762fd0982349"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classneo_1_1Gpio.html#abad09bc08fc4431b2bfe762fd0982349">~Gpio</a> ()</td></tr>
+<tr class="memdesc:abad09bc08fc4431b2bfe762fd0982349"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classneo_1_1Gpio.html" title="The gpio class that handles all General Pin Input and Output. ">Gpio</a> pin object deconstructor and pin release.  <a href="#abad09bc08fc4431b2bfe762fd0982349">More...</a><br /></td></tr>
+<tr class="separator:abad09bc08fc4431b2bfe762fd0982349"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abc240e9ce91189497d245765c3dd3293"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classneo_1_1Gpio.html#abc240e9ce91189497d245765c3dd3293">read</a> ()</td></tr>
+<tr class="memdesc:abc240e9ce91189497d245765c3dd3293"><td class="mdescLeft">&#160;</td><td class="mdescRight">Object read from initialized port.  <a href="#abc240e9ce91189497d245765c3dd3293">More...</a><br /></td></tr>
+<tr class="separator:abc240e9ce91189497d245765c3dd3293"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5ab2d6785eeed83892eb800ecfaa0e35"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classneo_1_1Gpio.html#a5ab2d6785eeed83892eb800ecfaa0e35">write</a> (int value)</td></tr>
+<tr class="memdesc:a5ab2d6785eeed83892eb800ecfaa0e35"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writing to selected object port.  <a href="#a5ab2d6785eeed83892eb800ecfaa0e35">More...</a><br /></td></tr>
+<tr class="separator:a5ab2d6785eeed83892eb800ecfaa0e35"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7cb3f594802b7cb8123d309f4e5dd500"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classneo_1_1Gpio.html#a7cb3f594802b7cb8123d309f4e5dd500">on</a> ()</td></tr>
+<tr class="memdesc:a7cb3f594802b7cb8123d309f4e5dd500"><td class="mdescLeft">&#160;</td><td class="mdescRight">Turning on the selected pin.  <a href="#a7cb3f594802b7cb8123d309f4e5dd500">More...</a><br /></td></tr>
+<tr class="separator:a7cb3f594802b7cb8123d309f4e5dd500"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac886b410a934c6c09aaabc81357d7dd7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classneo_1_1Gpio.html#ac886b410a934c6c09aaabc81357d7dd7">off</a> ()</td></tr>
+<tr class="memdesc:ac886b410a934c6c09aaabc81357d7dd7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Turning off the selected pin.  <a href="#ac886b410a934c6c09aaabc81357d7dd7">More...</a><br /></td></tr>
+<tr class="separator:ac886b410a934c6c09aaabc81357d7dd7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7a68ec1e94150fa932f6822208d8a2fd"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classneo_1_1Gpio.html#a7a68ec1e94150fa932f6822208d8a2fd">setDir</a> (int dir)</td></tr>
+<tr class="memdesc:a7a68ec1e94150fa932f6822208d8a2fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Setting the direction of the object port.  <a href="#a7a68ec1e94150fa932f6822208d8a2fd">More...</a><br /></td></tr>
+<tr class="separator:a7a68ec1e94150fa932f6822208d8a2fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad35df5c236d81f98e37fbfb3bba3a400"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classneo_1_1Gpio.html#ad35df5c236d81f98e37fbfb3bba3a400">setOut</a> ()</td></tr>
+<tr class="memdesc:ad35df5c236d81f98e37fbfb3bba3a400"><td class="mdescLeft">&#160;</td><td class="mdescRight">Setting the current pin to OUTPUT.  <a href="#ad35df5c236d81f98e37fbfb3bba3a400">More...</a><br /></td></tr>
+<tr class="separator:ad35df5c236d81f98e37fbfb3bba3a400"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acd6283226fa1779d114f08c0743179df"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classneo_1_1Gpio.html#acd6283226fa1779d114f08c0743179df">setIn</a> ()</td></tr>
+<tr class="memdesc:acd6283226fa1779d114f08c0743179df"><td class="mdescLeft">&#160;</td><td class="mdescRight">Setting the current pin to INPUT.  <a href="#acd6283226fa1779d114f08c0743179df">More...</a><br /></td></tr>
+<tr class="separator:acd6283226fa1779d114f08c0743179df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a29b2cdd8ac31533523938a72af50b693"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classneo_1_1Gpio.html#a29b2cdd8ac31533523938a72af50b693">init</a> (bool throws=false)</td></tr>
+<tr class="memdesc:a29b2cdd8ac31533523938a72af50b693"><td class="mdescLeft">&#160;</td><td class="mdescRight">Static initializer.  <a href="#a29b2cdd8ac31533523938a72af50b693">More...</a><br /></td></tr>
+<tr class="separator:a29b2cdd8ac31533523938a72af50b693"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa69fd3ba8535e52ff6e125d30507b737"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classneo_1_1Gpio.html#aa69fd3ba8535e52ff6e125d30507b737">free</a> (bool throws=false)</td></tr>
+<tr class="memdesc:aa69fd3ba8535e52ff6e125d30507b737"><td class="mdescLeft">&#160;</td><td class="mdescRight">Static de-initializer.  <a href="#aa69fd3ba8535e52ff6e125d30507b737">More...</a><br /></td></tr>
+<tr class="separator:aa69fd3ba8535e52ff6e125d30507b737"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2c5c1d426618b8339fcb1908566d6c5f"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classneo_1_1Gpio.html#a2c5c1d426618b8339fcb1908566d6c5f">read</a> (int port, bool throws=true)</td></tr>
+<tr class="memdesc:a2c5c1d426618b8339fcb1908566d6c5f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Static reading from port.  <a href="#a2c5c1d426618b8339fcb1908566d6c5f">More...</a><br /></td></tr>
+<tr class="separator:a2c5c1d426618b8339fcb1908566d6c5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a53e4500e1ba276649d3a3f770220822f"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classneo_1_1Gpio.html#a53e4500e1ba276649d3a3f770220822f">write</a> (int port, int value, bool throws=true)</td></tr>
+<tr class="memdesc:a53e4500e1ba276649d3a3f770220822f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Static writing to port.  <a href="#a53e4500e1ba276649d3a3f770220822f">More...</a><br /></td></tr>
+<tr class="separator:a53e4500e1ba276649d3a3f770220822f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acc52764b1caff541f8c69b32fbcc35b4"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classneo_1_1Gpio.html#acc52764b1caff541f8c69b32fbcc35b4">pinMode</a> (int port, int dir, bool throws=true)</td></tr>
+<tr class="memdesc:acc52764b1caff541f8c69b32fbcc35b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Static setting pin mode.  <a href="#acc52764b1caff541f8c69b32fbcc35b4">More...</a><br /></td></tr>
+<tr class="separator:acc52764b1caff541f8c69b32fbcc35b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>The gpio class that handles all General Pin Input and Output. </p>
+<p>This class is a helper to use the General Pin Input and Output. Just remember it's faster to use the C methods statically rather than the objects and new instances.</p>
+<p><br />
+Here is the example usage of the class: </p><div class="fragment"><div class="line"><span class="keywordtype">int</span> main() {</div><div class="line">  <a class="code" href="classneo_1_1Gpio.html#a41f90f1a4ed6b8ef8662b56d1b7babc2">Gpio</a> led(13); </div><div class="line">  led.setOut();</div><div class="line">  led.on();</div><div class="line">  <span class="keywordflow">return</span> 0;</div><div class="line">}</div></div><!-- fragment --><p> <br />
+</p>
+<dl class="section note"><dt>Note</dt><dd>The m4 core DOESN'T have to be disabled, you just have to be very careful about what pins you use </dd></dl>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a41f90f1a4ed6b8ef8662b56d1b7babc2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a41f90f1a4ed6b8ef8662b56d1b7babc2">&sect;&nbsp;</a></span>Gpio()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">neo::Gpio::Gpio </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>port</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>release</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>throwing</em> = <code>true</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><a class="el" href="classneo_1_1Gpio.html" title="The gpio class that handles all General Pin Input and Output. ">Gpio</a> constructor and initializer. </p>
+<p>This initializes the <a class="el" href="classneo_1_1Gpio.html" title="The gpio class that handles all General Pin Input and Output. ">Gpio</a> class in the backend this calls the C function <a class="el" href="gpio_8c.html#a93094ca0bfe1f9dd31261f73cf23f0fb" title="Initializes the GPIO controller. ">neo_gpio_init()</a> that method is static as such <a class="el" href="classneo_1_1Gpio.html#a29b2cdd8ac31533523938a72af50b693" title="Static initializer. ">Gpio::init()</a>;</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">port</td><td>The analog port (0 to 47) to load the object in </td></tr>
+    <tr><td class="paramname">release</td><td>When no more instances of the object are detected auto release (default: true) </td></tr>
+    <tr><td class="paramname">throwing</td><td>Wether to throw erros like PinError or just surpress them (false to surpress) (default: true)</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="gpio_8c.html#a93094ca0bfe1f9dd31261f73cf23f0fb" title="Initializes the GPIO controller. ">neo_gpio_init()</a> </dd>
+<dd>
+<a class="el" href="gpio_8c.html#aca1027cfa391f2cbb63a9d140caf2109" title="Sets the direction of the pin. ">neo_gpio_pin_mode()</a> </dd>
+<dd>
+<a class="el" href="gpio_8c.html#a942a136e1bc3caae6893965d6fbe266a" title="Writes either LOW or HIGH to gpio pin. ">neo_gpio_digital_write()</a> </dd>
+<dd>
+<a class="el" href="gpio_8c.html#aca55e98897dacce4f2692b43c0e93a30" title="Reads either LOW or HIGH from gpio pin. ">neo_gpio_digital_read()</a> </dd>
+<dd>
+<a class="el" href="gpio_8c.html#aa0b5e2f0333911b69e3b01558803e12e" title="Releases the gpio pins from program. ">neo_gpio_free()</a></dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Careful to not use the same port as output as the m4 (arduino core) </dd></dl>
+
+</div>
+</div>
+<a id="abad09bc08fc4431b2bfe762fd0982349"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abad09bc08fc4431b2bfe762fd0982349">&sect;&nbsp;</a></span>~Gpio()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">neo::Gpio::~Gpio </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><a class="el" href="classneo_1_1Gpio.html" title="The gpio class that handles all General Pin Input and Output. ">Gpio</a> pin object deconstructor and pin release. </p>
+<p>This will attempt to release the objects, if specified in the constructor that when all objects are out of scope and destroyed to release all of the pins from the program</p>
+<dl class="section note"><dt>Note</dt><dd>Do not try to mix Object oriented and static usage of any Neo Object it screws it up </dd>
+<dd>
+When attempting to use both static <a class="el" href="classneo_1_1Gpio.html" title="The gpio class that handles all General Pin Input and Output. ">Gpio</a>::...() and obj....() make sure you use <a class="el" href="classneo_1_1Gpio.html" title="The gpio class that handles all General Pin Input and Output. ">Gpio</a> obj(&lt;pin&gt;, false) to not release on 0 objects </dd>
+<dd>
+When using static :: and object . at the same time, you use false on release on the object constructor and must call <a class="el" href="classneo_1_1Gpio.html#aa69fd3ba8535e52ff6e125d30507b737" title="Static de-initializer. ">Gpio::free()</a> at the end of the program </dd></dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="aa69fd3ba8535e52ff6e125d30507b737"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa69fd3ba8535e52ff6e125d30507b737">&sect;&nbsp;</a></span>free()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool neo::Gpio::free </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>throws</em> = <code>false</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Static de-initializer. </p>
+<p>A functions that wraps the C neo_gpio_free function with some exception throwing and nice namespace conventioning.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">throws</td><td>A boolean to indicate if the object should throw an error when it fails </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a29b2cdd8ac31533523938a72af50b693"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a29b2cdd8ac31533523938a72af50b693">&sect;&nbsp;</a></span>init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool neo::Gpio::init </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>throws</em> = <code>false</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Static initializer. </p>
+<p>A functions that wraps the C neo_gpio_init function with some exception throwing and nice namespace conventioning.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">throws</td><td>A boolean to indicate if the object should throw an error when it fails </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ac886b410a934c6c09aaabc81357d7dd7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac886b410a934c6c09aaabc81357d7dd7">&sect;&nbsp;</a></span>off()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool neo::Gpio::off </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Turning off the selected pin. </p>
+<p>Attempt to write LOW on the selected port/pin</p>
+<dl class="section return"><dt>Returns</dt><dd>A boolean if the operation succeded </dd></dl>
+
+</div>
+</div>
+<a id="a7cb3f594802b7cb8123d309f4e5dd500"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7cb3f594802b7cb8123d309f4e5dd500">&sect;&nbsp;</a></span>on()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool neo::Gpio::on </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Turning on the selected pin. </p>
+<p>Attempt to write HIGH on the selected object port/pin</p>
+<dl class="section return"><dt>Returns</dt><dd>A boolean if the operation succeded </dd></dl>
+
+</div>
+</div>
+<a id="acc52764b1caff541f8c69b32fbcc35b4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acc52764b1caff541f8c69b32fbcc35b4">&sect;&nbsp;</a></span>pinMode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool neo::Gpio::pinMode </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>port</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>dir</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>throws</em> = <code>true</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Static setting pin mode. </p>
+<p>This will attempt to set the pin direction. Will throw error if pin or direction is wrong</p>
+<dl class="section return"><dt>Returns</dt><dd>A boolean if the operation succeded or not </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">port</td><td>The port to statically write to </td></tr>
+    <tr><td class="paramname">dir</td><td>the value to set the direction either OUTPUT (1) or INPUT (0) </td></tr>
+    <tr><td class="paramname">throws</td><td>Optional value to throw if there is an error (default: true)</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section warning"><dt>Warning</dt><dd>Do not set the same pin on the m4 to OUTPUT! </dd></dl>
+
+</div>
+</div>
+<a id="a2c5c1d426618b8339fcb1908566d6c5f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2c5c1d426618b8339fcb1908566d6c5f">&sect;&nbsp;</a></span>read() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static int neo::Gpio::read </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>port</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>throws</em> = <code>true</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Static reading from port. </p>
+<p>This will read from the gpio pin and throw an exception if it failed to read from the pin. The returned value should only ever be LOW or HIGH. Nothing will be returned when an error is thrown, if throws is false then it's always LOW;</p>
+<dl class="section return"><dt>Returns</dt><dd>An int with either a HIGH (1) or LOW (0) value </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">port</td><td>The port to statically read from </td></tr>
+    <tr><td class="paramname">throws</td><td>Optional value to throw if there is an error </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="abc240e9ce91189497d245765c3dd3293"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abc240e9ce91189497d245765c3dd3293">&sect;&nbsp;</a></span>read() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int neo::Gpio::read </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Object read from initialized port. </p>
+<p>This will read from the preset port of the object. Warning this may throw errors when failing unless you specify in the constructor to not throw errors</p>
+<dl class="section return"><dt>Returns</dt><dd>either a LOW or a HIGH </dd></dl>
+
+</div>
+</div>
+<a id="a7a68ec1e94150fa932f6822208d8a2fd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7a68ec1e94150fa932f6822208d8a2fd">&sect;&nbsp;</a></span>setDir()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool neo::Gpio::setDir </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>dir</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Setting the direction of the object port. </p>
+<p>This will attempt to set the direction of the pin and throw an exception if it failed to set it.</p>
+<dl class="section return"><dt>Returns</dt><dd>A boolean if the operation succeded </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dir</td><td>the value to set the direction either OUTPUT (1) or INPUT (0)</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section warning"><dt>Warning</dt><dd>Do not set the same pin on the m4 to OUTPUT! </dd></dl>
+
+</div>
+</div>
+<a id="acd6283226fa1779d114f08c0743179df"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acd6283226fa1779d114f08c0743179df">&sect;&nbsp;</a></span>setIn()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool neo::Gpio::setIn </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Setting the current pin to INPUT. </p>
+<p>Attempt to set the pin to INPUT mode</p>
+<dl class="section return"><dt>Returns</dt><dd>A boolean if the operation succeded </dd></dl>
+
+</div>
+</div>
+<a id="ad35df5c236d81f98e37fbfb3bba3a400"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad35df5c236d81f98e37fbfb3bba3a400">&sect;&nbsp;</a></span>setOut()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool neo::Gpio::setOut </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Setting the current pin to OUTPUT. </p>
+<p>Attempt to set the pin to OUTPUT mode</p>
+<dl class="section return"><dt>Returns</dt><dd>A boolean if the operation succeded</dd></dl>
+<dl class="section warning"><dt>Warning</dt><dd>Do not set the same pin on the m4 to OUTPUT! </dd></dl>
+
+</div>
+</div>
+<a id="a53e4500e1ba276649d3a3f770220822f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a53e4500e1ba276649d3a3f770220822f">&sect;&nbsp;</a></span>write() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool neo::Gpio::write </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>port</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>value</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>throws</em> = <code>true</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Static writing to port. </p>
+<p>This will write a value to the gpio pin and throw an exception if it failed to write.</p>
+<dl class="section return"><dt>Returns</dt><dd>A boolean if the operation succeded or not </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">port</td><td>The port to statically write to </td></tr>
+    <tr><td class="paramname">value</td><td>the value to write either HIGH (1) or LOW (0) (An error will be thrown otherwise) </td></tr>
+    <tr><td class="paramname">throws</td><td>Optional value to throw if there is an error (default: true) </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a5ab2d6785eeed83892eb800ecfaa0e35"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5ab2d6785eeed83892eb800ecfaa0e35">&sect;&nbsp;</a></span>write() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool neo::Gpio::write </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Writing to selected object port. </p>
+<p>This will write a value to the gpio pin and throw an exception if it failed to write.</p>
+<dl class="section return"><dt>Returns</dt><dd>A boolean if the operation succeded </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td>the value to write either HIGH (1) or LOW (0) (An error will be thrown otherwise) </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>include/<a class="el" href="neo_8h_source.html">neo.h</a></li>
 </ul>

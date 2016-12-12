@@ -115,6 +115,12 @@ int neo_pwm_init()
 
 	//Don't initialize twice
 	if(neo_pwm_freed == 2) {
+		//Setup cleanup on exit of application
+		if(neo_exit_set == 2) {
+			atexit(neo_free_all);
+			neo_exit_set = 1;
+		}
+	
 		FILE *eFile;
 		//Export the GPIO pin to be used with sysfs
 		eFile = fopen(PWMEXPORTPATH, "w");

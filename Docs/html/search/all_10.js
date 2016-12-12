@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['_7eanalog',['~Analog',['../classneo_1_1Analog.html#ad79ff97608070e50aca2bf4799866efb',1,'neo::Analog']]]
+  ['unusableerror',['UnusableError',['../classneo_1_1error_1_1UnusableError.html',1,'neo::error']]],
+  ['unusableerror',['UnusableError',['../classneo_1_1error_1_1UnusableError.html#ae9386beea96599f0f007d5bcba3bab61',1,'neo::error::UnusableError']]]
 ];

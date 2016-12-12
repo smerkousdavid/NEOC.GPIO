@@ -133,8 +133,11 @@ Functions</h2></td></tr>
 <tr class="memitem:af8ca2c116caf55d1de17157e3a390726"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="analog_8c.html#af8ca2c116caf55d1de17157e3a390726">neo_analog_init</a> ()</td></tr>
 <tr class="memdesc:af8ca2c116caf55d1de17157e3a390726"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the Analog iio.  <a href="#af8ca2c116caf55d1de17157e3a390726">More...</a><br /></td></tr>
 <tr class="separator:af8ca2c116caf55d1de17157e3a390726"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ace013a57254f75054c1d8981bacf57f4"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="analog_8c.html#ace013a57254f75054c1d8981bacf57f4">neo_analog_read_raw</a> (int pin)</td></tr>
+<tr class="memdesc:ace013a57254f75054c1d8981bacf57f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read raw method for analog.  <a href="#ace013a57254f75054c1d8981bacf57f4">More...</a><br /></td></tr>
+<tr class="separator:ace013a57254f75054c1d8981bacf57f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a62237a2d7468a9aee91c9efdc0934ce3"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="analog_8c.html#a62237a2d7468a9aee91c9efdc0934ce3">neo_analog_read</a> (int pin)</td></tr>
-<tr class="memdesc:a62237a2d7468a9aee91c9efdc0934ce3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Main read raw method for analog.  <a href="#a62237a2d7468a9aee91c9efdc0934ce3">More...</a><br /></td></tr>
+<tr class="memdesc:a62237a2d7468a9aee91c9efdc0934ce3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Main read, voltage return from analog pin.  <a href="#a62237a2d7468a9aee91c9efdc0934ce3">More...</a><br /></td></tr>
 <tr class="separator:a62237a2d7468a9aee91c9efdc0934ce3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1aae9b7924b859181443f6beaff2d632"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="analog_8c.html#a1aae9b7924b859181443f6beaff2d632">neo_analog_free</a> ()</td></tr>
 <tr class="memdesc:a1aae9b7924b859181443f6beaff2d632"><td class="mdescLeft">&#160;</td><td class="mdescRight">Analog freeing method.  <a href="#a1aae9b7924b859181443f6beaff2d632">More...</a><br /></td></tr>
@@ -205,7 +208,36 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Main read raw method for analog. </p>
+<p>Main read, voltage return from analog pin. </p>
+<p>This will directly read from the analog pin and give a scaled voltage return between 0 and 3.3v</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pin</td><td>The analog pin (0 to 5) to read from</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a float of (0 -&gt; 3.3)/NEO_UNUSABLE_ERROR/NEO_PIN_ERROR/NEO_READ_ERROR if it failed to read the pin</dd></dl>
+<dl class="section note"><dt>Note</dt><dd>If you have recieved the NEO_UNUSABLE_ERROR, that probably means you aren't root </dd></dl>
+
+</div>
+</div>
+<a id="ace013a57254f75054c1d8981bacf57f4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ace013a57254f75054c1d8981bacf57f4">&sect;&nbsp;</a></span>neo_analog_read_raw()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float neo_analog_read_raw </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>pin</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Read raw method for analog. </p>
 <p>This will directly read from the analog pin and give you the raw returned 12 bit value</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">

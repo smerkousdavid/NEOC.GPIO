@@ -217,17 +217,40 @@ extern "C" {
 //Auto find scale will be done
 //#define SCALEANALOG
 
+///@brief Returned on success or completion
 #define NEO_OK 0
+
+///@brief Returned on generic or unknown fail
 #define NEO_FAIL -1
+
+///@brief When pin is not within correct range (gpio that's 0 - 47)
 #define NEO_PIN_ERROR -2
+
+///@brief When the period is not valid (keep it between infinite hertz 0 and 1 Hertz)
 #define NEO_PERIOD_ERROR -3
+
+///@brief When the Duty cycle isn't valid, correct is between 0 and 255
 #define NEO_DUTY_ERROR -4
+
+///@brief When the pin is already being used, wasn't initialized or isn't plain working
 #define NEO_UNUSABLE_ERROR -5
+
+///@brief When it failed to initialize one or more pins 
 #define NEO_EXPORT_ERROR -6
+
+///@brief When it failed to initialize one or more pins because they don't exist
 #define NEO_UNUSABLE_EXPORT_ERROR -7
+
+///@brief When the direction is different from either (INPUT) 0 or (OUTPUT) 1
 #define NEO_DIR_ERROR -8
+
+///@brief When the Analog or Gpio pin don't have root permission or the kernel broke
 #define NEO_READ_ERROR -9
+
+///@brief When the Analog scaler decided to kaput and not scale analog, don't blame the programmer
 #define NEO_SCALE_ERROR -10
+
+///@brief When failed to set the builtin LED state
 #define NEO_LED_STATE_ERROR -11
 
 #ifndef DOXYGEN_SKIP
@@ -256,16 +279,23 @@ extern "C" {
 
 #endif
 
+///@brief To set the GPIO pin to output mode (Readable format)
 #define OUTPUT 1
+
+///@brief To set the GPIO pin to input mode (Readable format)
 #define INPUT 0
+
+///@brief To set the GPIO pin state to HIGH aka on
 #define HIGH 1
+
+///@brief To set the GPIO or anything pin to state LOW aka off
 #define LOW 0
 
 #ifndef DOXYGEN_SKIP
 
 #include <string.h>
 #include <stdio.h>
-
+#include <stdlib.h>
 
 #define exportL strlen(EXPORTPATH)
 #define gpioL  strlen(GPIOPATH)
@@ -281,8 +311,6 @@ extern "C" {
 #define analogRL strlen(ANALOGRAWP)
 #define analogSL strlen(ANALOGSCALEP)
 
-#endif
-
 extern const char * const GPIOPORTS[];
 extern unsigned char USABLEGPIO[];
 extern const char * const PWMPORTS[];
@@ -290,6 +318,9 @@ extern unsigned char USABLEPWM[];
 extern const char * const ANALOGPORTS[][2];
 extern unsigned char USABLEANALOG[];
 extern float ANALOGSCALE[];
+extern unsigned char neo_exit_set;
+
+#endif
 
 float neo_re_map(float, float, float, float, float);
 void neo_check_root(char const *);
@@ -339,6 +370,7 @@ int neo_led_init();
 int neo_led_set(int);
 int neo_led_on();
 int neo_led_off();
+void neo_free_all();
 
 /** \page examples Examples
  *  \tableofcontents
@@ -355,6 +387,12 @@ int neo_led_off();
  *     <UL>
  *       <LI><H3><A CLASS="examplelist" HREF="examplepwm.html">Real Write</A></H3></LI>
  *       <LI><H3><A CLASS="examplelist" HREF="examplefakepwm.html">Fake Fade</A></H3></LI>
+ *     </UL>
+ *   </DIV>
+ *  \section pwm Analog Examples
+ *   <DIV CLASS="container"> 
+ *     <UL>
+ *       <LI><H3><A CLASS="examplelist" HREF="exampleanalog.html">Analog Read</A></H3></LI>
  *     </UL>
  *   </DIV>
  */
@@ -467,10 +505,11 @@ class Analog {
 		 *
 		 * @param port The analog port (0 to 5) to load the object in
 		 * @param release When no more instances of the object are detected auto release (default: true)
+		 * @param throwing Wether to throw erros like PinError or just surpress them (false to surpress) (default: true)
 		 * 
 		 * @note The m4 core must be disabled before using this Analog class @see neo_disable_m4()
 		 */
-		Analog(int port, bool release = true, bool throwing = true) {
+		Analog(int port, bool release = false, bool throwing = true) {
 			Analog::init(_throwing); //Use static instance
 			_held = port;
 			_in_use += 1; //Update usage count
@@ -482,9 +521,8 @@ class Analog {
 		/**
 		 * @brief Analog release
 		 * 
-		 * This will attempt to release the objects, if there are no more Analog Objects in use
-		 * then this will attempt to run Analog::free(); aka neo_analog_free(); To stop this construct object with
-		 * \code{.cpp} Analog analog(<pin number>, false); //No release on deconstructor \endcode
+		 * This will attempt to release the objects, if specified in the constructor that
+		 * when all objects are out of scope and destroyed to release all of the pins from the program
 		 * 
 		 * @note Do not try to mix Object oriented and static usage of any Neo Object it screws it up
 		 * @note When attempting to use both static Analog::read(int) and obj.read() make sure you use Analog obj(<pin>, false) to not release on 0 objects
@@ -537,13 +575,14 @@ class Analog {
 		 *
 		 * @return A float with the current voltage raw resolution
 		 * @param port The port to statically read from
+		 * @param throws A boolean to indicate if the object should throw an error when it fails
 		 */
-		static float readRaw(int port, bool throws = false) {
-			float ret = neo_analog_read(port);
+		static float readRaw(int port, bool throws = true) {
+			float ret = neo_analog_read_raw(port);
 			if(throws && static_cast<int>(ret) != NEO_OK) {
-				neo::error::Handler(ret, port, 0, ANALOGPORTSL, 0, "Analog", "Failed to Read from Pin");
+				neo::error::Handler(ret, port, 0, ANALOGPORTSL, 0, "Analog", "Failed to Reading RAW from Pin");
 			}
-			return ret;
+			return (ret <= 0.0f) ? 0.0f : ret;
 		}
 
 		/**
@@ -554,9 +593,14 @@ class Analog {
 		 *
 		 * @return A float with the current voltage raw resolution
 		 * @param port The port to statically read from
+		 * @param throws A boolean to indicate if the object should throw an error when it fails
 		 */
-		static float read(int port, bool throws = false) {
-			return neo::map<float>(Analog::readRaw(port, throws), ANALOGLOW, ANALOGHIGH, 0.0f, 3.3f);
+		static float read(int port, bool throws = true) {
+			float ret = neo_analog_read(port);
+			if(throws && static_cast<int>(ret) != NEO_OK) {
+				neo::error::Handler(ret, port, 0, ANALOGPORTSL, 0, "Analog", "Failed to Reading Voltage from Pin");
+			}
+			return (ret <= 0.0f) 0.0f : ret;
 		}
 		
 		/**
@@ -593,17 +637,459 @@ class Analog {
 };
 
 short Analog::_in_use = 0; //Set no object counts
-bool Analog::_release = true; //Set to automatically release
+bool Analog::_release = false; //Set to automatically release
 
+/** @class Gpio neo.h
+ * @brief The gpio class that handles all General Pin Input and Output
+ * 
+ * This class is a helper to use the General Pin Input and Output. 
+ * Just remember it's faster to use the C methods statically rather than
+ * the objects and new instances. 
+ *
+ * <BR>Here is the example usage of the class:
+ * \code{.cpp}
+ * 
+ * int main() {
+ *   Gpio led(13); 
+ *   led.setOut();
+ *   led.on();
+ *   return 0;
+ * }
+ * \endcode
+ * <BR>
+ * 
+ * @note The m4 core DOESN'T have to be disabled, you just have to be very careful about what pins you use
+ */
 class Gpio {
 	public:
-		Gpio();
-		void wilma(int);
+		/**
+		 * @brief Gpio constructor and initializer
+		 *
+		 * This initializes the Gpio class in the backend this calls the C function
+		 * neo_gpio_init() that method is static as such Gpio::init(); 
+		 *
+		 * @param port The analog port (0 to 47) to load the object in
+		 * @param release When no more instances of the object are detected auto release (default: true)
+		 * @param throwing Wether to throw erros like PinError or just surpress them (false to surpress) (default: true)
+		 * 
+		 * @see neo_gpio_init()
+		 * @see neo_gpio_pin_mode()
+		 * @see neo_gpio_digital_write()
+		 * @see neo_gpio_digital_read()
+		 * @see neo_gpio_free() 
+		 *
+		 * @note Careful to not use the same port as output as the m4 (arduino core)
+		 */
+		Gpio(int port, bool release = false, bool throwing = true) {
+			Gpio::init(_throwing); //Use static instance
+			_held = port;
+			_throwing = throwing;
+			
+			Gpio::_in_use += 1; //Update usage count
+			Gpio::_release = release; //If any release are false all are
+		}
+
+		/**
+		 * @brief Gpio pin object deconstructor and pin release
+		 * 
+		 * This will attempt to release the objects, if specified in the constructor that
+		 * when all objects are out of scope and destroyed to release all of the pins from the program
+		 * 
+		 * @note Do not try to mix Object oriented and static usage of any Neo Object it screws it up
+		 * @note When attempting to use both static Gpio::...() and obj....() make sure you use Gpio obj(<pin>, false) to not release on 0 objects
+		 * @note When using static :: and object . at the same time, you use false on release on the object constructor and must call Gpio::free() at the end of the program
+		 */
+		~Gpio() {
+			Gpio::_in_use -= 1;
+
+			if(Gpio::_in_use == 0 && Gpio::_release) Gpio::free(_throwing);
+		}
+
+		/**
+		 * @brief Static initializer
+		 *
+		 * A functions that wraps the C neo_gpio_init function with some exception throwing
+		 * and nice namespace conventioning.
+		 *
+		 * @param throws A boolean to indicate if the object should throw an error when it fails
+		 * 
+		 */
+		static bool init(bool throws = false) {
+			int ret = neo_gpio_init();
+			if(throws && ret != NEO_OK) {
+				neo::error::Handler(ret, -1, 0, GPIOPORTSL, 0, "Gpio", "Failed to Init");
+			}
+			return ret == NEO_OK;
+		}
+
+		/**
+		 * @brief Static de-initializer
+		 *
+		 * A functions that wraps the C neo_gpio_free function with some exception throwing
+		 * and nice namespace conventioning.
+		 *
+		 * @param throws A boolean to indicate if the object should throw an error when it fails
+		 */
+		static bool free(bool throws = false) {
+			int ret = neo_gpio_free();
+			if(throws && ret != NEO_OK) {
+				neo::error::Handler(ret, -1, 0, GPIOPORTSL, 0, "Gpio", "Failed to Release");
+			}
+			return ret == NEO_OK;
+		}
+
+		/**
+		 * @brief Static reading from port
+		 *
+		 * This will read from the gpio pin and throw an exception if it failed to read from
+		 * the pin. The returned value should only ever be LOW or HIGH. Nothing will be returned when
+		 * an error is thrown, if throws is false then it's always LOW;
+		 *
+		 * @return An int with either a HIGH (1) or LOW (0) value  
+		 * @param port The port to statically read from
+		 * @param throws Optional value to throw if there is an error
+		 */
+		static int read(int port, bool throws = true) {
+			int ret = neo_gpio_digital_read(port);
+			if(throws && (ret != HIGH || ret != LOW)) {
+				neo::error::Handler(ret, port, 0, GPIOPORTSL, 0, "Gpio", "Failed to reading from Gpio Pin");
+			}
+			return (ret <= 0) ? LOW : HIGH;
+		}
+		
+		/**
+		 * @brief Object read from initialized port
+		 *
+		 * This will read from the preset port of the object. Warning this may throw
+		 * errors when failing unless you specify in the constructor to not throw errors
+		 *
+		 * @return either a LOW or a HIGH 
+		 */
+		int read() {
+			return Gpio::read(_held, _throwing);
+		}
+		
+		/**
+		 * @brief Static writing to port
+		 *
+		 * This will write a value to the gpio pin and throw an exception if it failed to write.
+		 *
+		 * @return A boolean if the operation succeded or not
+		 * @param port The port to statically write to
+		 * @param value the value to write either HIGH (1) or LOW (0) (An error will be thrown otherwise)
+		 * @param throws Optional value to throw if there is an error (default: true)
+		 */
+		static bool write(int port, int value, bool throws = true) {
+			int ret = neo_gpio_digital_write(port, value);
+			if(throws && ret != NEO_OK) {
+				neo::error::Handler(ret, port, 0, GPIOPORTSL, 0, "Gpio", "Failed to writing to Gpio Pin");
+			}
+			return ret == NEO_OK;
+		}
+		
+		/**
+		 * @brief Writing to selected object port
+		 *
+		 * This will write a value to the gpio pin and throw an exception if it failed to write.
+		 *
+		 * @return A boolean if the operation succeded 
+		 * @param value the value to write either HIGH (1) or LOW (0) (An error will be thrown otherwise)
+		 */
+		bool write(int value) {
+			return Gpio::write(_held, value, _throwing);
+		}
+		
+		/**
+		 * @brief Turning on the selected pin
+		 *
+		 * Attempt to write HIGH on the selected object port/pin
+		 *
+		 * @return A boolean if the operation succeded
+		 */
+		bool on() {
+			return this->write(HIGH);
+		}
+		
+		/**
+		 * @brief Turning off the selected pin
+		 *
+		 * Attempt to write LOW on the selected port/pin
+		 *
+		 * @return A boolean if the operation succeded
+		 */
+		bool off() {
+			return this->write(LOW);		
+		}
+		
+		/**
+		 * @brief Static setting pin mode
+		 *
+		 * This will attempt to set the pin direction. Will throw error if pin or direction is wrong
+		 *
+		 * @return A boolean if the operation succeded or not
+		 * @param port The port to statically write to
+		 * @param dir the value to set the direction either OUTPUT (1) or INPUT (0)
+		 * @param throws Optional value to throw if there is an error (default: true)
+		 *
+		 * @warning Do not set the same pin on the m4 to OUTPUT!
+		 */
+		static bool pinMode(int port, int dir, bool throws = true) {
+			int ret = neo_gpio_pin_mode(port, dir);
+			if(throws && ret != NEO_OK) {
+				neo::error::Handler(ret, port, 0, GPIOPORTSL, 0, "Gpio", "Failed to set direction of Gpio Pin");
+			}
+			return ret == NEO_OK;
+		}
+		
+		/**
+		 * @brief Setting the direction of the object port
+		 *
+		 * This will attempt to set the direction of the pin and throw an exception if it failed to set it.
+		 *
+		 * @return A boolean if the operation succeded 
+		 * @param dir the value to set the direction either OUTPUT (1) or INPUT (0)
+		 *
+		 * @warning Do not set the same pin on the m4 to OUTPUT!
+		 */
+		bool setDir(int dir) {
+			return Gpio::pinMode(_held, dir, _throwing);
+		}
+		
+		/**
+		 * @brief Setting the current pin to OUTPUT
+		 *
+		 * Attempt to set the pin to OUTPUT mode
+		 *
+		 * @return A boolean if the operation succeded
+		 *
+		 * @warning Do not set the same pin on the m4 to OUTPUT!
+		 */
+		bool setOut() {
+			return this->setDir(OUTPUT);
+		}
+		
+		/**
+		 * @brief Setting the current pin to INPUT
+		 *
+		 * Attempt to set the pin to INPUT mode
+		 *
+		 * @return A boolean if the operation succeded
+		 */
+		bool setIn() {
+			return this->setDir(INPUT);	
+		}
+
 	private:
-    	int a_;
+		int _held; //Current pin to use
+		bool _throwing;
+		static short _in_use; //Global object usage count
+		static bool _release; //Global to release on no object count
 };
+
+short Gpio::_in_use = 0; //Set no object counts
+bool Gpio::_release = false; //Set to automatically release
+
+/** @class PWM neo.h
+ * @brief The PWM class that handles all PWM controls
+ * 
+ * This class helps out with controlling the Real PWM controllers
+ * these use real timers and clocks to give really nice PWM modules and outputs.
+ * Only problem is that they're a pain to map out. So that part can get a bit tricky
+ * check out the example PWM Real page for for information
+ *
+ * <BR>Here is the example usage of the class:
+ * \code{.cpp}
+ * 
+ * int main() {
+ *   PWM pwm(0); //PWM 5 if mapped correctly 
+ *   pwm.write(127); //About half duty cycle
+ *   return 0;
+ * }
+ *
+ * \endcode
+ * <BR>
+ * 
+ * @note Be careful to not use the same pins as Gpio
+ */
+class PWM {
+	public:
+		/**
+		 * @brief PWM constructor and initializer
+		 *
+		 * This initializes the PWM class in the backend this calls the C function
+		 * neo_pwm_init() that method is static as such PWM::init(); 
+		 *
+		 * @param port The PWM port (0 to 7) to load the object in
+		 * @param release When no more instances of the object are detected auto release (default: true)
+		 * @param throwing Wether to throw erros like PinError or just surpress them (false to surpress) (default: true)
+		 * 
+		 * @see neo_pwm_init()
+		 * @see neo_pwm_set_period()
+		 * @see neo_pwm_set_period_all()
+		 * @see neo_pwm_write()
+		 * @see neo_pwm_free() 
+		 *
+		 * @note Careful to not use the same port as output as the m4 (arduino core)
+		 */
+		PWM(int port, bool release = false, bool throwing = true) {
+			PWM::init(_throwing); //Use static instance
+			_held = port;
+			_throwing = throwing;
+			
+			PWM::_in_use += 1; //Update usage count
+			PWM::_release = release; //If any release are false all are
+		}
+
+		/**
+		 * @brief PWM pin object deconstructor and pin release
+		 * 
+		 * This will attempt to release the objects, if specified in the constructor that
+		 * when all objects are out of scope and destroyed to release all of the pins from the program
+		 * 
+		 * @note Do not try to mix Object oriented and static usage of any Neo Object it screws it up
+		 * @note When attempting to use both static PWM::...() and obj....() make sure you use PWM obj(<pin>, false) to not release on 0 objects
+		 * @note When using static :: and object . at the same time, you use false on release on the object constructor and must call PWM::free() at the end of the program
+		 */
+		~PWM() {
+			PWM::_in_use -= 1;
+
+			if(PWM::_in_use == 0 && PWM::_release) PWM::free(_throwing);
+		}
+
+		/**
+		 * @brief Static initializer
+		 *
+		 * A functions that wraps the C neo_pwm_init function with some exception throwing
+		 * and nice namespace conventioning.
+		 *
+		 * @param throws A boolean to indicate if the object should throw an error when it fails
+		 * 
+		 */
+		static bool init(bool throws = false) {
+			int ret = neo_pwm_init();
+			if(throws && ret != NEO_OK) {
+				neo::error::Handler(ret, -1, 0, PWMPORTSL, 0, "PWM", "Failed to Init");
+			}
+			return ret == NEO_OK;
+		}
+
+		/**
+		 * @brief Static de-initializer
+		 *
+		 * A functions that wraps the C neo_pwm_free function with some exception throwing
+		 * and nice namespace conventioning.
+		 *
+		 * @param throws A boolean to indicate if the object should throw an error when it fails
+		 */
+		static bool free(bool throws = false) {
+			int ret = neo_pwm_free();
+			if(throws && ret != NEO_OK) {
+				neo::error::Handler(ret, -1, 0, PWMPORTSL, 0, "PWM", "Failed to Release");
+			}
+			return ret == NEO_OK;
+		}
+		
+		/**
+		 * @brief Static writing to port
+		 *
+		 * This will write a duty cycle to the pwm pin and throw an exception if it failed to write.
+		 *
+		 * @return A boolean if the operation succeded or not
+		 * @param port The port to statically write to
+		 * @param duty the duty cycle to write between 0 (off) and 255 (full) (An error will be thrown otherwise)
+		 * @param throws Optional value to throw if there is an error (default: true)
+		 */
+		static bool write(int port, int duty, bool throws = true) {
+			int ret = neo_pwm_write(port, duty);
+			if(throws && ret != NEO_OK) {
+				neo::error::Handler(ret, port, 0, PWMPORTSL, 0, "PWM", "Failed to Writing to PWM Pin");
+			}
+			return ret == NEO_OK;
+		}
+		
+		/**
+		 * @brief Writing to selected object port
+		 *
+		 * This will write a duty cycle to the pwm pin and throw an exception if it failed to write.
+		 *
+		 * @return A boolean if the operation succeded 
+		 * @param duty the value to write between 0 (off) and 255 (full) (An error will be thrown otherwise)
+		 */
+		bool write(int duty) {
+			return PWM::write(_held, duty, _throwing);
+		}
+		
+		/**
+		 * @brief Static setting pin mode
+		 *
+		 * This will attempt to set the pin direction. Will throw error if pin or direction is wrong
+		 *
+		 * @return A boolean if the operation succeded or not
+		 * @param port The port to statically write to
+		 * @param dir the value to set the direction either OUTPUT (1) or INPUT (0)
+		 * @param throws Optional value to throw if there is an error (default: true)
+		 *
+		 * @warning Do not set the same pin on the m4 to OUTPUT!
+		 */
+		static bool pinMode(int port, int dir, bool throws = true) {
+			int ret = neo_gpio_pin_mode(port, dir);
+			if(throws && ret != NEO_OK) {
+				neo::error::Handler(ret, port, 0, GPIOPORTSL, 0, "Gpio", "Failed to set direction of Gpio Pin");
+			}
+			return ret == NEO_OK;
+		}
+		
+		/**
+		 * @brief Setting the direction of the object port
+		 *
+		 * This will attempt to set the direction of the pin and throw an exception if it failed to set it.
+		 *
+		 * @return A boolean if the operation succeded 
+		 * @param dir the value to set the direction either OUTPUT (1) or INPUT (0)
+		 *
+		 * @warning Do not set the same pin on the m4 to OUTPUT!
+		 */
+		bool setDir(int dir) {
+			return Gpio::pinMode(_held, dir, _throwing);
+		}
+		
+		/**
+		 * @brief Setting the current pin to OUTPUT
+		 *
+		 * Attempt to set the pin to OUTPUT mode
+		 *
+		 * @return A boolean if the operation succeded
+		 *
+		 * @warning Do not set the same pin on the m4 to OUTPUT!
+		 */
+		bool setOut() {
+			return this->setDir(OUTPUT);
+		}
+		
+		/**
+		 * @brief Setting the current pin to INPUT
+		 *
+		 * Attempt to set the pin to INPUT mode
+		 *
+		 * @return A boolean if the operation succeded
+		 */
+		bool setIn() {
+			return this->setDir(INPUT);	
+		}
+
+	private:
+		int _held; //Current pin to use
+		bool _throwing;
+		static short _in_use; //Global object usage count
+		static bool _release; //Global to release on no object count
+};
+
+short Gpio::_in_use = 0; //Set no object counts
+bool Gpio::_release = false; //Set to automatically release
 
 }
 #endif //__cplusplus
+
+
 
 #endif //NEO_HEAD
