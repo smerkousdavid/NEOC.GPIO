@@ -262,8 +262,8 @@ int neo_analog_free()
  *         printf("\n\n");
  *         sleep(1);
  *     }
- *     neo_analog_free();
- *     printf("Done reading analog!\n");
+ *     printf("Done reading analog!\n"); //Analog already freed on program exit
+ *     //Optional: neo_analog_free(); //Anywhere
  *     return 0;
  * }
  *  \endcode

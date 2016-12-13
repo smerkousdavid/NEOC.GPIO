@@ -1020,61 +1020,52 @@ class PWM {
 		}
 		
 		/**
-		 * @brief Static setting pin mode
+		 * @brief Static setting PWM period
 		 *
-		 * This will attempt to set the pin direction. Will throw error if pin or direction is wrong
+		 * This will attempt to update the PWM period on a SINGLE PIN
 		 *
 		 * @return A boolean if the operation succeded or not
 		 * @param port The port to statically write to
-		 * @param dir the value to set the direction either OUTPUT (1) or INPUT (0)
+		 * @param the period of the pin between 1 and 100000000 (in nano seconds)
 		 * @param throws Optional value to throw if there is an error (default: true)
-		 *
-		 * @warning Do not set the same pin on the m4 to OUTPUT!
 		 */
-		static bool pinMode(int port, int dir, bool throws = true) {
-			int ret = neo_gpio_pin_mode(port, dir);
+		static bool setPeriod(int port, int period, bool throws = true) {
+			int ret = neo_pwm_set_period(port, period);
 			if(throws && ret != NEO_OK) {
-				neo::error::Handler(ret, port, 0, GPIOPORTSL, 0, "Gpio", "Failed to set direction of Gpio Pin");
+				neo::error::Handler(ret, port, 0, PWMPORTSL, 0, "PWM", "Failed to setting period on PWM Pin");
 			}
 			return ret == NEO_OK;
 		}
 		
 		/**
-		 * @brief Setting the direction of the object port
+		 * @brief Static setting of all PWM pin periods
 		 *
-		 * This will attempt to set the direction of the pin and throw an exception if it failed to set it.
+		 * This will attempt to update the PWM period on a ALL the PWM pins. This
+		 * is essentially just a for loop, but to make it easier for the lazy people.
 		 *
-		 * @return A boolean if the operation succeded 
-		 * @param dir the value to set the direction either OUTPUT (1) or INPUT (0)
-		 *
-		 * @warning Do not set the same pin on the m4 to OUTPUT!
+		 * @return A boolean if the operation succeded or not
+		 * @param the period of the pin between 1 and 100000000 (in nano seconds)
+		 * @param throws Optional value to throw if there is an error (default: true)
 		 */
-		bool setDir(int dir) {
-			return Gpio::pinMode(_held, dir, _throwing);
+		static bool setAllPeriods(int period, bool throws = true) {
+			int ret = neo_pwm_set_period_all(period);
+			if(throws && ret != NEO_OK) {
+				neo::error::Handler(ret, port, 0, PWMPORTSL, 0, "PWM", "Failed to setting period on ALL PWM Pins");
+			}
+			return ret == NEO_OK;
 		}
-		
+
 		/**
-		 * @brief Setting the current pin to OUTPUT
+		 * @brief Setting PWM period on selected object pin
 		 *
-		 * Attempt to set the pin to OUTPUT mode
+		 * This will attempt to update the PWM period on the currently selected pin
 		 *
-		 * @return A boolean if the operation succeded
-		 *
-		 * @warning Do not set the same pin on the m4 to OUTPUT!
+		 * @return A boolean if the operation succeded or not
+		 * @param the period of the pin between 1 and 100000000 (in nano seconds)
+		 * @param throws Optional value to throw if there is an error (default: true)
 		 */
-		bool setOut() {
-			return this->setDir(OUTPUT);
-		}
-		
-		/**
-		 * @brief Setting the current pin to INPUT
-		 *
-		 * Attempt to set the pin to INPUT mode
-		 *
-		 * @return A boolean if the operation succeded
-		 */
-		bool setIn() {
-			return this->setDir(INPUT);	
+		bool setPeriod(int period) {
+			return PWM::setPeriod(_held, period, _throwing);
 		}
 
 	private:
@@ -1084,8 +1075,8 @@ class PWM {
 		static bool _release; //Global to release on no object count
 };
 
-short Gpio::_in_use = 0; //Set no object counts
-bool Gpio::_release = false; //Set to automatically release
+short PWM::_in_use = 0; //Set no object counts
+bool PWM::_release = false; //Set to automatically release
 
 }
 #endif //__cplusplus
