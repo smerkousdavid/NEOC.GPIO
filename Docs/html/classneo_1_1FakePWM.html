@@ -1,0 +1,587 @@
+<!-- HTML header for doxygen 1.8.8-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <!-- For Mobile Devices -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+        <meta name="generator" content="Doxygen 1.8.12"/>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <title>NEOC: neo::FakePWM Class Reference</title>
+        <link href="tabs.css" rel="stylesheet" type="text/css"/>
+        <script type="text/javascript" src="dynsections.js"></script>
+        <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+        <link href="doxygen.css" rel="stylesheet" type="text/css" />
+        <link href="neocdoxygen.css" rel="stylesheet" type="text/css"/>
+        <link href='https://fonts.googleapis.com/css?family=Roboto+Slab' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="doxy-boot.js"></script>
+    </head>
+    <body>
+        <nav class="navbar navbar-default" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                   <a href="index.html"><img src="neoc_small.png" class="logostyle" alt="NEOC Icon" align="left"/></a>
+                   <a class="navbar-brand" href="index.html">
+                   NEOC 0.1</a>
+                </div>
+            <ul class="nav navbar-nav">
+              <li><a href="index.html">Main Page</a></li>
+              <li><a href="files.html">Files</a></li>
+              <li class="dropdown">
+                 <a href="annotated.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Data Structures<span class="caret"></span></a>
+                   <ul class="dropdown-menu">
+                      <li><a href="annotated.html">All Data Structures</a></li>
+                      <li><a href="classes.html">Classes and Index</a></li>
+                   </ul>
+              </li>
+              <li><a href="globals.html">Functions</a></li>
+                <div style="float: right;">
+                  <p class="navbar-text">By David Smerkous</p>
+		</div>
+              <li class="dropdown">
+                 <a href="examples.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Examples<span class="caret"></span></a>
+                   <ul class="dropdown-menu">
+                      <li><a href="examples.html">All Examples</a></li>
+                      <li class="menu-item dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Gpio</a>
+                          <ul class="dropdown-menu">
+                             <li class="menu-item"><a href="gpioblink.html">Blink</a></li>
+                             <li class="menu-item"><a href="gpioread.html">Read</a></li>
+                          </ul>
+                      </li>
+                      <li class="menu-item dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Pwm</a>
+                          <ul class="dropdown-menu">
+                             <li class="menu-item"><a href="examplepwm.html">Real Write</a></li>
+                             <li class="menu-item"><a href="examplefakepwm.html">Fake Fade</a></li>
+                          </ul>
+                      </li>
+                      <li class="menu-item dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Analog</a>
+                          <ul class="dropdown-menu">
+                             <li class="menu-item"><a href="exampleanalog.html">Read</a></li>
+                          </ul>
+                      </li>
+                   </ul>
+              </li>
+            </ul>
+            </div>        
+	</nav>
+        <div id="top"><!-- Other side of div is closed by doxygen! -->
+            <div class="content" id="content">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12 panel " style="padding-bottom: 15px;">
+                            <div style="margin-bottom: 15px;">
+				<div id="MSearchResultsWindow">
+				<iframe src="javascript:void(0)" frameborder="0" name="MSearchResults" id="MSearchResults">
+				</iframe>
+				</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.8.12 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Search');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>neo</b></li><li class="navelem"><a class="el" href="classneo_1_1FakePWM.html">FakePWM</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a>  </div>
+  <div class="headertitle">
+<div class="title">neo::FakePWM Class Reference</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>The <a class="el" href="classneo_1_1FakePWM.html" title="The FakePWM class that handles all FakePWM controls (GPIO) ">FakePWM</a> class that handles all <a class="el" href="classneo_1_1FakePWM.html" title="The FakePWM class that handles all FakePWM controls (GPIO) ">FakePWM</a> controls (GPIO)  
+ <a href="classneo_1_1FakePWM.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="neo_8h_source.html">neo.h</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a908acf73e7c4d7083a0c5968255ace85"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classneo_1_1FakePWM.html#a908acf73e7c4d7083a0c5968255ace85">FakePWM</a> (int port, bool release=false, bool throwing=true)</td></tr>
+<tr class="memdesc:a908acf73e7c4d7083a0c5968255ace85"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classneo_1_1PWM.html" title="The PWM class that handles all PWM controls. ">PWM</a> constructor and initializer.  <a href="#a908acf73e7c4d7083a0c5968255ace85">More...</a><br /></td></tr>
+<tr class="separator:a908acf73e7c4d7083a0c5968255ace85"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a08021dbaed0a60701d93e49df3d05151"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classneo_1_1FakePWM.html#a08021dbaed0a60701d93e49df3d05151">~FakePWM</a> ()</td></tr>
+<tr class="memdesc:a08021dbaed0a60701d93e49df3d05151"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classneo_1_1FakePWM.html" title="The FakePWM class that handles all FakePWM controls (GPIO) ">FakePWM</a> pin object deconstructor and pin release.  <a href="#a08021dbaed0a60701d93e49df3d05151">More...</a><br /></td></tr>
+<tr class="separator:a08021dbaed0a60701d93e49df3d05151"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4b659d9595a4dac03edf834228959c27"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classneo_1_1FakePWM.html#a4b659d9595a4dac03edf834228959c27">write</a> (int duty)</td></tr>
+<tr class="memdesc:a4b659d9595a4dac03edf834228959c27"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writing to selected object port.  <a href="#a4b659d9595a4dac03edf834228959c27">More...</a><br /></td></tr>
+<tr class="separator:a4b659d9595a4dac03edf834228959c27"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6116d973c591056d460c6e412b370a00"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classneo_1_1FakePWM.html#a6116d973c591056d460c6e412b370a00">write</a> (int duty, int period)</td></tr>
+<tr class="memdesc:a6116d973c591056d460c6e412b370a00"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writing to selected object port with custom period.  <a href="#a6116d973c591056d460c6e412b370a00">More...</a><br /></td></tr>
+<tr class="separator:a6116d973c591056d460c6e412b370a00"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a40b95286e2607aa05d419e8bbf380666"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classneo_1_1FakePWM.html#a40b95286e2607aa05d419e8bbf380666">setPeriod</a> (int period)</td></tr>
+<tr class="memdesc:a40b95286e2607aa05d419e8bbf380666"><td class="mdescLeft">&#160;</td><td class="mdescRight">Setting <a class="el" href="classneo_1_1PWM.html" title="The PWM class that handles all PWM controls. ">PWM</a> period on selected object pin.  <a href="#a40b95286e2607aa05d419e8bbf380666">More...</a><br /></td></tr>
+<tr class="separator:a40b95286e2607aa05d419e8bbf380666"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:aefa6da066ee59beae02a31c8086d3a11"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classneo_1_1FakePWM.html#aefa6da066ee59beae02a31c8086d3a11">init</a> (bool throws=false)</td></tr>
+<tr class="memdesc:aefa6da066ee59beae02a31c8086d3a11"><td class="mdescLeft">&#160;</td><td class="mdescRight">Static initializer.  <a href="#aefa6da066ee59beae02a31c8086d3a11">More...</a><br /></td></tr>
+<tr class="separator:aefa6da066ee59beae02a31c8086d3a11"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6e32aea3297fe512dbcedbab9453ac02"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classneo_1_1FakePWM.html#a6e32aea3297fe512dbcedbab9453ac02">free</a> (bool throws=false)</td></tr>
+<tr class="memdesc:a6e32aea3297fe512dbcedbab9453ac02"><td class="mdescLeft">&#160;</td><td class="mdescRight">Static de-initializer.  <a href="#a6e32aea3297fe512dbcedbab9453ac02">More...</a><br /></td></tr>
+<tr class="separator:a6e32aea3297fe512dbcedbab9453ac02"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a73f3163f957c4f91c7fd1979ec8b5089"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classneo_1_1FakePWM.html#a73f3163f957c4f91c7fd1979ec8b5089">write</a> (int port, int duty, bool throws=true)</td></tr>
+<tr class="memdesc:a73f3163f957c4f91c7fd1979ec8b5089"><td class="mdescLeft">&#160;</td><td class="mdescRight">Static writing to gpio port.  <a href="#a73f3163f957c4f91c7fd1979ec8b5089">More...</a><br /></td></tr>
+<tr class="separator:a73f3163f957c4f91c7fd1979ec8b5089"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5556f069849ea82c5c9db35b45961db4"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classneo_1_1FakePWM.html#a5556f069849ea82c5c9db35b45961db4">write</a> (int port, int duty, int period, bool throws=true)</td></tr>
+<tr class="memdesc:a5556f069849ea82c5c9db35b45961db4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Static writing to gpio port with temporary new period.  <a href="#a5556f069849ea82c5c9db35b45961db4">More...</a><br /></td></tr>
+<tr class="separator:a5556f069849ea82c5c9db35b45961db4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>The <a class="el" href="classneo_1_1FakePWM.html" title="The FakePWM class that handles all FakePWM controls (GPIO) ">FakePWM</a> class that handles all <a class="el" href="classneo_1_1FakePWM.html" title="The FakePWM class that handles all FakePWM controls (GPIO) ">FakePWM</a> controls (GPIO) </p>
+<p>This class helps out getting quick and dirty <a class="el" href="classneo_1_1PWM.html" title="The PWM class that handles all PWM controls. ">PWM</a> on any <a class="el" href="classneo_1_1Gpio.html" title="The gpio class that handles all General Pin Input and Output. ">Gpio</a> port with the Udoo Neo. I'm going to say this right now, the <a class="el" href="classneo_1_1PWM.html" title="The PWM class that handles all PWM controls. ">PWM</a> output on the pins are not clean at all each period cycle might be different. I just have to say, it works... It's going to do It's job easily. Since you are limited on the amount of Real <a class="el" href="classneo_1_1PWM.html" title="The PWM class that handles all PWM controls. ">PWM</a> I would recommend using <a class="el" href="classneo_1_1FakePWM.html" title="The FakePWM class that handles all FakePWM controls (GPIO) ">FakePWM</a> on things like LEDS where precision doesn't matter.</p>
+<p><br />
+Here is the example usage of the class: </p><div class="fragment"><div class="line"><span class="keywordtype">int</span> main() {</div><div class="line">  <a class="code" href="classneo_1_1FakePWM.html#a908acf73e7c4d7083a0c5968255ace85">FakePWM</a> pwm(13); <span class="comment">//Gpio pin 13 </span></div><div class="line">  pwm.write(127); <span class="comment">//About half duty cycle</span></div><div class="line">  <span class="keywordflow">return</span> 0; <span class="comment">//Auto free on exit</span></div><div class="line">}</div></div><!-- fragment --><p> <br />
+ </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a908acf73e7c4d7083a0c5968255ace85"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a908acf73e7c4d7083a0c5968255ace85">&sect;&nbsp;</a></span>FakePWM()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">neo::FakePWM::FakePWM </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>port</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>release</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>throwing</em> = <code>true</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><a class="el" href="classneo_1_1PWM.html" title="The PWM class that handles all PWM controls. ">PWM</a> constructor and initializer. </p>
+<p>This initializes the <a class="el" href="classneo_1_1PWM.html" title="The PWM class that handles all PWM controls. ">PWM</a> class in the back end this calls the C function <a class="el" href="pwm_8c.html#a3eb536e6ed5e5019b0cd57b98b1059d3" title="Initializes the FAKE pwm, p.s this is the same as neo_gpio_init. ">neo_fake_pwm_init()</a> that method is static as such <a class="el" href="classneo_1_1FakePWM.html#aefa6da066ee59beae02a31c8086d3a11" title="Static initializer. ">FakePWM::init()</a>;</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">port</td><td>The <a class="el" href="classneo_1_1Gpio.html" title="The gpio class that handles all General Pin Input and Output. ">Gpio</a> port to simulate on (0 to 47) to load the object in </td></tr>
+    <tr><td class="paramname">release</td><td>When no more instances of the object are detected auto release (default: false) </td></tr>
+    <tr><td class="paramname">throwing</td><td>Wether to throw errors like PinError or just surpress them (false to surpress) (default: true)</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="pwm_8c.html#a3eb536e6ed5e5019b0cd57b98b1059d3" title="Initializes the FAKE pwm, p.s this is the same as neo_gpio_init. ">neo_fake_pwm_init()</a> </dd>
+<dd>
+<a class="el" href="pwm_8c.html#a8af233ae9556ba1b3c26589d526e9fa6" title="Main write method for fake_pwm. ">neo_fake_pwm_write_period()</a> </dd>
+<dd>
+<a class="el" href="pwm_8c.html#a3481999a8f3514ddd7b8f357bf7234db" title="Duty write method for fake_pwm. ">neo_fake_pwm_write()</a> </dd>
+<dd>
+<a class="el" href="gpio_8c.html#aa0b5e2f0333911b69e3b01558803e12e" title="Releases the gpio pins from program. ">neo_gpio_free()</a> //That's right learn to release correctly</dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Careful to not use the same port as output as the m4 (arduino core) </dd></dl>
+
+</div>
+</div>
+<a id="a08021dbaed0a60701d93e49df3d05151"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a08021dbaed0a60701d93e49df3d05151">&sect;&nbsp;</a></span>~FakePWM()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">neo::FakePWM::~FakePWM </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><a class="el" href="classneo_1_1FakePWM.html" title="The FakePWM class that handles all FakePWM controls (GPIO) ">FakePWM</a> pin object deconstructor and pin release. </p>
+<p>This will attempt to release the objects, if specified in the constructor that when all objects are out of scope and destroyed to release all of the pins from the program</p>
+<dl class="section note"><dt>Note</dt><dd>Free needs no longer to be called since the method is called when the program exits </dd>
+<dd>
+You may call <a class="el" href="classneo_1_1FakePWM.html#a6e32aea3297fe512dbcedbab9453ac02" title="Static de-initializer. ">FakePWM::free()</a>; Whenever you wish, just remember it's auto handled now </dd></dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a6e32aea3297fe512dbcedbab9453ac02"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6e32aea3297fe512dbcedbab9453ac02">&sect;&nbsp;</a></span>free()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool neo::FakePWM::free </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>throws</em> = <code>false</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Static de-initializer. </p>
+<p>A functions that wraps the C neo_gpio_free function with some exception throwing and nice namespace conventioning.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">throws</td><td>A boolean to indicate if the object should throw an error when it fails</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section warning"><dt>Warning</dt><dd>This function will free all other gpio as well!! </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>When called the backend <a class="el" href="gpio_8c.html#aa0b5e2f0333911b69e3b01558803e12e" title="Releases the gpio pins from program. ">neo_gpio_free()</a>; is also called </dd></dl>
+
+</div>
+</div>
+<a id="aefa6da066ee59beae02a31c8086d3a11"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aefa6da066ee59beae02a31c8086d3a11">&sect;&nbsp;</a></span>init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool neo::FakePWM::init </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>throws</em> = <code>false</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Static initializer. </p>
+<p>A functions that wraps the C neo_fake_pwm_init function with some exception throwing and nice namespace conventioning.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">throws</td><td>A boolean to indicate if the object should throw an error when it fails </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a40b95286e2607aa05d419e8bbf380666"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a40b95286e2607aa05d419e8bbf380666">&sect;&nbsp;</a></span>setPeriod()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void neo::FakePWM::setPeriod </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>period</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Setting <a class="el" href="classneo_1_1PWM.html" title="The PWM class that handles all PWM controls. ">PWM</a> period on selected object pin. </p>
+<p>This will attempt to update the <a class="el" href="classneo_1_1PWM.html" title="The PWM class that handles all PWM controls. ">PWM</a> period on the currently selected pin</p>
+<dl class="section return"><dt>Returns</dt><dd>A boolean if the operation succeded or not </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">the</td><td>period of the pin between 1 and 100000000 (in nano seconds) </td></tr>
+    <tr><td class="paramname">throws</td><td>Optional value to throw if there is an error (default: true) </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a73f3163f957c4f91c7fd1979ec8b5089"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a73f3163f957c4f91c7fd1979ec8b5089">&sect;&nbsp;</a></span>write() <span class="overload">[1/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool neo::FakePWM::write </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>port</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>duty</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>throws</em> = <code>true</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Static writing to gpio port. </p>
+<p>This will write a duty cycle to the pwm pin and throw an exception if it failed to write.</p>
+<dl class="section return"><dt>Returns</dt><dd>A boolean if the operation succeded or not </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">port</td><td>The port to statically write to </td></tr>
+    <tr><td class="paramname">duty</td><td>the duty cycle to write between 0 (off) and 255 (full) (An error will be thrown otherwise) </td></tr>
+    <tr><td class="paramname">throws</td><td>Optional value to throw if there is an error (default: true) </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a5556f069849ea82c5c9db35b45961db4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5556f069849ea82c5c9db35b45961db4">&sect;&nbsp;</a></span>write() <span class="overload">[2/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool neo::FakePWM::write </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>port</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>duty</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>period</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>throws</em> = <code>true</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Static writing to gpio port with temporary new period. </p>
+<p>This will write a duty cycle and period to the gpio fake pwm pin and throw an exception if it failed to write/update.</p>
+<dl class="section return"><dt>Returns</dt><dd>A boolean if the operation succeded or not </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">port</td><td>The port to statically write to </td></tr>
+    <tr><td class="paramname">duty</td><td>the duty cycle to write between 0 (off) and 255 (full) (An error will be thrown otherwise) </td></tr>
+    <tr><td class="paramname">period</td><td>The period of the pin between 1 and 100000000 (in nano seconds) </td></tr>
+    <tr><td class="paramname">throws</td><td>Optional value to throw if there is an error (default: true) </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a4b659d9595a4dac03edf834228959c27"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4b659d9595a4dac03edf834228959c27">&sect;&nbsp;</a></span>write() <span class="overload">[3/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool neo::FakePWM::write </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>duty</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Writing to selected object port. </p>
+<p>This will write a duty cycle to the gpio fake pwm pin and throw an exception if it failed to write.</p>
+<dl class="section return"><dt>Returns</dt><dd>A boolean if the operation succeded </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">duty</td><td>the value to write between 0 (off) and 255 (full) (An error will be thrown otherwise) </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a6116d973c591056d460c6e412b370a00"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6116d973c591056d460c6e412b370a00">&sect;&nbsp;</a></span>write() <span class="overload">[4/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool neo::FakePWM::write </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>duty</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>period</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Writing to selected object port with custom period. </p>
+<p>This will write a duty cycle to the gpio fake pwm pin and throw an exception if it failed to write.</p>
+<dl class="section return"><dt>Returns</dt><dd>A boolean if the operation succeded </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">period</td><td>The period of the pin between 1 and 100000000 (in nano seconds) </td></tr>
+    <tr><td class="paramname">duty</td><td>the value to write between 0 (off) and 255 (full) (An error will be thrown otherwise) </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
+<li>include/<a class="el" href="neo_8h_source.html">neo.h</a></li>
+</ul>
+</div><!-- contents -->
+
+<!-- HTML footer for doxygen 1.8.8-->
+<!-- start footer part -->
+</div>
+</div>
+</div>
+</div>
+</div>
+<hr class="footer"/><address class="footer"><small>
+Created by David Smerkous &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="neoc_small.png" style="width: auto; height: 45px;" alt="NEOC Docs generated with Doxygen"/>
+</a> Doxygen: 1.8.12
+</small></address>
+</body>
+</html>

@@ -933,7 +933,7 @@ class PWM {
 		 * @note Careful to not use the same port as output as the m4 (arduino core)
 		 */
 		PWM(int port, bool release = false, bool throwing = true) {
-			PWM::init(throwing); //Use static instance
+			PWM::init(); //Use static instance
 			_held = port;
 			_throwing = throwing;
 			
@@ -1027,7 +1027,7 @@ class PWM {
 		 *
 		 * @return A boolean if the operation succeded or not
 		 * @param port The port to statically write to
-		 * @param the period of the pin between 1 and 100000000 (in nano seconds)
+		 * @param period The period of the pin between 1 and 100000000 (in nano seconds)
 		 * @param throws Optional value to throw if there is an error (default: true)
 		 */
 		static bool setPeriod(int port, int period, bool throws = true) {
@@ -1045,7 +1045,7 @@ class PWM {
 		 * is essentially just a for loop, but to make it easier for the lazy people.
 		 *
 		 * @return A boolean if the operation succeded or not
-		 * @param the period of the pin between 1 and 100000000 (in nano seconds)
+		 * @param period The period of the pin between 1 and 100000000 (in nano seconds)
 		 * @param throws Optional value to throw if there is an error (default: true)
 		 */
 		static bool setAllPeriods(int period, bool throws = true) {
@@ -1062,7 +1062,7 @@ class PWM {
 		 * This will attempt to update the PWM period on the currently selected pin
 		 *
 		 * @return A boolean if the operation succeded or not
-		 * @param the period of the pin between 1 and 100000000 (in nano seconds)
+		 * @param period The period of the pin between 1 and 100000000 (in nano seconds)
 		 * @param throws Optional value to throw if there is an error (default: true)
 		 */
 		bool setPeriod(int period) {
@@ -1078,6 +1078,194 @@ class PWM {
 
 short PWM::_in_use = 0; //Set no object counts
 bool PWM::_release = false; //Set to automatically release
+
+/** @class FakePWM neo.h
+ * @brief The FakePWM class that handles all FakePWM controls (GPIO)
+ * 
+ * This class helps out getting quick and dirty PWM on any Gpio port with the Udoo
+ * Neo. I'm going to say this right now, the PWM output on the pins are not clean at all
+ * each period cycle might be different. I just have to say, it works... It's going to do
+ * It's job easily. Since you are limited on the amount of Real PWM I would recommend using
+ * FakePWM on things like LEDS where precision doesn't matter.
+ *
+ * <BR>Here is the example usage of the class:
+ * \code{.cpp}
+ * 
+ * int main() {
+ *   FakePWM pwm(13); //Gpio pin 13 
+ *   pwm.write(127); //About half duty cycle
+ *   return 0; //Auto free on exit
+ * }
+ *
+ * \endcode
+ * <BR>
+ */
+class FakePWM {
+	public:
+		/**
+		 * @brief PWM constructor and initializer
+		 *
+		 * This initializes the PWM class in the back end this calls the C function
+		 * neo_fake_pwm_init() that method is static as such FakePWM::init(); 
+		 *
+		 * @param port The Gpio port to simulate on (0 to 47) to load the object in
+		 * @param release When no more instances of the object are detected auto release (default: false)
+		 * @param throwing Wether to throw errors like PinError or just surpress them (false to surpress) (default: true)
+		 * 
+		 * @see neo_fake_pwm_init()
+		 * @see neo_fake_pwm_write_period()
+		 * @see neo_fake_pwm_write()
+		 * @see neo_gpio_free() //That's right learn to release correctly
+		 *
+		 * @note Careful to not use the same port as output as the m4 (arduino core)
+		 */
+		FakePWM(int port, bool release = false, bool throwing = true) {
+			FakePWM::init(throwing); //Use static instance
+			_held = port;
+			_throwing = throwing;
+			_period = 20408; //~49KHz
+			
+			FakePWM::_in_use += 1; //Update usage count
+			FakePWM::_release = release; //If any release are false all are
+		}
+
+		/**
+		 * @brief FakePWM pin object deconstructor and pin release
+		 * 
+		 * This will attempt to release the objects, if specified in the constructor that
+		 * when all objects are out of scope and destroyed to release all of the pins from the program
+		 *
+		 * @note Free needs no longer to be called since the method is called when the program exits
+		 * @note You may call FakePWM::free(); Whenever you wish, just remember it's auto handled now
+		 */
+		~FakePWM() {
+			FakePWM::_in_use -= 1;
+
+			if(FakePWM::_in_use == 0 && FakePWM::_release) FakePWM::free();
+		}
+
+		/**
+		 * @brief Static initializer
+		 *
+		 * A functions that wraps the C neo_fake_pwm_init function with some exception throwing
+		 * and nice namespace conventioning.
+		 *
+		 * @param throws A boolean to indicate if the object should throw an error when it fails
+		 * 
+		 */
+		static bool init(bool throws = false) {
+			int ret = neo_fake_pwm_init();
+			if(throws && ret != NEO_OK) {
+				neo::error::Handler(ret, -1, 0, GPIOPORTSL, 0, "FakePWM", "Failed to Init");
+			}
+			return ret == NEO_OK;
+		}
+
+		/**
+		 * @brief Static de-initializer
+		 *
+		 * A functions that wraps the C neo_gpio_free function with some exception throwing
+		 * and nice namespace conventioning.
+		 *
+		 * @param throws A boolean to indicate if the object should throw an error when it fails
+		 *
+		 * @warning This function will free all other gpio as well!!
+		 * @note When called the backend neo_gpio_free(); is also called
+		 */
+		static bool free(bool throws = false) {
+			int ret = neo_gpio_free();
+			if(throws && ret != NEO_OK) {
+				neo::error::Handler(ret, -1, 0, GPIOPORTSL, 0, "FakePWM", "Failed to Release");
+			}
+			return ret == NEO_OK;
+		}
+		
+		/**
+		 * @brief Static writing to gpio port
+		 *
+		 * This will write a duty cycle to the pwm pin and throw an exception if it failed to write.
+		 *
+		 * @return A boolean if the operation succeded or not
+		 * @param port The port to statically write to
+		 * @param duty the duty cycle to write between 0 (off) and 255 (full) (An error will be thrown otherwise)
+		 * @param throws Optional value to throw if there is an error (default: true)
+		 */
+		static bool write(int port, int duty, bool throws = true) {
+			int ret = neo_fake_pwm_write(port, duty);
+			if(throws && ret != NEO_OK) {
+				neo::error::Handler(ret, port, 0, 255, duty, "FakePWM", "Failed to Writing to FakePWM Pin");
+			}
+			return ret == NEO_OK;
+		}
+		
+		/**
+		 * @brief Static writing to gpio port with temporary new period
+		 *
+		 * This will write a duty cycle and period to the gpio fake pwm pin and throw an exception if it failed to write/update.
+		 *
+		 * @return A boolean if the operation succeded or not
+		 * @param port The port to statically write to
+		 * @param duty the duty cycle to write between 0 (off) and 255 (full) (An error will be thrown otherwise)
+		 * @param period The period of the pin between 1 and 100000000 (in nano seconds)
+		 * @param throws Optional value to throw if there is an error (default: true)
+		 */
+		static bool write(int port, int duty, int period, bool throws = true) {
+			int ret = neo_fake_pwm_write_period(port, period, duty);
+			if(throws && ret != NEO_OK) {
+				neo::error::Handler(ret, port, 0, 255, duty, "FakePWM", "Failed to Writing to FakePWM Pin");
+			}
+			return ret == NEO_OK;
+		}
+		
+		/**
+		 * @brief Writing to selected object port
+		 *
+		 * This will write a duty cycle to the gpio fake pwm pin and throw an exception if it failed to write.
+		 *
+		 * @return A boolean if the operation succeded 
+		 * @param duty the value to write between 0 (off) and 255 (full) (An error will be thrown otherwise)
+		 */
+		bool write(int duty) {
+			return FakePWM::write(_held, duty, _period, _throwing);
+		}
+		
+		/**
+		 * @brief Writing to selected object port with custom period
+		 *
+		 * This will write a duty cycle to the gpio fake pwm pin and throw an exception if it failed to write.
+		 *
+		 * @return A boolean if the operation succeded 
+		 * @param period The period of the pin between 1 and 100000000 (in nano seconds)
+		 * @param duty the value to write between 0 (off) and 255 (full) (An error will be thrown otherwise)
+		 */
+		bool write(int duty, int period) {
+			return FakePWM::write(_held, duty, period, _throwing);
+		}
+
+		/**
+		 * @brief Setting PWM period on selected object pin
+		 *
+		 * This will attempt to update the PWM period on the currently selected pin
+		 *
+		 * @return A boolean if the operation succeded or not
+		 * @param the period of the pin between 1 and 100000000 (in nano seconds)
+		 * @param throws Optional value to throw if there is an error (default: true)
+		 */
+		void setPeriod(int period) {
+			this->_period = period;
+		}
+
+	private:
+		int _held; //Current pin to use
+		bool _throwing;
+		int _period; //The period cycle
+		static short _in_use; //Global object usage count
+		static bool _release; //Global to release on no object count
+};
+
+short FakePWM::_in_use = 0; //Set no object counts
+bool FakePWM::_release = false; //Set to automatically release
+
 
 }
 #endif //__cplusplus

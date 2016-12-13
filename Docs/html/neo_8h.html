@@ -143,6 +143,9 @@ Data Structures</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classneo_1_1PWM.html">neo::PWM</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The <a class="el" href="classneo_1_1PWM.html" title="The PWM class that handles all PWM controls. ">PWM</a> class that handles all <a class="el" href="classneo_1_1PWM.html" title="The PWM class that handles all PWM controls. ">PWM</a> controls.  <a href="classneo_1_1PWM.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classneo_1_1FakePWM.html">neo::FakePWM</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The <a class="el" href="classneo_1_1FakePWM.html" title="The FakePWM class that handles all FakePWM controls (GPIO) ">FakePWM</a> class that handles all <a class="el" href="classneo_1_1FakePWM.html" title="The FakePWM class that handles all FakePWM controls (GPIO) ">FakePWM</a> controls (GPIO)  <a href="classneo_1_1FakePWM.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
@@ -279,6 +282,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a7fbc5c9a8d977496ffcb01a195037db0"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="neo_8h.html#a7fbc5c9a8d977496ffcb01a195037db0">neo_analog_read</a> (int)</td></tr>
 <tr class="memdesc:a7fbc5c9a8d977496ffcb01a195037db0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Main read, voltage return from analog pin.  <a href="#a7fbc5c9a8d977496ffcb01a195037db0">More...</a><br /></td></tr>
 <tr class="separator:a7fbc5c9a8d977496ffcb01a195037db0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a766139d8add4b3aaa136ae14f768c83a"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="neo_8h.html#a766139d8add4b3aaa136ae14f768c83a">neo_analog_read_raw</a> (int)</td></tr>
+<tr class="memdesc:a766139d8add4b3aaa136ae14f768c83a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read raw method for analog.  <a href="#a766139d8add4b3aaa136ae14f768c83a">More...</a><br /></td></tr>
+<tr class="separator:a766139d8add4b3aaa136ae14f768c83a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1aae9b7924b859181443f6beaff2d632"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="neo_8h.html#a1aae9b7924b859181443f6beaff2d632">neo_analog_free</a> ()</td></tr>
 <tr class="memdesc:a1aae9b7924b859181443f6beaff2d632"><td class="mdescLeft">&#160;</td><td class="mdescRight">Analog freeing method.  <a href="#a1aae9b7924b859181443f6beaff2d632">More...</a><br /></td></tr>
 <tr class="separator:a1aae9b7924b859181443f6beaff2d632"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -489,6 +495,35 @@ template&lt;typename T , typename V , typename M , typename MA , typename MI , t
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a float of (0 -&gt; 3.3)/NEO_UNUSABLE_ERROR/NEO_PIN_ERROR/NEO_READ_ERROR if it failed to read the pin</dd></dl>
+<dl class="section note"><dt>Note</dt><dd>If you have recieved the NEO_UNUSABLE_ERROR, that probably means you aren't root </dd></dl>
+
+</div>
+</div>
+<a id="a766139d8add4b3aaa136ae14f768c83a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a766139d8add4b3aaa136ae14f768c83a">&sect;&nbsp;</a></span>neo_analog_read_raw()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float neo_analog_read_raw </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>pin</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Read raw method for analog. </p>
+<p>This will directly read from the analog pin and give you the raw returned 12 bit value</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pin</td><td>The analog pin (0 to 5) to read from</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a float of (0 -&gt; 4095)/NEO_UNUSABLE_ERROR/NEO_PIN_ERROR/NEO_READ_ERROR if it failed to read the pin</dd></dl>
 <dl class="section note"><dt>Note</dt><dd>If you have recieved the NEO_UNUSABLE_ERROR, that probably means you aren't root </dd></dl>
 
 </div>
