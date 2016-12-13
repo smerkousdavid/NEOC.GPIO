@@ -360,6 +360,7 @@ int neo_pwm_free();
 
 int neo_analog_init();
 float neo_analog_read(int);
+float neo_analog_read_raw(int);
 int neo_analog_free();
 
 int neo_temp_init();
@@ -530,7 +531,7 @@ class Analog {
 		~Analog() {
 			_in_use -= 1;
 
-			if(_in_use == 0 && Analog::_release) Analog::free(_throwing);
+			if(_in_use == 0 && Analog::_release) Analog::free();
 		}
 
 		/**
@@ -600,7 +601,7 @@ class Analog {
 			if(throws && static_cast<int>(ret) != NEO_OK) {
 				neo::error::Handler(ret, port, 0, ANALOGPORTSL, 0, "Analog", "Failed to Reading Voltage from Pin");
 			}
-			return (ret <= 0.0f) 0.0f : ret;
+			return (ret <= 0.0f) ? 0.0f : ret;
 		}
 		
 		/**
@@ -702,7 +703,7 @@ class Gpio {
 		~Gpio() {
 			Gpio::_in_use -= 1;
 
-			if(Gpio::_in_use == 0 && Gpio::_release) Gpio::free(_throwing);
+			if(Gpio::_in_use == 0 && Gpio::_release) Gpio::free();
 		}
 
 		/**
@@ -932,7 +933,7 @@ class PWM {
 		 * @note Careful to not use the same port as output as the m4 (arduino core)
 		 */
 		PWM(int port, bool release = false, bool throwing = true) {
-			PWM::init(_throwing); //Use static instance
+			PWM::init(throwing); //Use static instance
 			_held = port;
 			_throwing = throwing;
 			
@@ -953,7 +954,7 @@ class PWM {
 		~PWM() {
 			PWM::_in_use -= 1;
 
-			if(PWM::_in_use == 0 && PWM::_release) PWM::free(_throwing);
+			if(PWM::_in_use == 0 && PWM::_release) PWM::free();
 		}
 
 		/**
@@ -967,7 +968,7 @@ class PWM {
 		 */
 		static bool init(bool throws = false) {
 			int ret = neo_pwm_init();
-			if(throws && ret != NEO_OK) {
+			if(throws && (ret != NEO_OK && ret != NEO_UNUSABLE_ERROR)) {
 				neo::error::Handler(ret, -1, 0, PWMPORTSL, 0, "PWM", "Failed to Init");
 			}
 			return ret == NEO_OK;
@@ -1002,7 +1003,7 @@ class PWM {
 		static bool write(int port, int duty, bool throws = true) {
 			int ret = neo_pwm_write(port, duty);
 			if(throws && ret != NEO_OK) {
-				neo::error::Handler(ret, port, 0, PWMPORTSL, 0, "PWM", "Failed to Writing to PWM Pin");
+				neo::error::Handler(ret, port, 0, 255, duty, "PWM", "Failed to Writing to PWM Pin");
 			}
 			return ret == NEO_OK;
 		}
@@ -1032,7 +1033,7 @@ class PWM {
 		static bool setPeriod(int port, int period, bool throws = true) {
 			int ret = neo_pwm_set_period(port, period);
 			if(throws && ret != NEO_OK) {
-				neo::error::Handler(ret, port, 0, PWMPORTSL, 0, "PWM", "Failed to setting period on PWM Pin");
+				neo::error::Handler(ret, port, 0, 10000000, period, "PWM", "Failed to setting period on PWM Pin");
 			}
 			return ret == NEO_OK;
 		}
@@ -1050,7 +1051,7 @@ class PWM {
 		static bool setAllPeriods(int period, bool throws = true) {
 			int ret = neo_pwm_set_period_all(period);
 			if(throws && ret != NEO_OK) {
-				neo::error::Handler(ret, port, 0, PWMPORTSL, 0, "PWM", "Failed to setting period on ALL PWM Pins");
+				neo::error::Handler(ret, -1, 0, 10000000, period, "PWM", "Failed to setting period on ALL PWM Pins");
 			}
 			return ret == NEO_OK;
 		}

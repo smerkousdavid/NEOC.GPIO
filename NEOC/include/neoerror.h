@@ -431,6 +431,8 @@ to change pin state", whatType, typeError);
 		int theRet = static_cast<int>(retType); //Handle it to an int 
 		//(Some return floats, etc... just easier on this end)
 
+		//if(strlen(type) > 0 && strlen(what) > 0) printf("%s: %s\n", what, type); //If what and type aren't blank, print them
+
 		switch(theRet) {
 			case NEO_PIN_ERROR:
 				throw PinError(pin, low, high);
