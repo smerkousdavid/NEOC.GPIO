@@ -371,6 +371,7 @@ int neo_led_init();
 int neo_led_set(int);
 int neo_led_on();
 int neo_led_off();
+int neo_led_free();
 void neo_free_all();
 
 /** \page examples Examples
@@ -1350,7 +1351,7 @@ class BuiltinLED {
 		 */
 		static bool init(bool throws = false) {
 			int ret = neo_led_init();
-			if(throws && ret != NEO_OK) {nyt
+			if(throws && ret != NEO_OK) {
 				neo::error::Handler(ret, 0, 0, 0, 0, "BuiltinLED", "Failed to Init");
 			}
 			return ret == NEO_OK;
@@ -1444,7 +1445,7 @@ class BuiltinLED {
 		bool _throwing;
 };
 
-int BuiltInLed::_used = 0; //Set to not initialized
+int BuiltinLED::_used = 0; //Set to not initialized
 
 }
 #endif //__cplusplus
