@@ -1120,7 +1120,7 @@ class FakePWM {
 		 * @note Careful to not use the same port as output as the m4 (arduino core)
 		 */
 		FakePWM(int port, bool release = false, bool throwing = true) {
-			FakePWM::init(throwing); //Use static instance
+			FakePWM::init(); //Use static instance
 			_held = port;
 			_throwing = throwing;
 			_period = 20408; //~49KHz
@@ -1179,7 +1179,7 @@ class FakePWM {
 			}
 			return ret == NEO_OK;
 		}
-		
+
 		/**
 		 * @brief Static writing to gpio port
 		 *
@@ -1190,7 +1190,7 @@ class FakePWM {
 		 * @param duty the duty cycle to write between 0 (off) and 255 (full) (An error will be thrown otherwise)
 		 * @param throws Optional value to throw if there is an error (default: true)
 		 */
-		static bool write(int port, int duty, bool throws = true) {
+		static bool writeDuty(int port, int duty, bool throws = true) {
 			int ret = neo_fake_pwm_write(port, duty);
 			if(throws && ret != NEO_OK) {
 				neo::error::Handler(ret, port, 0, 255, duty, "FakePWM", "Failed to Writing to FakePWM Pin");
@@ -1209,26 +1209,14 @@ class FakePWM {
 		 * @param period The period of the pin between 1 and 100000000 (in nano seconds)
 		 * @param throws Optional value to throw if there is an error (default: true)
 		 */
-		static bool write(int port, int duty, int period, bool throws = true) {
+		static bool writePeriod(int port, int duty, int period, bool throws = true) {
 			int ret = neo_fake_pwm_write_period(port, period, duty);
 			if(throws && ret != NEO_OK) {
 				neo::error::Handler(ret, port, 0, 255, duty, "FakePWM", "Failed to Writing to FakePWM Pin");
 			}
 			return ret == NEO_OK;
 		}
-		
-		/**
-		 * @brief Writing to selected object port
-		 *
-		 * This will write a duty cycle to the gpio fake pwm pin and throw an exception if it failed to write.
-		 *
-		 * @return A boolean if the operation succeded 
-		 * @param duty The value to write between 0 (off) and 255 (full) (An error will be thrown otherwise)
-		 */
-		bool write(int duty) {
-			return FakePWM::write(_held, duty, _period, _throwing);
-		}
-		
+
 		/**
 		 * @brief Writing to selected object port with custom period
 		 *
@@ -1243,9 +1231,21 @@ class FakePWM {
 			if(setDefault) {
 				if(period > 0 && period < 1000000000) this->_period = period;
 			}
-			return FakePWM::write(_held, duty, period, _throwing);
+			return FakePWM::writePeriod(_held, duty, period, _throwing);
 		}
-
+	
+		/**
+		 * @brief Writing to selected object port
+		 *
+		 * This will write a duty cycle to the gpio fake pwm pin and throw an exception if it failed to write.
+		 *
+		 * @return A boolean if the operation succeded 
+		 * @param duty The value to write between 0 (off) and 255 (full) (An error will be thrown otherwise)
+		 */
+		bool write(int duty) {
+			return FakePWM::writePeriod(_held, duty, _period, _throwing);
+		}
+		
 		/**
 		 * @brief Setting PWM period on selected object pin
 		 *
