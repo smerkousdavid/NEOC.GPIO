@@ -8,6 +8,7 @@ FILE *neo_led_controller;
 unsigned char neo_led_freed = 2;
 
 int neo_led_init() {
+	neo_check_root("The builtin LED requires root permission!");
 	if(neo_led_freed == 2) {
 		neo_led_controller = fopen(LEDPATH, "w");
 		if(neo_led_controller == NULL) return NEO_UNUSABLE_ERROR;

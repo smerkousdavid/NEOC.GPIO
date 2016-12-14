@@ -445,16 +445,18 @@ T map(V value, M inMin, MA inMax, MI outMin, MX outMax) {
  * can be easily done with just checking the uid that the program was started in
  * This will throw a neo::error::NotRootError when it failed to load root
  *
+ * @return A boolean if it got root or not
  * @param saying The const char array of what to say when failed to get root
- *
+ * @param throwing The optional argument to either throw an error or return a bool
  * @note This won't automatically ask for a password, you either have to restart the program or setuid
  */
-void checkRoot(const char * saying) {
+bool checkRoot(const char * saying, bool throwing = true) {
 	int checked = neo_check_root_return();
  
-	if(checked != NEO_OK) {
+	if(checked != NEO_OK && throwing) {
 		throw error::NotRootError(saying);
-	}
+	} else if(checked != NEO_OK) return false;
+	return true;
 }
 
 
@@ -1316,6 +1318,178 @@ class BuiltinLED {
 		 * @note Careful to not use the same port as output as the m4 (arduino core)
 		 */
 		BuiltinLED(bool throwing = true) {
+			neo::checkRoot("BuiltinLED requires root permission", throwing);
+			if(BuiltinLED::_used < 1) {
+				BuiltinLED::init(throwing); //Use static instance
+				BuiltinLED::_used = true;
+			}
+			this->_throwing = throwing;
+			BuiltinLED::_used++;
+		}
+
+		/**
+		 * @brief The BuiltinLED release
+		 * 
+		 * This will attempt to release the LED back to the system to flash it's disk IO once again
+		 *
+		 * @note Free needs no longer to be called since the method is called when the program exits
+		 */
+		~BuiltinLED() {
+			BuiltinLED::_used--;
+		
+			if(BuiltinLED::_used < 1) {
+				BuiltinLED::free(); //Free when there are no more objects active
+			}
+		}
+
+		/**
+		 * @brief Static initializer
+		 *
+		 * A functions that wraps the C neo_led_init function with some exception throwing
+		 * and nice namespace conventioning.
+		 *
+		 * @param throws A boolean to indicate if the object should throw an error when it fails
+		 * 
+		 */
+		static bool init(bool throws = false) {
+			int ret = neo_led_init();
+			if(throws && ret != NEO_OK) {nyt
+				neo::error::Handler(ret, 0, 0, 0, 0, "BuiltinLED", "Failed to Init");
+			}
+			return ret == NEO_OK;
+		}
+
+		/**
+		 * @brief Static de-initializer
+		 *
+		 * A functions that wraps the C neo_led_free function with some exception throwing
+		 * and nice namespace conventioning.
+		 *
+		 * @param throws A boolean to indicate if the object should throw an error when it fails
+		 *
+		 * @note There is no reason to call this (it will auto call on program exit) unless you explicity
+		 * @note To release the LED
+		 */
+		static bool free(bool throws = false) {
+			int ret = neo_led_free();
+			if(throws && ret != NEO_OK) {
+				neo::error::Handler(ret, 0, 0, 0, 0, "BuiltinLED", "Failed to Release");
+			}
+			return ret == NEO_OK;
+		}
+		
+		/**
+		 * @brief Setting LED state to either on or off
+		 *
+		 * This method will either turn the led off or on via a state, statically
+		 * Example Usage:
+		 * \code{.cpp}
+		 *    BuiltinLED::set(neo::ON);
+		 * \endcod
+		 * @return A boolean if the operation succeded or not
+		 * @param state The boolean state of the LED either ON (true) or OFF (false)
+		 * @param throws Optional value to throw if there is an error (default: true)
+		 */
+		static bool set(bool state, bool throws = true) {
+			int ret = neo_led_set((int) state);
+			if(throws && ret != NEO_OK) {
+				neo::error::Handler(ret, 0, 0, 1, (int) state, "BuiltinLED", "Failed to Writing to BuiltinLED");
+			}
+			return ret == NEO_OK;
+		}
+	
+		/**
+		 * @brief Setting the LED state to either on or off
+		 *
+		 * This method will either turn the led off or on via a state, via the object (same effect as static)
+		 * Example Usage:
+		 * \code{.cpp}
+		 *    bled.set(neo::ON);
+		 * \endcode
+		 * @return A boolean if the operation succeded 
+		 * @param state The boolean state of the LED either ON (true) or OFF (false)
+		 */
+		bool set(bool state) {
+			return BuiltinLED::set(state, _throwing);
+		}
+		
+		/**
+		 * @brief Turn the BuiltinLED to on
+		 *
+		 * This method will attempt to turn the BuiltinLED on
+		 * Example Usage:
+		 * \code{.cpp}
+		 *    bled.on();
+		 * \endcode
+		 * @return A boolean if the operation succeded 
+		 */
+		bool on() {
+			return BuiltinLED::set(true, _throwing);
+		}
+		
+		/**
+		 * @brief Turn the BuiltinLED to off
+		 *
+		 * This method will attempt to turn the BuiltinLED off
+		 * Example Usage:
+		 * \code{.cpp}
+		 *    bled.off();
+		 * \endcode
+		 * @return A boolean if the operation succeded 
+		 */
+		bool off() {
+			return BuiltinLED::set(false, _throwing);
+		}
+		
+
+	private:
+		static int _used;
+		bool _throwing;
+};
+
+int BuiltInLed::_used = 0; //Set to not initialized
+
+/** @class Accel neo.h
+ * @brief A simple controller to handle the second LED on the board
+ * 
+ * This class is just a helper method to support the default non supported LED
+ * status pin on the board. By default this is the RED LED that starts flashing
+ * when you boot, this is the IO LED indicating file transfer. When using this, it will
+ * disable the LED from flashing (until the next reboot or release) and you have control
+ * over it. It's just another way of debugging stuff.
+ *
+ * <BR>Here is the example usage of the class:
+ * \code{.cpp}
+ * 
+ * int main() {
+ *   BuiltinLED led(); //Gpio pin 13 
+ *   led.on(); //Turn the builtin led to on
+ *   led.off(); //Turn the builtin led to off
+ *   return 0; //Auto free on exit
+ * }
+ *
+ * \endcode
+ * <BR>
+ */
+class BuiltinLED {
+	public:
+		/**
+		 * @brief BuiltinLED initializer to start the disabling of the LED
+		 *
+		 * This will start the BuiltinLED to the off state and there are no parameters besides
+		 * if you want exception throwing to be enabled
+		 *
+		 * @param throwing Wether to throw errors like PinError or just surpress them (false to surpress) (default: true)
+		 * 
+		 * @see neo_fake_pwm_init()
+		 * @see neo_fake_pwm_write_period()
+		 * @see neo_fake_pwm_write()
+		 * @see neo_gpio_free() //That's right learn to release correctly
+		 *
+		 * @note Careful to not use the same port as output as the m4 (arduino core)
+		 */
+		BuiltinLED(bool throwing = true) {
+			neo::checkRoot("BuiltinLED requires root permission", throwing);
 			if(BuiltinLED::_used < 1) {
 				BuiltinLED::init(throwing); //Use static instance
 				BuiltinLED::_used = true;
