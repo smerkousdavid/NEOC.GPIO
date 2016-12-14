@@ -1205,7 +1205,7 @@ class FakePWM {
 		 *
 		 * @return A boolean if the operation succeded or not
 		 * @param port The port to statically write to
-		 * @param duty the duty cycle to write between 0 (off) and 255 (full) (An error will be thrown otherwise)
+		 * @param duty The duty cycle to write between 0 (off) and 255 (full) (An error will be thrown otherwise)
 		 * @param period The period of the pin between 1 and 100000000 (in nano seconds)
 		 * @param throws Optional value to throw if there is an error (default: true)
 		 */
@@ -1223,7 +1223,7 @@ class FakePWM {
 		 * This will write a duty cycle to the gpio fake pwm pin and throw an exception if it failed to write.
 		 *
 		 * @return A boolean if the operation succeded 
-		 * @param duty the value to write between 0 (off) and 255 (full) (An error will be thrown otherwise)
+		 * @param duty The value to write between 0 (off) and 255 (full) (An error will be thrown otherwise)
 		 */
 		bool write(int duty) {
 			return FakePWM::write(_held, duty, _period, _throwing);
@@ -1236,9 +1236,13 @@ class FakePWM {
 		 *
 		 * @return A boolean if the operation succeded 
 		 * @param period The period of the pin between 1 and 100000000 (in nano seconds)
-		 * @param duty the value to write between 0 (off) and 255 (full) (An error will be thrown otherwise)
+		 * @param duty The value to write between 0 (off) and 255 (full) (An error will be thrown otherwise)
+		 * @param setDefault a boolean to overwrite the current default period(Just for this pin) (default: false)
 		 */
-		bool write(int duty, int period) {
+		bool write(int duty, int period, bool setDefault = false) {
+			if(setDefault) {
+				if(period > 0 && period < 1000000000) this->_period = period;
+			}
 			return FakePWM::write(_held, duty, period, _throwing);
 		}
 
@@ -1249,7 +1253,6 @@ class FakePWM {
 		 *
 		 * @return A boolean if the operation succeded or not
 		 * @param the period of the pin between 1 and 100000000 (in nano seconds)
-		 * @param throws Optional value to throw if there is an error (default: true)
 		 */
 		void setPeriod(int period) {
 			this->_period = period;
