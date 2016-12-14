@@ -267,7 +267,7 @@ Error"), whatType(w), pin(p) {}
 		 */
 		virtual const char * what() const throw() {
 			char * retArr = new char[350];
-			sprintf(retArr, "UnusableError: (%s) -> Pin %d is not usable, make \
+			sprintf(retArr, "UnusableError: %s ->  (%d) is not usable, make \
 sure it was initialized and it's not being used by something else. \
 Best thing to do is check documentation for reason", whatType, pin);
 			return retArr;
