@@ -26,7 +26,7 @@
  * @date 11/28/2016
  * @brief Core C file that includes base functionality used by most files
  *
- * NEOC was designed as an extremely fast way of managing the iio and pinout
+ * @details NEOC was designed as an extremely fast way of managing the iio and pinout
  * On all the Udoo NEO boards. This is supported only for NEO but all subversions
  * This library was mainly written in C with C++ mix for the reason of fake PWM.
  * Check out the repo. And other repos for bindings for this main code

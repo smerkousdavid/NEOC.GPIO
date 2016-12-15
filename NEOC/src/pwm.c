@@ -26,11 +26,10 @@
  * @date 11/28/2016
  * @brief The file that controls the real and fake pwm controllers
  *
- * This source file is the core of the FAKE PWM MANAGER which controls
+ * @details This source file is the core of the FAKE PWM MANAGER which controls
  * A threaded pwm manager on ANY gpio pin available on the board as well as
- * A real PWM access to the available pwm pins.
- * 
- * @note Please use device tree editor to view what pwm pins are available
+ * A real PWM access to the available pwm pins. Please use device tree editor 
+ * to view what pwm pins are available
  */
 
 #include <neo.h>

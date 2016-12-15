@@ -146,6 +146,12 @@ Data Structures</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classneo_1_1FakePWM.html">neo::FakePWM</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The <a class="el" href="classneo_1_1FakePWM.html" title="The FakePWM class that handles all FakePWM controls (GPIO) ">FakePWM</a> class that handles all <a class="el" href="classneo_1_1FakePWM.html" title="The FakePWM class that handles all FakePWM controls (GPIO) ">FakePWM</a> controls (GPIO)  <a href="classneo_1_1FakePWM.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classneo_1_1BuiltinLED.html">neo::BuiltinLED</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A simple controller to handle the second LED on the board.  <a href="classneo_1_1BuiltinLED.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classneo_1_1Accel.html">neo::Accel</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class to handle the builtin accelerometer.  <a href="classneo_1_1Accel.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
@@ -297,18 +303,39 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>neo_temp_read</b> ()</
 <tr class="memitem:ac8024c0abfe969b10340eaa993fa5874"><td class="memItemLeft" align="right" valign="top"><a id="ac8024c0abfe969b10340eaa993fa5874"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>neo_temp_free</b> ()</td></tr>
 <tr class="separator:ac8024c0abfe969b10340eaa993fa5874"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3ed9a341683663c3786b76bc1899eaa7"><td class="memItemLeft" align="right" valign="top"><a id="a3ed9a341683663c3786b76bc1899eaa7"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>neo_led_init</b> ()</td></tr>
+<tr class="memitem:a3ed9a341683663c3786b76bc1899eaa7"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="neo_8h.html#a3ed9a341683663c3786b76bc1899eaa7">neo_led_init</a> ()</td></tr>
+<tr class="memdesc:a3ed9a341683663c3786b76bc1899eaa7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the Builtin LED on the Udoo.  <a href="#a3ed9a341683663c3786b76bc1899eaa7">More...</a><br /></td></tr>
 <tr class="separator:a3ed9a341683663c3786b76bc1899eaa7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a803896add18540f310eab77c3e8715e5"><td class="memItemLeft" align="right" valign="top"><a id="a803896add18540f310eab77c3e8715e5"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>neo_led_set</b> (int)</td></tr>
+<tr class="memitem:a803896add18540f310eab77c3e8715e5"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="neo_8h.html#a803896add18540f310eab77c3e8715e5">neo_led_set</a> (int)</td></tr>
+<tr class="memdesc:a803896add18540f310eab77c3e8715e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the Builtin LED state.  <a href="#a803896add18540f310eab77c3e8715e5">More...</a><br /></td></tr>
 <tr class="separator:a803896add18540f310eab77c3e8715e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afbba955016081d96be48e624952d5cb7"><td class="memItemLeft" align="right" valign="top"><a id="afbba955016081d96be48e624952d5cb7"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>neo_led_on</b> ()</td></tr>
+<tr class="memitem:afbba955016081d96be48e624952d5cb7"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="neo_8h.html#afbba955016081d96be48e624952d5cb7">neo_led_on</a> ()</td></tr>
+<tr class="memdesc:afbba955016081d96be48e624952d5cb7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempts to turn the LED on.  <a href="#afbba955016081d96be48e624952d5cb7">More...</a><br /></td></tr>
 <tr class="separator:afbba955016081d96be48e624952d5cb7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4f3ad9236e5a14aad3c64ab3300a99ad"><td class="memItemLeft" align="right" valign="top"><a id="a4f3ad9236e5a14aad3c64ab3300a99ad"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>neo_led_off</b> ()</td></tr>
+<tr class="memitem:a4f3ad9236e5a14aad3c64ab3300a99ad"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="neo_8h.html#a4f3ad9236e5a14aad3c64ab3300a99ad">neo_led_off</a> ()</td></tr>
+<tr class="memdesc:a4f3ad9236e5a14aad3c64ab3300a99ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempts to turn the LED off.  <a href="#a4f3ad9236e5a14aad3c64ab3300a99ad">More...</a><br /></td></tr>
 <tr class="separator:a4f3ad9236e5a14aad3c64ab3300a99ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a242acf2926557888f2de8b1bfdb826d2"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="neo_8h.html#a242acf2926557888f2de8b1bfdb826d2">neo_led_free</a> ()</td></tr>
+<tr class="memdesc:a242acf2926557888f2de8b1bfdb826d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">De-ionitializes the Builtin LED on the Udoo.  <a href="#a242acf2926557888f2de8b1bfdb826d2">More...</a><br /></td></tr>
+<tr class="separator:a242acf2926557888f2de8b1bfdb826d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af680703b3c7c681971dc5bad49937231"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="neo_8h.html#af680703b3c7c681971dc5bad49937231">neo_accel_set_poll</a> (int)</td></tr>
+<tr class="memdesc:af680703b3c7c681971dc5bad49937231"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the update rate of the accelerometer.  <a href="#af680703b3c7c681971dc5bad49937231">More...</a><br /></td></tr>
+<tr class="separator:af680703b3c7c681971dc5bad49937231"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4b0b555f61141266935c66a3d99d9197"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="neo_8h.html#a4b0b555f61141266935c66a3d99d9197">neo_accel_init</a> ()</td></tr>
+<tr class="memdesc:a4b0b555f61141266935c66a3d99d9197"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the Builtin Accelerometer.  <a href="#a4b0b555f61141266935c66a3d99d9197">More...</a><br /></td></tr>
+<tr class="separator:a4b0b555f61141266935c66a3d99d9197"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adddd964d77c3db676205a6528d65d24a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="neo_8h.html#adddd964d77c3db676205a6528d65d24a">neo_accel_read</a> (int *, int *, int *)</td></tr>
+<tr class="memdesc:adddd964d77c3db676205a6528d65d24a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads the raw data from the accelerometer.  <a href="#adddd964d77c3db676205a6528d65d24a">More...</a><br /></td></tr>
+<tr class="separator:adddd964d77c3db676205a6528d65d24a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ecbf190e091926a8c6100d536e30a6d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="neo_8h.html#a0ecbf190e091926a8c6100d536e30a6d">neo_accel_read_calibrated</a> (int *, int *, int *)</td></tr>
+<tr class="memdesc:a0ecbf190e091926a8c6100d536e30a6d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads the calibrated data from the accelerometer.  <a href="#a0ecbf190e091926a8c6100d536e30a6d">More...</a><br /></td></tr>
+<tr class="separator:a0ecbf190e091926a8c6100d536e30a6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac5c44cbdfe94e4f09da48da9d50b2a94"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="neo_8h.html#ac5c44cbdfe94e4f09da48da9d50b2a94">neo_accel_calibrate</a> (int, int)</td></tr>
+<tr class="memdesc:ac5c44cbdfe94e4f09da48da9d50b2a94"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calibrate the accelerometer over a period of time.  <a href="#ac5c44cbdfe94e4f09da48da9d50b2a94">More...</a><br /></td></tr>
+<tr class="separator:ac5c44cbdfe94e4f09da48da9d50b2a94"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab501710072f7a18dd294b558cc7fbbb0"><td class="memItemLeft" align="right" valign="top"><a id="ab501710072f7a18dd294b558cc7fbbb0"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>neo_accel_free</b> ()</td></tr>
+<tr class="separator:ab501710072f7a18dd294b558cc7fbbb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a99e52233aaddde682c0d02947174431a"><td class="memItemLeft" align="right" valign="top"><a id="a99e52233aaddde682c0d02947174431a"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>neo_free_all</b> ()</td></tr>
 <tr class="separator:a99e52233aaddde682c0d02947174431a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -316,9 +343,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>neo_free_all</b> ()</
 <tr class="memitem:a9d029c04adaabf18bc07bb6187fcf80c"><td class="memTemplItemLeft" align="right" valign="top">T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="neo_8h.html#a9d029c04adaabf18bc07bb6187fcf80c">neo::map</a> (V value, M inMin, MA inMax, MI outMin, MX outMax)</td></tr>
 <tr class="memdesc:a9d029c04adaabf18bc07bb6187fcf80c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Arduino based linear remapping.  <a href="neo_8h.html#a9d029c04adaabf18bc07bb6187fcf80c">More...</a><br /></td></tr>
 <tr class="separator:a9d029c04adaabf18bc07bb6187fcf80c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9ef13b146a526d8dd9934330faa2974a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="neo_8h.html#a9ef13b146a526d8dd9934330faa2974a">neo::checkRoot</a> (const char *saying)</td></tr>
-<tr class="memdesc:a9ef13b146a526d8dd9934330faa2974a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks for root permission.  <a href="neo_8h.html#a9ef13b146a526d8dd9934330faa2974a">More...</a><br /></td></tr>
-<tr class="separator:a9ef13b146a526d8dd9934330faa2974a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aacf2090b672c53e8f594b82cf91af75c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="neo_8h.html#aacf2090b672c53e8f594b82cf91af75c">neo::checkRoot</a> (const char *saying, bool throwing=true)</td></tr>
+<tr class="memdesc:aacf2090b672c53e8f594b82cf91af75c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks for root permission.  <a href="neo_8h.html#aacf2090b672c53e8f594b82cf91af75c">More...</a><br /></td></tr>
+<tr class="separator:aacf2090b672c53e8f594b82cf91af75c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a14e09f724b7ff1441e895ddeb8c1b3c9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="neo_8h.html#a14e09f724b7ff1441e895ddeb8c1b3c9">neo::setM4</a> (bool enabled)</td></tr>
 <tr class="memdesc:a14e09f724b7ff1441e895ddeb8c1b3c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables or Disables the m4.  <a href="neo_8h.html#a14e09f724b7ff1441e895ddeb8c1b3c9">More...</a><br /></td></tr>
 <tr class="separator:a14e09f724b7ff1441e895ddeb8c1b3c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -329,6 +356,10 @@ Variables</h2></td></tr>
 <tr class="separator:ab8692d25ca7d5f7abfbfcb6701d95822"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a681e0f3cf9de04095fd53358fac6ea4a"><td class="memItemLeft" align="right" valign="top">const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="neo_8h.html#a681e0f3cf9de04095fd53358fac6ea4a">neo::DISABLED</a> = false</td></tr>
 <tr class="separator:a681e0f3cf9de04095fd53358fac6ea4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abb3215f7b1cefb87c23881a803131b03"><td class="memItemLeft" align="right" valign="top">const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="neo_8h.html#abb3215f7b1cefb87c23881a803131b03">neo::ON</a> = true</td></tr>
+<tr class="separator:abb3215f7b1cefb87c23881a803131b03"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a72e86b916b328487b904b35be38650a4"><td class="memItemLeft" align="right" valign="top">const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="neo_8h.html#a72e86b916b328487b904b35be38650a4">neo::OFF</a> = false</td></tr>
+<tr class="separator:a72e86b916b328487b904b35be38650a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Header file (C/C++) that includes all functions for the libneo.so. </p>
@@ -338,27 +369,39 @@ Variables</h2></td></tr>
 <dd>
 <a href="https://github.com/smerkousdavid/Neo.GPIO">https://github.com/smerkousdavid/Neo.GPIO</a> </dd></dl>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a id="file_a9ef13b146a526d8dd9934330faa2974a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#file_a9ef13b146a526d8dd9934330faa2974a">&sect;&nbsp;</a></span>checkRoot()</h2>
+<a id="file_aacf2090b672c53e8f594b82cf91af75c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#file_aacf2090b672c53e8f594b82cf91af75c">&sect;&nbsp;</a></span>checkRoot()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void neo::checkRoot </td>
+          <td class="memname">bool neo::checkRoot </td>
           <td>(</td>
           <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>saying</em></td><td>)</td>
+          <td class="paramname"><em>saying</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>throwing</em> = <code>true</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Checks for root permission. </p>
 <p>Some functions and aspect of the neo library REQUIRE root permission. This can be easily done with just checking the uid that the program was started in This will throw a <a class="el" href="classneo_1_1error_1_1NotRootError.html" title="Thrown when the program isn&#39;t root and is trying to access a root function. ">neo::error::NotRootError</a> when it failed to load root</p>
+<dl class="section return"><dt>Returns</dt><dd>A boolean if it got root or not </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">saying</td><td>The const char array of what to say when failed to get root</td></tr>
+    <tr><td class="paramname">saying</td><td>The const char array of what to say when failed to get root </td></tr>
+    <tr><td class="paramname">throwing</td><td>The optional argument to either throw an error or return a bool </td></tr>
   </table>
   </dd>
 </dl>
@@ -424,6 +467,192 @@ template&lt;typename T , typename V , typename M , typename MA , typename MI , t
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The provided type of the new scaled value </dd></dl>
+
+</div>
+</div>
+<a id="ac5c44cbdfe94e4f09da48da9d50b2a94"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac5c44cbdfe94e4f09da48da9d50b2a94">&sect;&nbsp;</a></span>neo_accel_calibrate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int neo_accel_calibrate </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>samples</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>delayEach</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Calibrate the accelerometer over a period of time. </p>
+<p>This will calibrate the accelerometer and try to set all the axis to 0. Make sure The Udoo is not moving during this time to get a proper zeroed calibration.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">samples</td><td>The amount of samples to take </td></tr>
+    <tr><td class="paramname">delayEach</td><td>The amount of millisecond delays between each sample </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>NEO_OK or NEO_UNUSABLE error if something went wrong</dd></dl>
+<dl class="section note"><dt>Note</dt><dd>The total time can be calculated via samples * delayEach equals total millis </dd></dl>
+
+</div>
+</div>
+<a id="a4b0b555f61141266935c66a3d99d9197"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4b0b555f61141266935c66a3d99d9197">&sect;&nbsp;</a></span>neo_accel_init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int neo_accel_init </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initializes the Builtin Accelerometer. </p>
+<p>Attacht the Builtin Accelerometer to the program for reading. The setPoll may be called anytime AFTER the init method. Just remember to set it since it's consistent with the kernel on reboot!</p>
+<dl class="section return"><dt>Returns</dt><dd>NEO_OK or NEO_UNUSABLE error if something went wrong</dd></dl>
+<dl class="section warning"><dt>Warning</dt><dd>Please use ROOT when running this and not just sudo </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>To run as root try sudo su and then run it or sudo su -c './a.out' </dd></dl>
+
+</div>
+</div>
+<a id="adddd964d77c3db676205a6528d65d24a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adddd964d77c3db676205a6528d65d24a">&sect;&nbsp;</a></span>neo_accel_read()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int neo_accel_read </td>
+          <td>(</td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>z</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Reads the raw data from the accelerometer. </p>
+<p>This will read the raw CURRENTLY updated data from the accelerometer make sure you update the pollRate to get the most updated values. Be careful the faster the poll rate the faster the accel values reset to 0, making the differencials a lot smaller.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>A pointer to the X value of the accelerometer </td></tr>
+    <tr><td class="paramname">Y</td><td>A pointer to the Y value of the accelerometer </td></tr>
+    <tr><td class="paramname">Z</td><td>A pointer to the Z value of the accelerometer </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>NEO_OK or NEO_UNUSABLE error if something went wrong</dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Set the poll rate to the same amount of delay you accel_read </dd></dl>
+
+</div>
+</div>
+<a id="a0ecbf190e091926a8c6100d536e30a6d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0ecbf190e091926a8c6100d536e30a6d">&sect;&nbsp;</a></span>neo_accel_read_calibrated()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int neo_accel_read_calibrated </td>
+          <td>(</td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>z</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Reads the calibrated data from the accelerometer. </p>
+<p>This will read the raw CURRENTLY updated and calibrated data from the accelerometer make sure you update the pollRate to get the most updated values. Be careful the faster the poll rate the faster the accel values reset to 0, making the differencials a lot smaller. The calibration method must be called to actually do anything, if it's not called there is no point in calling this method.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>A pointer to the X value of the accelerometer (calibrated) </td></tr>
+    <tr><td class="paramname">Y</td><td>A pointer to the Y value of the accelerometer (calibrated) </td></tr>
+    <tr><td class="paramname">Z</td><td>A pointer to the Z value of the accelerometer (calibrated) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>NEO_OK or NEO_UNUSABLE error if something went wrong</dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Set the poll rate to the same amount of delay you accel_read_calibrated </dd></dl>
+
+</div>
+</div>
+<a id="af680703b3c7c681971dc5bad49937231"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af680703b3c7c681971dc5bad49937231">&sect;&nbsp;</a></span>neo_accel_set_poll()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int neo_accel_set_poll </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>rate</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the update rate of the accelerometer. </p>
+<p>Usually you will probably run your code within some type of loop that runs on forever. Well obviously that you are probably using the accelerometer you are using a loop. Check the delay on that loop and set it to the rate below! If you make the pull too fast the accelerometer will reset its values, if you pull too slow then the values you pull might be the same when you pull again. Try making the value slightly higher than what you pull, it will save you some processing</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">rate</td><td>The milliseconds to pull the new value, every loop </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>NEO_OK or NEO_UNUSABLE error if something went wrong</dd></dl>
+<dl class="section note"><dt>Note</dt><dd>This would be way better if ran as root rather than sudo </dd></dl>
 
 </div>
 </div>
@@ -861,6 +1090,121 @@ NEO_UNUSABLE_ERROR might return if the pin is unusable </dd></dl>
 
 </div>
 </div>
+<a id="a242acf2926557888f2de8b1bfdb826d2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a242acf2926557888f2de8b1bfdb826d2">&sect;&nbsp;</a></span>neo_led_free()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int neo_led_free </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>De-ionitializes the Builtin LED on the Udoo. </p>
+<p>This will remove the LED from the program space and return it to the system</p>
+<dl class="section return"><dt>Returns</dt><dd>NEO_OK or NEO_UNUSABLE error if something went wrong </dd></dl>
+
+</div>
+</div>
+<a id="a3ed9a341683663c3786b76bc1899eaa7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3ed9a341683663c3786b76bc1899eaa7">&sect;&nbsp;</a></span>neo_led_init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int neo_led_init </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initializes the Builtin LED on the Udoo. </p>
+<p>This will attach the Builtin LED to the current program</p>
+<dl class="section return"><dt>Returns</dt><dd>NEO_OK or NEO_UNUSABLE error if something went wrong</dd></dl>
+<dl class="section warning"><dt>Warning</dt><dd>When using this you must be ROOT not sudo but the user root </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>To run as root try sudo su and then run it or sudo su -c './a.out' </dd></dl>
+
+</div>
+</div>
+<a id="a4f3ad9236e5a14aad3c64ab3300a99ad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4f3ad9236e5a14aad3c64ab3300a99ad">&sect;&nbsp;</a></span>neo_led_off()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int neo_led_off </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Attempts to turn the LED off. </p>
+<p>This calls the neo_led_set in the backend with the parameter 0</p>
+<dl class="section return"><dt>Returns</dt><dd>NEO_OK or NEO_UNUSABLE error if something went wrong </dd></dl>
+
+</div>
+</div>
+<a id="afbba955016081d96be48e624952d5cb7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afbba955016081d96be48e624952d5cb7">&sect;&nbsp;</a></span>neo_led_on()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int neo_led_on </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Attempts to turn the LED on. </p>
+<p>This calls the neo_led_set in the backend with the parameter 1</p>
+<dl class="section return"><dt>Returns</dt><dd>NEO_OK or NEO_UNUSABLE error if something went wrong </dd></dl>
+
+</div>
+</div>
+<a id="a803896add18540f310eab77c3e8715e5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a803896add18540f310eab77c3e8715e5">&sect;&nbsp;</a></span>neo_led_set()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int neo_led_set </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>state</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the Builtin LED state. </p>
+<p>This will remove the LED from the program space and return it to the system</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">state</td><td>The LED state to set it to either LOW (0) aka off or HIGH (1) aka on</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>NEO_OK/NEO_UNUSABLE or NEO_LED_STATE_ERROR if something went wrong</dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Anything besides a 0 or 1 for the led state will return NEO_LED_STATE_ERROR </dd></dl>
+
+</div>
+</div>
 <a id="a03628a77f1f0324fb0d7aff595be98ba"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a03628a77f1f0324fb0d7aff595be98ba">&sect;&nbsp;</a></span>neo_pwm_free()</h2>
 
@@ -1170,6 +1514,36 @@ NEO_UNUSABLE_ERROR might be returned if that pin doesn't support PWM or it's not
       </table>
 </div><div class="memdoc">
 <p>The core enabling flag aka true </p>
+
+</div>
+</div>
+<a id="file_a72e86b916b328487b904b35be38650a4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#file_a72e86b916b328487b904b35be38650a4">&sect;&nbsp;</a></span>OFF</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const bool neo::OFF = false</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>The generic OFF state flag aka false </p>
+
+</div>
+</div>
+<a id="file_abb3215f7b1cefb87c23881a803131b03"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#file_abb3215f7b1cefb87c23881a803131b03">&sect;&nbsp;</a></span>ON</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const bool neo::ON = true</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>The generic ON state flag aka true </p>
 
 </div>
 </div>

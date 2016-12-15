@@ -1,9 +1,7 @@
 var searchData=
 [
-  ['setallperiods',['setAllPeriods',['../classneo_1_1PWM.html#aa10c41c6b8b8dc3be75995aad2b7785c',1,'neo::PWM']]],
-  ['setdir',['setDir',['../classneo_1_1Gpio.html#a7a68ec1e94150fa932f6822208d8a2fd',1,'neo::Gpio']]],
-  ['setin',['setIn',['../classneo_1_1Gpio.html#acd6283226fa1779d114f08c0743179df',1,'neo::Gpio']]],
-  ['setm4',['setM4',['../neo_8h.html#a14e09f724b7ff1441e895ddeb8c1b3c9',1,'neo']]],
-  ['setout',['setOut',['../classneo_1_1Gpio.html#ad35df5c236d81f98e37fbfb3bba3a400',1,'neo::Gpio']]],
-  ['setperiod',['setPeriod',['../classneo_1_1PWM.html#a5736a28fbce2b7383b35d56f7df0beec',1,'neo::PWM::setPeriod(int port, int period, bool throws=true)'],['../classneo_1_1PWM.html#a9f17a611856afb7aab293fe57eac53ab',1,'neo::PWM::setPeriod(int period)'],['../classneo_1_1FakePWM.html#a40b95286e2607aa05d419e8bbf380666',1,'neo::FakePWM::setPeriod()']]]
+  ['read',['read',['../classneo_1_1Analog.html#a1b399f0e9b6161db420c5c7aee1cafaf',1,'neo::Analog::read(int port, bool throws=true)'],['../classneo_1_1Analog.html#ae417fc1a42bba539672d65c3ec0914f3',1,'neo::Analog::read()'],['../classneo_1_1Gpio.html#a2c5c1d426618b8339fcb1908566d6c5f',1,'neo::Gpio::read(int port, bool throws=true)'],['../classneo_1_1Gpio.html#abc240e9ce91189497d245765c3dd3293',1,'neo::Gpio::read()'],['../classneo_1_1Accel.html#aa8018be71061c2776b9f814e417fbebc',1,'neo::Accel::read(int *x, int *y, int *z, bool throws=true)'],['../classneo_1_1Accel.html#aa491d2bc8285806a4b0388a7291c4e3c',1,'neo::Accel::read(int *x, int *y, int *z, bool throws=true)']]],
+  ['readcal',['readCal',['../classneo_1_1Accel.html#af2134bdfa1ac1a229088e6894e0f0a73',1,'neo::Accel']]],
+  ['readraw',['readRaw',['../classneo_1_1Analog.html#a08332380ad37859860cceea3332140f5',1,'neo::Analog::readRaw(int port, bool throws=true)'],['../classneo_1_1Analog.html#acf2bcc5ee7d0a4009448261d6a4cb03f',1,'neo::Analog::readRaw()']]],
+  ['readwriteerror',['ReadWriteError',['../classneo_1_1error_1_1ReadWriteError.html#a01d51146c1fb925cfaa5666d96516142',1,'neo::error::ReadWriteError']]]
 ];

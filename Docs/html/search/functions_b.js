@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['read',['read',['../classneo_1_1Analog.html#a1b399f0e9b6161db420c5c7aee1cafaf',1,'neo::Analog::read(int port, bool throws=true)'],['../classneo_1_1Analog.html#ae417fc1a42bba539672d65c3ec0914f3',1,'neo::Analog::read()'],['../classneo_1_1Gpio.html#a2c5c1d426618b8339fcb1908566d6c5f',1,'neo::Gpio::read(int port, bool throws=true)'],['../classneo_1_1Gpio.html#abc240e9ce91189497d245765c3dd3293',1,'neo::Gpio::read()']]],
-  ['readraw',['readRaw',['../classneo_1_1Analog.html#a08332380ad37859860cceea3332140f5',1,'neo::Analog::readRaw(int port, bool throws=true)'],['../classneo_1_1Analog.html#acf2bcc5ee7d0a4009448261d6a4cb03f',1,'neo::Analog::readRaw()']]],
-  ['readwriteerror',['ReadWriteError',['../classneo_1_1error_1_1ReadWriteError.html#a01d51146c1fb925cfaa5666d96516142',1,'neo::error::ReadWriteError']]]
+  ['perioderror',['PeriodError',['../classneo_1_1error_1_1PeriodError.html#a7b3b6c8e4d66d37db85d8e7fd8470333',1,'neo::error::PeriodError']]],
+  ['pinerror',['PinError',['../classneo_1_1error_1_1PinError.html#afbdc608ffb9c121a0c8593bc6fc4133d',1,'neo::error::PinError']]],
+  ['pinmode',['pinMode',['../classneo_1_1Gpio.html#acc52764b1caff541f8c69b32fbcc35b4',1,'neo::Gpio']]],
+  ['pwm',['PWM',['../classneo_1_1PWM.html#a93f8df5c444935c8005334da020f1364',1,'neo::PWM']]]
 ];

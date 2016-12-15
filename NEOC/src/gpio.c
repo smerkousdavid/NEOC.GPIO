@@ -65,10 +65,12 @@ unsigned char neo_exit_set = 2;
 
 void neo_free_all() {
 	//Called on exit of program
+	printf("FREEING\n");
 	neo_gpio_free();
 	neo_pwm_free();
 	neo_analog_free();
 	neo_temp_free();
+	neo_accel_free();
 }
 
 
