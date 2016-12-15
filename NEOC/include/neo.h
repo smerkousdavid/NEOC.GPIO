@@ -1361,7 +1361,7 @@ class BuiltinLED {
 		 */
 		static bool init(bool throws = false) {
 			int ret = neo_led_init();
-			if(throws && ret != NEO_OK) {nyt
+			if(throws && ret != NEO_OK) {
 				neo::error::Handler(ret, 0, 0, 0, 0, "BuiltinLED", "Failed to Init");
 			}
 			return ret == NEO_OK;
@@ -1455,10 +1455,10 @@ class BuiltinLED {
 		bool _throwing;
 };
 
-int BuiltInLed::_used = 0; //Set to not initialized
+int BuiltinLED::_used = 0; //Set to not initialized
 
 /** @class Accel neo.h
- * @brief Class to handle the builtin accelerometer
+ * @brief Handler for the builtin accelerometer
  * 
  * @details This class will handle the builtin accelerometer and has a builtin calibrator.
  * The calibrator is extremely simple and not precise, but it does its job. If anyone
@@ -1468,13 +1468,13 @@ int BuiltInLed::_used = 0; //Set to not initialized
  * \code{.cpp}
  * 
  * int main() {
- *   Accel accel; 
- *   accel.setPoll(30); //Set the update rate to 30 milliseconds
- *   accel.calibrate(100, 30); //3 seconds calibration (100 samples at 30 millis delays)
+ *   Accel::init(true); //Throw errors if any
+ *   Accel::setPoll(30); //Set the update rate to 30 milliseconds
+ *   Accel::calibrate(100, 30); //3 seconds calibration (100 samples at 30 millis delays)
  *
  *   while(1) {
  *      int x, y, z; //Hold the accel vals
- *      accel.read(x, y, z); //Update the values
+ *      Accel::read(x, y, z); //Update the values
  *      printf("X: %d, Y: %d, Z: %d\n", x, y, z); //Print the updates
  *      usleep(1000 * 30); //30 millis delay
  *   }
@@ -1485,44 +1485,9 @@ int BuiltInLed::_used = 0; //Set to not initialized
  * <BR>
  */
 class Accel {
-	public:
+public:
 		/**
-		 * @brief Accel initializer to start the accelerometer binding
-		 *
-		 * This will initialize the accelerometer and 
-		 *
-		 * @param release When the object is deleted (dynamic) or is out of scope (local) this option will optionally release
-		 * @param throwing Wether to throw errors like UnusableError or just surpress them (false to surpress) (default: true)
-		 *
-		 * @note Careful to not use the same port as output as the m4 (arduino core)
-		 */
-		Accel(bool release = false, bool throwing = true) {
-			neo::checkRoot("Accel requires root permission", throwing);
-			if(Accel::_used < 1) {
-				Accel::init(throwing); //Use static instance
-			}
-			this->_calibrated = false;
-			this->_throwing = throwing;
-			Accel::_used++;
-		}
-
-		/**
-		 * @brief The Accel release
-		 * 
-		 * This will release the accelerometer so another process can use it. Nothing much more than that
-		 *
-		 * @note Free needs no longer to be called since the method is called when the program exits
-		 */
-		~Accel() {
-			Accel::_used--;
-		
-			if(Accel::_used < 1) {
-				Accel::free(); //Free when there are no more objects active
-			}
-		}
-
-		/**
-		 * @brief Static initializer
+		 * @brief Initializer
 		 *
 		 * A functions that wraps the C neo_accel_init function with some exception throwing
 		 * and nice namespace conventioning.
@@ -1530,7 +1495,8 @@ class Accel {
 		 * @param throws A boolean to indicate if the object should throw an error when it fails
 		 * 
 		 */
-		static bool init(bool throws = false) {
+		static bool init(bool throws = true) {
+			neo::checkRoot("Accel requires root permission", throwing);
 			int ret = neo_accel_init();
 			if(throws && ret != NEO_OK) {
 				neo::error::Handler(ret, 0, 0, 0, 0, "Accel", "Failed to Init");
@@ -1539,7 +1505,7 @@ class Accel {
 		}
 
 		/**
-		 * @brief Static de-initializer
+		 * @brief De-initializer
 		 *
 		 * A functions that wraps the C neo_accel_free function with some exception throwing.
 		 *
@@ -1557,7 +1523,7 @@ class Accel {
 		}
 		
 		/**
-		 * @brief Statically setting the poll rate of the Accelerometer
+		 * @brief Setting the poll rate of the Accelerometer
 		 *
 		 * Usually you will probably run your code within some type of loop that
 		 * runs on forever. Well obviously that you are probably using the accelerometer
@@ -1569,7 +1535,7 @@ class Accel {
 		 * Example Usage:
 		 * \code{.cpp}
 		 *    Accel::setPoll(30); //Set poll rate for 30 milliseconds
-		 * \endcod
+		 * \endcode
 		 * @return A boolean if the operation succeded or not
 		 * @param millis The milliseconds until every read in your loop
 		 * @param throws Optional value to throw if there is an error (default: true)
@@ -1586,31 +1552,7 @@ class Accel {
 		}
 	
 		/**
-		 * @brief Set the poll rate of the Accelerometer
-		 *
-		 * Usually you will probably run your code within some type of loop that
-		 * runs on forever. Well obviously that you are probably using the accelerometer
-		 * you are using a loop. Check the delay on that loop and set it to the rate below!
-		 * If you make the pull too fast the accelerometer will reset its values, if you pull too slow
-		 * then the values you pull might be the same when you pull again. Try making the value
-		 * slightly higher than what you pull, it will save you some processing.
-		 *
-		 * Example Usage:
-		 * \code{.cpp}
-		 *    obj.setPoll(20); //Pull new accel vals every 20 millis
-		 * \endcod
-		 * @return A boolean if the operation succeded or not
-		 * @param millis The milliseconds until every read in your loop
-		 *
-		 * @note To get the best results set the millis to a number above 50 millis since
-		 * @note The number resets to 0 every new data sample. So small numbers means fast update but small values
-		 */
-		bool setPoll(int millis) {
-			return Accel::setPoll(millis, this->_throwing);
-		}
-	
-		/**
-		 * @brief Statically read raw data from the accelerometer
+		 * @brief Read raw data from the accelerometer
 		 *
 		 * This method will either turn the led off or on via a state, via the object (same effect as static)
 		 * Example Usage:
@@ -1658,7 +1600,7 @@ class Accel {
 		}
 		
 		/**
-		 * @brief Statically calibrate the accelerometer
+		 * @brief Calibrate the accelerometer
 		 *
 		 * This method will calibrate the accelerometer, this does use a delay
 		 * to get the calibration over a period of time so you might have to wait on
@@ -1677,78 +1619,10 @@ class Accel {
 			int ret = neo_accel_calibrate(samples, millis);
 			if(throws && ret != NEO_OK) {
 				neo::error::Handler(ret, 0, 0, 100, samples, "Accel", "Failed calibrating");
-			} else if(neo == NEO_OK) Accel::_calibrated = true;
-			return ret == NEO_OK;
-		}
-
-
-		/**
-		 * @brief When reading only read the raw data and not the calibrated data
-		 */
-		static void setNoCalib() {
-			Accel::_calibrated = false;
-		}
-		
-		/**
-		 * @brief After setting setNoCalib and you want to start reading the calibrated data again run this
-		 */
-		static void setCalib() {
-			Accel::_calibrated = true;
-		}
-
-
-		/**
-		 * @brief Read raw data from the accelerometer
-		 *
-		 * This method will either turn the led off or on via a state, via the object (same effect as static)
-		 * Example Usage:
-		 * \code{.cpp}
-		 *    int x, y, z;
-		 *    Accel::read(&x, &y, &z);
-		 * \endcode
-		 * @return A boolean if the operation succeded 
-		 * @param x A pointer for the x value (int)
-		 * @param y A pointer for the y value (int)
-		 * @param z A pointer for the z value (int)
-		 * @param throws To throw an exception if it fails to read
-		 */
-		bool read(int *x, int *y, int *z, bool throws = true) {
-		int ret = (Accel::_calibrated) ? 
-				neo_accel_read_calibrated(x, y, z) : neo_accel_read(x, y, z);
-			if(throws && ret != NEO_OK) {
-				neo::error::Handler(ret, 0, 0, 100, samples, "Accel", "Failed calibrating");
 			}
 			return ret == NEO_OK;
 		}
-		
-		/**
-		 * @brief Calibrate the accelerometer
-		 *
-		 * This method will calibrate the accelerometer, this does use a delay
-		 * to get the calibration over a period of time so you might have to wait on
-		 * initializing.
-		 *
-		 * Example Usage:
-		 * \code{.cpp}
-		 *    obj.calibrate(20, 30); //Take 20 samples with 30 millis delay between each sample
-		 * \endcode
-		 * @return A boolean if the operation succeded 
-		 * @param samples The amount of read samples to take
-		 * @param millis The delay in millis between each sample
-		 */
-		bool calibrate(int samples, int millis) {
-			return Accel::calibrate(samples, millis, _throwing);
-		}
-		
-
-	private:
-		static int _used;
-		bool _throwing;
-		static bool _calibrated;
-};
-
-int Accel::_used = 0; //Set to not initialized
-bool Accel::_calibrated = false;
+	}
 
 }
 #endif //__cplusplus
