@@ -464,8 +464,8 @@ bool checkRoot(const char * saying, bool throwing = true) {
  
 	if(checked != NEO_OK && throwing) {
 		throw error::NotRootError(saying);
-	} else if(checked != NEO_OK) return false;
-	return true;
+	}
+	return checked == NEO_OK;
 }
 
 
@@ -1496,7 +1496,7 @@ public:
 		 * 
 		 */
 		static bool init(bool throws = true) {
-			neo::checkRoot("Accel requires root permission", throwing);
+			neo::checkRoot("Accel requires root permission", throws);
 			int ret = neo_accel_init();
 			if(throws && ret != NEO_OK) {
 				neo::error::Handler(ret, 0, 0, 0, 0, "Accel", "Failed to Init");
@@ -1567,14 +1567,15 @@ public:
 		 * @param throws To throw an exception if it fails to read
 		 */
 		static bool read(int *x, int *y, int *z, bool throws = true) {
-			int ret = neo_accel_read(x, y, z);
+			int ret = (Accel::_calibrated) ? 
+				neo_accel_read_calibrated(x, y, z) : neo_accel_read(x, y, z);
 			if(throws && ret != NEO_OK) {
 				neo::error::Handler(ret, 0, 0, 0, 0, "Accel", "Failed reading!");
 			}
 			return ret == NEO_OK;
 		}
 		
-		/**
+		/*
 		 * @brief Statically read calibrated data from the accelerometer
 		 *
 		 * This method will read a calibrated value from the accelerometer
@@ -1591,14 +1592,29 @@ public:
 		 * @param z A pointer for the z value (int)
 		 * @param throws To throw an exception if it fails to read
 		 */
-		static bool readCal(int *x, int *y, int *z, bool throws = true) {
+		/*static bool readCal(int &x, int &y, int &z, bool throws = true) {
 			int ret = neo_accel_read_calibrated(x, y, z);
 			if(throws && ret != NEO_OK) {
 				neo::error::Handler(ret, 0, 0, 0, 0, "Accel", "Failed reading calibrated!");
 			}
 			return ret == NEO_OK;
+		}*/
+		
+		/**
+		 * @brief When reading only read the raw data and not the calibrated data
+		 */
+		static void setNoCalib() {
+			Accel::_calibrated = false;
 		}
 		
+		/**
+		 * @brief After setting setNoCalib and you want to start reading the calibrated data again run this
+		 */
+		static void setCalib() {
+			Accel::_calibrated = true;
+		}
+
+
 		/**
 		 * @brief Calibrate the accelerometer
 		 *
@@ -1619,14 +1635,16 @@ public:
 			int ret = neo_accel_calibrate(samples, millis);
 			if(throws && ret != NEO_OK) {
 				neo::error::Handler(ret, 0, 0, 100, samples, "Accel", "Failed calibrating");
-			}
+			} else if(ret == NEO_OK) Accel::setCalib();
 			return ret == NEO_OK;
 		}
-	}
+private:
+	static bool _calibrated;
+
+	};
+
+bool Accel::_calibrated = false;
 
 }
 #endif //__cplusplus
-
-
-
 #endif //NEO_HEAD

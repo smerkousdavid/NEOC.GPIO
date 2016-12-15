@@ -109,7 +109,7 @@ int neo_accel_init() {
 		fflush(enabler); //Flush the buffer
 		fclose(enabler); //Close the enabler
 	
-		neo_accel_data = fopen(neo_accel_data, "r");
+		neo_accel_data = fopen(ACCELDATA, "r");
 		
 		if(neo_accel_data == NULL) return NEO_UNUSABLE_ERROR;
 		neo_accel_freed = 0; //Set the 
