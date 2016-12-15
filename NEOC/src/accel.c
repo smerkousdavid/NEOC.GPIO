@@ -28,7 +28,7 @@
  *
  * @details This source file holds the functions to easily allow anyone to have easy access
  * to the accelerometer and calibration data. This will be auto released on program 
- * exit, so no reason to call neo_led_free unless you want to
+ * exit, so no reason to call neo_accel_free unless you want to
  */
 #include <neo.h>
 #include <stdio.h>
@@ -85,7 +85,7 @@ int neo_accel_set_poll(int rate) {
 /**
  * @brief Initializes the Builtin Accelerometer
  * 
- * Attacht the Builtin Accelerometer to the program for reading. The setPoll
+ * Attach the Builtin Accelerometer to the program for reading. The setPoll
  * may be called anytime AFTER the init method. Just remember to set it
  * since it's consistent with the kernel on reboot!
  * 
@@ -97,6 +97,11 @@ int neo_accel_set_poll(int rate) {
 int neo_accel_init() {
 	//Double check if it has already been init
 	if(neo_accel_freed == 2) {
+		//Setup cleanup on exit of application
+		if(neo_exit_set == 2) {
+			atexit(neo_free_all);
+			neo_exit_set = 1;
+		}
 		neo_check_root("Accelerometer requires root access!"); //Double check root access
 	
 		//Enable the 
@@ -112,7 +117,7 @@ int neo_accel_init() {
 		neo_accel_data = fopen(ACCELDATA, "r");
 		
 		if(neo_accel_data == NULL) return NEO_UNUSABLE_ERROR;
-		neo_accel_freed = 0; //Set the 
+		neo_accel_freed = 0; //Set the global init flag
 		
 		return neo_accel_set_poll(ACCELPOLL); //Set the accel_poll
 	}
@@ -154,7 +159,7 @@ int neo_accel_read(int *x, int *y, int *z) {
  * a lot smaller. The calibration method must be called to actually do anything, if it's not called
  * there is no point in calling this method.
  *
- * @param x A pointer to the X value of the accelerometer (calibrated)
+ * @param X A pointer to the X value of the accelerometer (calibrated)
  * @param Y A pointer to the Y value of the accelerometer (calibrated)
  * @param Z A pointer to the Z value of the accelerometer (calibrated)
  * @return NEO_OK or NEO_UNUSABLE error if something went wrong
@@ -218,6 +223,16 @@ int neo_accel_calibrate(int samples, int delayEach) {
 	return NEO_OK;
 }
 
+/**
+ * @brief Frees the builtin Accel
+ * 
+ * Remove the Accel reading from the program and disable the driver on the system
+ * this will save processing power and use less power. This will be called on a CLEAN
+ * system exit but when forced like Ctrl-C, it won't properly release and will still run
+ * the driver on the system
+ * 
+ * @return NEO_OK or NEO_UNUSABLE error if something went wrong
+ */
 int neo_accel_free() {
 	//Double check that the free is released
 	if(neo_accel_freed == 0) {

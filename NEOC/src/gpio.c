@@ -71,6 +71,7 @@ void neo_free_all() {
 	neo_analog_free();
 	neo_temp_free();
 	neo_accel_free();
+	neo_gyro_free();
 }
 
 

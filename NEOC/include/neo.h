@@ -380,6 +380,13 @@ int neo_accel_read_calibrated(int*, int*, int*);
 int neo_accel_calibrate(int, int);
 int neo_accel_free();
 
+int neo_gyro_set_poll(int);
+int neo_gyro_init();
+int neo_gyro_read(int*, int*, int*);
+int neo_gyro_read_calibrated(int*, int*, int*);
+int neo_gyro_calibrate(int, int);
+int neo_gyro_free();
+
 void neo_free_all();
 
 /** \page examples Examples
