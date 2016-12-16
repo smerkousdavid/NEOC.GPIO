@@ -2,7 +2,7 @@ SHELL = /bin/sh
 CC = gcc
 CFLAGS = -fPIC -Wall -Wextra -O2 -g -Iinclude
 LDFLAGS = -shared
-ENDFLAGS = -Iinclude -I/usr/include -lpthread
+ENDFLAGS = -Iinclude -I/usr/include `pkg-config --cflags --libs glib-2.0` -lpthread
 RM = rm -f
 TARGET_LIB = libneo.so
 

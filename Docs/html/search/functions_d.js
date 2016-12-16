@@ -1,13 +1,7 @@
 var searchData=
 [
-  ['set',['set',['../classneo_1_1BuiltinLED.html#a34ddb11e2883512bc7c7df84a2e97740',1,'neo::BuiltinLED']]],
-  ['setallperiods',['setAllPeriods',['../classneo_1_1PWM.html#aa10c41c6b8b8dc3be75995aad2b7785c',1,'neo::PWM']]],
-  ['setcalib',['setCalib',['../classneo_1_1Accel.html#ad62359e0b166f7f316d82b88c9c9954b',1,'neo::Accel']]],
-  ['setdir',['setDir',['../classneo_1_1Gpio.html#a7a68ec1e94150fa932f6822208d8a2fd',1,'neo::Gpio']]],
-  ['setin',['setIn',['../classneo_1_1Gpio.html#acd6283226fa1779d114f08c0743179df',1,'neo::Gpio']]],
-  ['setm4',['setM4',['../neo_8h.html#a14e09f724b7ff1441e895ddeb8c1b3c9',1,'neo']]],
-  ['setnocalib',['setNoCalib',['../classneo_1_1Accel.html#aa719cc0bb3909cc6a77b860ed7306bc3',1,'neo::Accel']]],
-  ['setout',['setOut',['../classneo_1_1Gpio.html#ad35df5c236d81f98e37fbfb3bba3a400',1,'neo::Gpio']]],
-  ['setperiod',['setPeriod',['../classneo_1_1PWM.html#a5736a28fbce2b7383b35d56f7df0beec',1,'neo::PWM::setPeriod(int port, int period, bool throws=true)'],['../classneo_1_1PWM.html#a9f17a611856afb7aab293fe57eac53ab',1,'neo::PWM::setPeriod(int period)'],['../classneo_1_1FakePWM.html#a40b95286e2607aa05d419e8bbf380666',1,'neo::FakePWM::setPeriod()']]],
-  ['setpoll',['setPoll',['../classneo_1_1Accel.html#a409cc1d8ab0ec0c621081dc7601b7c66',1,'neo::Accel']]]
+  ['what',['what',['../classneo_1_1error_1_1PinError.html#a8f000a31433e76c62542f38a539a2e8f',1,'neo::error::PinError::what()'],['../classneo_1_1error_1_1PeriodError.html#adedf6c01f2a08e70c0df90901c9205f5',1,'neo::error::PeriodError::what()'],['../classneo_1_1error_1_1DutyError.html#a5b679e3e1f4f06b19371fd4ecabfea5a',1,'neo::error::DutyError::what()'],['../classneo_1_1error_1_1DirError.html#ae9c2fca3c9ed9f26ab473eea1acaf35d',1,'neo::error::DirError::what()'],['../classneo_1_1error_1_1UnusableError.html#a41edfe9717cd051239db993bae9e91ff',1,'neo::error::UnusableError::what()'],['../classneo_1_1error_1_1InitError.html#ad1cf778cf7970f48acd6ccb2345bbeed',1,'neo::error::InitError::what()'],['../classneo_1_1error_1_1ReadWriteError.html#a18102f9ba5d1739cc71c0365b5457824',1,'neo::error::ReadWriteError::what()'],['../classneo_1_1error_1_1NotRootError.html#a691cb9fc82907c20f6ffd28194a30fb9',1,'neo::error::NotRootError::what()']]],
+  ['write',['write',['../classneo_1_1Gpio.html#a53e4500e1ba276649d3a3f770220822f',1,'neo::Gpio::write(int port, int value, bool throws=true)'],['../classneo_1_1Gpio.html#a5ab2d6785eeed83892eb800ecfaa0e35',1,'neo::Gpio::write(int value)'],['../classneo_1_1PWM.html#a2aa1af8a7f96208315f1b878f731bd37',1,'neo::PWM::write(int port, int duty, bool throws=true)'],['../classneo_1_1PWM.html#a2bf3b7967e9bcb1c93701c7ede7d63c0',1,'neo::PWM::write(int duty)'],['../classneo_1_1FakePWM.html#a23a250c480e8ac0e4aa0505efdd56213',1,'neo::FakePWM::write(int duty, int period, bool setDefault=false)'],['../classneo_1_1FakePWM.html#a4b659d9595a4dac03edf834228959c27',1,'neo::FakePWM::write(int duty)']]],
+  ['writeduty',['writeDuty',['../classneo_1_1FakePWM.html#a11b3ef1795ef64639f605ef2149d05bf',1,'neo::FakePWM']]],
+  ['writeperiod',['writePeriod',['../classneo_1_1FakePWM.html#af719b4eceb4cc60a39ed6807f1f16704',1,'neo::FakePWM']]]
 ];
