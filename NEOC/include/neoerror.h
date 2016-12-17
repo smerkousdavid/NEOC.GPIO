@@ -223,7 +223,7 @@ valid options are INPUT (0) or OUTPUT (1)", direction);
 	/** @class UnusableError neoerror.h
 	 * @brief Most commonly thrown error when the specified pin is unusable
 	 *
-	 * This one can be very problematic because it could be sometimes hard to
+	 * @details This one can be very problematic because it could be sometimes hard to
 	 * find what the issue is. Most of the time it's because of these issues<BR>
 	 * <UL>
 	 *	<LI>PWM pin wasn't properly pinmuxed using device tree editor</LI>
@@ -270,6 +270,47 @@ Error"), whatType(w), pin(p) {}
 			sprintf(retArr, "UnusableError: %s ->  (%d) is not usable, make \
 sure it was initialized and it's not being used by something else. \
 Best thing to do is check documentation for reason", whatType, pin);
+			return retArr;
+		}
+	private:
+		const char *whatType;
+		int pin;
+	};
+
+	/** @class InterruptError neoerror.h
+	 * @brief Thrown when failed to attach to an interrupt pin
+	 *
+	 * This is thrown when a GPIO pin fails to switch to an interrupt mode
+	 */
+	class InterruptError : public std::runtime_error {
+	public:
+		/**
+		 * @brief Constructor of InterruptError
+		 *
+		 * Example usage to throw a InterruptError
+		 * \code{.cpp}
+		 * throw UnusableError("Failed attaching", 13); //Failed attaching to 13
+		 * \endcode
+		 *
+		 * @param w What went wrong
+		 * @param p The pin that went wrong on
+		 *
+		 * @return A runtime_error
+		 */
+		InterruptError(const char * w, int p) : std::runtime_error("Interrupt\
+Error"), whatType(w), pin(p) {}
+
+		/**
+		 * @brief The compiled response on catch of exception or Abort
+		 *
+		 * This is called when the coder catches the exception or is just plainly
+		 * Thrown, then printed what(): "Error: etc.."
+		 *
+		 * @return A const char of the response of InterruptError
+		 */
+		virtual const char * what() const throw() {
+			char * retArr = new char[350];
+			sprintf(retArr, "InterruptError (Pin-> %d): %s", pin, whatType);
 			return retArr;
 		}
 	private:
@@ -450,6 +491,8 @@ to change pin state", whatType, typeError);
 			case NEO_SCALE_ERROR:
 			case NEO_READ_ERROR:
 				throw ReadWriteError(what, type);
+			case NEO_INTERRUPT_ERROR:
+				throw InterruptError(what, pin);
 			default: break;
 		}
 	}

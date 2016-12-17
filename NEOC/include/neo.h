@@ -879,6 +879,48 @@ class Gpio {
 		}
 		
 		/**
+		 * @brief Static attaching an interrupt
+		 *
+		 * This will start a new thread that listens for a pin change state based on what you want
+		 * A state of either "rising" to only detect when the pin changes from 0 to 1. "falling" for the
+		 * function to only call from 1 to 0 and "both" that happens if it changes either way.
+		 *
+		 * @return A boolean if the operation succeded or not
+		 * @param port The port to attach interrupt too
+		 * @param mode The mode to put the pin in available ("both", "rising", "falling")
+		 * @param intfunc The function pointer or lambda to the interrupt return
+		 * @param throws Optional value to throw if there is an error (default: true)
+		 *
+		 * @warning You cannot currently detach the pin as soon as you attach
+		 */
+		static bool attachInterrupt(int port, const char * mode, auto intfunc, bool throws = true) {
+			int ret = neo_gpio_attach_interrupt(port, mode, (interruptfunc*) intfunc);
+			if(throws && ret != NEO_OK) {
+				neo::error::Handler(ret, port, 0, 1, 0, "Failed to attach", "");
+			}
+			return ret == NEO_OK;
+		}
+		
+		/**
+		 * @brief Attaching an interrupt to the current pin
+		 *
+		 * This will start a new thread that listens for a pin change state based on what you want
+		 * A state of either "rising" to only detect when the pin changes from 0 to 1. "falling" for the
+		 * function to only call from 1 to 0 and "both" that happens if it changes either way.
+		 *
+		 * @return A boolean if the operation succeded 
+		 * @param mode The mode to put the pin in available ("both", "rising", "falling")
+		 * @param intfunc The function pointer or lambda to the interrupt return
+		 *
+		 * @warning You cannot currently detach the pin as soon as you attach
+		 */
+		bool attachInterrupt(const char * mode, auto intfunc) {
+			return Gpio::attachInterrupt(_held, mode, intfunc, _throwing);
+		}
+		
+		
+		
+		/**
 		 * @brief Setting the direction of the object port
 		 *
 		 * This will attempt to set the direction of the pin and throw an exception if it failed to set it.

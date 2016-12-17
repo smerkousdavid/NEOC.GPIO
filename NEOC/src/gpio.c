@@ -320,9 +320,9 @@ int neo_gpio_pin_mode(int pin, int direction) {
  * function to only call from 1 to 0 and "both" that happens if it changes either way.
  * 
  * @return NEO_OK/NEO_INTERRUPT_ERROR/NEO_PIN_ERROR/NEO_UNUSABLE_ERRROR if the interrupt failed
- * 
- * @note Don't set to OUTPUT unless you know for sure the m4 (arduino) core isn't using the same pin for OUTPUT
- * @note NEO_UNUSABLE_ERROR might return if the pin is unusable
+ * @param pin The pin to attach the interrupt to
+ * @param mode The mode to put the pin in available ("both", "rising", "falling")
+ * @param intfunc The function pointer to the interrupt return
  */
 int neo_gpio_attach_interrupt(int pin, const char * mode, interruptfunc *intfunc) {
 	//Safety check to see if both arguments are valid
