@@ -100,7 +100,7 @@ static gboolean __neo_interrupt_event(GIOChannel *ch, GIOCondition cond,
 	GIOStatus gs = g_io_channel_read_chars(ch, r_buff, buf_r_size - 1,
 										&current_read, &err);
 	
-	if((int) gs != 1) { //Check for errors
+	//if((int) gs != 1) { //Check for errors
 		int f_data; //Store data from interrupt event
 		int cr = sscanf(r_buff, "%d", &f_data); //Load the gchar array into the int
 		
@@ -112,7 +112,7 @@ static gboolean __neo_interrupt_event(GIOChannel *ch, GIOCondition cond,
 		//Call the user function with pinNumber and current flag
 		
 		
-	} else printf("Interrupt error!\n");
+	//} else printf("Interrupt error!\n");
 	
 }
 
@@ -326,10 +326,10 @@ int neo_gpio_pin_mode(int pin, int direction) {
  */
 int neo_gpio_attach_interrupt(int pin, const char * mode, interruptfunc *intfunc) {
 	//Safety check to see if both arguments are valid
-	if(strcmp(mode, "both") != 0 || strcmp(mode, "rising") != 0 
-				|| strcmp(mode, "falling") != 0) return NEO_INTERRUPT_ERROR;
+	if(strcmp(mode, "both") != 0 && strcmp(mode, "rising") != 0 
+				&& strcmp(mode, "falling") != 0) { printf("HAHAHAHA\n");  return NEO_INTERRUPT_ERROR; }
 	if(pin < 0 || pin > GPIOPORTSL) return NEO_PIN_ERROR;
-	if(intfunc == NULL) return NEO_INTERRUPT_ERROR;
+	if(intfunc == NULL) { printf("NAH\n"); return NEO_INTERRUPT_ERROR; }
 
 	//If the pin is output, set the pin to input and setup the edge
 	if(DIRGPIO[pin] == (unsigned char) OUTPUT) { 
