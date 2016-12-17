@@ -1,0 +1,380 @@
+<!-- HTML header for doxygen 1.8.8-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <!-- For Mobile Devices -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+        <meta name="generator" content="Doxygen 1.8.12"/>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <title>NEOC: src/gyro.c File Reference</title>
+        <link href="tabs.css" rel="stylesheet" type="text/css"/>
+        <script type="text/javascript" src="dynsections.js"></script>
+        <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+        <link href="doxygen.css" rel="stylesheet" type="text/css" />
+        <link href="neocdoxygen.css" rel="stylesheet" type="text/css"/>
+        <link href='https://fonts.googleapis.com/css?family=Roboto+Slab' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="doxy-boot.js"></script>
+    </head>
+    <body>
+        <nav class="navbar navbar-default" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                   <a href="index.html"><img src="neoc_small.png" class="logostyle" alt="NEOC Icon" align="left"/></a>
+                   <a class="navbar-brand" href="index.html">
+                   NEOC 0.1</a>
+                </div>
+            <ul class="nav navbar-nav">
+              <li><a href="index.html">Main Page</a></li>
+              <li><a href="files.html">Files</a></li>
+              <li class="dropdown">
+                 <a href="annotated.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Data Structures<span class="caret"></span></a>
+                   <ul class="dropdown-menu">
+                      <li><a href="annotated.html">All Data Structures</a></li>
+                      <li><a href="classes.html">Classes and Index</a></li>
+                   </ul>
+              </li>
+              <li><a href="globals.html">Functions</a></li>
+                <div style="float: right;">
+                  <p class="navbar-text">By David Smerkous</p>
+		</div>
+              <li class="dropdown">
+                 <a href="examples.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Examples<span class="caret"></span></a>
+                   <ul class="dropdown-menu">
+                      <li><a href="examples.html">All Examples</a></li>
+                      <li class="menu-item dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Gpio</a>
+                          <ul class="dropdown-menu">
+                             <li class="menu-item"><a href="gpioblink.html">Blink</a></li>
+                             <li class="menu-item"><a href="gpioread.html">Read</a></li>
+                          </ul>
+                      </li>
+                      <li class="menu-item dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Pwm</a>
+                          <ul class="dropdown-menu">
+                             <li class="menu-item"><a href="examplepwm.html">Real Write</a></li>
+                             <li class="menu-item"><a href="examplefakepwm.html">Fake Fade</a></li>
+                          </ul>
+                      </li>
+                      <li class="menu-item dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Analog</a>
+                          <ul class="dropdown-menu">
+                             <li class="menu-item"><a href="exampleanalog.html">Read</a></li>
+                          </ul>
+                      </li>
+                   </ul>
+              </li>
+            </ul>
+            </div>        
+	</nav>
+        <div id="top"><!-- Other side of div is closed by doxygen! -->
+            <div class="content" id="content">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12 panel " style="padding-bottom: 15px;">
+                            <div style="margin-bottom: 15px;">
+				<div id="MSearchResultsWindow">
+				<iframe src="javascript:void(0)" frameborder="0" name="MSearchResults" id="MSearchResults">
+				</iframe>
+				</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.8.12 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Search');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#func-members">Functions</a>  </div>
+  <div class="headertitle">
+<div class="title">gyro.c File Reference</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>File to control the Builtin Gyro.  
+<a href="#details">More...</a></p>
+<div class="textblock"><code>#include &lt;<a class="el" href="neo_8h_source.html">neo.h</a>&gt;</code><br />
+<code>#include &lt;stdio.h&gt;</code><br />
+<code>#include &lt;string.h&gt;</code><br />
+<code>#include &lt;stdlib.h&gt;</code><br />
+<code>#include &lt;unistd.h&gt;</code><br />
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a0a3d33842fe3cdf3b28c5e00d0c3fd7c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gyro_8c.html#a0a3d33842fe3cdf3b28c5e00d0c3fd7c">neo_gyro_set_poll</a> (int rate)</td></tr>
+<tr class="memdesc:a0a3d33842fe3cdf3b28c5e00d0c3fd7c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the update rate of the gyro.  <a href="#a0a3d33842fe3cdf3b28c5e00d0c3fd7c">More...</a><br /></td></tr>
+<tr class="separator:a0a3d33842fe3cdf3b28c5e00d0c3fd7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a879df5ed02bf475643b90ea910cc9354"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gyro_8c.html#a879df5ed02bf475643b90ea910cc9354">neo_gyro_init</a> ()</td></tr>
+<tr class="memdesc:a879df5ed02bf475643b90ea910cc9354"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the Builtin Gyro.  <a href="#a879df5ed02bf475643b90ea910cc9354">More...</a><br /></td></tr>
+<tr class="separator:a879df5ed02bf475643b90ea910cc9354"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af924a8a8144008f95b139d851fa122c1"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gyro_8c.html#af924a8a8144008f95b139d851fa122c1">neo_gyro_read</a> (int *x, int *y, int *z)</td></tr>
+<tr class="memdesc:af924a8a8144008f95b139d851fa122c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads the raw data from the gyro.  <a href="#af924a8a8144008f95b139d851fa122c1">More...</a><br /></td></tr>
+<tr class="separator:af924a8a8144008f95b139d851fa122c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeada8931e77a6e7a9261cbee88bf4826"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gyro_8c.html#aeada8931e77a6e7a9261cbee88bf4826">neo_gyro_read_calibrated</a> (int *x, int *y, int *z)</td></tr>
+<tr class="memdesc:aeada8931e77a6e7a9261cbee88bf4826"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads the calibrated data from the gyro.  <a href="#aeada8931e77a6e7a9261cbee88bf4826">More...</a><br /></td></tr>
+<tr class="separator:aeada8931e77a6e7a9261cbee88bf4826"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1aa660974671f9e9472f3dfbc805454c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gyro_8c.html#a1aa660974671f9e9472f3dfbc805454c">neo_gyro_calibrate</a> (int samples, int delayEach)</td></tr>
+<tr class="memdesc:a1aa660974671f9e9472f3dfbc805454c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calibrate the gyro over a period of time.  <a href="#a1aa660974671f9e9472f3dfbc805454c">More...</a><br /></td></tr>
+<tr class="separator:a1aa660974671f9e9472f3dfbc805454c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aec44e113248363ca9c9bf37d5829e003"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gyro_8c.html#aec44e113248363ca9c9bf37d5829e003">neo_gyro_free</a> ()</td></tr>
+<tr class="memdesc:aec44e113248363ca9c9bf37d5829e003"><td class="mdescLeft">&#160;</td><td class="mdescRight">Frees the builtin Gyro.  <a href="#aec44e113248363ca9c9bf37d5829e003">More...</a><br /></td></tr>
+<tr class="separator:aec44e113248363ca9c9bf37d5829e003"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>File to control the Builtin Gyro. </p>
+<dl class="section author"><dt>Author</dt><dd>David Smerkous </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>11/28/2016</dd></dl>
+<p>This source file holds the functions to easily allow anyone to have easy access to the gyro and calibration data. This will be auto released on program exit, so no reason to call neo_gyro_free unless you want to </p>
+</div><h2 class="groupheader">Function Documentation</h2>
+<a id="a1aa660974671f9e9472f3dfbc805454c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1aa660974671f9e9472f3dfbc805454c">&sect;&nbsp;</a></span>neo_gyro_calibrate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int neo_gyro_calibrate </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>samples</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>delayEach</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Calibrate the gyro over a period of time. </p>
+<p>This will calibrate the gyro and try to set all the axis to 0. Make sure The Udoo is not moving during this time to get a proper zeroed calibration.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">samples</td><td>The amount of samples to take </td></tr>
+    <tr><td class="paramname">delayEach</td><td>The amount of millisecond delays between each sample </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>NEO_OK or NEO_UNUSABLE error if something went wrong</dd></dl>
+<dl class="section note"><dt>Note</dt><dd>The total time can be calculated via samples * delayEach equals total millis </dd></dl>
+
+</div>
+</div>
+<a id="aec44e113248363ca9c9bf37d5829e003"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aec44e113248363ca9c9bf37d5829e003">&sect;&nbsp;</a></span>neo_gyro_free()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int neo_gyro_free </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Frees the builtin Gyro. </p>
+<p>Remove the Gyro reading from the program and disable the driver on the system this will save processing power and use less power. This will be called on a CLEAN system exit but when forced like Ctrl-C, it won't properly release and will still run the driver on the system</p>
+<dl class="section return"><dt>Returns</dt><dd>NEO_OK or NEO_UNUSABLE error if something went wrong </dd></dl>
+
+</div>
+</div>
+<a id="a879df5ed02bf475643b90ea910cc9354"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a879df5ed02bf475643b90ea910cc9354">&sect;&nbsp;</a></span>neo_gyro_init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int neo_gyro_init </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initializes the Builtin Gyro. </p>
+<p>Attach the Builtin Gyro to the program for reading. The setPoll may be called anytime AFTER the init method. Just remember to set it since it's consistent with the kernel on reboot!</p>
+<dl class="section return"><dt>Returns</dt><dd>NEO_OK or NEO_UNUSABLE error if something went wrong</dd></dl>
+<dl class="section warning"><dt>Warning</dt><dd>Please use ROOT when running this and not just sudo </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>To run as root try sudo su and then run it or sudo su -c './a.out' </dd></dl>
+
+</div>
+</div>
+<a id="af924a8a8144008f95b139d851fa122c1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af924a8a8144008f95b139d851fa122c1">&sect;&nbsp;</a></span>neo_gyro_read()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int neo_gyro_read </td>
+          <td>(</td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>z</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Reads the raw data from the gyro. </p>
+<p>This will read the raw CURRENTLY updated data from the gyro make sure you update the pollRate to get the most updated values. Be careful the faster the poll rate the faster the gyro values reset to 0, making the differencials a lot smaller.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">X</td><td>A pointer to the X value of the gyro </td></tr>
+    <tr><td class="paramname">Y</td><td>A pointer to the Y value of the gyro </td></tr>
+    <tr><td class="paramname">Z</td><td>A pointer to the Z value of the gyro </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>NEO_OK or NEO_UNUSABLE error if something went wrong</dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Set the poll rate to the same amount of delay you gyro_read </dd></dl>
+
+</div>
+</div>
+<a id="aeada8931e77a6e7a9261cbee88bf4826"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeada8931e77a6e7a9261cbee88bf4826">&sect;&nbsp;</a></span>neo_gyro_read_calibrated()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int neo_gyro_read_calibrated </td>
+          <td>(</td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>z</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Reads the calibrated data from the gyro. </p>
+<p>This will read the raw CURRENTLY updated and calibrated data from the gyro make sure you update the pollRate to get the most updated values. Be careful the faster the poll rate the faster the gyro values reset to 0, making the differencials a lot smaller. The calibration method must be called to actually do anything, if it's not called there is no point in calling this method.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>A pointer to the X value of the gyro (calibrated) </td></tr>
+    <tr><td class="paramname">Y</td><td>A pointer to the Y value of the gyro (calibrated) </td></tr>
+    <tr><td class="paramname">Z</td><td>A pointer to the Z value of the gyro (calibrated) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>NEO_OK or NEO_UNUSABLE error if something went wrong</dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Set the poll rate to the same amount of delay you gyro_read_calibrated </dd></dl>
+
+</div>
+</div>
+<a id="a0a3d33842fe3cdf3b28c5e00d0c3fd7c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0a3d33842fe3cdf3b28c5e00d0c3fd7c">&sect;&nbsp;</a></span>neo_gyro_set_poll()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int neo_gyro_set_poll </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>rate</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the update rate of the gyro. </p>
+<p>Usually you will probably run your code within some type of loop that runs on forever. Well obviously that you are probably using the gyro you are using a loop. Check the delay on that loop and set it to the rate below! If you make the pull too fast the accelerometer will reset its values, if you pull too slow then the values you pull might be the same when you pull again. Try making the value slightly higher than what you pull, it will save you some processing</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">rate</td><td>The milliseconds to pull the new value, every loop </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>NEO_OK or NEO_UNUSABLE error if something went wrong</dd></dl>
+<dl class="section note"><dt>Note</dt><dd>This would be way better if ran as root rather than sudo </dd></dl>
+
+</div>
+</div>
+</div><!-- contents -->
+
+<!-- HTML footer for doxygen 1.8.8-->
+<!-- start footer part -->
+</div>
+</div>
+</div>
+</div>
+</div>
+<hr class="footer"/><address class="footer"><small>
+Created by David Smerkous &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="neoc_small.png" style="width: auto; height: 45px;" alt="NEOC Docs generated with Doxygen"/>
+</a> Doxygen: 1.8.12
+</small></address>
+</body>
+</html>

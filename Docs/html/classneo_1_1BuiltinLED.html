@@ -1,0 +1,418 @@
+<!-- HTML header for doxygen 1.8.8-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <!-- For Mobile Devices -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+        <meta name="generator" content="Doxygen 1.8.12"/>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <title>NEOC: neo::BuiltinLED Class Reference</title>
+        <link href="tabs.css" rel="stylesheet" type="text/css"/>
+        <script type="text/javascript" src="dynsections.js"></script>
+        <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+        <link href="doxygen.css" rel="stylesheet" type="text/css" />
+        <link href="neocdoxygen.css" rel="stylesheet" type="text/css"/>
+        <link href='https://fonts.googleapis.com/css?family=Roboto+Slab' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="doxy-boot.js"></script>
+    </head>
+    <body>
+        <nav class="navbar navbar-default" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                   <a href="index.html"><img src="neoc_small.png" class="logostyle" alt="NEOC Icon" align="left"/></a>
+                   <a class="navbar-brand" href="index.html">
+                   NEOC 0.1</a>
+                </div>
+            <ul class="nav navbar-nav">
+              <li><a href="index.html">Main Page</a></li>
+              <li><a href="files.html">Files</a></li>
+              <li class="dropdown">
+                 <a href="annotated.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Data Structures<span class="caret"></span></a>
+                   <ul class="dropdown-menu">
+                      <li><a href="annotated.html">All Data Structures</a></li>
+                      <li><a href="classes.html">Classes and Index</a></li>
+                   </ul>
+              </li>
+              <li><a href="globals.html">Functions</a></li>
+                <div style="float: right;">
+                  <p class="navbar-text">By David Smerkous</p>
+		</div>
+              <li class="dropdown">
+                 <a href="examples.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Examples<span class="caret"></span></a>
+                   <ul class="dropdown-menu">
+                      <li><a href="examples.html">All Examples</a></li>
+                      <li class="menu-item dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Gpio</a>
+                          <ul class="dropdown-menu">
+                             <li class="menu-item"><a href="gpioblink.html">Blink</a></li>
+                             <li class="menu-item"><a href="gpioread.html">Read</a></li>
+                          </ul>
+                      </li>
+                      <li class="menu-item dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Pwm</a>
+                          <ul class="dropdown-menu">
+                             <li class="menu-item"><a href="examplepwm.html">Real Write</a></li>
+                             <li class="menu-item"><a href="examplefakepwm.html">Fake Fade</a></li>
+                          </ul>
+                      </li>
+                      <li class="menu-item dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Analog</a>
+                          <ul class="dropdown-menu">
+                             <li class="menu-item"><a href="exampleanalog.html">Read</a></li>
+                          </ul>
+                      </li>
+                   </ul>
+              </li>
+            </ul>
+            </div>        
+	</nav>
+        <div id="top"><!-- Other side of div is closed by doxygen! -->
+            <div class="content" id="content">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12 panel " style="padding-bottom: 15px;">
+                            <div style="margin-bottom: 15px;">
+				<div id="MSearchResultsWindow">
+				<iframe src="javascript:void(0)" frameborder="0" name="MSearchResults" id="MSearchResults">
+				</iframe>
+				</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.8.12 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Search');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>neo</b></li><li class="navelem"><a class="el" href="classneo_1_1BuiltinLED.html">BuiltinLED</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a>  </div>
+  <div class="headertitle">
+<div class="title">neo::BuiltinLED Class Reference</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>A simple controller to handle the second LED on the board.  
+ <a href="classneo_1_1BuiltinLED.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="neo_8h_source.html">neo.h</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:af3172fb89ed74b7fc803119b92d84a5a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classneo_1_1BuiltinLED.html#af3172fb89ed74b7fc803119b92d84a5a">BuiltinLED</a> (bool throwing=true)</td></tr>
+<tr class="memdesc:af3172fb89ed74b7fc803119b92d84a5a"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classneo_1_1BuiltinLED.html" title="A simple controller to handle the second LED on the board. ">BuiltinLED</a> initializer to start the disabling of the LED.  <a href="#af3172fb89ed74b7fc803119b92d84a5a">More...</a><br /></td></tr>
+<tr class="separator:af3172fb89ed74b7fc803119b92d84a5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a27580c38c503af8ff760b7fdc5359c86"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classneo_1_1BuiltinLED.html#a27580c38c503af8ff760b7fdc5359c86">~BuiltinLED</a> ()</td></tr>
+<tr class="memdesc:a27580c38c503af8ff760b7fdc5359c86"><td class="mdescLeft">&#160;</td><td class="mdescRight">The <a class="el" href="classneo_1_1BuiltinLED.html" title="A simple controller to handle the second LED on the board. ">BuiltinLED</a> release.  <a href="#a27580c38c503af8ff760b7fdc5359c86">More...</a><br /></td></tr>
+<tr class="separator:a27580c38c503af8ff760b7fdc5359c86"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a34ddb11e2883512bc7c7df84a2e97740"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classneo_1_1BuiltinLED.html#a34ddb11e2883512bc7c7df84a2e97740">set</a> (bool state)</td></tr>
+<tr class="memdesc:a34ddb11e2883512bc7c7df84a2e97740"><td class="mdescLeft">&#160;</td><td class="mdescRight">Setting LED state to either on or off.  <a href="#a34ddb11e2883512bc7c7df84a2e97740">More...</a><br /></td></tr>
+<tr class="separator:a34ddb11e2883512bc7c7df84a2e97740"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd81025d45f7a099cb5a6b817598b8e9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classneo_1_1BuiltinLED.html#afd81025d45f7a099cb5a6b817598b8e9">on</a> ()</td></tr>
+<tr class="memdesc:afd81025d45f7a099cb5a6b817598b8e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Turn the <a class="el" href="classneo_1_1BuiltinLED.html" title="A simple controller to handle the second LED on the board. ">BuiltinLED</a> to on.  <a href="#afd81025d45f7a099cb5a6b817598b8e9">More...</a><br /></td></tr>
+<tr class="separator:afd81025d45f7a099cb5a6b817598b8e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6296eb0d35758442ac70ede2213917f4"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classneo_1_1BuiltinLED.html#a6296eb0d35758442ac70ede2213917f4">off</a> ()</td></tr>
+<tr class="memdesc:a6296eb0d35758442ac70ede2213917f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Turn the <a class="el" href="classneo_1_1BuiltinLED.html" title="A simple controller to handle the second LED on the board. ">BuiltinLED</a> to off.  <a href="#a6296eb0d35758442ac70ede2213917f4">More...</a><br /></td></tr>
+<tr class="separator:a6296eb0d35758442ac70ede2213917f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a7df8628743ecaf5d68f435d53a7a4639"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classneo_1_1BuiltinLED.html#a7df8628743ecaf5d68f435d53a7a4639">init</a> (bool throws=false)</td></tr>
+<tr class="memdesc:a7df8628743ecaf5d68f435d53a7a4639"><td class="mdescLeft">&#160;</td><td class="mdescRight">Static initializer.  <a href="#a7df8628743ecaf5d68f435d53a7a4639">More...</a><br /></td></tr>
+<tr class="separator:a7df8628743ecaf5d68f435d53a7a4639"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3528a46096355d135663acd1126859da"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classneo_1_1BuiltinLED.html#a3528a46096355d135663acd1126859da">free</a> (bool throws=false)</td></tr>
+<tr class="memdesc:a3528a46096355d135663acd1126859da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Static de-initializer.  <a href="#a3528a46096355d135663acd1126859da">More...</a><br /></td></tr>
+<tr class="separator:a3528a46096355d135663acd1126859da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>A simple controller to handle the second LED on the board. </p>
+<p>This class is just a helper method to support the default non supported LED status pin on the board. By default this is the RED LED that starts flashing when you boot, this is the IO LED indicating file transfer. When using this, it will disable the LED from flashing (until the next reboot or release) and you have control over it. It's just another way of debugging stuff.</p>
+<p><br />
+Here is the example usage of the class: </p><div class="fragment"><div class="line"><span class="keywordtype">int</span> main() {</div><div class="line">  <a class="code" href="classneo_1_1BuiltinLED.html#af3172fb89ed74b7fc803119b92d84a5a">BuiltinLED</a> led;</div><div class="line">  led.on(); <span class="comment">//Turn the builtin led to on</span></div><div class="line">  led.off(); <span class="comment">//Turn the builtin led to off</span></div><div class="line">  <span class="keywordflow">return</span> 0; <span class="comment">//Auto free on exit</span></div><div class="line">}</div></div><!-- fragment --><p> <br />
+ </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="af3172fb89ed74b7fc803119b92d84a5a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af3172fb89ed74b7fc803119b92d84a5a">&sect;&nbsp;</a></span>BuiltinLED()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">neo::BuiltinLED::BuiltinLED </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>throwing</em> = <code>true</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><a class="el" href="classneo_1_1BuiltinLED.html" title="A simple controller to handle the second LED on the board. ">BuiltinLED</a> initializer to start the disabling of the LED. </p>
+<p>This will start the <a class="el" href="classneo_1_1BuiltinLED.html" title="A simple controller to handle the second LED on the board. ">BuiltinLED</a> to the off state and there are no parameters besides if you want exception throwing to be enabled</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">throwing</td><td>Wether to throw errors like PinError or just surpress them (false to surpress) (default: true)</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="pwm_8c.html#a3eb536e6ed5e5019b0cd57b98b1059d3" title="Initializes the FAKE pwm, p.s this is the same as neo_gpio_init. ">neo_fake_pwm_init()</a> </dd>
+<dd>
+<a class="el" href="pwm_8c.html#a8af233ae9556ba1b3c26589d526e9fa6" title="Main write method for fake_pwm. ">neo_fake_pwm_write_period()</a> </dd>
+<dd>
+<a class="el" href="pwm_8c.html#a3481999a8f3514ddd7b8f357bf7234db" title="Duty write method for fake_pwm. ">neo_fake_pwm_write()</a> </dd>
+<dd>
+<a class="el" href="gpio_8c.html#aa0b5e2f0333911b69e3b01558803e12e" title="Releases the gpio pins from program. ">neo_gpio_free()</a> //That's right learn to release correctly</dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Careful to not use the same port as output as the m4 (arduino core) </dd></dl>
+
+</div>
+</div>
+<a id="a27580c38c503af8ff760b7fdc5359c86"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a27580c38c503af8ff760b7fdc5359c86">&sect;&nbsp;</a></span>~BuiltinLED()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">neo::BuiltinLED::~BuiltinLED </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The <a class="el" href="classneo_1_1BuiltinLED.html" title="A simple controller to handle the second LED on the board. ">BuiltinLED</a> release. </p>
+<p>This will attempt to release the LED back to the system to flash it's disk IO once again</p>
+<dl class="section note"><dt>Note</dt><dd>Free needs no longer to be called since the method is called when the program exits </dd></dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a3528a46096355d135663acd1126859da"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3528a46096355d135663acd1126859da">&sect;&nbsp;</a></span>free()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool neo::BuiltinLED::free </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>throws</em> = <code>false</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Static de-initializer. </p>
+<p>A functions that wraps the C neo_led_free function with some exception throwing and nice namespace conventioning.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">throws</td><td>A boolean to indicate if the object should throw an error when it fails</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>There is no reason to call this (it will auto call on program exit) unless you explicity </dd>
+<dd>
+To release the LED </dd></dl>
+
+</div>
+</div>
+<a id="a7df8628743ecaf5d68f435d53a7a4639"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7df8628743ecaf5d68f435d53a7a4639">&sect;&nbsp;</a></span>init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool neo::BuiltinLED::init </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>throws</em> = <code>false</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Static initializer. </p>
+<p>A functions that wraps the C neo_led_init function with some exception throwing and nice namespace conventioning.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">throws</td><td>A boolean to indicate if the object should throw an error when it fails </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a6296eb0d35758442ac70ede2213917f4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6296eb0d35758442ac70ede2213917f4">&sect;&nbsp;</a></span>off()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool neo::BuiltinLED::off </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Turn the <a class="el" href="classneo_1_1BuiltinLED.html" title="A simple controller to handle the second LED on the board. ">BuiltinLED</a> to off. </p>
+<p>This method will attempt to turn the <a class="el" href="classneo_1_1BuiltinLED.html" title="A simple controller to handle the second LED on the board. ">BuiltinLED</a> off Example Usage: </p><div class="fragment"><div class="line">bled.off();</div></div><!-- fragment --> <dl class="section return"><dt>Returns</dt><dd>A boolean if the operation succeded </dd></dl>
+
+</div>
+</div>
+<a id="afd81025d45f7a099cb5a6b817598b8e9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afd81025d45f7a099cb5a6b817598b8e9">&sect;&nbsp;</a></span>on()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool neo::BuiltinLED::on </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Turn the <a class="el" href="classneo_1_1BuiltinLED.html" title="A simple controller to handle the second LED on the board. ">BuiltinLED</a> to on. </p>
+<p>This method will attempt to turn the <a class="el" href="classneo_1_1BuiltinLED.html" title="A simple controller to handle the second LED on the board. ">BuiltinLED</a> on Example Usage: </p><div class="fragment"><div class="line">bled.on();</div></div><!-- fragment --> <dl class="section return"><dt>Returns</dt><dd>A boolean if the operation succeded </dd></dl>
+
+</div>
+</div>
+<a id="a34ddb11e2883512bc7c7df84a2e97740"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a34ddb11e2883512bc7c7df84a2e97740">&sect;&nbsp;</a></span>set()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool neo::BuiltinLED::set </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>state</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Setting LED state to either on or off. </p>
+<p>This method will either turn the led off or on via a state, statically Example Usage: </p><div class="fragment"><div class="line">      <a class="code" href="classneo_1_1BuiltinLED.html#a34ddb11e2883512bc7c7df84a2e97740">BuiltinLED::set</a>(neo::ON);</div><div class="line">   \endcod</div><div class="line">   @<span class="keywordflow">return</span> A <span class="keywordtype">boolean</span> <span class="keywordflow">if</span> the operation succeded or not</div><div class="line">   @param state The <span class="keywordtype">boolean</span> state of the LED either <a class="code" href="neo_8h.html#abb3215f7b1cefb87c23881a803131b03">ON</a> (<span class="keyword">true</span>) or OFF (false)</div><div class="line">   @param throws Optional value to throw if there is an error (default: true)</div><div class="line">  /</div><div class="line">static <span class="keywordtype">bool</span> <a class="code" href="classneo_1_1BuiltinLED.html#a34ddb11e2883512bc7c7df84a2e97740">set</a>(<span class="keywordtype">bool</span> state, <span class="keywordtype">bool</span> throws = true) {</div><div class="line">    <span class="keywordtype">int</span> ret = <a class="code" href="led_8c.html#a65d4cc45220130666f70b9d759409670">neo_led_set</a>((<span class="keywordtype">int</span>) state);</div><div class="line">    <span class="keywordflow">if</span>(<span class="keywordflow">throws</span> &amp;&amp; ret != <a class="code" href="neo_8h.html#abc7205d167c5e515159cb0f2b17cebea">NEO_OK</a>) {</div><div class="line">        <a class="code" href="neoerror_8h.html#adf2774e27c722d5b5ef50f5f97319ee3">neo::error::Handler</a>(ret, 0, 0, 1, (<span class="keywordtype">int</span>) state, <span class="stringliteral">&quot;BuiltinLED&quot;</span>, <span class="stringliteral">&quot;Failed to Writing to BuiltinLED&quot;</span>);</div><div class="line">    }</div><div class="line">    <span class="keywordflow">return</span> ret == <a class="code" href="neo_8h.html#abc7205d167c5e515159cb0f2b17cebea">NEO_OK</a>;</div><div class="line">}</div><div class="line"></div></div><!-- fragment --> <dl class="section return"><dt>Returns</dt><dd>A boolean if the operation succeded </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">state</td><td>The boolean state of the LED either ON (true) or OFF (false) </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
+<li>include/<a class="el" href="neo_8h_source.html">neo.h</a></li>
+</ul>
+</div><!-- contents -->
+
+<!-- HTML footer for doxygen 1.8.8-->
+<!-- start footer part -->
+</div>
+</div>
+</div>
+</div>
+</div>
+<hr class="footer"/><address class="footer"><small>
+Created by David Smerkous &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="neoc_small.png" style="width: auto; height: 45px;" alt="NEOC Docs generated with Doxygen"/>
+</a> Doxygen: 1.8.12
+</small></address>
+</body>
+</html>
