@@ -347,6 +347,7 @@ int neo_gpio_attach_interrupt(int pin, const char * mode, interruptfunc *intfunc
 	temp_int.pinNum = pin;
 	temp_int.attached = 1;
 	temp_int.intfunc = intfunc;
+	temp_int.fd = fileno(gpioP[pin]);
 	neo_gpio_interrupts[pin] = temp_int;
 	
 	pthread_create(&gpioINTS_T[pin], NULL, __neo_attach_interrupt, 
