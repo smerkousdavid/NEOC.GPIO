@@ -57,7 +57,8 @@ const char * const GPIOPORTS[] = {"178", "179", "104", "143", "142", "141", "140
 			"7", "6", "5", "4"};
 
 //When attempting to export test all ports as well as document the direction and setting
-unsigned char USABLEGPIO[GPIOPORTSL], DIRGPIO[GPIOPORTSL], VALGPIO[GPIOPORTSL];
+unsigned char USABLEGPIO[GPIOPORTSL], DIRGPIO[GPIOPORTSL], VALGPIO[GPIOPORTSL],
+		USEDINT[GPIOPORTSL];
 
 //P = port pin D = direction pin E = edge L = active low
 FILE* gpioP[GPIOPORTSL];
@@ -92,28 +93,34 @@ const int buf_r_size = 3; //3 char buffer max (to be generous to the reading)
 
 static gboolean __neo_interrupt_event(GIOChannel *ch, GIOCondition cond, 
 				gpointer data) {
+	//First interrupt is always called, lets fix that per pin
+	interrupt_t t_inter = (*(interrupt_t *)(data));
 	gchar r_buff[buf_r_size]; //Store data buffer
 	gsize current_read = 0; //Current byte size read
 	GError *err = 0; //Error holder
 	
 	g_io_channel_seek_position(ch, 0, G_SEEK_SET, 0); //Set data buffer seek to 0
-	GIOStatus gs = g_io_channel_read_chars(ch, r_buff, buf_r_size - 1,
-										&current_read, &err);
+	GIOStatus gs = g_io_channel_read_chars(ch, r_buff, buf_r_size - 1, &current_read, &err);
 	
 	//if((int) gs != 1) { //Check for errors
-		int f_data; //Store data from interrupt event
-		int cr = sscanf(r_buff, "%d", &f_data); //Load the gchar array into the int
-		
-		if(cr < 1) { //On data recieve failed
-			f_data = NEO_FAIL; //Set failure flag
-		}
-		
-		((interrupt_t *) data)->intfunc(((interrupt_t *) data)->pinNum, f_data);
-		//Call the user function with pinNumber and current flag
+	int f_data; //Store data from interrupt event
+	int cr = sscanf(r_buff, "%d", &f_data); //Load the gchar array into the int
+	
+	if(cr < 1) { //On data recieve failed
+		f_data = NEO_FAIL; //Set failure flag
+	}
+
+	if(USEDINT[t_inter.pinNum] < 1) {
+		USEDINT[t_inter.pinNum] += 1; //Update the usage
+		return 1; //Return a success
+	}
+
+	t_inter.intfunc(t_inter.pinNum, f_data);
+	//Call the user function with pinNumber and current flag
 		
 		
 	//} else printf("Interrupt error!\n");
-	
+	return 1;	
 }
 
 //When the interrupt pin was failed or wasn't assigned by user, print dummy event
@@ -197,7 +204,7 @@ int neo_gpio_init()
 		}
 	
 		//Set all the ports to usable
-		for(gi = 0; gi < GPIOPORTSL; gi++) {USABLEGPIO[gi] = 1;}
+		for(gi = 0; gi < GPIOPORTSL; gi++) {USABLEGPIO[gi] = 1; USEDINT[gi] = 0;}
 	
 		//Compile the export sysfs path
 		FILE *eFile;
@@ -294,7 +301,8 @@ int neo_gpio_pin_mode(int pin, int direction) {
 
 	if(DIRGPIO[pin] == (unsigned char) INPUT && direction == OUTPUT) { 
 		FILE *edge = gpioE[pin]; //Make sure the edge is off to switch to output
-		if(edge == NULL || !USABLEGPIO) return NEO_INTERRUPT_ERROR;
+		if(edge == NULL || !USABLEGPIO[pin]) return NEO_INTERRUPT_ERROR;
+		fseek(edge, 0, SEEK_SET); //Set seek to beginning
 		fprintf(edge, "%s", NOEDGE); //Update the edge
 		fflush(edge); //Flush the stream
 	}
@@ -324,12 +332,12 @@ int neo_gpio_pin_mode(int pin, int direction) {
  * @param mode The mode to put the pin in available ("both", "rising", "falling")
  * @param intfunc The function pointer to the interrupt return
  */
-int neo_gpio_attach_interrupt(int pin, const char * mode, interruptfunc *intfunc) {
+int neo_gpio_attach_interrupt(int pin, const char * mode, interruptfunc intfunc) {
 	//Safety check to see if both arguments are valid
 	if(strcmp(mode, "both") != 0 && strcmp(mode, "rising") != 0 
-				&& strcmp(mode, "falling") != 0) { printf("HAHAHAHA\n");  return NEO_INTERRUPT_ERROR; }
+				&& strcmp(mode, "falling") != 0) return NEO_INTERRUPT_ERROR;
 	if(pin < 0 || pin > GPIOPORTSL) return NEO_PIN_ERROR;
-	if(intfunc == NULL) { printf("NAH\n"); return NEO_INTERRUPT_ERROR; }
+	if(intfunc == NULL) return NEO_INTERRUPT_ERROR;
 
 	//If the pin is output, set the pin to input and setup the edge
 	if(DIRGPIO[pin] == (unsigned char) OUTPUT) { 
@@ -339,7 +347,8 @@ int neo_gpio_attach_interrupt(int pin, const char * mode, interruptfunc *intfunc
 	}
 	
 	FILE *edge = gpioE[pin]; //Make sure the edge is off to switch to output
-	if(edge == NULL || !USABLEGPIO) return NEO_INTERRUPT_ERROR;
+	if(edge == NULL || !USABLEGPIO[pin]) return NEO_INTERRUPT_ERROR;
+	fseek(edge, 0, SEEK_SET); //Set seek to beginning
 	fprintf(edge, "%s", mode); //Update the edge
 	fflush(edge); //Flush the stream
 	
@@ -350,8 +359,7 @@ int neo_gpio_attach_interrupt(int pin, const char * mode, interruptfunc *intfunc
 	temp_int.fd = fileno(gpioP[pin]);
 	neo_gpio_interrupts[pin] = temp_int;
 	
-	pthread_create(&gpioINTS_T[pin], NULL, __neo_attach_interrupt, 
-								&neo_gpio_interrupts[pin]);
+	pthread_create(&gpioINTS_T[pin], NULL, __neo_attach_interrupt, &neo_gpio_interrupts[pin]);
 	
 	return NEO_OK; //On success
 }

@@ -1,0 +1,1 @@
+gcc -fPIC -Wall -Wextra -O2 -g -Iinclude -I/usr/include/glib-2.0 -I/usr/lib/arm-linux-gnueabihf/glib-2.0/include   -c -o src/gpio.o src/gpio.c

@@ -179,6 +179,8 @@
 extern "C" {
 #endif
 
+typedef void (*interruptfunc)(int, int);
+
 #ifndef DOXYGEN_SKIP
 
 #define GPIOPORTSL 48
@@ -347,6 +349,7 @@ int neo_screen_set_hdmi();
 
 int neo_gpio_init();
 int neo_gpio_pin_mode(int, int);
+int neo_gpio_attach_interrupt(int, const char*, interruptfunc);
 int neo_gpio_digital_write(int, int);
 int neo_gpio_digital_read(int);
 int neo_gpio_free();
@@ -391,7 +394,6 @@ int neo_accel_read(int*, int*, int*);
 int neo_accel_read_calibrated(int*, int*, int*);
 int neo_accel_calibrate(int, int);
 int neo_accel_free();
-
 int neo_gyro_set_poll(int);
 int neo_gyro_init();
 int neo_gyro_read(int*, int*, int*);
@@ -718,7 +720,7 @@ class Gpio {
 		 * @note Careful to not use the same port as output as the m4 (arduino core)
 		 */
 		Gpio(int port, bool release = false, bool throwing = true) {
-			Gpio::init(_throwing); //Use static instance
+			Gpio::init(); //Use static instance
 			_held = port;
 			_throwing = throwing;
 			
@@ -770,7 +772,7 @@ class Gpio {
 		static bool free(bool throws = false) {
 			int ret = neo_gpio_free();
 			if(throws && ret != NEO_OK) {
-				neo::error::Handler(ret, -1, 0, GPIOPORTSL, 0, "Gpio", "Failed to Release");
+				neo::error::Handler(ret, -2, 0, GPIOPORTSL, 0, "Gpio", "Failed to Release");
 			}
 			return ret == NEO_OK;
 		}
@@ -893,8 +895,8 @@ class Gpio {
 		 *
 		 * @warning You cannot currently detach the pin as soon as you attach
 		 */
-		static bool attachInterrupt(int port, const char * mode, auto intfunc, bool throws = true) {
-			int ret = neo_gpio_attach_interrupt(port, mode, (interruptfunc*) intfunc);
+		static bool attachInterrupt(int port, const char * mode, interruptfunc intfunc, bool throws = true) {
+			int ret = neo_gpio_attach_interrupt(port, mode, intfunc);
 			if(throws && ret != NEO_OK) {
 				neo::error::Handler(ret, port, 0, 1, 0, "Failed to attach", "");
 			}
@@ -914,7 +916,7 @@ class Gpio {
 		 *
 		 * @warning You cannot currently detach the pin as soon as you attach
 		 */
-		bool attachInterrupt(const char * mode, auto intfunc) {
+		bool attachInterrupt(const char * mode, interruptfunc intfunc) {
 			return Gpio::attachInterrupt(_held, mode, intfunc, _throwing);
 		}
 		
