@@ -190,6 +190,13 @@ extern "C" {
 #define GPIOPATH "/sys/class/gpio/gpio"
 #define VALUEPATH "/value"
 #define DIRECTIONPATH "/direction"
+#define EDGEPATH "/edge"
+#define ACTIVELOWPATH "/active_low"
+
+#define NOEDGE "none"
+#define FALLINGEDGE "falling"
+#define RISINGEDGE "rising"
+#define BOTHEDGE "both"
 
 #define PWMEXPORTPATH "/sys/class/pwm/pwmchip0/export"
 #define PWMPATH "/sys/class/pwm/pwmchip0/pwm"
@@ -253,6 +260,9 @@ extern "C" {
 ///@brief When failed to set the builtin LED state
 #define NEO_LED_STATE_ERROR -11
 
+///@brief When failed to set edge on interrupt or read the interrupt data
+#define NEO_INTERRUPT_ERROR -12
+
 #ifndef DOXYGEN_SKIP
 
 #define ACCELBASE "/sys/class/misc/FreescaleAccelerometer/"
@@ -301,6 +311,8 @@ extern "C" {
 #define gpioL  strlen(GPIOPATH)
 #define valueL strlen(VALUEPATH)
 #define directionL strlen(DIRECTIONPATH)
+#define edgeL strlen(EDGEPATH)
+#define activelowL strlen(ACTIVELOWPATH)
 #define pwmexportL strlen(PWMEXPORTPATH)
 #define pwmL strlen(PWMPATH)
 #define pwmPeriod strlen(PWMPERIOD)

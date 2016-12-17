@@ -41,6 +41,11 @@
 #include <string.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <glib.h>
+#include <pthread.h>
+#include <fcntl.h>
 
 //Array with all of the mapped ports to the correct bank numbers as indexes - 1
 const char * const GPIOPORTS[] = {"178", "179", "104", "143", "142", "141", "140", 
@@ -51,18 +56,105 @@ const char * const GPIOPORTS[] = {"178", "179", "104", "143", "142", "141", "140
 			"176", "175", "174", "119", "124", "127", "116", 
 			"7", "6", "5", "4"};
 
-//When attempting to export test all ports
-unsigned char USABLEGPIO[GPIOPORTSL];
+//When attempting to export test all ports as well as document the direction and setting
+unsigned char USABLEGPIO[GPIOPORTSL], DIRGPIO[GPIOPORTSL], VALGPIO[GPIOPORTSL];
 
-//P = port pin D = direction pin
+//P = port pin D = direction pin E = edge L = active low
 FILE* gpioP[GPIOPORTSL];
 FILE* gpioD[GPIOPORTSL];
+FILE* gpioE[GPIOPORTSL];
+FILE* gpioA[GPIOPORTSL];
 
 //Double free and initializing error fixed by global flag
 unsigned char neo_gpio_freed = 2;
 
+//Set the global exit function
 unsigned char neo_exit_set = 2;
 
+//Define the function pointer interrupt to attach to
+typedef void (*interruptfunc)(int, int);
+
+struct interrupt_h {
+	int pinNum; //Currently handled pin number
+	int attached; //If pin is attached to interrupt
+	int fd; //File descriptor for watcher
+	
+	interruptfunc intfunc; //The callback function to handle attachment
+};
+
+//Declare alias for struct
+typedef struct interrupt_h interrupt_t;
+
+//Thread managing for the gpio interrupts
+interrupt_t neo_gpio_interrupts[GPIOPORTSL + 2];
+
+const int buf_r_size = 3; //3 char buffer max (to be generous to the reading)
+
+static gboolean __neo_interrupt_event(GIOChannel *ch, GIOCondition cond, 
+				gpointer data) {
+	gchar r_buff[buf_r_size]; //Store data buffer
+	gsize current_read = 0; //Current byte size read
+	GError *err = 0; //Error holder
+	
+	g_io_channel_seek_position(ch, 0, G_SEEK_SET, 0); //Set data buffer seek to 0
+	GIOStatus gs = g_io_channel_read_chars(ch, r_buff, buf_r_size - 1,
+										&current_read, &err);
+	
+	if((int) gs != 1) { //Check for errors
+		int f_data; //Store data from interrupt event
+		int cr = sscanf(r_buff, "%d", &f_data); //Load the gchar array into the int
+		
+		if(cr < 1) { //On data recieve failed
+			f_data = NEO_FAIL; //Set failure flag
+		}
+		
+		((interrupt_t *) data)->intfunc(((interrupt_t *) data)->pinNum, f_data);
+		//Call the user function with pinNumber and current flag
+		
+		
+	} else printf("Interrupt error!\n");
+	
+}
+
+//When the interrupt pin was failed or wasn't assigned by user, print dummy event
+void __neo_dummy_int_event(int pin, int data) {
+	printf("Dummy Interrupt Event(Pin: %d) -> Data: %d", pin, data);
+}
+
+
+//This will make sure all the interrupts have presets and don't crash after free
+void __neo_initialize_interrupts() {
+	int ind;
+	//Loop through each struct set default params
+	for(ind = 0; ind < GPIOPORTSL; ind++) {
+		interrupt_t t_temp = neo_gpio_interrupts[ind];
+		
+		//Set the default values and functions
+		t_temp.pinNum = 0;
+		t_temp.attached = 0;
+		t_temp.intfunc = &__neo_dummy_int_event;
+	}
+}
+
+//This is the backend thread start that will attach a pin to an interrupt
+void *__neo_attach_interrupt(void *arg) {
+	interrupt_t pin_fd;
+	pin_fd = (*(interrupt_t*)(arg)); //Parse argument as int
+	GMainLoop *loop = g_main_loop_new(0,0); //Create new watch loop
+	
+	GIOChannel *ch = g_io_channel_unix_new(pin_fd.fd); //Set up new channel for file descriptor
+	GIOCondition cond = G_IO_PRI; //Only wait for new data to arrive	
+	
+	//Attach the new loop with the channel on watch
+	guint id = g_io_add_watch(ch, cond, __neo_interrupt_event, &pin_fd);
+	
+	g_main_loop_run(loop); //Start the loop
+}
+
+//Thread main loop managers for the pin interrupts
+pthread_t gpioINTS_T[GPIOPORTSL + 2];
+
+//Handle freeing all of the functions
 void neo_free_all() {
 	//Called on exit of program
 	printf("FREEING\n");
@@ -125,26 +217,58 @@ int neo_gpio_init()
 			//Calcuate total new path size to store in buffer
 			size_t newPathS = strlen(GPIOPORTS[i]) + gpioL + valueL;
 			size_t newDPathS = strlen(GPIOPORTS[i]) + gpioL + directionL;
+			size_t newEPathS = strlen(GPIOPORTS[i]) + gpioL + edgeL;
+			size_t newAPathS = strlen(GPIOPORTS[i]) + gpioL + activelowL;
 	
 			//Create new path buffer for temporary storage
 			char buff[newPathS];
 			char buffD[newDPathS];
+			char buffE[newEPathS];
+			char buffA[newAPathS];
 	
 			//Combine the current gpio path to buffer
 			sprintf(buff, "%s%s%s", GPIOPATH, GPIOPORTS[i], VALUEPATH);
 			sprintf(buffD, "%s%s%s", GPIOPATH, GPIOPORTS[i], DIRECTIONPATH);
+			sprintf(buffE, "%s%s%s", GPIOPATH, GPIOPORTS[i], EDGEPATH);
+			sprintf(buffA, "%s%s%s", GPIOPATH, GPIOPORTS[i], ACTIVELOWPATH);
 	
 			//Open the value port pin and direction pins
 			gpioP[i] = fopen(buff, "r+");
 			gpioD[i] = fopen(buffD, "r+");
+			gpioE[i] = fopen(buffE, "r+");
+			gpioA[i] = fopen(buffA, "r+");
+	
+			FILE *port_f = gpioP[i];
+			FILE *direction_f = gpioD[i];
 	
 			//If failed to open the sysfs files make sure to print it's unusable
-			if(gpioP[i] == NULL || gpioD[i] == NULL) {
+			if(port_f == NULL || direction_f == NULL) {
 				fail = NEO_UNUSABLE_ERROR;
 				USABLEGPIO[i] = 0;
+			} else {
+				fprintf(direction_f, "%s", "in"); //Set all pins to input
+				fflush(direction_f); //Flush stream/buffer
 			}
-	
+			
+			DIRGPIO[i] = INPUT; //Set the global direction to 0 (input)
+			VALGPIO[i] = LOW; //Set the global pin direction to 0 (low)
+			
+			FILE *edge = gpioE[i];
+			FILE *activelow = gpioA[i];
+			
+			if(edge != NULL) { //Check that the pin supports interrupts
+				fprintf(edge, "%s", "none"); //Set to no interrupt detection
+				fflush(edge); //Flush buffer
+			}
+			
+			if(activelow != NULL) { //Check that the pin supports active_low
+				fprintf(activelow, "%s", "0"); //Set to default pull down resistor
+				fflush(activelow); //Flush buffer
+			}
 		}
+		
+		__neo_initialize_interrupts(); //Setup interrupt structs
+		
 		neo_gpio_freed = 0; //Set initialized flag
 	}
 
@@ -168,6 +292,13 @@ int neo_gpio_pin_mode(int pin, int direction) {
 	if(direction < 0 || direction > 1) return NEO_DIR_ERROR;
 	if(pin < 0 || pin > GPIOPORTSL) return NEO_PIN_ERROR;
 
+	if(DIRGPIO[pin] == (unsigned char) INPUT && direction == OUTPUT) { 
+		FILE *edge = gpioE[pin]; //Make sure the edge is off to switch to output
+		if(edge == NULL || !USABLEGPIO) return NEO_INTERRUPT_ERROR;
+		fprintf(edge, "%s", NOEDGE); //Update the edge
+		fflush(edge); //Flush the stream
+	}
+
 	//Select direction of the pin
 	FILE *curD = gpioD[pin];
 	if(curD == NULL || !USABLEGPIO[pin]) return NEO_UNUSABLE_ERROR;
@@ -175,6 +306,51 @@ int neo_gpio_pin_mode(int pin, int direction) {
 	//Set to INPUT "in" or OUTPUT "out"
 	fprintf(curD, "%s", (direction == 0) ? "in" : "out");
 	fflush(curD);
+	
+	DIRGPIO[pin] = (unsigned char) direction;
+	
+	return NEO_OK; //On success
+}
+
+/**
+ * @brief Attaches an interrupt to a pin
+ * 
+ * This will start a new thread that listens for a pin change state based on what you want
+ * A state of either "rising" to only detect when the pin changes from 0 to 1. "falling" for the
+ * function to only call from 1 to 0 and "both" that happens if it changes either way.
+ * 
+ * @return NEO_OK/NEO_INTERRUPT_ERROR/NEO_PIN_ERROR/NEO_UNUSABLE_ERRROR if the interrupt failed
+ * 
+ * @note Don't set to OUTPUT unless you know for sure the m4 (arduino) core isn't using the same pin for OUTPUT
+ * @note NEO_UNUSABLE_ERROR might return if the pin is unusable
+ */
+int neo_gpio_attach_interrupt(int pin, const char * mode, interruptfunc *intfunc) {
+	//Safety check to see if both arguments are valid
+	if(strcmp(mode, "both") != 0 || strcmp(mode, "rising") != 0 
+				|| strcmp(mode, "falling") != 0) return NEO_INTERRUPT_ERROR;
+	if(pin < 0 || pin > GPIOPORTSL) return NEO_PIN_ERROR;
+	if(intfunc == NULL) return NEO_INTERRUPT_ERROR;
+
+	//If the pin is output, set the pin to input and setup the edge
+	if(DIRGPIO[pin] == (unsigned char) OUTPUT) { 
+		int ret = neo_gpio_pin_mode(pin, INPUT);
+		
+		if(ret != NEO_OK) return ret;
+	}
+	
+	FILE *edge = gpioE[pin]; //Make sure the edge is off to switch to output
+	if(edge == NULL || !USABLEGPIO) return NEO_INTERRUPT_ERROR;
+	fprintf(edge, "%s", mode); //Update the edge
+	fflush(edge); //Flush the stream
+	
+	interrupt_t temp_int = neo_gpio_interrupts[pin];
+	temp_int.pinNum = pin;
+	temp_int.attached = 1;
+	temp_int.intfunc = intfunc;
+	neo_gpio_interrupts[pin] = temp_int;
+	
+	pthread_create(&gpioINTS_T[pin], NULL, __neo_attach_interrupt, 
+								&neo_gpio_interrupts[pin]);
 	
 	return NEO_OK; //On success
 }
@@ -215,6 +391,14 @@ int neo_gpio_digital_write(int pin, int direction) {
 	if(direction < 0 || direction > 1) return NEO_DIR_ERROR;
 	if(pin < 0 || pin > GPIOPORTSL) return NEO_PIN_ERROR;
 
+	if(DIRGPIO[pin] == (unsigned char) INPUT) {
+		FILE *active = gpioA[pin]; //Get the pullup resistor
+		fprintf(active, "%d", direction); //Set the pullup or pulldown direction
+		fflush(active); //Update stream
+		VALGPIO[pin] = (unsigned char) direction; //Set the direction currently
+		return NEO_OK;					
+	}
+
 
 	FILE *curP = gpioP[pin];
 
@@ -223,6 +407,8 @@ int neo_gpio_digital_write(int pin, int direction) {
 
 	//Above method to write to the GPIO (Safety check already done)
 	neo_gpio_digital_write_no_safety(&pin, direction);
+
+	VALGPIO[pin] = (unsigned char) direction;
 
 	return NEO_OK;
 }
@@ -242,6 +428,11 @@ int neo_gpio_digital_read(int pin) {
 
 	//Safety check for the pin
 	if(pin < 0 || pin > GPIOPORTSL) return NEO_PIN_ERROR;
+
+	//You can't read it unless it's INPUT so just return the last known value
+	if(DIRGPIO[pin] == (unsigned char) OUTPUT) {
+		return VALGPIO[pin];
+	}
 
 	FILE *curP = gpioP[pin];
 
@@ -275,10 +466,16 @@ int neo_gpio_free()
 			if(USABLEGPIO[i]) {
 				FILE *curP = gpioP[i];
 				FILE *curD = gpioD[i];
+				FILE *curE = gpioE[i];
+				FILE *curA = gpioA[i];
 	
 				if(curP != NULL) fclose(curP);
 				else fail = NEO_UNUSABLE_ERROR;
 				if(curD != NULL) fclose(curD);
+				else fail = NEO_UNUSABLE_ERROR;
+				if(curE != NULL) fclose(curE);
+				else fail = NEO_UNUSABLE_ERROR;
+				if(curA != NULL) fclose(curA);
 				else fail = NEO_UNUSABLE_ERROR;
 			}
 		}

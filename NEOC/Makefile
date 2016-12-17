@@ -1,8 +1,9 @@
 SHELL = /bin/sh
 CC = gcc
-CFLAGS = -fPIC -Wall -Wextra -O2 -g -Iinclude
+GLIBH = $(shell echo `pkg-config --cflags glib-2.0`)
+CFLAGS = -fPIC -Wall -Wextra -O2 -g -Iinclude $(GLIBH)
 LDFLAGS = -shared
-ENDFLAGS = -Iinclude -I/usr/include `pkg-config --cflags --libs glib-2.0` -lpthread
+ENDFLAGS = -Iinclude -I/usr/include $(shell echo `pkg-config --libs glib-2.0`) -lpthread
 RM = rm -f
 TARGET_LIB = libneo.so
 
@@ -21,7 +22,7 @@ INCDIR = $(PREFIX)/include/
 all: ${TARGET_LIB}
 
 $(TARGET_LIB): $(OBJS)
-	$(CC) ${LDFLAGS} -o $@ $^ $(ENDFLAGS)
+	$(CC) ${LDFLAGS} -o $@ $^ $(GLIBH) $(ENDFLAGS)
 	mv $(TARGET_LIB) $(LIBS)
 	mv $(OBJS) $(OBJF)
 	mv $(SRCS:.c=.d) $(OBJF)
