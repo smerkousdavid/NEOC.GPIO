@@ -104,7 +104,7 @@ int neo_accel_init() {
 		}
 		neo_check_root("Accelerometer requires root access!"); //Double check root access
 	
-		//Enable the 
+		//Enable the accel
 		FILE *enabler;
 		enabler = fopen(ACCELENABLE, "w"); //Attempt to open the enabler
 	

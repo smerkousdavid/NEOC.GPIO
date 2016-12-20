@@ -28,12 +28,15 @@
  *
  * This file allows to read the raw and calibrated data from the magno
  * It's recommended to set the poll rate of the update to get the most accurate
- * Reading. If you your main loop is 50 millis then set the poll to something around
- * 50 as well.
+ * Reading. If you your main loop is 50 millis then set the poll to something
+ * around 50 as well.
  * 
  */
 
 #include <neo.h>
+
+#ifndef DOXYGEN_SKIP
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -49,6 +52,8 @@ int neo_magno_calibration[] = {0, 0, 0};
 //Double free or error fixer also no need to double initialize
 unsigned char neo_magno_freed = 2;
 
+#endif
+
 /**
  * @brief Sets millis pulling rate of magno
  *
@@ -63,99 +68,194 @@ unsigned char neo_magno_freed = 2;
  * @return NEO_OK or NEO_UNUSABLE_ERROR if magno is not found
  * 
  * @note NEO_UNUSABLE_ERROR means that there isn't a magno detected
+ *
+ * @note This would be way better if ran as root rather than sudo
  */
 int neo_magno_set_poll(int rate) {
 	FILE *polling;
 	
+	//Open the temporary poll rate
 	polling = fopen(MAGNOPOLLP, "w");
 
+	//Safety checkt to see if the pull rate is not there	
 	if(polling == NULL) return NEO_UNUSABLE_ERROR;
 
+	//Double check the rate, the seek should already be 0
 	fprintf(polling, "%d", rate);
-	fflush(polling);
-	fclose(polling);
+	fflush(polling); //Double flush the buffer
+	fclose(polling); //Close it
 
 	return NEO_OK;
 }
 
+/**
+ * @brief Initializes the Builtin Magno
+ * 
+ * Attach the Builtin Magno to the program for reading. The setPoll
+ * may be called anytime AFTER the init method. Just remember to set it
+ * since it's consistent with the kernel on reboot!
+ * 
+ * @return NEO_OK or NEO_UNUSABLE error if something went wrong
+ *
+ * @warning Please use ROOT when running this and not just sudo
+ * @note To run as root try sudo su and then run it or sudo su -c './a.out'
+ */
 int neo_magno_init() {
+	//Double check if it has already been init
 	if(neo_magno_freed == 2) {
+		//Setup cleanup on exit of application
+		if(neo_exit_set == 2) {
+			atexit(neo_free_all);
+			neo_exit_set = 1;
+		}
+		
+		//Double check root access
 		neo_check_root("Magno requires root access!");
 	
+		//Enable the magno
 		FILE *enabler;
-		enabler = fopen(MAGNOENABLE, "w");
-		if(enabler == NULL) return NEO_UNUSABLE_ERROR;
+		enabler = fopen(MAGNOENABLE, "w"); //Attempt to open the enabler
+		if(enabler == NULL) return NEO_UNUSABLE_ERROR; //Make sure we have access to the magno
 		
-		fprintf(enabler, "%d", 1); //Enable accel
-		fflush(enabler);
-		fclose(enabler);
+		fprintf(enabler, "%d", 1); //Enable magno
+		fflush(enabler); //Flush the buffer
+		fclose(enabler); //Close the enabler
 	
-		neo_magno_data = fopen(neo_magno_data, "r");
+		neo_magno_data = fopen(MAGNODATA, "r");
 		
 		if(neo_magno_data == NULL) return NEO_UNUSABLE_ERROR;
-		neo_magno_freed = 0;	
+		neo_magno_freed = 0; //Set the global init flag
+		
+		return neo_magno_set_poll(MAGNOPOLL);
 	}
-	return neo_magno_set_poll(MAGNOPOLL);
-}
-
-
-int neo_magno_read(int *x, int *y, int *z) {
-	if(neo_magno_data == NULL) return NEO_UNUSABLE_ERROR;
-
-	fflush(neo_magno_data);
-	fseek(neo_magno_data, 0, SEEK_SET);
-	if(fscanf(neo_magno_data, "%d,%d,%d", x, y, z) == EOF) return NEO_READ_ERROR;
+	
 	return NEO_OK;
 }
 
-int neo_magno_read_calibrated(int *x, int *y, int *z) {
-	int okRet = neo_magno_read(x, y, z);
+/**
+ * @brief Reads the raw data from the magno
+ * 
+ * This will read the raw CURRENTLY updated data from the magno
+ * make sure you update the pollRate to get the most updated values. Be careful
+ * the faster the poll rate the faster the magno values reset to 0, making 
+ * the differencials a lot smaller.
+ *
+ * @param x A pointer to the X value of the magno
+ * @param Y A pointer to the Y value of the magno
+ * @param Z A pointer to the Z value of the magno
+ * @return NEO_OK or NEO_UNUSABLE error if something went wrong
+ *
+ * @note Set the poll rate to the same amount of delay you magno_read
+ */
+int neo_magno_read(int *x, int *y, int *z) {
+	//Double check to see if the magno is still usable
+	if(neo_magno_data == NULL) return NEO_UNUSABLE_ERROR;
+	
+	fflush(neo_magno_data); //Flish the buffer to get an update value like a sync
+	fseek(neo_magno_data, 0, SEEK_SET); //Reset the seek back to zero
+	if(fscanf(neo_magno_data, "%d,%d,%d", x, y, z) == EOF) 
+		return NEO_READ_ERROR; //Read data from the magno data file
+	return NEO_OK;
+}
 
-	(*x) += (neo_magno_calibration[0] > 0) ? -(neo_magno_calibration[0]) : neo_magno_calibration[0];
+/**
+ * @brief Reads the calibrated data from the magno
+ * 
+ * This will read the raw CURRENTLY updated and magno data from the magno
+ * make sure you update the pollRate to get the most updated values. Be careful
+ * the faster the poll rate the faster the magno values reset to 0, making the
+ * differencials a lot smaller. The calibration method must be called to
+ * actually do anything, if it's not called there is no point in calling 
+ * this method.
+ *
+ * @param X A pointer to the X value of the magno (calibrated)
+ * @param Y A pointer to the Y value of the magno (calibrated)
+ * @param Z A pointer to the Z value of the magno (calibrated)
+ * @return NEO_OK or NEO_UNUSABLE error if something went wrong
+ *
+ * @note Set the poll rate to the same amount of delay you magno_read_calibrated
+ */
+int neo_magno_read_calibrated(int *x, int *y, int *z) {
+	int okRet = neo_magno_read(x, y, z); //Read the raw data
+
+	//Fix the calibrated values from the beginning to average out the values
+	(*x) += (neo_magno_calibration[0] > 0) ? -(neo_magno_calibration[0]) : neo_magno_calibration[0]; 
 	(*y) -= (neo_magno_calibration[1] > 0) ? -(neo_magno_calibration[1]) : neo_magno_calibration[1];
 	(*z) -= (neo_magno_calibration[2] > 0) ? -(neo_magno_calibration[2]) : neo_magno_calibration[2];
 
-	return okRet;
+	return okRet; //Check the return codes
 }
 
+/**
+ * @brief Calibrate the magno over a period of time
+ * 
+ * This will calibrate the magno and try to set all the axis to 0. Make sure
+ * The Udoo is not moving during this time to get a proper zeroed calibration.
+ *
+ * @param samples The amount of samples to take
+ * @param delayEach The amount of millisecond delays between each sample
+ * @return NEO_OK or NEO_UNUSABLE error if something went wrong
+ *
+ * @note The total time can be calculated via samples * delayEach equals total millis
+ */
 int neo_magno_calibrate(int samples, int delayEach) {
-	float xCal, yCal, zCal;
+	float xCal, yCal, zCal; //To set the average of the neo_accel_calibrated
 	int i;
 
+	//Global averages will be calculated by adding the temporary axis
 	xCal = 0;
 	yCal = 0;
 	zCal = 0;
+	
+	//Loop for x samples with a delay each sample simple math
 	for(i = 0; i < samples; i++) {
-		int x, y, z;
+		int x, y, z; //Temporary rest of axis
 
+		//Make sure we can read before adding to the average
 		if(neo_magno_read(&x, &y, &z) == NEO_UNUSABLE_ERROR) return
 				NEO_UNUSABLE_ERROR;
 
+		//Add each axis to the average
 		xCal += ((float)x);
 		yCal += ((float)y);
 		zCal += ((float)z);
 
+		//Wait for each of the delays
 		usleep(1000 * delayEach);
 	}
 
-	neo_magno_calibration[0] = (int)(xCal / ((float)samples));
-	neo_magno_calibration[1] = (int)(yCal / ((float)samples));
-	neo_magno_calibration[2] = (int)(zCal / ((float)samples));
+	//Set the accelerometer values based on the averaged samples
+	neo_magno_calibration[0] = (int)(xCal / ((float)samples)); //X
+	neo_magno_calibration[1] = (int)(yCal / ((float)samples)); //Y
+	neo_magno_calibration[2] = (int)(zCal / ((float)samples)); //Z
 
 	return NEO_OK;
 }
 
+/**
+ * @brief Frees the builtin Magno
+ * 
+ * Remove the Magno reading from the program and disable the driver on the
+ * system this will save processing power and use less power. This will be
+ * called on a CLEAN system exit but when forced like Ctrl-C, 
+ * it won't properly release and will still run the driver on the system.
+ * 
+ * @return NEO_OK or NEO_UNUSABLE error if something went wrong
+ */
 int neo_magno_free() {
-	if(neo_magno_freed == 2) {
+	//Double check that the free is released
+	if(neo_magno_freed == 0) {
 		FILE* enabler;
-		enabler = fopen(MAGNOENABLE, "w");
+		enabler = fopen(MAGNOENABLE, "w"); //Open the enabler
 	
 		if(enabler == NULL) return NEO_UNUSABLE_ERROR;
 	
-		fprintf(enabler, "%d", 1);
-		fflush(enabler);
-		fclose(enabler);
-		neo_magno_freed = 0;
+		fprintf(enabler, "%d", 0); //Disable the magno on release
+		fflush(enabler); //Flush the value for safety
+		fclose(enabler); //Close it
+		
+		fclose(neo_magno_data); //Close the data reader
+		neo_magno_freed = 2; //Set global flag to set the free to already freed 
 	}
 
 	return NEO_OK;

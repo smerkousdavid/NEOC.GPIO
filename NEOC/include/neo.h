@@ -46,15 +46,17 @@
  * Not supported in C and you will have to use the longer naming convention.
  * <BR><BR>So far this is what is supported:
  *  <OL>
- *  <LI><B>GPIO</B> on all available bank GPIO pins</LI>
+ *  <LI><B>GPIO</B> on all available bank GPIO pins (with pullups)</LI>
+ *  <LI><B>INTERRUPTS</B> interrupt on all GPIO pins</LI>
+ *  <LI><B>I2C</B> full control over all the i2c lines (1 through 4)</LI>
  *  <LI><B>PWM</B> on all enabled pwm pins (Enable via device tree editor)</LI>
  *  <LI><B>FAKE PWM</B> on all available bank GPIO pins</LI>
  *  <LI><B>ACCEL</B> raw data and calibrated data with custom poll rates</LI>
  *  <LI><B>MAGNO</B> same as accel just a magnetometer (Magno for short)</LI>
  *  <LI><B>GYRO</B> same as accel just gyroscope</LI>
  *  <LI><B>TEMP</B> The I2C temperature brick sensor plugin</LI>
- *  <LI><B>BUILTIN</B> Control over builtin tools like disabling the m4 core and setting graphics options (Specific to Udoo Neo)</LI>
- *  <LI><B>SERVO</B> Currently experiemental but should work on any GPIO pin to write between 0 and 180 degrees on a servo</LI>
+ *  <LI><B>BUILTIN</B> control over builtin tools like disabling the m4 core and setting graphics options (Specific to Udoo Neo)</LI>
+ *  <LI><B>SERVO</B> currently experiemental but should work on any GPIO pin to write between 0 and 180 degrees on a servo</LI>
  *  </OL>
  *  <BR>
  * The reason for this library to be written in C and have C++ support (using extern), was mainly for the speed
@@ -77,7 +79,12 @@
  *
  * <BR>
  *  \section install_sec Installation
- * <BR><H3>Easy Installation</H3>
+ * <BR>There are two ways to install NEOC using the premade script that
+ * just copies the necessary pre-compiled files or compiling the source
+ * yourself.
+ *
+ * <BR>
+ * <H3>Easy Installation</H3>
  * The installation for NEOC is extremely easy. For the quick installation method just copy and paste the below command<BR>
  * \code{.sh} wget -q -O - https://raw.githubusercontent.com/smerkousdavid/NEOC.GPIO/master/install.sh | bash \endcode <BR>
  * <H3>Full Installation</H3>
@@ -143,14 +150,14 @@
  * \subsection compiling Compiling and Running
  * This is the example to compile and run the C version of neo
  * \code{.sh}
- *   gcc inputfile.c -I/usr/include -lneo -o fileout.o
- *   chmod 755 fileout.o
- *   ./fileout.o
+ *   gcc inputfile.c -lneo -o fileout
+ *   chmod 755 fileout
+ *   ./fileout
  * \endcode
  * <BR>
  * The C++ version to compiling is nearly the same just replace gcc with g++
  * \code{.sh}
- *   g++ inputfile.cpp -I/usr/include -lneo -o fileout.o
+ *   g++ inputfile.cpp -lneo -o fileout
  * \endcode
  * <BR>
  *  \section license License
@@ -217,8 +224,11 @@ typedef void (*interruptfunc)(int, int);
 #define ANALOGLOW 0
 #define ANALOGBIT 12
 
-
 #define LEDPATH "/sys/class/leds/led0/brightness"
+
+#define I2CCOUNT 4
+#define I2CSHIFT 1
+#define I2CBASE "/dev/i2c-%d"
 
 #endif
 
@@ -264,6 +274,22 @@ typedef void (*interruptfunc)(int, int);
 
 ///@brief When failed to set edge on interrupt or read the interrupt data
 #define NEO_INTERRUPT_ERROR -12
+
+///@brief When the program i2c adapter is out of range or it failed to init
+#define NEO_I2C_INIT_ERROR -13
+
+///@brief When the i2c line failed to bind/connect to the slave address
+#define NEO_I2C_ADDR_ERROR -14
+
+///@brief When the i2c adapter failed or the adapter doesn't exist
+#define NEO_I2C_ADAPTER_ERROR -15
+
+///@brief When the i2c line failed to write to the register
+#define NEO_I2C_WRITE_ERROR -16
+
+///@brief When the i2c line failed to read from the register
+#define NEO_I2C_READ_ERROR -17
+
 
 #ifndef DOXYGEN_SKIP
 
@@ -394,12 +420,28 @@ int neo_accel_read(int*, int*, int*);
 int neo_accel_read_calibrated(int*, int*, int*);
 int neo_accel_calibrate(int, int);
 int neo_accel_free();
+
 int neo_gyro_set_poll(int);
 int neo_gyro_init();
 int neo_gyro_read(int*, int*, int*);
 int neo_gyro_read_calibrated(int*, int*, int*);
 int neo_gyro_calibrate(int, int);
 int neo_gyro_free();
+
+int neo_magno_set_poll(int);
+int neo_magno_init();
+int neo_magno_read(int*, int*, int*);
+int neo_magno_read_calibrated(int*, int*, int*);
+int neo_magno_calibrate(int, int);
+int neo_magno_free();
+
+int neo_i2c_init(int);
+int neo_i2c_set_addr(int, int);
+int neo_i2c_read(int, unsigned char*, int);
+int neo_i2c_write(int, unsigned char*, int);
+int neo_i2c_read_reg(int, __uint16_t, unsigned char*, int);
+int neo_i2c_free(int);
+int neo_i2c_free_all();
 
 void neo_free_all();
 

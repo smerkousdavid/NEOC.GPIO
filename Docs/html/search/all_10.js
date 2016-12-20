@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['unusableerror',['UnusableError',['../classneo_1_1error_1_1UnusableError.html',1,'neo::error']]],
-  ['unusableerror',['UnusableError',['../classneo_1_1error_1_1UnusableError.html#ae9386beea96599f0f007d5bcba3bab61',1,'neo::error::UnusableError']]]
+  ['temp_2ec',['temp.c',['../temp_8c.html',1,'']]],
+  ['temperature',['Temperature',['../tempbrick.html',1,'']]]
 ];

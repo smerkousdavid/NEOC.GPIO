@@ -171,6 +171,8 @@ void neo_free_all() {
 	neo_temp_free();
 	neo_accel_free();
 	neo_gyro_free();
+	neo_magno_free();
+	neo_i2c_free_all();
 }
 
 
@@ -561,14 +563,14 @@ int neo_gpio_free()
  * \subsection compiling Compiling and Running
  * This is the example to compile and run the C version of neo
  * \code{.sh}
- *   gcc blink.c -I/usr/include -lneo -o blink
+ *   gcc blink.c -lneo -o blink
  *   chmod 755 blink
  *   ./blink
  * \endcode
  * <BR>
  * The C++ version to compiling is nearly the same just replace gcc with g++
  * \code{.sh}
- *   g++ blink.cpp -I/usr/include -lneo -o blink
+ *   g++ blink.cpp -lneo -o blink
  * \endcode
  * <BR>
  * \section results Results
@@ -649,14 +651,14 @@ int neo_gpio_free()
  * \subsection compiling Compiling and Running
  * This is the example to compile and run the C version of neo
  * \code{.sh}
- *   gcc readgpio.c -I/usr/include -lneo -o readgpio
+ *   gcc readgpio.c -lneo -o readgpio
  *   chmod 755 readgpio
  *   ./readgpio
  * \endcode
  * <BR>
  * The C++ version to compiling is nearly the same just replace gcc with g++
  * \code{.sh}
- *   g++ readgpio.cpp -I/usr/include -lneo -o readgpio
+ *   g++ readgpio.cpp -lneo -o readgpio
  * \endcode
  * <BR>
  * \section results Results

@@ -59,9 +59,9 @@
                              <li class="menu-item"><a href="examplefakepwm.html">Fake Fade</a></li>
                           </ul>
                       </li>
-                      <li class="menu-item dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Analog</a>
+                      <li class="menu-item dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">SnapIn Sensors</a>
                           <ul class="dropdown-menu">
-                             <li class="menu-item"><a href="exampleanalog.html">Read</a></li>
+                             <li class="menu-item"><a href="tempbrick.html">Temperature</a></li>
                           </ul>
                       </li>
                    </ul>
@@ -120,30 +120,27 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>Control the temperature brick I2C plug in sensor.  
+<p>Controls the temperature brick module.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;<a class="el" href="neo_8h_source.html">neo.h</a>&gt;</code><br />
-<code>#include &lt;stdlib.h&gt;</code><br />
-<code>#include &lt;stdio.h&gt;</code><br />
-<code>#include &lt;unistd.h&gt;</code><br />
-<code>#include &lt;sys/types.h&gt;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a20e05dfc6ee46ed674b626607354386b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="temp_8c.html#a20e05dfc6ee46ed674b626607354386b">neo_temp_init</a> ()</td></tr>
-<tr class="memdesc:a20e05dfc6ee46ed674b626607354386b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Temperature brick initializer.  <a href="#a20e05dfc6ee46ed674b626607354386b">More...</a><br /></td></tr>
+<tr class="memdesc:a20e05dfc6ee46ed674b626607354386b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the temperature controller.  <a href="#a20e05dfc6ee46ed674b626607354386b">More...</a><br /></td></tr>
 <tr class="separator:a20e05dfc6ee46ed674b626607354386b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a495ba1e9a1f5b20b257f95307c63d028"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="temp_8c.html#a495ba1e9a1f5b20b257f95307c63d028">neo_temp_read</a> ()</td></tr>
-<tr class="memdesc:a495ba1e9a1f5b20b257f95307c63d028"><td class="mdescLeft">&#160;</td><td class="mdescRight">Temperature reading.  <a href="#a495ba1e9a1f5b20b257f95307c63d028">More...</a><br /></td></tr>
+<tr class="memdesc:a495ba1e9a1f5b20b257f95307c63d028"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads the current temperature from the brick module.  <a href="#a495ba1e9a1f5b20b257f95307c63d028">More...</a><br /></td></tr>
 <tr class="separator:a495ba1e9a1f5b20b257f95307c63d028"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac8024c0abfe969b10340eaa993fa5874"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="temp_8c.html#ac8024c0abfe969b10340eaa993fa5874">neo_temp_free</a> ()</td></tr>
-<tr class="memdesc:ac8024c0abfe969b10340eaa993fa5874"><td class="mdescLeft">&#160;</td><td class="mdescRight">Temperature brick de-initializer.  <a href="#ac8024c0abfe969b10340eaa993fa5874">More...</a><br /></td></tr>
+<tr class="memdesc:ac8024c0abfe969b10340eaa993fa5874"><td class="mdescLeft">&#160;</td><td class="mdescRight">Frees the controller from the current program.  <a href="#ac8024c0abfe969b10340eaa993fa5874">More...</a><br /></td></tr>
 <tr class="separator:ac8024c0abfe969b10340eaa993fa5874"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Control the temperature brick I2C plug in sensor. </p>
+<div class="textblock"><p>Controls the temperature brick module. </p>
 <dl class="section author"><dt>Author</dt><dd>David Smerkous </dd></dl>
-<dl class="section date"><dt>Date</dt><dd>11/28/2016 This is the source file to control the I2C plug in temperature not barometric brick sensor using the system default I2C temp driver via sysfs. This is all used on I2C - 2. If you want to use it as regular PWM, look at the device tree editor or if you want to use it as plain I2C look at the (soon to be, if it's up, tell me to remove this message) I2C functions. </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>11/28/2016 This is the source to read from the temperature brick module</dd></dl>
+<dl class="section note"><dt>Note</dt><dd>You can not use the i2c-2 line and the brick sensors at the same time </dd></dl>
 </div><h2 class="groupheader">Function Documentation</h2>
 <a id="ac8024c0abfe969b10340eaa993fa5874"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac8024c0abfe969b10340eaa993fa5874">&sect;&nbsp;</a></span>neo_temp_free()</h2>
@@ -160,9 +157,9 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Temperature brick de-initializer. </p>
-<p>There is no need to call this, since this should auto unload on a clean program exit although it's good practice to add it.</p>
-<dl class="section return"><dt>Returns</dt><dd>NEO_OK or NEO_UNUSABLE_ERROR if temp brick is not found </dd></dl>
+<p>Frees the controller from the current program. </p>
+<p>This will release the temperature brick controller from the program</p>
+<dl class="section return"><dt>Returns</dt><dd>NEO_OK or NEO_UNUSABLE_ERRROR if it failed to release the brick </dd></dl>
 
 </div>
 </div>
@@ -181,11 +178,9 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Temperature brick initializer. </p>
-<p>This will reload and load the I2C driver for the temperature brick. Then attach the program to that driver and interface. Make sure this program is ran as ROOT and not just sudo</p>
-<dl class="section return"><dt>Returns</dt><dd>NEO_OK or NEO_UNUSABLE_ERROR if temp brick is not found</dd></dl>
-<dl class="section note"><dt>Note</dt><dd>NEO_UNUSABLE_ERROR means that there isn't a temp module/brick detected </dd></dl>
-<dl class="section warning"><dt>Warning</dt><dd>This would be way better if ran as ROOT rather than SUDO like so sudo su -c './a.out' </dd></dl>
+<p>Initializes the temperature controller. </p>
+<p>Starts the driver for the temperature brick module to be able to read data from it. Extremely simple use and conversion functions.</p>
+<dl class="section return"><dt>Returns</dt><dd>NEO_OK or NEO_UNUSABLE_ERRROR if it failed to load the temperature driver or find the brick </dd></dl>
 
 </div>
 </div>
@@ -204,10 +199,9 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Temperature reading. </p>
-<p>The main read method which will return the current temperature reading in milli celcius</p>
-<dl class="section return"><dt>Returns</dt><dd>A milli celcius value or a NEO_UNUSABLE_ERROR if temp brick is not found</dd></dl>
-<dl class="section note"><dt>Note</dt><dd>To get celcius just divide by one thousand (make sure you make the int a float) </dd></dl>
+<p>Reads the current temperature from the brick module. </p>
+<p>Read the current temperature from the brick snapin sensors. The raw return of this function is in milli celcius.</p>
+<dl class="section return"><dt>Returns</dt><dd>NEO_OK or /NEO_READ_ERROR/NEO_UNUSABLE_ERRROR if it failed to read from the brick </dd></dl>
 
 </div>
 </div>
