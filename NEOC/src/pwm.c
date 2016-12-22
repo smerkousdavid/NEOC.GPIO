@@ -44,7 +44,7 @@
 #include <time.h>
 
 //All the pin numbers for the pwm pins and the flags for if they're usable
-const char * const PWMPORTS[] = {"0", "1", "2", "3", "4", "5", "6"};
+unsigned char PWMPORTS[] = {1, 2, 3, 4, 5, 6};
 unsigned char USABLEPWM[] = {0, 0, 0, 0, 0, 0, 0};
 
 //A list of the fake pwm allowed
@@ -87,7 +87,7 @@ typedef struct params params_t;
 
 #ifndef DOXYGEN_SKIP
 
-//Creeate the same structured list to easily access the managers (The index
+//Create the same structured list to easily access the managers (The index
 //Doesn't matter)
 params_t threadProps[MAXFAKEPWM + 2];
 
@@ -105,10 +105,16 @@ params_t threadProps[MAXFAKEPWM + 2];
  * @note Do not use the same GPIO as output or input! It will override this
  * @note NEO_UNUSABLE_ERROR might be returned if that pin doesn't support PWM or it's not mapped using device tree editor 
  */
-int neo_pwm_init()
+int neo_pwm_init(int *pwm_map)
 {
 	int i;
 	int fail;
+	
+	//Double check length of mapping
+	int pwm_l = (sizeof(pwm_map) / sizeof(int)) - 1; //True length since pwm
+	//is shifted
+
+	if(pwm_l + 1 == 0) return NEO_UNUSABLE_EXPORT_ERROR; //Return the mapping is unusable
 
 	fail = NEO_OK; //Return code
 
@@ -119,17 +125,31 @@ int neo_pwm_init()
 			atexit(neo_free_all);
 			neo_exit_set = 1;
 		}
-	
-		FILE *eFile;
-		//Export the GPIO pin to be used with sysfs
-		eFile = fopen(PWMEXPORTPATH, "w");
 
 		//Configure all possible PWM pins
 		for(i = 0; i < PWMPORTSL; i++) {
 			
+			//Check to see if the index exists
+			/*if(pwm_l >= (i)) {
+				if(pwm_map[i]
+			}*/
+			
+			printf("PORT %d", i);
+			
+			continue;
+			
+			FILE *eFile;
+			
+			//Create the new PWM chip export path
+			char nPathfs[strlen(PWMEXPORTPATH) + 10];
+			
+			
+			
+			//Export the PWMCHIP pin to be used with sysfs
+			eFile = fopen(PWMEXPORTPATH, "w");	
 			//If the export completed export that pin number
 			if(eFile != NULL) {
-				fprintf(eFile, "%s", PWMPORTS[i]);
+				//fprintf(eFile, "%s", PWMPORTS[i]);
 				fflush(eFile);
 				USABLEPWM[i] = 1;
 			} else fail = NEO_EXPORT_ERROR;
@@ -149,9 +169,9 @@ int neo_pwm_init()
 	
 			//Combine the paths together into one per PWM pin
 			//And copy them into the above buffer to be later opened and checked
-			sprintf(buffP, "%s%s%s", PWMPATH, PWMPORTS[i], PWMPERIOD);
-			sprintf(buffD, "%s%s%s", PWMPATH, PWMPORTS[i], PWMDUTY);
-			sprintf(buffE, "%s%s%s", PWMPATH, PWMPORTS[i], PWMENABLE);
+			//sprintf(buffP, "%s%s%s", PWMPATH, PWMPORTS[i], PWMPERIOD);
+			//sprintf(buffD, "%s%s%s", PWMPATH, PWMPORTS[i], PWMDUTY);
+			//sprintf(buffE, "%s%s%s", PWMPATH, PWMPORTS[i], PWMENABLE);
 	
 			//Load the period into the program
 			pwmP[i] = fopen(buffP, "w");

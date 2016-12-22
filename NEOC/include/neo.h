@@ -191,7 +191,7 @@ typedef void (*interruptfunc)(int, int);
 #ifndef DOXYGEN_SKIP
 
 #define GPIOPORTSL 48
-#define PWMPORTSL 7
+#define PWMPORTSL 6
 #define ANALOGPORTSL 5
 #define ANALOGSCALEL 2
 
@@ -207,8 +207,8 @@ typedef void (*interruptfunc)(int, int);
 #define RISINGEDGE "rising"
 #define BOTHEDGE "both"
 
-#define PWMEXPORTPATH "/sys/class/pwm/pwmchip0/export"
-#define PWMPATH "/sys/class/pwm/pwmchip0/pwm"
+#define PWMEXPORTPATH "/sys/class/pwm/pwmchip%d/export"
+#define PWMPATH "/sys/class/pwm/pwmchip%d/pwm0"
 #define PWMPERIOD "/period"
 #define PWMDUTY "/duty_cycle"
 #define PWMENABLE "/enable"
@@ -353,7 +353,7 @@ typedef void (*interruptfunc)(int, int);
 
 extern const char * const GPIOPORTS[];
 extern unsigned char USABLEGPIO[];
-extern const char * const PWMPORTS[];
+extern unsigned char PWMPORTS[];
 extern unsigned char USABLEPWM[];
 extern const char * const ANALOGPORTS[][2];
 extern unsigned char USABLEANALOG[];
@@ -1749,6 +1749,167 @@ private:
 	};
 
 bool Accel::_calibrated = false;
+
+/** @class Gyro neo.h
+ * @brief Handler for the builtin gyroscope
+ * 
+ * @details This class will handle the builtin gyro and has a builtin calibrator.
+ * The calibrator is extremely simple and not precise, but it does its job. If anyone
+ * would like to help me write a better one, that would be awesome.
+ *
+ * <BR>Here is the example usage of the class:
+ * \code{.cpp}
+ * 
+ * int main() {
+ *   Gyro::init(true); //Throw errors if any
+ *   Gyro::setPoll(30); //Set the update rate to 30 milliseconds
+ *   Gyro::calibrate(100, 30); //3 seconds calibration (100 samples at 30 millis delays)
+ *
+ *   while(1) {
+ *      int x, y, z; //Hold the gyro vals
+ *      Gyro::read(x, y, z); //Update the values
+ *      printf("X: %d, Y: %d, Z: %d\n", x, y, z); //Print the updates
+ *      usleep(1000 * 30); //30 millis delay
+ *   }
+ *   return 0; //Auto free on exit
+ * }
+ *
+ * \endcode
+ * <BR>
+ */
+class Gyro {
+public:
+		/**
+		 * @brief Initializer
+		 *
+		 * A functions that wraps the C neo_gyro_init function with some
+		 * exception throwing and nice namespace conventioning.
+		 *
+		 * @param throws A boolean to indicate if the object should throw an error when it fails
+		 * 
+		 */
+		static bool init(bool throws = true) {
+			neo::checkRoot("Gyro requires root permission", throws);
+			int ret = neo_accel_init();
+			if(throws && ret != NEO_OK) {
+				neo::error::Handler(ret, 0, 0, 0, 0, "Gyro", "Failed to Init");
+			}
+			return ret == NEO_OK;
+		}
+
+		/**
+		 * @brief De-initializer
+		 *
+		 * A functions that wraps the C neo_gyro_free function with some exception throwing.
+		 *
+		 * @param throws A boolean to indicate if the object should throw an error when it fails
+		 *
+		 * @note There is no reason to call this (it will auto call on program exit) unless you explicity
+		 * @note To release the Gyro
+		 */
+		static bool free(bool throws = false) {
+			int ret = neo_accel_free();
+			if(throws && ret != NEO_OK) {
+				neo::error::Handler(ret, 0, 0, 0, 0, "Gyro", "Failed to Release");
+			}
+			return ret == NEO_OK;
+		}
+		
+		/**
+		 * @brief Setting the poll rate of the Gyro
+		 *
+		 * Usually you will probably run your code within some type of loop that
+		 * runs on forever. Well obviously that you are probably using the accelerometer
+		 * you are using a loop. Check the delay on that loop and set it to the rate below!
+		 * If you make the pull too fast the gyro will reset its values, if you pull too slow
+		 * then the values you pull might be the same when you pull again. Try making the value
+		 * slightly higher than what you pull, it will save you some processing.
+		 *
+		 * Example Usage:
+		 * \code{.cpp}
+		 *    Gyro::setPoll(30); //Set poll rate for 30 milliseconds
+		 * \endcode
+		 * @return A boolean if the operation succeded or not
+		 * @param millis The milliseconds until every read in your loop
+		 * @param throws Optional value to throw if there is an error (default: true)
+		 *
+		 */
+		static bool setPoll(int millis, bool throws = true) {
+			int ret = neo_gyro_set_poll(millis);
+			if(throws && ret != NEO_OK) {
+				neo::error::Handler(ret, 0, 0, 10000000, millis, "Gyro", "Failed in setting poll of Gyro");
+			}
+			return ret == NEO_OK;
+		}
+	
+		/**
+		 * @brief Read raw data from the gyro
+		 *
+		 * This method will either turn the led off or on via a state, via the object (same effect as static)
+		 * Example Usage:
+		 * \code{.cpp}
+		 *    int x, y, z;
+		 *    Gyro::read(&x, &y, &z);
+		 * \endcode
+		 * @return A boolean if the operation succeded 
+		 * @param x A pointer for the x value (int)
+		 * @param y A pointer for the y value (int)
+		 * @param z A pointer for the z value (int)
+		 * @param throws To throw an exception if it fails to read
+		 */
+		static bool read(int *x, int *y, int *z, bool throws = true) {
+			int ret = (Gyro::_calibrated) ? 
+				neo_gyro_read_calibrated(x, y, z) : neo_gyro_read(x, y, z);
+			if(throws && ret != NEO_OK) {
+				neo::error::Handler(ret, 0, 0, 0, 0, "Gyro", "Failed reading!");
+			}
+			return ret == NEO_OK;
+		}
+		
+		/**
+		 * @brief When reading only read the raw data and not the calibrated data
+		 */
+		static void setNoCalib() {
+			Gyro::_calibrated = false;
+		}
+		
+		/**
+		 * @brief After setting setNoCalib and you want to start reading the calibrated data again run this
+		 */
+		static void setCalib() {
+			Gyro::_calibrated = true;
+		}
+
+
+		/**
+		 * @brief Calibrate the gyro
+		 *
+		 * This method will calibrate the gyro, this does use a delay
+		 * to get the calibration over a period of time so you might have to wait on
+		 * initializing.
+		 *
+		 * Example Usage:
+		 * \code{.cpp}
+		 *    Gyro::calibrate(20, 30); //Take 20 samples with 30 millis delay between each sample
+		 * \endcode
+		 * @return A boolean if the operation succeded 
+		 * @param samples The amount of read samples to take
+		 * @param millis The delay in millis between each sample
+		 * @param throws To throw an exception if it fails to read
+		 */
+		static bool calibrate(int samples, int millis, bool throws = true) {
+			int ret = neo_accel_calibrate(samples, millis);
+			if(throws && ret != NEO_OK) {
+				neo::error::Handler(ret, 0, 0, 100, samples, "Accel", "Failed calibrating");
+			} else if(ret == NEO_OK) Accel::setCalib();
+			return ret == NEO_OK;
+		}
+private:
+	static bool _calibrated;
+
+	};
+
+bool Gyro::_calibrated = false;
 
 }
 #endif //__cplusplus
